@@ -1,6 +1,6 @@
 const db = require("quick.db")
 const request = new (require("rss-parser"))()
-const config = require('../../config')
+const config = require('../../config.json')
 
 class YoutubeFeed {
   static start(client, account) {

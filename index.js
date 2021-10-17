@@ -4,7 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 require('dotenv').config()
 const config = require('./config.json')
 const twitter = require('./streams/socials/twitter')
-const youtube = require('./streams/socials/youtube')
+// const youtube = require('./streams/socials/youtube')
 // const instagram = require('./streams/socials/instragram')
 // const twitch = require('./streams/socials/twitch')
 
@@ -47,8 +47,8 @@ fs.readdir('./events/', (error, files) => {
 
 // SOCIALS
 twitter.start(client)
-youtube.start(client, config.socials.youtube.tomfirth)
-youtube.start(client, config.socials.youtube.beardmachine)
+// youtube.start(client, config.socials.youtube.tomfirth)
+// youtube.start(client, config.socials.youtube.beardmachine)
 // instagram.start()
 // twitch.start()
 
