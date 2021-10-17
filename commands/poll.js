@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js')
-const config = require('../config')
+const config = require('../config.json')
 
 const thumbsUp = config.discord.emojis.thumbsUp
 const thumbsDown = config.discord.emojis.thumbsDown

@@ -1,4 +1,4 @@
-const config = require('../config')
+const config = require('../config.json')
 
 module.exports = (client, message) => {
     if(message.type === "DM" || message.author.bot) return
