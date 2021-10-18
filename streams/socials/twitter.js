@@ -7,6 +7,7 @@ const twitterConf = {
   access_token: process.env.TWITTER_ACCESS_TOKEN,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 }
+console.log("twit conf", twitterConf)
 const twitterClient = new Twitter(twitterConf)
 
 class TwitterFeed {
