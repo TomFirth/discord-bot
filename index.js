@@ -62,5 +62,4 @@ fs.readdir('./commands/', (error, files) => {
   })
 })
 
-console.log("token", process.env.TOKEN)
-client.login(process.env.TOKEN)
+client.login(process.env.TOKEN).catch(console.error)
