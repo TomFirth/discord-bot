@@ -2,10 +2,10 @@ const Twitter = require('twit')
 const config = require('../../config')
 
 const twitterConf = {
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  access_token: process.env.TWITTER_ACCESS_TOKEN,
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  consumer_key: process.env.TWITTER_CONSUMER_KEY.substring(0, process.env.TWITTER_CONSUMER_KEY.length - 2),
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET.substring(0, process.env.TWITTER_CONSUMER_SECRET.length - 2),
+  access_token: process.env.TWITTER_ACCESS_TOKEN.substring(0, process.env.TWITTER_ACCESS_TOKEN.length - 2),
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET.substring(0, process.env.TWITTER_ACCESS_TOKEN_SECRET.length - 2),
 }
 console.log("twit conf", twitterConf)
 const twitterClient = new Twitter(twitterConf)
