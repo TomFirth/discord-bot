@@ -18,7 +18,7 @@ module.exports = {
           .setTitle(interaction.guild.name)
           .setThumbnail(interaction.guild.iconURL())
           .setColor('NAVY')
-          .setDescription(`\`👤\` \`Owner\` **- <@${interaction.guild.ownerId}>**\n\`🙂\` \`Members\` **- \`${interaction.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`🎉\` \`Roles\` **- \`${interaction.guild.roles.cache.size}\`**\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
+          .setDescription(`\`👤\` \`Owner\` **- <@${interaction.guild.ownerId}>**\n\`🙂\` \`Members\` **- \`${interaction.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
         return interaction.channel.send({ embeds: [server_embed] })
     },
 }
