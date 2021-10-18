@@ -1,7 +1,7 @@
 const fs = require('fs')
 const { Client, Intents, Collection, MessageEmbed } = require('discord.js')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] })
-require('dotenv').config()
+require('dotenv').config({ path: "./.env" })
 const config = require('./config.json')
 const twitter = require('./streams/socials/twitter')
 // const youtube = require('./streams/socials/youtube')
@@ -62,5 +62,4 @@ fs.readdir('./commands/', (error, files) => {
   })
 })
 
-console.log('token', process.env.token)
 client.login(process.env.token)
