@@ -8,7 +8,7 @@ module.exports = {
   emoji: '👍',
   name: 'poll',
   description: 'Poll to decide on things!',
-  execute(interaction, args) {
+  execute(client, interaction, args) {
     if(!args.length) return interaction.reply(`**Please add a question.**`)
     const poll = new MessageEmbed()
       .setDescription(`Poll: **${args.join(" ")}**`)
