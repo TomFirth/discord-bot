@@ -19,7 +19,7 @@ module.exports = {
         }
       ],
     }).then((channel) => {
-      channel.setParent('622501516695044118')
+      channel.setParent(config.discord.channels.tempVoice)
     })
   }
 }

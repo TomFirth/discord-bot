@@ -18,6 +18,8 @@ module.exports = {
           id: interaction.guild.roles.everyone
         }
       ],
+    }).then((channel) => {
+      channel.setParent(config.discord.channels.tempText)
     })
   }
 }
