@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
     emoji: '📊',
     name: 'server',
-    description: 'Show server information',
+    description: 'Server information',
     async execute(client, interaction) {
         var members = await interaction.guild.members.fetch()
         var botSize = members.filter(member => member.user.bot).size
@@ -18,7 +18,7 @@ module.exports = {
           .setTitle(interaction.guild.name)
           .setThumbnail(interaction.guild.iconURL())
           .setColor('NAVY')
-          .setDescription(`\`👤\` \`Owner\` **- <@${interaction.guild.ownerId}>**\n\`🙂\` \`Members\` **- \`${interaction.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
+          .setDescription(`\`🙂\` \`Members\` **- \`${interaction.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
         return interaction.channel.send({ embeds: [server_embed] })
     },
 }

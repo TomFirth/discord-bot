@@ -7,7 +7,7 @@ const clock = config.discord.emojis.clock
 module.exports = {
   emoji: '🔈',
   name: 'voice',
-  description: 'Create a temporary voice channel',
+  description: 'Temporary voice channel',
   execute(client, interaction, args) {
     if(!args || !args.length) channelName = `${clock} temp`
     else channelName = clock + " " + args.join(" ")

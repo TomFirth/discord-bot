@@ -1,7 +1,7 @@
 module.exports = {
   emoji: '⏲️',
   name: 'uptime',
-  description: 'Bot\'s uptime',
+  description: 'Barber\'s uptime',
   async execute(client, interaction) {
     let totalSeconds = (client.uptime / 1000)
     let days = Math.floor(totalSeconds / 86400)
