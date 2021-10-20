@@ -11,13 +11,15 @@ const twitterClient = new Twitter(twitterConf)
 
 class TwitterFeed {
   static start(client) {
-    const stream = twitterClient.stream('statuses/filter', {
-      follow: config.socials.twitter.user
+    const stream = twitterClient.stream('statuses/user_timeline', {
+      follow: config.socials.twitter.user,
+      include_rts: false
     })
+    const emoji = client.emojis.cache.get(config.discord.emojis.twitter)
 
     stream.on('tweet', tweet => {
       let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.socials)
-      channel.send(`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`)
+      channel.send(`${emoji} https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str} ${emoji}`)
       return false
     })
   }
