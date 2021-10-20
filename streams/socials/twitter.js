@@ -17,7 +17,7 @@ class TwitterFeed {
     const emoji = client.emojis.cache.get(config.discord.emojis.twitter)
 
     stream.on('tweet', tweet => {
-      console.log('tweet', tweet)
+      if(!tweet.in_reply_to_status_id) return false
       let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.socials)
       channel.send(`${emoji} https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str} ${emoji}`)
       return false
