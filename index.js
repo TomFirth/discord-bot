@@ -46,8 +46,8 @@ fs.readdir('./events/', (error, files) => {
 
 // SOCIALS
 twitter.start(client)
-// youtube.start(client, config.socials.youtube.tomfirth)
-// youtube.start(client, config.socials.youtube.beardmachine)
+// youtube.start(client, config.socials.youtube.channel1)
+// youtube.start(client, config.socials.youtube.channel2)
 // instagram.start()
 // twitch.start()
 
