@@ -51,15 +51,6 @@ twitter.start(client)
 // instagram.start()
 // twitch.start()
 
-// troll Adam
-console.log("before")
-client.on('message', message => {
-  console.log("during", message.content)
-  if (message.content == "Hello" && Math.floor(Math.random() * 3) == 0) {
-    message.channel.send("Lmao")
-  }
-})
-
 // COMMAND HANDLER
 fs.readdir('./commands/', (error, files) => {
   if (error) return console.error(err)
@@ -68,6 +59,13 @@ fs.readdir('./commands/', (error, files) => {
     const command = require(`./commands/${file}`)
     client.botCommands.set(command.name, command)
   })
+})
+
+// troll Adam
+client.on('message', message => {
+  if (message.content == "Hello" && Math.floor(Math.random() * 3) == 0) {
+    message.channel.send("Lmao")
+  }
 })
 
 client.login(process.env.TOKEN).catch(console.error)
