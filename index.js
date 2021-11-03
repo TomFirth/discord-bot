@@ -52,8 +52,10 @@ twitter.start(client)
 // twitch.start()
 
 // troll Adam
+console.log("before")
 client.on('message', message => {
-  if (message.content == "Hello" && Math.random(0, 2) == 0) {  
+  console.log("during", message.content)
+  if (message.content == "Hello" && Math.floor(Math.random() * 3) == 0) {
     message.channel.send("Lmao")
   }
 })
