@@ -51,6 +51,14 @@ twitter.start(client)
 // instagram.start()
 // twitch.start()
 
+// troll Adam
+client.on('message', message => { 
+  let embed = message.embeds[0]
+  if (embed && embed.title == "Hello" && Math.random(0, 2) == 0) {  
+    message.channel.send("Lmao")
+  }
+})
+
 // COMMAND HANDLER
 fs.readdir('./commands/', (error, files) => {
   if (error) return console.error(err)
