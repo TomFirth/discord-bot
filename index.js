@@ -61,11 +61,4 @@ fs.readdir('./commands/', (error, files) => {
   })
 })
 
-// troll Adam
-client.on('message', message => {
-  if (message.content == "Hello" && Math.floor(Math.random() * 3) == 0) {
-    message.channel.send("Lmao")
-  }
-})
-
 client.login(process.env.TOKEN).catch(console.error)
