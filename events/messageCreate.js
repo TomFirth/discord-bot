@@ -2,6 +2,7 @@ const config = require('../config.json')
 
 module.exports = (client, message) => {
     if(message.type === "DM" || message.author.bot) return
+    if(message.content.toLowerCase() == "hello" && Math.floor(Math.random() * 3) == 0) message.channel.send("Lmao")
     if(!message.content.toLowerCase().startsWith(config.bot.prefix)) return
 
     const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
