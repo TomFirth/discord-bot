@@ -52,9 +52,8 @@ twitter.start(client)
 // twitch.start()
 
 // troll Adam
-client.on('message', message => { 
-  let embed = message.embeds[0]
-  if (embed && embed.title == "Hello" && Math.random(0, 2) == 0) {  
+client.on('message', message => {
+  if (message.content == "Hello" && Math.random(0, 2) == 0) {  
     message.channel.send("Lmao")
   }
 })

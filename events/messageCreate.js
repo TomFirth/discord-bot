@@ -9,6 +9,7 @@ module.exports = (client, message) => {
     const command_name = args.shift().toLowerCase()
     if(!command_name) return
     if(command_name.charAt(0) === '.') return
+    if(command_name.charAt(0) === '/') return
     
     const command = client.botCommands.get(command_name)
     if(!command) return message.reply(`**Sorry, that command does not exist!**`)
