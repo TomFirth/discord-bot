@@ -3,7 +3,11 @@ const config = require('../config.json')
 module.exports = (client, message) => {
     if(message.type === "DM" || message.author.bot) return
     // Troll Adam
-    if(message.content.toLowerCase() == "hello" && Math.floor(Math.random() * 3) == 0) message.channel.send("Lmao")
+    if(message.content == "Hello" && Math.floor(Math.random() * 3) == 0) message.channel.send("Lmao")
+    // Special reward
+    if(message.member.roles.find(role => role.name === "Special") && Math.floor(Math.random() * 10) == 0) message.react('⭐')
+
+    // Start normal bot commands
     if(!message.content.toLowerCase().startsWith(config.bot.prefix)) return
 
     const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
