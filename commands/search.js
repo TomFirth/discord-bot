@@ -12,7 +12,9 @@ module.exports = {
       .setColor('YELLOW')
 
     google({'query': args.join(' ')}).then(results => {
-      embed.addField(results[0].title, results[0].link)
+      results.forEach(function(item, index) { 
+        embed.addField((index + 1) + ": " + item.title, "<" + item.link + ">");
+      })
     })
     return interaction.channel.send({ embeds: [search] })
   },
