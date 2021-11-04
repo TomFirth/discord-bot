@@ -9,8 +9,7 @@ module.exports = {
     if(!args.length) return interaction.reply(`**What do you want to search for?**`)
 
     google({'query': args.join(' ')}).then(results => {
-      console.log(results[0])
-      return interaction.channel.send(results[0].title, results[0].link)
+      return interaction.channel.send(results[0].title + " " + results[0].link)
     })
   },
 }
