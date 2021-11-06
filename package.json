@@ -12,6 +12,7 @@
     "cron": "1.8.2",
     "discord.js": "^13.1.0",
     "fetch-subreddit": "^3.0.0",
+    "firebase": "9.3.0",
     "google-it": "^1.6.2",
     "node-fetch": "3.0.0",
     "twit": "^2.2.11",

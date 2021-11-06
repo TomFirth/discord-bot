@@ -61,4 +61,18 @@ fs.readdir('./commands/', (error, files) => {
   })
 })
 
+// RANDOM COMMANDS
+client.on('message', (message) => {
+  // Troll Adam
+  if(message.content == "Hello" && Math.floor(Math.random() * 5) == 0) {
+    message.channel.send("Lmao")
+  }
+
+  // Special reward
+  if(message.member.roles.cache.some(role => role.name === "Special")
+    && Math.floor(Math.random() * 50) == 0) {
+    message.react('⭐')
+  }
+})
+
 client.login(process.env.TOKEN).catch(console.error)
