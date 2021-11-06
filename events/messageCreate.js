@@ -10,7 +10,6 @@ module.exports = (client, message) => {
   if(command_name.charAt(0) === '/') return
   
   const command = client.botCommands.get(command_name)
-  if(!command) return message.reply(`**Sorry, that command does not exist!**`)
   try {
     command.execute(client, message, args)
   } catch (error) {
