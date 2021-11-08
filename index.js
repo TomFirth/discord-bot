@@ -62,16 +62,17 @@ fs.readdir('./commands/', (error, files) => {
 })
 
 // RANDOM COMMANDS
-client.on('message', (message) => {
+client.on('message', message => {
   // Troll Adam
   if(message.content == "Hello" && Math.floor(Math.random() * 5) == 0) {
     message.channel.send("Lmao")
   }
 
   // Special reward
+  const reactarray = ['⭐','🏆','👏','👍','🥇']
   if(message.member.roles.cache.some(role => role.name === "Special")
-    && Math.floor(Math.random() * 50) == 0) {
-    message.react('⭐')
+    && Math.floor(Math.random() * 99) == 0) {
+    message.react(reactArray[Math.floor(Math.random() * reactarray.length)])
   }
 })
 
