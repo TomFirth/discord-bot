@@ -19,9 +19,9 @@ const firebaseApp = initializeApp({
 
 const db = firebaseApp.getFirestore()
 
-module.exports = async (client, message) => {
+module.exports = (client, message) => {
 	if(message.content.toLowerCase().includes("answer")) {
-		const answer = await cache.get("answer") || null
+		const answer = cache.get("answer") || null
 		const userAnswer = message.content.toLowerCase().replace('answer ','')
 		if(userAnswer.includes(answer)) {
 			channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}`)
@@ -33,12 +33,12 @@ module.exports = async (client, message) => {
 	const day = new Date(new Date().getTime() - (24 * 60 * 60 * 1000))
 	const week = new Date(new Date().getTime() - (168 * 60 * 60 * 1000))
 	// make cron time random?
-	let scheduledMessage = new cron.CronJob('00 30 13 * * 1', () => {
+	let scheduledMessage = new cron.CronJob('00 00 12 * * 1', () => {
 		const quiz = query(collection(db, "quiz"), where("used", "==", false))
-    const query = await getDocs(quiz)
+    const query = getDocs(quiz)
 		const random = Math.floor(Math.Random() * query.length)
 		// cache answer
-		await cache.put("answer", query[random].answer)
+		cache.put("answer", query[random].answer)
 		let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
 		channel.send(query[random].question)
 		channel.send('Reply with: "answer <your answer>"')
