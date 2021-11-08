@@ -34,13 +34,6 @@ module.exports = async (client, message) => {
 	const week = new Date(new Date().getTime() - (168 * 60 * 60 * 1000))
 	// make cron time random?
 	let scheduledMessage = new cron.CronJob('00 30 13 * * 1', () => {
-		const role = message.guild.roles.cache.get("Special");
-		role.members.forEach((member, i) => {
-			setTimeout(() => {
-				member.roles.remove(Role)
-			}, i * 1000)
-		})
-
 		const quiz = query(collection(db, "quiz"), where("used", "==", false))
     const query = await getDocs(quiz)
 		const random = Math.floor(Math.Random() * query.length)
