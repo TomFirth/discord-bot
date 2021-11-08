@@ -9,15 +9,12 @@ const timedCache = require('timed-cache')
 const cache = new timedCache({ defaultTtl: 900 * 1000 })
 
 // Initialize Cloud Firestore through Firebase
-const { initializeApp } = require("firebase/app")
 const { getFirestore } = require("firebase/firestore")
-const firebaseApp = initializeApp({
+const db = getFirestore({
   apiKey: process.env.FIREBASE_APIKEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   projectId: process.env.FIREBASE_PROJECT_ID
 })
-
-const db = firebaseApp.getFirestore()
 
 module.exports = (client, message) => {
 	if(message.content.toLowerCase().includes("answer")) {
