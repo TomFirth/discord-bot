@@ -15,17 +15,13 @@ module.exports = {
       'Disco'
     ])
     .then(urls => {
-      urls.forEach(tracks => {
-        everything.push(tracks.urls)
-      })
-      const completeList = everything[0].concat(everything[1], everything[2], everything[3])
+      everything = urls[0].urls.concat(urls[1].urls, urls[2].urls, urls[3].urls, urls[4].urls)
       while (randomTracks.length < 3) {
-        let rand = Math.floor(Math.random() * completeList.length)
-        if (completeList[rand]
-          && !randomTracks.includes(completeList[rand])
-          && randomTracks.indexOf(completeList[rand]) > -1
-          && completeList[rand].includes('youtu')) {
-            randomTracks.push(completeList[rand])
+        let rand = Math.floor(Math.random() * everything.length)
+        if (everything[rand]
+          && !randomTracks.includes(everything[rand])
+          && everything[rand].includes('youtu')) {
+            randomTracks.push(everything[rand])
         }
       }
       randomTracks = randomTracks.slice(0, 3)

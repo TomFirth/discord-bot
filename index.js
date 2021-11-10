@@ -2,7 +2,9 @@ const fs = require('fs')
 const { Client, Intents, Collection, MessageEmbed } = require('discord.js')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] })
 const config = require('./config.json')
-if(process.env.ENV == "local") require('dotenv').config()
+if (process.env.ENV == "local") require('dotenv').config()
+const meme = require('./scheduled/meme')
+const unSpecial = require('./scheduled/unSpecial')
 // const freeGames = require('./streams/free')
 const twitter = require('./streams/socials/twitter')
 // const youtube = require('./streams/socials/youtube')
@@ -14,7 +16,7 @@ client.botCommands = new Collection()
 
 // ERROR MESSAGE
 client.error = (error_msg, channel) => {
-  if(!error_msg || !channel) return
+  if (!error_msg || !channel) return
   const error_embed = new MessageEmbed()
     .setTitle('An Error occured!')
     .setColor('RED')
@@ -28,7 +30,7 @@ fs.readdir('./events/', (error, files) => {
   if (error) return console.error(err)
   client.removeAllListeners()
   files.forEach(file => {
-    if(fs.lstatSync(`./events/${file}`).isDirectory()) return
+    if (fs.lstatSync(`./events/${file}`).isDirectory()) return
     const event = require(`./events/${file}`)
     const event_name = file.split(".")[0]
     try {
@@ -38,6 +40,10 @@ fs.readdir('./events/', (error, files) => {
     }
   })
 })
+
+// SCHEDULED HANDLER
+meme.start(client)
+unSpecial.start(client)
 
 // STREAMS
 // freeGames.start(client)
@@ -66,13 +72,13 @@ fs.readdir('./commands/', (error, files) => {
 // RANDOM COMMANDS
 client.on('message', message => {
   // Troll Adam
-  if(message.content == "Hello" && Math.floor(Math.random() * 5) == 0) {
+  if (message.content == "Hello" && Math.floor(Math.random() * 5) == 0) {
     message.channel.send("Lmao")
   }
 
   // Special reward
   const reactarray = ['⭐','🏆','👏','👍','🥇']
-  if(message.member.roles.cache.some(role => role.name === "Special")
+  if (message.member.roles.cache.some(role => role.name === "Special")
     && Math.floor(Math.random() * 99) == 0) {
     message.react(reactArray[Math.floor(Math.random() * reactarray.length)])
   }

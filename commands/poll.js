@@ -9,7 +9,7 @@ module.exports = {
   name: 'poll',
   description: 'Poll to decide on things!',
   execute(client, interaction, args) {
-    if(!args.length) return interaction.reply(`**Please add a question.**`)
+    if (!args.length) return interaction.reply(`**Please add a question.**`)
     const poll = new MessageEmbed()
       .setDescription(`Poll: **${args.join(" ")}**`)
       .setColor('RED')

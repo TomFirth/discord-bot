@@ -9,7 +9,7 @@ module.exports = {
   name: 'text',
   description: 'Temporary text channel',
   execute(client, interaction, args) {
-    if(!args || !args.length) channelName = `${clock} temp`
+    if (!args || !args.length) channelName = `${clock} temp`
     else channelName = clock + " " + args.join(" ")
     interaction.guild.channels.create(channelName, {
       type: "text",
