@@ -1,7 +1,6 @@
 const Twitter = require('twit')
 const config = require('../../config')
 if (process.env.NODE_ENV) require('dotenv').config()
-console.log('consumer_key', process.env.TWITTER_CONSUMER_KEY)
 
 const twitterConf = {
   consumer_key: process.env.TWITTER_CONSUMER_KEY,

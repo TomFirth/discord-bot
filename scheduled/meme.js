@@ -1,10 +1,10 @@
 const { fetchSubreddit } = require('fetch-subreddit')
 const cron = require('cron')
-const { config } = require('dotenv')
+const config = require("../config.json")
 
 class MemeCron {
   static start(client) {
-    let scheduledMessage = new cron.CronJob('00 00 12 * * 3', () => {
+    let scheduledMessage = new cron.CronJob('00 00 12 * * 4', () => {
       fetchSubreddit([
         'meme'
       ])

@@ -2,7 +2,6 @@ const config = require('../config.json')
 const clock = config.discord.emojis.clock
 
 // set user limit
-// set private/public
 
 module.exports = {
   emoji: '🔈',
@@ -19,7 +18,7 @@ module.exports = {
         }
       ],
     }).then((channel) => {
-      channel.setParent(config.discord.channels.tempVoice)
+      channel.setParent(config.discord.categories.tempVoice)
     })
   }
 }

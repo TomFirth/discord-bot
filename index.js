@@ -2,9 +2,11 @@ const fs = require('fs')
 const { Client, Intents, Collection, MessageEmbed } = require('discord.js')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] })
 const config = require('./config.json')
-if (process.env.ENV == "local") require('dotenv').config()
+if (process.env.NODE_ENV) require('dotenv').config()
 const meme = require('./scheduled/meme')
 const unSpecial = require('./scheduled/unSpecial')
+const prune = require("./scheduled/prune")
+const bot = require('./streams/bot')
 // const freeGames = require('./streams/free')
 const twitter = require('./streams/socials/twitter')
 // const youtube = require('./streams/socials/youtube')
@@ -35,8 +37,8 @@ fs.readdir('./events/', (error, files) => {
     const event_name = file.split(".")[0]
     try {
       client.on(event_name, event.bind(null, client))
-    } catch(e) {
-      console.log(e)
+    } catch(error) {
+      console.log(error)
     }
   })
 })
@@ -44,8 +46,11 @@ fs.readdir('./events/', (error, files) => {
 // SCHEDULED HANDLER
 meme.start(client)
 unSpecial.start(client)
+prune.start(client)
+// quiz
 
 // STREAMS
+bot.start(client)
 // freeGames.start(client)
 // gaming news
 // patch notes

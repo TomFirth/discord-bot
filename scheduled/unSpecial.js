@@ -10,7 +10,7 @@ class UnSpecialCron {
 				guild.members.fetch()
 				.then(members => {
 					members.forEach(member => {
-						if (member.user.username !== config.discord.owner && member._roles.includes("860466953582936094")) {
+						if (member.user.username !== config.discord.owner.name && member._roles.includes("860466953582936094")) {
 							const role = member.guild.roles.cache.find(role => role.name === "Special")
 							member.roles.remove(role)
 						}

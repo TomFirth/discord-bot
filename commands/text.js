@@ -19,7 +19,7 @@ module.exports = {
         }
       ],
     }).then((channel) => {
-      channel.setParent(config.discord.channels.tempText)
+      channel.setParent(config.discord.categories.tempText)
     })
   }
 }

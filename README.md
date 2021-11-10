@@ -10,15 +10,14 @@ There were a few features that I specifically wanted and found that I required m
 - The ability to follow multiple social media channels (twitter and youtube currently, twitch and instagram to follow).
 - Can be self hosted (a good use for a spare raspberry pi).
 - Google search that returns the top result.
+- Reddit Rhythm Roulette integration (provides three songs to be used as samples)
+- Meme of the day (`r/meme`)
 
 *Future features*
-- Daily/weekly/monthly quiz with a prize!
-- Reddit Rhythm Roulette integration (provides three songs to be used as samples)
-- Server user birthdays (searchable, visible who's next and notifications!)
+- weekly quiz with a prize!
 - Gaming news
 - News on video games betas
 - News on free games (Epic..etc)
-- Meme of the day (`r/meme`)
 - Patch notes for certain video games.
 
 *Requirements*
