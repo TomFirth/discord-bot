@@ -1,5 +1,6 @@
 const { fetchSubreddit } = require('fetch-subreddit')
 const cron = require('cron')
+const { config } = require('dotenv')
 
 class MemeCron {
   static start(client) {
@@ -10,7 +11,7 @@ class MemeCron {
       .then(memes => {
         const rand = Math.floor(Math.random() * memes[0].urls.length)
         if (memes[0].urls[rand]) {
-          const channel = client.channels.cache.find(channel => channel.name === "bot")
+          const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
           channel.send(memes[0].urls[rand])
         }
       })
