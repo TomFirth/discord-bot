@@ -3,6 +3,7 @@ const { Client, Intents, Collection, MessageEmbed } = require('discord.js')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] })
 const config = require('./config.json')
 if (process.env.NODE_ENV) require('dotenv').config()
+const rmeme = require('./scheduled/rmeme')
 const meme = require('./scheduled/meme')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
@@ -45,6 +46,7 @@ fs.readdir('./events/', (error, files) => {
 
 // SCHEDULED HANDLER
 meme.start(client)
+rmeme.start(client)
 unSpecial.start(client)
 prune.start(client)
 // quiz
