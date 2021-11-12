@@ -1,8 +1,16 @@
 const fs = require('fs')
 const { Client, Intents, Collection, MessageEmbed } = require('discord.js')
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] })
-const timedCache = require('timed-cache')
-const cache = new timedCache({ defaultTtl: 900 * 1000 })
+const client = new Client({
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS],
+  presence: {
+    status: "online",
+    activity: {
+      name: "Barber",
+      type: "LISTENING"
+    }
+  }
+})
 const config = require('./config.json')
 if (process.env.NODE_ENV) require('dotenv').config()
 
@@ -11,8 +19,8 @@ const meme = require('./scheduled/meme')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
-const bot = require('./streams/bot')
 // const freeGames = require('./streams/free')
+
 const twitter = require('./streams/socials/twitter')
 // const youtube = require('./streams/socials/youtube')
 // const instagram = require('./streams/socials/instragram')
@@ -56,7 +64,6 @@ prune.start(client)
 // quiz
 
 // STREAMS
-bot.start(client)
 // freeGames.start(client)
 // gaming news
 // patch notes
@@ -78,34 +85,6 @@ fs.readdir('./commands/', (error, files) => {
     const command = require(`./commands/${file}`)
     client.botCommands.set(command.name, command)
   })
-})
-
-// RANDOM COMMANDS
-client.on('message', message => {
-  // Troll Adam
-  if (message.content == "Hello" && Math.floor(Math.random() * 5) == 0) {
-    message.channel.send("Lmao")
-  }
-
-  // Special reward
-  const reactarray = ['⭐','🏆','👏','👍','🥇']
-  if (message.member.roles.cache.some(role => role.name === "Special")
-    && Math.floor(Math.random() * 99) == 0) {
-    message.react(reactArray[Math.floor(Math.random() * reactarray.length)])
-  }
-
-  // Quiz answer
-  if(message.content.toLowerCase().includes("answer")) {
-    console.log("there's hope")
-    const answer = cache.get("answer") || null
-    const userAnswer = message.content.toLowerCase().replace('answer ','')
-    if(userAnswer.includes(answer)) {
-      let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
-      channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}`)
-      const role = member.guild.roles.cache.find(role => role.name === "Special")
-      member.roles.add(role)
-    }
-  }
 })
 
 client.login(process.env.TOKEN).catch(console.error)

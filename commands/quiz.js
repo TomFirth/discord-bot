@@ -20,7 +20,7 @@ module.exports = {
 		})
 		const random = Math.floor(Math.random() * questions.length)
 		cache.put("answer", questions[random].answer)
-		let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
+		let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.secret)
 		channel.send(questions[random].question + `\nReply with: "answer <your answer>"`)
 	// })
 	// scheduledMessage.start()
