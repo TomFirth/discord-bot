@@ -2,7 +2,7 @@ const { fetchSubreddit } = require('fetch-subreddit')
 const cron = require('cron')
 const config = require("../config.json")
 
-class MemeCron {
+class RMemeCron {
   static start(client) {
     let scheduledMessage = new cron.CronJob('00 00 20 * * *', () => {
       fetchSubreddit([
@@ -21,4 +21,4 @@ class MemeCron {
   }
 }
 
-module.exports = MemeCron
+module.exports = RMemeCron
