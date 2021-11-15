@@ -9,9 +9,8 @@ class NewsFeed {
   static start(client) {
     const newsDocId = 'tc64DI4XqbngplOEm3hO'
     parse(config.streams.news).then(async result => {
-      console.log("result", result)
       const query = await db.collection('news').doc(newsDocId).get()
-      const doc = result.feed.entry[0]
+      const doc = result.entries[0]
       if(query.data().published !== doc.published[0]
       && query.data().title !== doc.title[0]) {
         let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.news)
