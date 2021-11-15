@@ -28,7 +28,7 @@ module.exports = (client, message) => {
     const answer = cache.get("answer") || null
     const userAnswer = message.content.toLowerCase().replace('answer ','')
     if(userAnswer.includes(answer)) {
-      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.secret)
+      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
       channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}`).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })
