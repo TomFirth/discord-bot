@@ -14,14 +14,14 @@ class QuizCron {
   static start(client) {
 		let randHour = Math.floor(Math.random() * 24) + 1
 		let scheduledMessage = new cron.CronJob(`00 00 ${randHour} * * 1`, async () => {
-			const random = Math.floor(Math.random() * questions.length)
 			const query = await db.collection('quiz').where("used", "==", false).get()
-			db.collection('quiz').doc(doc[random]).update({used: true})
 			let questions = []
 			query.forEach(doc => {
 				questions.push(doc.data())
 			})
 			cache.put("answer", questions[random].answer)
+			const random = Math.floor(Math.random() * questions.length)
+			db.collection('quiz').doc(doc[random]).update({used: true})
 			let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
 			const quiz = new MessageEmbed()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)

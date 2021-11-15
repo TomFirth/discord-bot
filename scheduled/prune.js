@@ -16,8 +16,7 @@ class PruneCron {
       tempText.forEach(channel => {
         channel.messages.fetch({ limit: 1 }).then(message => {
           let lastMessage = message.first()
-          if (!lastMessage.author.bot
-            && lastMessage.createdTimestamp != undefined
+          if (lastMessage.createdTimestamp != undefined
             && aFortnight > lastMessage.createdTimestamp) {
             channel.setParent(config.discord.categories.archived)
           }
