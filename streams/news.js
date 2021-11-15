@@ -6,7 +6,7 @@ const config = require('../config')
 const db = firebase.firestore()
 
 class NewsFeed {
-  static start(client) {
+  static async start(client) {
     const newsDocId = 'tc64DI4XqbngplOEm3hO'
     parse(config.streams.news).then(result => {
       const query = await db.collection('news').doc(newsDocId).get()
