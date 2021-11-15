@@ -23,7 +23,7 @@ class FreeFeed {
               const doc = result.rss.channel[0].item[0]
               if(query.data().pubDate !== doc.pubDate[0]
               && query.data().title !== doc.title[0]) {
-                let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.updates)
+                let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.freeGames)
                 const description = doc.description[0].replace(/<.*>/, '')
                 const freeGame = new MessageEmbed()
                   .setTitle(doc.title[0])
