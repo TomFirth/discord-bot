@@ -21,6 +21,7 @@ const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
 const freeGames = require('./streams/free')
+const news = require('./streams/news')
 
 const twitter = require('./streams/socials/twitter')
 // const youtube = require('./streams/socials/youtube')
@@ -66,7 +67,7 @@ quiz.start(client)
 
 // STREAMS
 freeGames.start(client)
-// gaming news
+news.start(client)
 // patch notes
 // meme of the day
 // alphas and betas

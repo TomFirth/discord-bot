@@ -8,7 +8,7 @@ class PruneCron {
       const safeVoiceChannels = ["chat", "secret"]
       let tempText = client.channels.cache.filter(c => c.parentId === config.discord.categories.tempText && !safeTextChannels.includes(c.name))
       let tempVoice = client.channels.cache.filter(c => c.parentId === config.discord.categories.tempVoice && !safeVoiceChannels.includes(c.name))
-      if (tempText.length -5 == 0 && tempVoice.length -1 == 0) return false
+      if (tempText.length -6 == 0 && tempVoice.length -1 == 0) return false
       const now = new Date()
       const aDay = now.setDate(now.getDate() - 1)
       const aFortnight = now.setDate(now.getDate() - 14)
