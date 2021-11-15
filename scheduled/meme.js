@@ -6,7 +6,7 @@ class MemeCron {
   static start(client) {
     let scheduledMessage = new cron.CronJob('00 00 12 * * *', () => {
       fetchSubreddit([
-        'meme'
+        'dontputyourdickinthat'
       ])
       .then(memes => {
         const rand = Math.floor(Math.random() * memes[0].urls.length)
