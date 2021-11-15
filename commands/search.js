@@ -2,7 +2,7 @@ const google = require('google-it')
 
 module.exports = {
   emoji: '🔎',
-  name: 'google',
+  name: 'search',
   description: 'Search Google',
   execute(client, interaction, args) {
     if (!args.length) return interaction.reply(`**What do you want to search for?**`)
