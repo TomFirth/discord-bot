@@ -18,7 +18,7 @@ class NewsFeed {
           .setDescription(doc.contentSnippet)
           .setURL(doc.link)
           .setColor('RED')
-        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.news)
+        let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.news)
         channel.send({ embeds: [news] })
         db.collection('news').doc(newsDocId).update({
           description: doc.contentSnippet,

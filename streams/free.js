@@ -19,7 +19,7 @@ class FreeFeed {
           .setURL(doc.link)
           .setDescription(description)
           .setColor('BLUE')
-        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.freeGames)
+        let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.freeGames)
         channel.send({ embeds: [freeGame] })
         db.collection('freeGame').doc(freeGameDocId).update({
           description: description,
