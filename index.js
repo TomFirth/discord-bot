@@ -62,7 +62,11 @@ meme.start(client)
 rmeme.start(client)
 unSpecial.start(client)
 prune.start(client)
-quiz.start(client)
+(async () => {
+  try {
+    await quiz.start(client)
+  } catch(e) {}
+})()
 
 // STREAMS
 // freeGames.start(client)
