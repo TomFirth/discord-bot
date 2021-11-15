@@ -9,6 +9,7 @@ class FreeFeed {
   static start(client) {
     const freeGameDocId = 'agEt3DFhkDVt0O71Nf7x'
     parse(config.streams.free).then(async result => {
+      console.log("result", result)
       const query = await db.collection('freeGame').doc(freeGameDocId).get()
       const doc = result.entries[0]
       if(query.data().pubDate !== doc.pubDate[0]
