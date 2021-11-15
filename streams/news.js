@@ -9,17 +9,16 @@ class NewsFeed {
   static start(client) {
     const newsDocId = 'tc64DI4XqbngplOEm3hO'
     parse(config.streams.news).then(async result => {
-      console.log("result.entries[0]", result.entries[0])
       const query = await db.collection('news').doc(newsDocId).get()
       const doc = result.entries[0]
       if(query.data().published !== doc.publishedDate
       && query.data().title !== doc.title) {
-        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.news)
         const news = new MessageEmbed()
           .setTitle(doc.title)
           .setDescription(doc.contentSnippet)
           .setURL(doc.link)
           .setColor('RED')
+        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.news)
         channel.send({ embeds: [news] })
         db.collection('news').doc(newsDocId).update({
           description: doc.contentSnippet,
