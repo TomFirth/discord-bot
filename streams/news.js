@@ -12,17 +12,19 @@ class NewsFeed {
       console.log("result.entries[0]", result.entries[0])
       const query = await db.collection('news').doc(newsDocId).get()
       const doc = result.entries[0]
-      if(query.data().published !== doc.published
+      if(query.data().published !== doc.publishedDate
       && query.data().title !== doc.title) {
         let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.news)
         const news = new MessageEmbed()
           .setTitle(doc.title)
-          .setURL(doc.link.$.href)
+          .setDescription(doc.contentSnippet)
+          .setURL(doc.link)
           .setColor('RED')
         channel.send({ embeds: [news] })
         db.collection('news').doc(newsDocId).update({
-          link: doc.link.$.href,
-          published: doc.published,
+          description: doc.contentSnippet,
+          link: doc.link,
+          published: doc.publishedDate,
           title: doc.title
         })
       }
