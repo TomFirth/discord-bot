@@ -5,19 +5,19 @@ A simple Discord bot to promote a healthy and active server.
 There were a few features that I specifically wanted and found that I required multiple bots to achieve this. I think my OCD kicked in and it seemed like a good idea to aggregate them.
 
 *Features*
-- Temporary voice and text channels creation/deletion.
+- Temporary voice and text channels creation with pruning after inactivity.
 - Polls.
-- The ability to follow multiple social media channels (twitter and youtube currently, twitch and instagram to follow).
+- The ability to follow multiple social media channels (twitter, youtube, twitch and instagram coming soon).
 - Can be self hosted (a good use for a spare raspberry pi).
 - Google search that returns the top result.
-- Reddit Rhythm Roulette integration (provides three songs to be used as samples)
-- Meme of the day (`r/meme`)
+- Reddit Rhythm Roulette integration (provides three songs to be used as samples).
+- Meme of the day (`r/dontputyourdickinthat`).
+- Weekly quiz with a prize!
+- Notifications of Free games.
 
 *Future features*
-- weekly quiz with a prize!
-- Gaming news
-- News on video games betas
-- News on free games (Epic..etc)
+- Gaming news.
+- News on video games betas.
 - Patch notes for certain video games.
 
 *Requirements*
