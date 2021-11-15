@@ -11,7 +11,7 @@ firebase.initializeApp({
 const db = firebase.firestore()
 
 class QuizCron {
-  async static start(client) {
+  static async start(client) {
 	let scheduledMessage = new cron.CronJob('00 30 13 * * 1', () => {
 		const query = await db.collection('quiz').where("used", "==", false).get()
 		let questions = []
