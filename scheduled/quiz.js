@@ -20,7 +20,7 @@ class QuizCron {
 		})
 		const random = Math.floor(Math.random() * questions.length)
 		cache.put("answer", questions[random].answer)
-		let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.secret)
+		let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
 		const quiz = new MessageEmbed()
       .setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
       .setColor('GREEN')
