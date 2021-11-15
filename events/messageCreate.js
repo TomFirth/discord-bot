@@ -11,19 +11,24 @@ module.exports = (client, message) => {
   if (command_name.charAt(0) === '.') return
   if (command_name.charAt(0) === '/') return
 
-  // Troll Adam
+  // TROLL ADAM
   if (message.content == "Hello" && Math.floor(Math.random() * 5) == 0) {
     message.channel.send("Lmao")
   }
 
-  // Special reward
+  // TROLL BORIS
+  if (message.user == "BorisForis" && Math.floor(Math.random() * 49) == 0) {
+    message.channel.send("LOL")
+  }
+
+  // SPECIAL ROLE REWARD
   const reactarray = ['⭐','🏆','👏','👍','🥇']
   if (message.member.roles.cache.some(role => role.name === "Special")
     && Math.floor(Math.random() * 49) == 0) {
     message.react(reactArray[Math.floor(Math.random() * reactarray.length)])
   }
 
-  // Quiz answer
+  // QUIZ ANSWER
   if(message.content.toLowerCase().includes("answer")) {
     const answer = cache.get("answer") || null
     const userAnswer = message.content.toLowerCase().replace('answer ','')
@@ -33,7 +38,7 @@ module.exports = (client, message) => {
         ownMessage.react(config.discord.emojis.clap)
       })
       cache.remove("answer")
-      // Reward
+      // REWARD
       const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
       message.member.roles.add(role)
     }
