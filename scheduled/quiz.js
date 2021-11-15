@@ -10,9 +10,8 @@ firebase.initializeApp({
 })
 const db = firebase.firestore()
 
-module.exports = {
-  name: 'quiz',
-  async execute(client) {
+class QuizCron {
+  static start(client) {
 	let scheduledMessage = new cron.CronJob('00 30 13 * * 1', () => {
 		const query = await db.collection('quiz').where("used", "==", false).get()
 		let questions = []
@@ -28,5 +27,7 @@ module.exports = {
 		channel.send({ embeds: [quiz] })
 	})
 	scheduledMessage.start()
-	}
 }
+}
+
+module.exports = QuizCron

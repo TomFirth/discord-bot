@@ -16,6 +16,7 @@ if (process.env.NODE_ENV) require('dotenv').config()
 
 const rmeme = require('./scheduled/rmeme')
 const meme = require('./scheduled/meme')
+const quiz = require('./scheduled/quiz')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
@@ -61,7 +62,7 @@ meme.start(client)
 rmeme.start(client)
 unSpecial.start(client)
 prune.start(client)
-// quiz
+quiz.start(client)
 
 // STREAMS
 // freeGames.start(client)
