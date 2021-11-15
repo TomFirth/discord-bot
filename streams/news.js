@@ -6,9 +6,9 @@ const config = require('../config')
 const db = firebase.firestore()
 
 class NewsFeed {
-  static async start(client) {
+  static start(client) {
     const newsDocId = 'tc64DI4XqbngplOEm3hO'
-    parse(config.streams.news).then(result => {
+    parse(config.streams.news).then(async result => {
       const query = await db.collection('news').doc(newsDocId).get()
       const doc = result.feed.entry[0]
       if(query.data().published !== doc.published[0]

@@ -6,9 +6,9 @@ const config = require('../config')
 const db = firebase.firestore()
 
 class FreeFeed {
-  static async start(client) {
+  static start(client) {
     const freeGameDocId = 'agEt3DFhkDVt0O71Nf7x'
-    parse(config.streams.news).then(result => {
+    parse(config.streams.news).then(async result => {
       const query = await db.collection('freeGame').doc(freeGameDocId).get()
       const doc = result.rss.channel[0].item[0]
       if(query.data().pubDate !== doc.pubDate[0]
