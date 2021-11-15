@@ -9,6 +9,7 @@ class NewsFeed {
   static start(client) {
     const newsDocId = 'tc64DI4XqbngplOEm3hO'
     parse(config.streams.news).then(async result => {
+      console.log("result.entries[0]", result.entries[0])
       const query = await db.collection('news').doc(newsDocId).get()
       const doc = result.entries[0]
       if(query.data().published !== doc.published
