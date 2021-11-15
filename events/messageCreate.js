@@ -28,20 +28,14 @@ module.exports = (client, message) => {
     const answer = cache.get("answer") || null
     const userAnswer = message.content.toLowerCase().replace('answer ','')
     if(userAnswer.includes(answer)) {
-      let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.secret)
-      channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}`)
-      const guild = client.guilds.cache.get(config.discord.guildId)
-      guild.members.fetch()
-      .then(members => {
-        members.forEach(member => {
-          if (member.user.username !== config.discord.owner.name && member.user.username == message.member) {
-            const role = member.guild.roles.cache.find(role => role.name === "Special")
-            member.roles.add(role)
-            cache.put("answer", null)
-          }
-        })
+      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.secret)
+      channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}`).then(ownMessage => {
+        ownMessage.react(config.discord.emojis.clap)
       })
-      .catch(error => console.log(error))
+      cache.remove("answer")
+      // Reward
+      const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
+      message.member.roles.add(role)
     }
   }
   

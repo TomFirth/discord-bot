@@ -1,9 +1,6 @@
 const { MessageEmbed } = require('discord.js')
 const config = require('../config.json')
 
-const thumbsUp = config.discord.emojis.thumbsUp
-const thumbsDown = config.discord.emojis.thumbsDown
-
 module.exports = {
   emoji: '👍',
   name: 'poll',
@@ -14,8 +11,8 @@ module.exports = {
       .setDescription(`Poll: **${args.join(" ")}**`)
       .setColor('RED')
     return interaction.channel.send({ embeds: [poll] }).then(ownMessage => {
-      ownMessage.react(thumbsUp)
-      ownMessage.react(thumbsDown)
+      ownMessage.react(config.discord.emojis.thumbsUp)
+      ownMessage.react(config.discord.emojis.thumbsDown)
     })
   },
 }
