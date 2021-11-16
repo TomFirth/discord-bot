@@ -11,12 +11,12 @@ There were a few features that I specifically wanted and found that I required m
 - Can be self hosted (a good use for a spare raspberry pi).
 - Google search that returns the top result.
 - Reddit Rhythm Roulette integration (provides three songs to be used as samples).
-- Meme of the day (`r/dontputyourdickinthat`).
+- Meme of the day.
 - Weekly quiz with a prize!
 - Notifications of Free games.
+- Gaming news.
 
 *Future features*
-- Gaming news.
 - News on video games betas.
 - Patch notes for certain video games.
 
