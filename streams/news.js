@@ -13,6 +13,7 @@ class NewsFeed {
       parse(config.streams.news).then(async result => {
         const query = await db.collection('news').doc(newsDocId).get()
         const doc = result.entries[0]
+        console.log("doc", doc)
         if(query.data().published !== doc.publishedDate
         && query.data().title !== doc.title) {
           const news = new MessageEmbed()
