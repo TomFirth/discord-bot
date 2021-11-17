@@ -6,24 +6,24 @@ const config = require('../config')
 
 const db = firebase.firestore()
 
-class FreeFeed {
-  static start(client) {
-    let scheduledMessage = new cron.CronJob('00 * */1 * * *', () => {
-      const freeGameDocId = 'agEt3DFhkDVt0O71Nf7x'
-      parse(config.streams.free).then(async result => {
-        const query = await db.collection('freeGame').doc(freeGameDocId).get()
+class Rss {
+  static start(client, feed) {
+    let scheduledMessage = new cron.CronJob('00 */15 * * * *', () => {
+      parse(feed.url).then(async result => {
+        const query = await db.collection(feed.db).doc(feed.docId).get()
         const doc = result.entries[0]
         if(query.data().pubDate !== doc.publishedDate
         && query.data().title !== doc.title) {
           const description = doc.contentSnippet.replace(/<.*>/, '')
-          const freeGame = new MessageEmbed()
+          const feedEmbed = new MessageEmbed()
             .setTitle(doc.title)
             .setURL(doc.link)
+            .setAuthor(feed.author)
             .setDescription(description)
             .setColor('BLUE')
-          let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.freeGames)
-          channel.send({ embeds: [freeGame] })
-          db.collection('freeGame').doc(freeGameDocId).update({
+          let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
+          channel.send({ embeds: [feedEmbed] })
+          db.collection(feed.db).doc(feed.docId).update({
             description: description,
             link: doc.link,
             pubDate: doc.publishedDate,
@@ -38,4 +38,4 @@ class FreeFeed {
   }
 }
 
-module.exports = FreeFeed
+module.exports = Rss

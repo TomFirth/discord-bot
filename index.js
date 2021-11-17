@@ -13,8 +13,7 @@ const quiz = require('./scheduled/quiz')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
-const freeGames = require('./streams/free')
-const news = require('./streams/news')
+const rss = require('./streams/rss')
 
 const twitter = require('./streams/socials/twitter')
 // const youtube = require('./streams/socials/youtube')
@@ -59,10 +58,10 @@ prune.start(client)
 quiz.start(client)
 
 // STREAMS
-freeGames.start(client)
-news.start(client)
+config.rss.forEach(feed => {
+  rss.start(client, feed)
+})
 // patch notes
-// meme of the day
 // alphas and betas
 
 // SOCIALS
