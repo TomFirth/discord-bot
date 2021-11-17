@@ -10,9 +10,9 @@ class Rss {
   static start(client, feed) {
     let scheduledMessage = new cron.CronJob('00 */15 * * * *', () => {
       parse(feed.url).then(async result => {
-        const query = await db.collection(feed.db).doc(feed.docId).get()
+        const query = await db.collection('rss').doc(feed.docId).get()
         const doc = result.entries[0]
-        if(query.data().pubDate !== doc.publishedDate
+        if(query.data().publishedDate !== doc.publishedDate
         && query.data().title !== doc.title) {
           const description = doc.contentSnippet.replace(/<.*>/, '')
           const feedEmbed = new MessageEmbed()
@@ -23,10 +23,10 @@ class Rss {
             .setColor('BLUE')
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
           channel.send({ embeds: [feedEmbed] })
-          db.collection(feed.db).doc(feed.docId).update({
+          db.collection('rss').doc(feed.docId).update({
             description: description,
             link: doc.link,
-            pubDate: doc.publishedDate,
+            publishedDate: doc.publishedDate,
             title: doc.title
           })
         }
