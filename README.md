@@ -19,6 +19,8 @@ There were a few features that I specifically wanted and found that I required m
 *Future features*
 - News on video games betas.
 - Patch notes for certain video games.
+- Crypto integration
+- Trading
 
 *Requirements*
 `discord.js v13` requires `node v16.6+`

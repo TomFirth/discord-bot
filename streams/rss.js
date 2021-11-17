@@ -20,7 +20,7 @@ class Rss {
             .setURL(doc.link)
             .setAuthor(feed.author)
             .setDescription(description)
-            .setColor('BLUE')
+            .setColor(Math.floor(Math.random()*16777215).toString(16))
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
           channel.send({ embeds: [feedEmbed] })
           db.collection('rss').doc(feed.docId).update({
