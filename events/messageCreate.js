@@ -22,7 +22,7 @@ module.exports = (client, message) => {
   }
 
   // TROLL LUKE
-  if (message.content.tolowercase().includes("martin")) {
+  if (message.content.toLowerCase().includes("martin")) {
     message.channel.send("Do you like Martins?").then(ownMessage => {
       ownMessage.react("🦦")
     })
