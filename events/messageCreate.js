@@ -17,8 +17,15 @@ module.exports = (client, message) => {
   }
 
   // TROLL BORIS
-  if (message.user == "BorisForis" && Math.floor(Math.random() * 49) == 0) {
+  if (message.content.includes("LOL") && Math.floor(Math.random() * 5) == 0) {
     message.channel.send("LOL")
+  }
+
+  // TROLL LUKE
+  if (message.content.tolowercase().includes("martin")) {
+    message.channel.send("Do you like Martins?").then(ownMessage => {
+      ownMessage.react("🦦")
+    })
   }
 
   // SPECIAL ROLE REWARD

@@ -23,12 +23,12 @@ class Rss {
             .setColor(Math.floor(Math.random()*16777215).toString(16))
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
           channel.send({ embeds: [feedEmbed] })
-          db.collection('rss').doc(feed.docId).update({
+          db.collection('rss').doc(feed.docId).set({
             description: description,
             link: doc.link,
             publishedDate: doc.publishedDate,
             title: doc.title
-          })
+          }, {merge: true})
         }
       }).catch(error => {
         console.log(error)
