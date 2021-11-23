@@ -12,7 +12,7 @@ const db = firebase.firestore()
 
 class QuizCron {
   static start(client) {
-		let scheduledMessage = new cron.CronJob('00 */5 * * * 2', async () => {
+		let scheduledMessage = new cron.CronJob('00 */5 * * * *', async () => {
 			const query = await db.collection('quiz').where("used", "==", false).get()
 			let questions = []
 			query.forEach(doc => {
