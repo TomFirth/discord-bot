@@ -3,7 +3,7 @@ const config = require('../config.json')
 
 class UnSpecialCron {
   static start(client) {
-		let scheduledMessage = new cron.CronJob('00 */5 * * * *', () => {
+		let scheduledMessage = new cron.CronJob('00 00 00 * * 1', () => {
 			const guild = client.guilds.cache.get(config.discord.guildId)
 			guild.members.fetch()
 			.then(members => {
