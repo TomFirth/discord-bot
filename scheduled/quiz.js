@@ -16,12 +16,16 @@ class QuizCron {
 			const query = await db.collection('quiz').where("used", "==", false).get()
 			let questions = []
 			query.forEach(doc => {
-				questions.push(doc.data())
+				questions.push({
+					id: doc.id,
+					question: doc.data().question,
+					answer: doc.data().answer
+				})
 			})
 			const random = Math.floor(Math.random() * questions.length)
 			cache.put("answer", questions[random].answer)
 			console.log("questions[random]", questions[random])
-			db.collection('quiz').doc(questions[random]).update({used: true})
+			db.collection('quiz').doc(questions[random].id).update({used: true})
 			let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
 			const quiz = new MessageEmbed()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
