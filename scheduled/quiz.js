@@ -22,7 +22,7 @@ class QuizCron {
 					answer: doc.data().answer
 				})
 			})
-			const random = Math.floor(Math.random() * questions.length)
+			const random = Math.floor(Math.random() * questions.length - 1)
 			cache.put("answer", questions[random].answer)
 			db.collection('quiz').doc(questions[random].id).update({used: true})
 			let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)

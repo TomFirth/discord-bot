@@ -9,7 +9,7 @@ class MemeCron {
         'dontputyourdickinthat'
       ])
       .then(memes => {
-        const rand = Math.floor(Math.random() * memes[0].urls.length)
+        const rand = Math.floor(Math.random() * memes[0].urls.length - 1)
         if (memes[0].urls[rand]) {
           const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
           channel.send(memes[0].urls[rand])

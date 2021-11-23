@@ -17,7 +17,7 @@ module.exports = {
     .then(urls => {
       everything = urls[0].urls.concat(urls[1].urls, urls[2].urls, urls[3].urls, urls[4].urls)
       while (randomTracks.length < 3) {
-        let rand = Math.floor(Math.random() * everything.length)
+        let rand = Math.floor(Math.random() * everything.length - 1)
         if (everything[rand]
           && !randomTracks.includes(everything[rand])
           && everything[rand].includes('youtu')) {

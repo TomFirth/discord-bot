@@ -32,7 +32,7 @@ module.exports = (client, message) => {
   const reactArray = ['⭐','🏆','👏','👍','🥇']
   if (message.member.roles.cache.some(role => role.name === "Special")
     && Math.floor(Math.random() * 49) == 0) {
-    message.react(reactArray[Math.floor(Math.random() * reactArray.length)])
+    message.react(reactArray[Math.floor(Math.random() * reactArray.length - 1)])
   }
 
   // QUIZ ANSWER
