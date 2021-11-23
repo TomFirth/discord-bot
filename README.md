@@ -1,35 +1,51 @@
-*What*
+# Discord bot
+
+## What
+
 A simple Discord bot to promote a healthy and active server.
 
-*Why*
-There were a few features that I specifically wanted and found that I required multiple bots to achieve this. I think my OCD kicked in and it seemed like a good idea to aggregate them.
+## Why
 
-*Features*
-- Temporary voice and text channels creation with pruning after inactivity.
-- Polls.
-- The ability to follow multiple social media channels (twitter, youtube, twitch and instagram coming soon).
-- Can be self hosted (a good use for a spare raspberry pi).
-- Google search that returns the top result.
-- Reddit Rhythm Roulette integration (provides three songs to be used as samples).
-- Meme of the day.
-- Weekly quiz with a prize!
-- Notifications of Free games.
-- Gaming news.
+There were a few features that I specifically wanted and found that I required multiple bots to achieve this.
+I think my OCD kicked in and it seemed like a good idea to aggregate them.
 
-*Future features*
-- News on video games betas.
-- Patch notes for certain video games.
-- Crypto integration
-- Trading
+## Features
 
-*Requirements*
-`discord.js v13` requires `node v16.6+`
+- [X] Temporary voice and text channels creation with pruning after inactivity.
+- [X] Polls.
+- [X] The ability to follow multiple social media channels (twitter, youtube, twitch and instagram coming soon).
+- [X] Can be self hosted (a good use for a spare raspberry pi).
+- [X] Google search that returns the top result.
+- [X] Reddit Rhythm Roulette integration (provides three songs to be used as samples).
+- [X] Meme of the day.
+- [X] Weekly quiz with a prize!
+- [X] Notifications of Free games.
+- [X] Gaming news.
+- [ ] Patch notes for certain video games.
+- [ ] News on video games betas.
+- [ ] Crypto integration
+- [ ] Trading
 
-`pm2` for process management and `./ecosystem.config.js` for tokens.
-`./config.json` for user specific details.
+### Usage
 
-*Usage*
+- [https://discord.com/developers/applications](Create bot on discord's developer portal)
+- Find somewhere to host your new bot (maybe on a spare Raspberry Pi?) [https://www.heroku.com/](Heroku have affordable plans).
+- Clone this repo to your host.
+- `cd <your bot dir> && npm i`
+- Create files: `config.json` and `ecosystem.config.js` (remote) and additionally `.env` (local) - I also have a credentials.json file for the Google Firestore.
+- Install `pm2` and follow setup steps (`sudo apt-get install pm2`)
+- `pm2 start <your bot file>`
 
-*Useful resources*
-https://discord.js.org/#/docs/main/stable/general/welcome
-https://www.npmjs.com/package/pm2
+*Updates are currently manual, but will be automatic once I stop messing about with it).*
+
+#### Useful resources
+
+[https://discord.js.org/#/docs/main/stable/general/welcome](discord.js documentation)
+[https://www.npmjs.com/package/pm2](npm pm2)
+[https://www.npmjs.com/package/cron](npm cron)
+[fetch-subreddit](npm fetch-subreddit)
+
+#### Alternatives for Discord:
+[https://mee6.xyz/](MEE6)
+[https://patchbot.io/](PatchBot)
+[https://ifttt.com/](IFTTT)
