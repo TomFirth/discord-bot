@@ -12,7 +12,7 @@ const db = firebase.firestore()
 
 class QuizCron {
   static start(client) {
-		let scheduledMessage = new cron.CronJob('00 */5 * * * 2', async () => {
+		let scheduledMessage = new cron.CronJob('00 00 13 * * 2', async () => {
 			const query = await db.collection('quiz').where("used", "==", false).get()
 			let questions = []
 			query.forEach(doc => {
@@ -24,7 +24,6 @@ class QuizCron {
 			})
 			const random = Math.floor(Math.random() * questions.length)
 			cache.put("answer", questions[random].answer)
-			console.log("questions[random]", questions[random])
 			db.collection('quiz').doc(questions[random].id).update({used: true})
 			let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
 			const quiz = new MessageEmbed()
