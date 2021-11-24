@@ -1,4 +1,5 @@
 const ytdl = require("ytdl-core")
+const config = require("../config.json")
 
 module.exports = {
   emoji: '🎵',
@@ -9,12 +10,15 @@ module.exports = {
     if (args[1] !== "play" || args[1] !== "skip" || args[1] !== "stop") return false
     const serverQueue = queue.get(message.guild.id)
     if (args[1] === "play") {
+      console.log("play")
       module.exports.start(message, serverQueue)
       return
     } else if (args[1] === "skip") {
+      console.log("skip")
       module.exports.skip(message, serverQueue)
       return
     } else if (args[1] === "stop") {
+      console.log("stop")
       module.exports.stop(message, serverQueue)
       return
     } else {
@@ -23,8 +27,7 @@ module.exports = {
   },
   async start(message, serverQueue) {
     const args = message.content.split(" ")
-    let voiceChannel = client.channels.cache.find(channel => channel.name === config.discord.channels.music)
-    if (!voiceChannel) return message.channel.send("You need to be in a voice channel to play music!")
+    if (!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to play music!")
   
     const songInfo = await ytdl.getInfo(args[1])
     const song = {
@@ -44,7 +47,8 @@ module.exports = {
       queue.set(message.guild.id, queueContruct)
       queueContruct.songs.push(song)
       try {
-        var connection = await voiceChannel.join()
+        const channel = client.channels.cache.find(channel => channel.name === config.discord.music)
+        var connection = await channel.join()
         queueContruct.connection = connection
         module.exports.play(message.guild, queueContruct.songs[0])
       } catch (err) {
