@@ -8,17 +8,18 @@ module.exports = {
   async execute(client, message) {
     const args = message.content.split(" ")
     if (args[1] !== "play" || args[1] !== "skip" || args[1] !== "stop") return false
+    const queue = new Map()
     const serverQueue = queue.get(message.guild.id)
     console.log("args[1]", args[1])
-    if (args[1] == "play") {
+    if (args[1] === "play") {
       console.log("play")
       module.exports.start(message, serverQueue)
       return
-    } else if (args[1] == "skip") {
+    } else if (args[1] === "skip") {
       console.log("skip")
       module.exports.skip(message, serverQueue)
       return
-    } else if (args[1] == "stop") {
+    } else if (args[1] === "stop") {
       console.log("stop")
       module.exports.stop(message, serverQueue)
       return
