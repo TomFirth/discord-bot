@@ -16,7 +16,7 @@ class Reddit {
       })
       response.on('end', async () => {
         const query = await db.collection('reddit').doc(reddit.docId).get()
-        if(query.data().title !== doc.title
+        if(query.data().title !== releases.data.children.data.title
           || query.data().title == undefined) {
           const releases = JSON.parse(str)
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
