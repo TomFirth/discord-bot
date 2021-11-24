@@ -22,14 +22,9 @@ class Reddit {
         if(query.data() != undefined
         || releases.data.children[0].data.preview != undefined
         || query.data().title !== releases.data.children[0].data.title) {
-          if (reddit.nsfw && (hour < 20 || hour !== 0)) return false
+          // if (reddit.nsfw && (hour < 20 || hour !== 0)) return false
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
-          const post = new MessageEmbed()
-            .setTitle(releases.data.children[0].data.title)
-            .setAuthor(reddit.author)
-            .setImage(releases.data.children[0].data.preview.images[0].source.url)
-            .setColor('#FF5700')
-          channel.send({ embeds: [post] })
+          channel.send(releases.data.children[0].data.preview.images[0].source.url)
           db.collection('reddit').doc(reddit.docId).set({
             title: releases.data.children[0].data.title
           }, {merge: true})
