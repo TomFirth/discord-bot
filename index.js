@@ -5,6 +5,11 @@ const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
 })
+const firebase = require('firebase-admin')
+firebase.initializeApp({
+	credential: firebase.credential.cert(require('../credentials.json')),
+})
+const db = firebase.firestore()
 if (process.env.NODE_ENV) require('dotenv').config()
 
 const reddit = require('./scheduled/reddit')
@@ -51,17 +56,17 @@ fs.readdir('./events/', (error, files) => {
 
 // SUBREDDITS
 config.reddit.forEach(subreddit => {
-  reddit.start(client, subreddit)
+  reddit.start(client, subreddit, db)
 })
 
 // SCHEDULED HANDLER
 unSpecial.start(client)
 prune.start(client)
-quiz.start(client)
+quiz.start(client, db)
 
 // STREAMS
 config.rss.forEach(feed => {
-  rss.start(client, feed)
+  rss.start(client, feed, db)
 })
 // patch notes
 // alphas and betas

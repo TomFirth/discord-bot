@@ -1,11 +1,9 @@
 const cron = require('cron')
 const https = require("https")
 const { MessageEmbed } = require('discord.js')
-const firebase = require('firebase-admin')
-const db = firebase.firestore()
 
 class Reddit {
-  static start(client, reddit) {
+  static start(client, reddit, db) {
     const url = new URL("https://www.reddit.com/r/" + reddit.subreddit + "/hot.json")
     https.get({
       hostname: url.hostname,

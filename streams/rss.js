@@ -1,13 +1,9 @@
 const { MessageEmbed } = require('discord.js')
 const cron = require('cron')
 const parse = require('feed-reader').parse
-const firebase = require('firebase-admin')
-const config = require('../config')
-
-const db = firebase.firestore()
 
 class Rss {
-  static start(client, feed) {
+  static start(client, feed, db) {
     let scheduledMessage = new cron.CronJob('00 */15 * * * *', () => {
       parse(feed.url).then(async result => {
         const query = await db.collection('rss').doc(feed.docId).get()
