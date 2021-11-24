@@ -5,12 +5,12 @@ module.exports = {
   emoji: '👍',
   name: 'poll',
   description: 'Poll to decide on things!',
-  execute(client, interaction, args) {
-    if (!args.length) return interaction.reply(`**Please add a question.**`)
+  execute(client, message, args) {
+    if (!args.length) return message.reply(`**Please add a question.**`)
     const poll = new MessageEmbed()
       .setDescription(`Poll: **${args.join(" ")}**`)
       .setColor('RED')
-    return interaction.channel.send({ embeds: [poll] }).then(ownMessage => {
+    return message.channel.send({ embeds: [poll] }).then(ownMessage => {
       ownMessage.react(config.discord.emojis.thumbsUp)
       ownMessage.react(config.discord.emojis.thumbsDown)
     })

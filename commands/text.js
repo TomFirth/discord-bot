@@ -8,14 +8,14 @@ module.exports = {
   emoji: '⌨️',
   name: 'text',
   description: 'Temporary text channel',
-  execute(client, interaction, args) {
+  execute(client, message, args) {
     if (!args || !args.length) channelName = `${clock} temp`
     else channelName = clock + " " + args.join(" ")
-    interaction.guild.channels.create(channelName, {
+    message.guild.channels.create(channelName, {
       type: "text",
       permissionOverwrites: [
         {
-          id: interaction.guild.roles.everyone
+          id: message.guild.roles.everyone
         }
       ],
     }).then((channel) => {

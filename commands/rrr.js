@@ -4,7 +4,7 @@ module.exports = {
   emoji: '🎵',
   name: 'rrr',
   description: 'Reddit Rhythm Roulette',
-  execute(client, interaction) {
+  execute(client, message) {
     let randomTracks = []
     let everything = []
     fetchSubreddit([
@@ -26,7 +26,7 @@ module.exports = {
       }
       randomTracks = randomTracks.slice(0, 3)
       randomTracks.forEach((track, index) => {
-        interaction.channel.send(track)
+        message.channel.send(track)
       })
     })
     .catch(error => console.error(error))

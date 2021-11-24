@@ -2,7 +2,7 @@ module.exports = {
   emoji: '⏲️',
   name: 'uptime',
   description: 'Barber\'s uptime',
-  async execute(client, interaction) {
+  async execute(client, message) {
     let totalSeconds = (client.uptime / 1000)
     let days = Math.floor(totalSeconds / 86400)
     totalSeconds %= 86400
@@ -11,6 +11,6 @@ module.exports = {
     let minutes = Math.floor(totalSeconds / 60)
     let seconds = Math.floor(totalSeconds % 60)
     let uptime = `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`
-		await interaction.reply(uptime)
+		await message.reply(uptime)
   }
 }

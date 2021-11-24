@@ -4,11 +4,11 @@ module.exports = {
   emoji: '🔎',
   name: 'search',
   description: 'Search Google',
-  execute(client, interaction, args) {
-    if (!args.length) return interaction.reply(`**What do you want to search for?**`)
+  execute(client, message, args) {
+    if (!args.length) return message.reply(`**What do you want to search for?**`)
 
     google({'query': args.join(' ')}).then(results => {
-      return interaction.channel.send(results[0].title + " " + results[0].link)
+      return message.channel.send(results[0].title + " " + results[0].link)
     })
   },
 }
