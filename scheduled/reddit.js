@@ -19,7 +19,8 @@ class Reddit {
         const releases = JSON.parse(str)
         const date = new Date()
         let hour = date.getHours()
-        console.log("title", releases.data.children[0].data)
+        console.log("doc title", query.data().title)
+        console.log("title", releases.data.children[0].data.title)
         console.log("images", releases.data.children[0].data.preview.images[0])
         if(query.data() != undefined
         || releases.data.children[0].data.preview != undefined
