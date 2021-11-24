@@ -26,7 +26,7 @@ class Reddit {
         || query.data().title !== releases.data.children[0].data.title) {
           // if (reddit.nsfw && (hour < 20 || hour !== 0)) return false
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
-          channel.send(releases.data.children[0].data.preview.images[0].source.url)
+          channel.send(releases.data.children[0].data.url_overridden_by_dest)
           db.collection('reddit').doc(reddit.docId).set({
             title: releases.data.children[0].data.title
           }, {merge: true})
