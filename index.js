@@ -55,9 +55,9 @@ fs.readdir('./events/', (error, files) => {
 })
 
 // SUBREDDITS
-config.reddit.forEach(subreddit => {
-  reddit.start(client, subreddit, db)
-})
+// config.reddit.forEach(subreddit => {
+//   reddit.start(client, subreddit, db)
+// })
 
 // SCHEDULED HANDLER
 unSpecial.start(client)
