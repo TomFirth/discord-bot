@@ -7,7 +7,7 @@ const client = new Client({
 })
 const firebase = require('firebase-admin')
 firebase.initializeApp({
-	credential: firebase.credential.cert(require('../credentials.json')),
+	credential: firebase.credential.cert(require('./credentials.json')),
 })
 const db = firebase.firestore()
 if (process.env.NODE_ENV) require('dotenv').config()
