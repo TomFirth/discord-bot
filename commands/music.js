@@ -1,5 +1,4 @@
 const ytdl = require("ytdl-core")
-const { start } = require("../scheduled/reddit")
 
 module.exports = {
   emoji: '🎵',
