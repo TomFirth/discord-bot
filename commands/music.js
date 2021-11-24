@@ -9,15 +9,16 @@ module.exports = {
     const args = message.content.split(" ")
     if (args[1] !== "play" || args[1] !== "skip" || args[1] !== "stop") return false
     const serverQueue = queue.get(message.guild.id)
-    if (args[1] === "play") {
+    console.log("args[1]", args[1])
+    if (args[1] == "play") {
       console.log("play")
       module.exports.start(message, serverQueue)
       return
-    } else if (args[1] === "skip") {
+    } else if (args[1] == "skip") {
       console.log("skip")
       module.exports.skip(message, serverQueue)
       return
-    } else if (args[1] === "stop") {
+    } else if (args[1] == "stop") {
       console.log("stop")
       module.exports.stop(message, serverQueue)
       return
