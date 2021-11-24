@@ -17,6 +17,7 @@ class Reddit {
       response.on('end', async () => {
         const query = await db.collection('reddit').doc(reddit.docId).get()
         const releases = JSON.parse(str)
+        console.log("releases", releases)
         if(query.data() == undefined || query.data().title !== releases.data.children.data.title) {
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
           const post = new MessageEmbed()
