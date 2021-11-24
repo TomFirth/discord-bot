@@ -12,7 +12,7 @@ firebase.initializeApp({
 const db = firebase.firestore()
 if (process.env.NODE_ENV) require('dotenv').config()
 
-const reddit = require('./scheduled/reddit')
+// const reddit = require('./scheduled/reddit')
 const quiz = require('./scheduled/quiz')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
