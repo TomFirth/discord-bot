@@ -7,8 +7,7 @@ const client = new Client({
 })
 if (process.env.NODE_ENV) require('dotenv').config()
 
-const rmeme = require('./scheduled/rmeme')
-const meme = require('./scheduled/meme')
+const reddit = require('./scheduled/reddit')
 const quiz = require('./scheduled/quiz')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
@@ -50,9 +49,12 @@ fs.readdir('./events/', (error, files) => {
   })
 })
 
+// SUBREDDITS
+config.reddit.forEach(subreddit => {
+  reddit.start(client, subreddit)
+})
+
 // SCHEDULED HANDLER
-meme.start(client)
-rmeme.start(client)
 unSpecial.start(client)
 prune.start(client)
 quiz.start(client)
