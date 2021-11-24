@@ -16,7 +16,7 @@ class Reddit {
       })
       response.on('end', async () => {
         const query = await db.collection('reddit').doc(reddit.docId).get()
-        console.log("query", query)
+        console.log("query", query.data())
         if(query.data().title !== releases.data.children.data.title
           || query.data() == undefined) {
           const releases = JSON.parse(str)
