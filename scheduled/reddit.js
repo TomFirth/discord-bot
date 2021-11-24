@@ -1,6 +1,8 @@
 const cron = require('cron')
 const https = require("https")
 const { MessageEmbed } = require('discord.js')
+const firebase = require('firebase-admin')
+const db = firebase.firestore()
 
 class Reddit {
   static start(client, reddit) {
