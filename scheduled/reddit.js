@@ -16,10 +16,8 @@ class Reddit {
       })
       response.on('end', async () => {
         const query = await db.collection('reddit').doc(reddit.docId).get()
-        console.log("query", query.data())
-        if(query.data().title !== releases.data.children.data.title
-          || query.data() == undefined) {
-          const releases = JSON.parse(str)
+        const releases = JSON.parse(str)
+        if(query.data() == undefined || query.data().title !== releases.data.children.data.title) {
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
           const post = new MessageEmbed()
             .setTitle(releases.data.children.data.title)
