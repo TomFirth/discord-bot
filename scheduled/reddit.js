@@ -20,7 +20,7 @@ class Reddit {
         const date = new Date()
         let hour = date.getHours()
         if(query.data() != undefined
-        || releases.data.children[0].data.preview.images[0].source.url != undefined
+        || releases.data.children[0].data.preview != undefined
         || query.data().title !== releases.data.children[0].data.title) {
           if (reddit.nsfw && (hour < 20 || hour !== 0)) return false
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
