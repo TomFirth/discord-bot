@@ -6,17 +6,15 @@ module.exports = {
   description: 'Listen to music',
   async execute(client, message) {
     const args = message.content.split(" ")
-    console.log("args", args)
-    console.log("args[0]", args[0])
-    if (args[0] !== "play" || args[0] !== "skip" || args[0] !== "stop") return false
+    if (args[1] !== "play" || args[1] !== "skip" || args[1] !== "stop") return false
     const serverQueue = queue.get(message.guild.id)
-    if (message.content.startsWith(`${prefix}play`)) {
+    if (args[1] === "play") {
       module.exports.start(message, serverQueue)
       return
-    } else if (message.content.startsWith(`${prefix}skip`)) {
+    } else if (args[1] === "skip") {
       module.exports.skip(message, serverQueue)
       return
-    } else if (message.content.startsWith(`${prefix}stop`)) {
+    } else if (args[1] === "stop") {
       module.exports.stop(message, serverQueue)
       return
     } else {
