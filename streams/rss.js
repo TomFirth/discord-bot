@@ -9,7 +9,8 @@ class Rss {
         const query = await db.collection('rss').doc(feed.docId).get()
         const doc = result.entries[0]
         if(query.data().publishedDate !== doc.publishedDate
-        && query.data().title !== doc.title) {
+          && query.data().title !== doc.title
+          || query.data().title == undefined) {
           const description = doc.contentSnippet.replace(/<.*>/, '')
           const feedEmbed = new MessageEmbed()
             .setTitle(doc.title)
