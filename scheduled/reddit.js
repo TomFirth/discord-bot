@@ -1,4 +1,3 @@
-const cron = require('cron')
 const https = require("https")
 
 class Reddit {

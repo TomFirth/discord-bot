@@ -9,15 +9,15 @@ class Rss {
         const query = await db.collection('rss').doc(feed.docId).get()
         const doc = result.entries[0]
         if(query.data().publishedDate !== doc.publishedDate
-          && query.data().title !== doc.title
-          || query.data().title == undefined) {
+        && query.data().title == undefined
+        || query.data().title !== doc.title) {
           const description = doc.contentSnippet.replace(/<.*>/, '')
           const feedEmbed = new MessageEmbed()
             .setTitle(doc.title)
             .setURL(doc.link)
             .setAuthor(feed.author)
             .setDescription(description)
-            .setColor(Math.floor(Math.random()*16777215).toString(16))
+            .setColor(feed.colour)
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
           channel.send({ embeds: [feedEmbed] })
           db.collection('rss').doc(feed.docId).set({
