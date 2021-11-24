@@ -21,7 +21,7 @@ class Reddit {
         if(query.data() !== undefined
         && releases.data.children[0].data.url_overridden_by_dest !== undefined
         && query.data().title !== releases.data.children[0].data.title) {
-          // if (reddit.nsfw && (hour < 20 || hour !== 0)) return false
+          if (reddit.nsfw && (hour < 20 || hour !== 0)) return false
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
           channel.send(releases.data.children[0].data.url_overridden_by_dest)
           db.collection('reddit').doc(reddit.docId).set({
