@@ -17,7 +17,9 @@ const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
 const reddit = require('./streams/reddit')
-const rss = require('./streams/rss')
+if (!process.env.NODE_ENV) {
+  const rss = require('./streams/rss')
+}
 
 const twitter = require('./streams/socials/twitter')
 // const youtube = require('./streams/socials/youtube')
@@ -65,9 +67,11 @@ config.reddit.forEach(subreddit => {
 })
 
 // STREAMS
-config.rss.forEach(feed => {
-  rss.start(client, feed, db)
-})
+if (!process.env.NODE_ENV) {
+  config.rss.forEach(feed => {
+    rss.start(client, feed, db)
+  })
+}
 // patch notes
 // alphas and betas
 
