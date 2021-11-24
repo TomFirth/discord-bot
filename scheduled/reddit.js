@@ -17,8 +17,12 @@ class Reddit {
       response.on('end', async () => {
         const query = await db.collection('reddit').doc(reddit.docId).get()
         const releases = JSON.parse(str)
-        console.log("releases", releases.data.children[0].data.preview.images[0].source.url)
-        if(query.data() == undefined || query.data().title !== releases.data.children[0].data.title) {
+        const date = new Date()
+        let hour = date.getHours()
+        if(query.data() != undefined
+        || releases.data.children[0].data.preview.images[0].source.url != undefined
+        || query.data().title !== releases.data.children[0].data.title) {
+          if (reddit.nsfw && (hour < 20 || hour !== 0)) return false
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
           const post = new MessageEmbed()
             .setTitle(releases.data.children[0].data.title)
