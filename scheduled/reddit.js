@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js')
 
 class Reddit {
   static start(client, reddit, db) {
-    const url = new URL("https://www.reddit.com/r/" + reddit.subreddit + "/hot.json")
+    const url = new URL("https://www.reddit.com/r/" + reddit.subreddit + "/top.json?t=today")
     https.get({
       hostname: url.hostname,
       path: url.pathname,
