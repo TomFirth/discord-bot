@@ -21,7 +21,7 @@ class Reddit {
         if(query.data() == undefined || query.data().title !== releases.data.children[0].data.title) {
           const channel = client.channels.cache.find(channel => channel.name === reddit.destination)
           const post = new MessageEmbed()
-            .setTitle(releases.data.children.data.title)
+            .setTitle(releases.data.children[0].data.title)
             .setAuthor(reddit.author)
             .setImage(releases.data.children[0].data.preview.images[0].url)
             .setColor('#FF5700')
