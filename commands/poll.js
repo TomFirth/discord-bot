@@ -7,7 +7,7 @@ module.exports = {
   description: 'Poll to decide on things!',
   execute(client, message, args) {
     if (!args.length) return message.reply(`**Please add a question.**`)
-    const newEmojis = message.content.match(/\d+/g)
+    const newEmojis = message.content.match(/\d+/g) || []
     const poll = new MessageEmbed()
       .setDescription(`Poll: **${args.join(" ")}**`)
       .setColor('RED')

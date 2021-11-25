@@ -12,9 +12,9 @@ module.exports = {
       .setColor('GREEN')
       .setDescription(client.botCommands.map(command => {
         if (!exclusions.includes(command.name)) {
-          return `\`${command.emoji || '✔️'}\` \`.${command.name}\` - *${command.description || `No description available.`}*`
+          return `\`${command.emoji || '✔️'}\` \`.${command.name}\` - *${command.description || `No description available.`}*\n`
         } else return null
-      }).join(`\n`))
+      }))
     return message.channel.send({ embeds: [help_embed] })
   },
 }
