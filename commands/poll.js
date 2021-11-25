@@ -20,6 +20,7 @@ module.exports = {
         ownMessage.react(config.discord.emojis.thumbsUp)
         ownMessage.react(config.discord.emojis.thumbsDown)
       }
+      return ownMessage
     }).then(ownMessage => {
       // Poll results
       let votes = {
