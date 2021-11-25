@@ -1,9 +1,11 @@
+const config = require("../config.json")
+
 module.exports = {
   emoji: '🗒️',
   name: 'message',
   description: 'Send a custom message',
   execute(client, message) { 
-    if (message.member.hasPermission('MANAGE_ROLES')) {
+    if (message.author.user.id === config.discord.owner.id) {
       message.delete()
       const args = message.content.split(" ")
       const destination = args[1]
