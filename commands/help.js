@@ -10,13 +10,10 @@ module.exports = {
       .setThumbnail(client.user.displayAvatarURL())
       .setColor('GREEN')
       .setDescription(client.botCommands.map(command => {
-        if (command.name == "help"
-          || command.name == "ping"
-          || command.name == "server"
-          || command.name == "uptime") {
-            continue
+        const exclusions = ["help", "ping", "server", "uptime"]
+        if (!exclusions.includes(command.name)) {
+            `\`${command.emoji || '✔️'}\` \`.${command.name}\` - *${command.description || `No description available.`}*`
         }
-        `\`${command.emoji || '✔️'}\` \`.${command.name}\` - *${command.description || `No description available.`}*`
       }).join(`\n`))
     return message.channel.send({ embeds: [help_embed] })
   },
