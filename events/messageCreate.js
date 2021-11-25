@@ -37,14 +37,30 @@ module.exports = (client, message) => {
 
   // QUIZ ANSWER
   if(message.content.toLowerCase().includes("answer")) {
-    const answer = cache.get("answer") || null
+    const answer = cache.get("quizAnswer") || null
     const userAnswer = message.content.toLowerCase().replace('answer ','')
     if(userAnswer.includes(answer)) {
       const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
       channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}`).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })
-      cache.remove("answer")
+      cache.remove("quizAnswer")
+      // REWARD
+      const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
+      message.member.roles.add(role)
+    }
+  }
+
+  // RIDDLES ANSWER
+  if(message.content.toLowerCase().includes("answer")) {
+    const answer = cache.get("riddleAnswer") || null
+    const userAnswer = message.content.toLowerCase().replace('answer ','')
+    if(userAnswer.includes(answer)) {
+      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
+      channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}`).then(ownMessage => {
+        ownMessage.react(config.discord.emojis.clap)
+      })
+      cache.remove("riddleAnswer")
       // REWARD
       const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
       message.member.roles.add(role)

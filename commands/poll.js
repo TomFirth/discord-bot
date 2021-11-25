@@ -7,12 +7,43 @@ module.exports = {
   description: 'Poll to decide on things!',
   execute(client, message, args) {
     if (!args.length) return message.reply(`**Please add a question.**`)
+    const newEmojis = args.match(/\d+/g)
     const poll = new MessageEmbed()
       .setDescription(`Poll: **${args.join(" ")}**`)
       .setColor('RED')
     return message.channel.send({ embeds: [poll] }).then(ownMessage => {
-      ownMessage.react(config.discord.emojis.thumbsUp)
-      ownMessage.react(config.discord.emojis.thumbsDown)
+      if (newEmojis.length > 0) {
+        newEmojis.forEach(emoji => {
+          ownMessage.react(client.emojis.get(emoji))
+        })
+      } else {
+        ownMessage.react(config.discord.emojis.thumbsUp)
+        ownMessage.react(config.discord.emojis.thumbsDown)
+
+        // Get results
+        let votes = {
+          up: "",
+          down: ""
+        }
+        const thumbsUp = reaction => reaction.emoji.name === config.discord.emojis.thumbsUp
+        const voteUp = ownMessage.createReactionCollector(thumbsUp, { time: 15000 })
+        voteUp.on('collect', () => { continue })
+        voteUp.on('end', collected => {
+          votes.up = collected.size
+        })
+        
+        const thumbsDown = reaction => reaction.emoji.name === config.discord.emojis.thumbsDown
+        const voteDown = ownMessage.createReactionCollector(thumbsDown, { time: 15000 })
+        voteDown.on('collect', () => { continue })
+        voteDown.on('end', collected => {
+          votes.down = collected.size
+        })
+        if (voteDown.up > votes.down) {
+          return message.channel.send(`YES wins with ${votes.up} to ${votes.down}!`)
+        } else {
+          return message.channel.send(`NO wins with ${votes.down} to ${votes.up}!`)
+        }
+      }
     })
   },
 }
@@ -20,3 +51,5 @@ module.exports = {
 // detect emojis
 // if they exist, use them as poll reactions instead of thumb up / thumb down
 // defaults to thumbs
+
+// after time give result of poll

@@ -13,6 +13,7 @@ const db = firebase.firestore()
 if (process.env.NODE_ENV) require('dotenv').config()
 
 const quiz = require('./scheduled/quiz')
+const riddles = require('./scheduled/riddles')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
@@ -58,6 +59,7 @@ fs.readdir('./events/', (error, files) => {
 unSpecial.start(client)
 prune.start(client)
 quiz.start(client, db)
+riddles.start(client, db)
 
 // SUBREDDITS
 config.reddit.forEach(subreddit => {

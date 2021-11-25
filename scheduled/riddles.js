@@ -4,10 +4,10 @@ const timedCache = require('timed-cache')
 const cache = new timedCache({ defaultTtl: 900 * 1000 })
 const config = require("../config.json")
 
-class Quiz {
+class Riddles {
   static start(client, db) {
-		let scheduledMessage = new cron.CronJob('00 00 13 * * */3', async () => {
-			const query = await db.collection('quiz').where("used", "==", false).get()
+		let scheduledMessage = new cron.CronJob('00 00 13 * * */5', async () => {
+			const query = await db.collection('riddles').where("used", "==", false).get()
 			let questions = []
 			query.forEach(doc => {
 				questions.push({
@@ -17,8 +17,8 @@ class Quiz {
 				})
 			})
 			const random = Math.floor(Math.random() * questions.length - 1)
-			cache.put("answer", questions[random].answer)
-			db.collection('quiz').doc(questions[random].id).update({used: true})
+			cache.put("riddleAnswer", questions[random].answer)
+			db.collection('riddles').doc(questions[random].id).update({used: true})
 			let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
 			const quiz = new MessageEmbed()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
@@ -29,4 +29,4 @@ class Quiz {
 	}
 }
 
-module.exports = Quiz
+module.exports = Riddles
