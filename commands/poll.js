@@ -27,14 +27,14 @@ module.exports = {
         }
         const thumbsUp = reaction => reaction.emoji.name === config.discord.emojis.thumbsUp
         const voteUp = ownMessage.createReactionCollector(thumbsUp, { time: 15000 })
-        voteUp.on('collect', () => { continue })
+        voteUp.on('collect', r => { console.log(r) })
         voteUp.on('end', collected => {
           votes.up = collected.size
         })
         
         const thumbsDown = reaction => reaction.emoji.name === config.discord.emojis.thumbsDown
         const voteDown = ownMessage.createReactionCollector(thumbsDown, { time: 15000 })
-        voteDown.on('collect', () => { continue })
+        voteDown.on('collect', r => { console.log(r) })
         voteDown.on('end', collected => {
           votes.down = collected.size
         })
