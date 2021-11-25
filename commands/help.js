@@ -14,7 +14,7 @@ module.exports = {
         if (!exclusions.includes(command.name)) {
           return `\`${command.emoji || '✔️'}\` \`.${command.name}\` - *${command.description || `No description available.`}*`
         } else return null
-      }).join(''))
+      }).join(``))
     return message.channel.send({ embeds: [help_embed] })
   },
 }
