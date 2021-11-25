@@ -28,8 +28,8 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 
 ### Usage
 
-- [https://discord.com/developers/applications](Create bot on discord's developer portal)
-- Find somewhere to host your new bot (maybe on a spare Raspberry Pi?) [https://www.heroku.com/](Heroku have affordable plans).
+- [Create bot on discord's developer portal](https://discord.com/developers/applications)
+- Find somewhere to host your new bot (maybe on a spare Raspberry Pi?) [Heroku have affordable plans](https://www.heroku.com).
 - Clone this repo to your host.
 - `cd <your bot dir> && npm i`
 - Create files: `config.json` and `ecosystem.config.js` (remote) and additionally `.env` (local) - I also have a credentials.json file for the Google Firestore.
@@ -40,10 +40,9 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 
 #### Useful resources
 
-[https://discord.js.org/#/docs/main/stable/general/welcome](discord.js documentation)
-[https://www.npmjs.com/package/pm2](npm pm2)
-[https://www.npmjs.com/package/cron](npm cron)
-[fetch-subreddit](npm fetch-subreddit)
+[discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome)
+[npm pm2](https://www.npmjs.com/package/pm2)
+[npm cron](https://www.npmjs.com/package/cron)
 
 #### Alternatives for Discord:
 [https://mee6.xyz/](MEE6)
