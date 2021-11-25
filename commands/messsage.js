@@ -2,8 +2,8 @@ module.exports = {
   emoji: '🗒️',
   name: 'message',
   description: 'Send a custom message',
-  execute(client, message) {
-    if (message.member.roles.cache.some(role => role.hasPermission('Administrator'))) {
+  execute(client, message) { 
+    if (message.member.hasPermission('ADMINISTRATOR')) {
       message.delete()
       const args = message.content.split(" ")
       const destination = args[1]
