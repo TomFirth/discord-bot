@@ -13,7 +13,7 @@ module.exports = {
       .setDescription(client.botCommands.map(command => {
         if (!exclusions.includes(command.name)) {
           return `\`${command.emoji || '✔️'}\` \`.${command.name}\` - *${command.description || `No description available.`}*`
-        }
+        } else return null
       }).join(`\n`))
     return message.channel.send({ embeds: [help_embed] })
   },
