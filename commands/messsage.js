@@ -4,7 +4,9 @@ module.exports = {
   emoji: '🗒️',
   name: 'message',
   description: 'Send a custom message',
-  execute(client, message) { 
+  execute(client, message) {
+    console.log("message.member", message.member)
+    console.log("message.member.id", message.member.id)
     if (message.member.id !== config.discord.owner.id) {
       message.delete()
       const args = message.content.split(" ")
