@@ -3,7 +3,7 @@ module.exports = {
   name: 'message',
   description: 'Send a custom message',
   execute(client, message) { 
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('MANAGE_ROLES')) {
       message.delete()
       const args = message.content.split(" ")
       const destination = args[1]
