@@ -5,7 +5,7 @@ module.exports = {
   name: 'message',
   description: 'Send a custom message',
   execute(client, message) { 
-    if (message.member.user.username !== config.discord.owner.name) {
+    if (message.member.id !== config.discord.owner.id) {
       message.delete()
       const args = message.content.split(" ")
       const destination = args[1]
