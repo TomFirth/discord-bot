@@ -18,6 +18,7 @@ class Rss {
             .setAuthor(feed.author)
             .setDescription(description)
             .setColor(feed.colour)
+            .setTimestamp()
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
           channel.send({ embeds: [feedEmbed] })
           db.collection('rss').doc(feed.docId).set({

@@ -1,0 +1,50 @@
+const { MessageEmbed } = require('discord.js')
+const https = require("https")
+const cheerio = require("cheerio")
+const config = require("../config.json")
+
+class Patches {
+  static start(client, target, db) {
+    const url = new URL(config.streams[target.name].url)
+    https.get({
+      hostname: url.hostname,
+      path: url.pathname,
+      headers: {'User-Agent': 'agent'}
+    }, async response => {
+      response.on('data', data => {
+        const $ = cheerio.load(data)
+      })
+      response.on('end', async () => {
+        const title
+        const href
+        $(target.find, data).each(() => {
+          title = $(this).text
+          href = $(this).find('a').attr('href')
+        })
+        const query = await db.collection('patches').doc(target.docId).get()
+        if(query.data() !== undefined
+        && query.data().title !== title) {
+          let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.updates)
+          const patchNotes = new MessageEmbed()
+            .setAuthor(target.name)
+            .setTitle(title)
+            .setColor(target.colour)
+            .setThumbnail("")
+            .setURL(href)
+            // .addField("") // scheduled release date
+            // .addField("") // headlines
+            .setTimestamp()
+          channel.send({ embeds: [patchNotes]})
+          db.collection('patches').doc(target.docId).set({
+            title: title
+          }, {merge: true})
+        }
+      })
+      response.on('error', (error) => {
+        console.log("error")
+      })
+    })
+  }
+}
+
+module.exports = Patches

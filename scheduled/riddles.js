@@ -19,7 +19,7 @@ class Riddles {
 			const random = Math.floor(Math.random() * questions.length - 1)
 			cache.put("riddleAnswer", questions[random].answer)
 			db.collection('riddles').doc(questions[random].id).update({used: true})
-			let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bin)
+			let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
 			const quiz = new MessageEmbed()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
 				.setColor('GREEN')

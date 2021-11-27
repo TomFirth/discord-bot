@@ -18,15 +18,18 @@ class Reddit {
         if(query.data() !== undefined
         && releases.data.children[0].data.url_overridden_by_dest !== undefined
         && query.data().title !== releases.data.children[0].data.title) {
-          let channel = client.channels.cache.find(channel => channel.name === reddit.destination)
-          console.log("channel", channel)
-          channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`)
-          db.collection('reddit').doc(reddit.docId).set({
-            title: releases.data.children[0].data.title
-          }, {merge: true})
+          try {
+            let channel = client.channels.cache.find(channel => channel.name === reddit.destination)
+            channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`)
+            db.collection('reddit').doc(reddit.docId).set({
+              title: releases.data.children[0].data.title
+            }, {merge: true})
+          } catch (error) {
+            console.log(error)
+          }
         }
       })
-      response.on('error',  (error) => {
+      response.on('error', (error) => {
         console.log("error")
       })
     })
