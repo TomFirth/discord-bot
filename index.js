@@ -17,7 +17,7 @@ const riddles = require('./scheduled/riddles')
 const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
-const patches = require('./streams/patches')
+// const patches = require('./streams/patches')
 const reddit = require('./streams/reddit')
 const rss = require('./streams/rss')
 
@@ -63,11 +63,11 @@ quiz.start(client, db)
 riddles.start(client, db)
 
 // PATCH NOTES
-config.streams.forEach(target => {
-  if (target.url !== "") {
-    patches.start(client, target, db)
-  }
-})
+// config.streams.forEach(target => {
+//   if (target.url !== "") {
+//     patches.start(client, target, db)
+//   }
+// })
 
 // SUBREDDITS
 config.reddit.forEach(subreddit => {
