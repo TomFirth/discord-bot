@@ -6,7 +6,7 @@ const config = require("../config.json")
 
 class Quiz {
   static start(client, db) {
-		let scheduledMessage = new cron.CronJob('00 00 13 * * */3', async () => {
+		let scheduledMessage = new cron.CronJob('00 00 20 * * */3', async () => {
 			const query = await db.collection('quiz').where("used", "==", false).get()
 			let questions = []
 			query.forEach(doc => {
