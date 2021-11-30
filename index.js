@@ -18,7 +18,7 @@ const unSpecial = require('./scheduled/unSpecial')
 const prune = require("./scheduled/prune")
 
 // const patches = require('./streams/patches')
-const reddit = require('./streams/reddit')
+// const reddit = require('./streams/reddit')
 const rss = require('./streams/rss')
 
 const twitter = require('./streams/socials/twitter')
@@ -70,9 +70,9 @@ riddles.start(client, db)
 // })
 
 // SUBREDDITS
-config.reddit.forEach(subreddit => {
-  reddit.start(client, subreddit, db)
-})
+// config.reddit.forEach(subreddit => {
+//   reddit.start(client, subreddit, db)
+// })
 
 // STREAMS
 config.rss.forEach(feed => {
