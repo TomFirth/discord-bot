@@ -1,11 +1,9 @@
 const { MessageEmbed } = require('discord.js')
 const cron = require('cron')
-const timedCache = require('timed-cache')
-const cache = new timedCache({ defaultTtl: 900 * 1000 })
 const config = require("../config.json")
 
 class Riddles {
-  static start(client, db) {
+  static start(client, db, cache) {
 		let scheduledMessage = new cron.CronJob('00 00 17 * * */5', async () => {
 			const query = await db.collection('riddles').where("used", "==", false).get()
 			let questions = []

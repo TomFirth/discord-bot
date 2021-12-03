@@ -10,6 +10,8 @@ firebase.initializeApp({
 	credential: firebase.credential.cert(require('./credentials.json')),
 })
 const db = firebase.firestore()
+const timedCache = require('timed-cache')
+const cache = new timedCache({ defaultTtl: 18 * 1000000 })
 if (process.env.NODE_ENV) require('dotenv').config()
 
 const quiz = require('./scheduled/quiz')
@@ -59,8 +61,8 @@ fs.readdir('./events/', (error, files) => {
 // SCHEDULED HANDLER
 unSpecial.start(client)
 prune.start(client)
-quiz.start(client, db)
-riddles.start(client, db)
+quiz.start(client, db, cache)
+riddles.start(client, db, cache)
 
 // PATCH NOTES
 // config.streams.forEach(target => {
@@ -78,7 +80,6 @@ riddles.start(client, db)
 config.rss.forEach(feed => {
   rss.start(client, feed, db)
 })
-// patch notes
 // alphas and betas
 
 // SOCIALS
