@@ -64,6 +64,11 @@ prune.start(client)
 quiz.start(client, db, cache)
 riddles.start(client, db, cache)
 
+// STREAMS
+config.rss.forEach(feed => {
+  rss.start(client, feed, db)
+})
+
 // PATCH NOTES
 // config.streams.forEach(target => {
 //   if (target.url !== "") {
@@ -76,11 +81,7 @@ riddles.start(client, db, cache)
 //   reddit.start(client, subreddit, db)
 // })
 
-// STREAMS
-config.rss.forEach(feed => {
-  rss.start(client, feed, db)
-})
-// alphas and betas
+// BETAS
 
 // SOCIALS
 twitter.start(client)
