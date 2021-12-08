@@ -39,13 +39,12 @@ module.exports = (client, message) => {
     const answer = cache.get("quizAnswer") || null
     const userAnswer = message.content.toLowerCase().replace("quiz ','")
     if(userAnswer.includes(answer)) {
-      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
       const quiz_embed = new MessageEmbed()
         .setTitle(`QUIZ WINNER!`)
         .setThumbnail(message.author.displayAvatarURL())
         .setColor("GOLD")
         .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-      channel.send({ embeds: [quiz_embed] }).then(ownMessage => {
+      message.channel.send({ embeds: [quiz_embed] }).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })
       cache.remove("quizAnswer")
@@ -60,13 +59,12 @@ module.exports = (client, message) => {
     const answer = cache.get("riddleAnswer") || null
     const userAnswer = message.content.toLowerCase().replace("riddle ','")
     if(userAnswer.includes(answer)) {
-      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
       const riddle_embed = new MessageEmbed()
         .setTitle(`RIDDLE SOLVED!`)
         .setThumbnail(message.author.displayAvatarURL())
         .setColor("GOLD")
         .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-      channel.send({ embeds: [riddle_embed] }).then(ownMessage => {
+      message.channel.send({ embeds: [riddle_embed] }).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })
       cache.remove("riddleAnswer")
@@ -89,6 +87,11 @@ module.exports = (client, message) => {
       message.channel.send(`The number is BIGGER!`)
     } else if (parseInt(userAnswer) < answer) {
       message.channel.send(`The number is SMALLER!`)
+    } else {
+      message.channel.send(`**You lose!**`)
+      cache.delete("guess")
+      const thread = channel.threads.cache.find(c => c.name === '🔢-guess-the-number')
+      await thread.delete()
     }
   }
 
@@ -110,8 +113,10 @@ module.exports = (client, message) => {
       const newStreak = parseInt(streak) + 1
       cache.put("highlowstreak", parseInt(newStreak))
       message.channel.send(`${answerNew} was LOWER! - You have a streak of ${streak}`)
-    } else if (message.content.toLowerCase().includes("lower") && answerNew > answer || message.content.toLowerCase().includes("higher") && answerNew < answer) {
-      message.channel.send(`You lose! With a streak of ${streak}`)
+    } else {
+      message.channel.send(`**You lose!** With a streak of ${streak}`)
+      const thread = channel.threads.cache.find(c => c.name === '🔢-higher-or-lower')
+      await thread.delete()
     }
   }
 
@@ -121,7 +126,9 @@ module.exports = (client, message) => {
     cache.delete("highlownew")
     cache.delete("highlowstreak")
     const streak = cache.get("highlowstreak")
-    channel.send(`Thank you for playing! You ended with a streak of ${streak}`)
+    message.channel.send(`**Thank you for playing!** You end with a streak of ${streak}`)
+    const thread = channel.threads.cache.find(c => c.name === '🔢-higher-or-lower')
+    await thread.delete()
   }
 
   // SPECIAL ROLE REWARD
