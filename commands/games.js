@@ -15,10 +15,10 @@ module.exports = {
     cache.put("highlow", highLow)
     cache.put("highlownew", Math.floor(Math.random() * 12))
     cache.put("highlowstreak", 0)
-    message.channel.send(`**A new game has started!**\nThe first number is: ${highLow}. Will the next number be HIGHER or LOWER?\n(The range is 0-12)\n\`\`\`Play with "higher" or "lower"\`\`\``)
+    message.channel.send(`**A new game has started!**\nThe first number is: **${highLow}**. Will the next number be HIGHER or LOWER?\n> (The range is 0-12)\n\`\`\`Play with "higher" or "lower"\`\`\``)
   },
   guessTheNumber(message) {
     cache.put("guess", Math.floor(Math.random() * 999))
-    message.channel.send(`**A new game has started!**\n(The range is 0-999 - 5 minute time limit!)\n\`\`\`Play with "guess <number>"\`\`\``)
+    message.channel.send(`**A new game has started!**\n> (The range is 0-999 - 5 minute time limit!)\n\`\`\`Play with "guess <number>"\`\`\``)
   }
 }

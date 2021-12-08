@@ -1,3 +1,4 @@
+const { MessageEmbed } = require("discord.js")
 const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 900 * 1000 })
 const config = require("../config.json")
@@ -39,7 +40,12 @@ module.exports = (client, message) => {
     const userAnswer = message.content.toLowerCase().replace("quiz ','")
     if(userAnswer.includes(answer)) {
       const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
-      channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`).then(ownMessage => {
+      const quiz_embed = new MessageEmbed()
+        .setTitle(`QUIZ WINNER!`)
+        .setThumbnail(message.author.displayAvatarURL())
+        .setColor("GOLD")
+        .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+      channel.send({ embeds: [quiz_embed] }).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })
       cache.remove("quizAnswer")
@@ -55,7 +61,12 @@ module.exports = (client, message) => {
     const userAnswer = message.content.toLowerCase().replace("riddle ','")
     if(userAnswer.includes(answer)) {
       const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
-      channel.send(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`).then(ownMessage => {
+      const riddle_embed = new MessageEmbed()
+        .setTitle(`RIDDLE SOLVED!`)
+        .setThumbnail(message.author.displayAvatarURL())
+        .setColor("GOLD")
+        .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+      channel.send({ embeds: [riddle_embed] }).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })
       cache.remove("riddleAnswer")
@@ -90,13 +101,13 @@ module.exports = (client, message) => {
     if (message.content.toLowerCase().includes("higher") && answerNew > answer) {
       cache.put("highlow", answerNew)
       cache.put("highlownew", newRandom)
-      const newStreak = parseInt(streak)++
+      const newStreak = parseInt(streak) + 1
       cache.put("highlowstreak", parseInt(newStreak))
       channel.send(`${answerNew} was HIGHER! - You have a streak of ${streak}`)
     } else if (message.content.toLowerCase().includes("lower") && answerNew < answer) {
       cache.put("highlow", answerNew)
       cache.put("highlownew", newRandom)
-      const newStreak = parseInt(streak)++
+      const newStreak = parseInt(streak) + 1
       cache.put("highlowstreak", parseInt(newStreak))
       channel.send(`${answerNew} was LOWER! - You have a streak of ${streak}`)
     } else if (message.content.toLowerCase().includes("lower") && answerNew > answer || message.content.toLowerCase().includes("higher") && answerNew < answer) {
