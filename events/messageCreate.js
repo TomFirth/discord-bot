@@ -74,57 +74,6 @@ module.exports = (client, message) => {
     }
   }
 
-  // GUESS THE NUMBER
-  else if(cache.get("guess") && message.content.toLowerCase().includes("guess")) {
-    const answer = cache.get("guess")
-    const userAnswer = message.content.toLowerCase().replace("guess ','")
-    if (message.content.includes(answer)) {
-      message.channel.send(`Congratulations ${message.member} with the correct answer of: ${answer}!`).then(ownMessage => {
-        ownMessage.react(config.discord.emojis.clap)
-        cache.remove("guess")
-      })
-    } else if (parseInt(userAnswer) > answer) {
-      message.channel.send(`The number is BIGGER!`)
-    } else if (parseInt(userAnswer) < answer) {
-      message.channel.send(`The number is SMALLER!`)
-    } else {
-      message.channel.send(`**You lose!**`)
-      cache.remove("guess")
-    }
-  }
-
-  // HIGHER LOWER GAME
-  else if(cache.get("highlow") && message.content.toLowerCase().includes("higher") || message.content.toLowerCase().includes("lower")) {
-    const answer = cache.get("highlow")
-    const answerNew = cache.get("highlownew")
-    const streak = cache.get("highlowstreak")
-    const newRandom = Math.floor(Math.random() * 12)
-    if (message.content.toLowerCase().includes("higher") && answerNew > answer) {
-      cache.put("highlow", answerNew)
-      cache.put("highlownew", newRandom)
-      const newStreak = parseInt(streak) + 1
-      cache.put("highlowstreak", parseInt(newStreak))
-      message.channel.send(`${answerNew} was HIGHER! - You have a streak of ${streak}`)
-    } else if (message.content.toLowerCase().includes("lower") && answerNew < answer) {
-      cache.put("highlow", answerNew)
-      cache.put("highlownew", newRandom)
-      const newStreak = parseInt(streak) + 1
-      cache.put("highlowstreak", parseInt(newStreak))
-      message.channel.send(`${answerNew} was LOWER! - You have a streak of ${streak}`)
-    } else {
-      message.channel.send(`**You lose!** With a streak of ${streak}`)
-    }
-  }
-
-  // STOP HIGHER LOWER
-  else if(cache.get("highlow") && message.content.toLowerCase().includes("higherlower stop")) {
-    cache.remove("highlow")
-    cache.remove("highlownew")
-    cache.remove("highlowstreak")
-    const streak = cache.get("highlowstreak")
-    message.channel.send(`**Thank you for playing!** You end with a streak of ${streak}`)
-  }
-
   // SPECIAL ROLE REWARD
   const reactArray = ['⭐','🏆','👏','👍','🥇']
   if (message.member.roles.cache.some(role => role.name === "Special")
