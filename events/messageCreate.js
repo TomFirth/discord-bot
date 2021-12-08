@@ -91,7 +91,7 @@ module.exports = (client, message) => {
       message.channel.send(`**You lose!**`)
       cache.delete("guess")
       const thread = channel.threads.cache.find(c => c.name === '🔢-guess-the-number')
-      await thread.delete()
+      thread.delete()
     }
   }
 
@@ -116,7 +116,7 @@ module.exports = (client, message) => {
     } else {
       message.channel.send(`**You lose!** With a streak of ${streak}`)
       const thread = channel.threads.cache.find(c => c.name === '🔢-higher-or-lower')
-      await thread.delete()
+      thread.delete()
     }
   }
 
@@ -128,7 +128,7 @@ module.exports = (client, message) => {
     const streak = cache.get("highlowstreak")
     message.channel.send(`**Thank you for playing!** You end with a streak of ${streak}`)
     const thread = channel.threads.cache.find(c => c.name === '🔢-higher-or-lower')
-    await thread.delete()
+    thread.delete()
   }
 
   // SPECIAL ROLE REWARD
