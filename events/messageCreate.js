@@ -81,7 +81,7 @@ module.exports = (client, message) => {
     if (message.content.includes(answer)) {
       message.channel.send(`Congratulations ${message.member} with the correct answer of: ${answer}!`).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
-        cache.delete("guess")
+        cache.remove("guess")
       })
     } else if (parseInt(userAnswer) > answer) {
       message.channel.send(`The number is BIGGER!`)
@@ -89,7 +89,7 @@ module.exports = (client, message) => {
       message.channel.send(`The number is SMALLER!`)
     } else {
       message.channel.send(`**You lose!**`)
-      cache.delete("guess")
+      cache.remove("guess")
     }
   }
 
@@ -118,9 +118,9 @@ module.exports = (client, message) => {
 
   // STOP HIGHER LOWER
   else if(cache.get("highlow") && message.content.toLowerCase().includes("higherlower stop")) {
-    cache.delete("highlow")
-    cache.delete("highlownew")
-    cache.delete("highlowstreak")
+    cache.remove("highlow")
+    cache.remove("highlownew")
+    cache.remove("highlowstreak")
     const streak = cache.get("highlowstreak")
     message.channel.send(`**Thank you for playing!** You end with a streak of ${streak}`)
   }
