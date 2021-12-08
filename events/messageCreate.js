@@ -81,14 +81,14 @@ module.exports = (client, message) => {
     const answer = cache.get("guess")
     const userAnswer = message.content.toLowerCase().replace("guess ','")
     if (message.content.includes(answer)) {
-      channel.send(`Congratulations ${message.member} with the correct answer of: ${answer}!`).then(ownMessage => {
+      message.channel.send(`Congratulations ${message.member} with the correct answer of: ${answer}!`).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
         cache.delete("guess")
       })
     } else if (parseInt(userAnswer) > answer) {
-      channel.send(`The number is BIGGER!`)
+      message.channel.send(`The number is BIGGER!`)
     } else if (parseInt(userAnswer) < answer) {
-      channel.send(`The number is SMALLER!`)
+      message.channel.send(`The number is SMALLER!`)
     }
   }
 
@@ -103,15 +103,15 @@ module.exports = (client, message) => {
       cache.put("highlownew", newRandom)
       const newStreak = parseInt(streak) + 1
       cache.put("highlowstreak", parseInt(newStreak))
-      channel.send(`${answerNew} was HIGHER! - You have a streak of ${streak}`)
+      message.channel.send(`${answerNew} was HIGHER! - You have a streak of ${streak}`)
     } else if (message.content.toLowerCase().includes("lower") && answerNew < answer) {
       cache.put("highlow", answerNew)
       cache.put("highlownew", newRandom)
       const newStreak = parseInt(streak) + 1
       cache.put("highlowstreak", parseInt(newStreak))
-      channel.send(`${answerNew} was LOWER! - You have a streak of ${streak}`)
+      message.channel.send(`${answerNew} was LOWER! - You have a streak of ${streak}`)
     } else if (message.content.toLowerCase().includes("lower") && answerNew > answer || message.content.toLowerCase().includes("higher") && answerNew < answer) {
-      channel.send(`You lose! With a streak of ${streak}`)
+      message.channel.send(`You lose! With a streak of ${streak}`)
     }
   }
 
