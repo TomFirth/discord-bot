@@ -12,11 +12,11 @@ const twitterClient = new Twitter(twitterConf)
 
 class TwitterFeed {
   static start(client) {
-    const stream = twitterClient.stream("statuses/filter', {
+    const stream = twitterClient.stream("statuses/filter", {
       follow: config.socials.twitter.user
     })
 
-    stream.on("tweet', tweet => {
+    stream.on("tweet", tweet => {
       if (tweet.retweeted_status
         || tweet.in_reply_to_status_id
         || tweet.in_reply_to_status_id_str
