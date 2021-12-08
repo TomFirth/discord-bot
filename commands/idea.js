@@ -7,7 +7,7 @@ module.exports = {
   description: 'Suggest a feature!',
   async execute(client, message, args) {
     await db.collection("ideas").add({
-      author: message.member,
+      author: message.author.username,
       idea: args.join(" ")
     }, {merge: true})
     message.reply(`Thank you ${message.member} for your idea!`)
