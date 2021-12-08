@@ -75,9 +75,9 @@ module.exports = (client, message) => {
         cache.delete("guess")
       })
     } else if (parseInt(userAnswer) > answer) {
-      channel.send(`The number is LOWER`)
+      channel.send(`The number is BIGGER!`)
     } else if (parseInt(userAnswer) < answer) {
-      channel.send(`The number is HIGHER`)
+      channel.send(`The number is SMALLER!`)
     }
   }
 
@@ -90,12 +90,14 @@ module.exports = (client, message) => {
     if (message.content.toLowerCase().includes("higher") && answerNew > answer) {
       cache.put("highlow", answerNew)
       cache.put("highlownew", newRandom)
-      cache.put("highlowstreak", parseInt(streak++))
+      const newStreak = parseInt(streak)++
+      cache.put("highlowstreak", parseInt(newStreak))
       channel.send(`${answerNew} was HIGHER! - You have a streak of ${streak}`)
     } else if (message.content.toLowerCase().includes("lower") && answerNew < answer) {
       cache.put("highlow", answerNew)
       cache.put("highlownew", newRandom)
-      cache.put("highlowstreak", parseInt(streak++))
+      const newStreak = parseInt(streak)++
+      cache.put("highlowstreak", parseInt(newStreak))
       channel.send(`${answerNew} was LOWER! - You have a streak of ${streak}`)
     } else if (message.content.toLowerCase().includes("lower") && answerNew > answer || message.content.toLowerCase().includes("higher") && answerNew < answer) {
       channel.send(`You lose! With a streak of ${streak}`)
