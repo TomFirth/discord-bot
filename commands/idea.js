@@ -7,7 +7,7 @@ module.exports = {
   description: 'Suggest a feature!',
   async execute(client, message, args) {
     const docId = db.createId()
-    await db.collection("ideas").doc(docId).set({
+    await db.collection("ideas").add({
       author: message.member,
       idea: args.join(" ")
     }, {merge: true})
