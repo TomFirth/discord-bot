@@ -11,10 +11,11 @@ module.exports = {
     else message.channel.send(`All games are currently being played.`)
   },
   higherLower(message) {
-    cache.put("highlow", Math.floor(Math.random() * 12))
+    const highLow = Math.floor(Math.random() * 12)
+    cache.put("highlow", highLow)
     cache.put("highlownew", Math.floor(Math.random() * 12))
     cache.put("highlowstreak", 0)
-    message.channel.send(`A new game has started! The first number is: ${highlow}. Will the next number be HIGHER or LOWER?\n(The range is 0-12)\nPlay with "higher" or "lower"`)
+    message.channel.send(`A new game has started! The first number is: ${highLow}. Will the next number be HIGHER or LOWER?\n(The range is 0-12)\nPlay with "higher" or "lower"`)
   },
   guessTheNumber(message) {
     cache.put("guess", Math.floor(Math.random() * 999))

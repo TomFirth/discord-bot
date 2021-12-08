@@ -15,9 +15,9 @@ module.exports = {
   },
   async execute(client, message, args) {
     await db.collection("ideas").doc(this.randomString(20)).set({
-      author: message.user.username,
+      author: message.member,
       idea: args.join(" ")
     }, {merge: true})
-    message.reply(`Thank you ${message.user.username} for your idea!`)
+    message.reply(`Thank you ${message.member} for your idea!`)
   }
 }
