@@ -1,4 +1,4 @@
-const google = require('google-it')
+const google = require("google-it")
 
 module.exports = {
   emoji: '🔎',
@@ -7,7 +7,7 @@ module.exports = {
   execute(client, message, args) {
     if (!args.length) return message.reply(`**What do you want to search for?**`)
 
-    google({'query': args.join(' ')}).then(results => {
+    google({'query': args.join(" ")}).then(results => {
       return message.channel.send(results[0].title + " " + results[0].link)
     })
   },

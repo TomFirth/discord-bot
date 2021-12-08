@@ -1,6 +1,6 @@
-const Twitter = require('twit')
-const config = require('../../config')
-if (process.env.NODE_ENV) require('dotenv').config()
+const Twitter = require("twit")
+const config = require("../../config")
+if (process.env.NODE_ENV) require("dotenv").config()
 
 const twitterConf = {
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -12,11 +12,11 @@ const twitterClient = new Twitter(twitterConf)
 
 class TwitterFeed {
   static start(client) {
-    const stream = twitterClient.stream('statuses/filter', {
+    const stream = twitterClient.stream("statuses/filter', {
       follow: config.socials.twitter.user
     })
 
-    stream.on('tweet', tweet => {
+    stream.on("tweet', tweet => {
       if (tweet.retweeted_status
         || tweet.in_reply_to_status_id
         || tweet.in_reply_to_status_id_str

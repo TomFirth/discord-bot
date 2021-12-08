@@ -1,4 +1,4 @@
-const config = require('../config.json')
+const config = require("../config.json")
 const clock = config.discord.emojis.clock
 
 // set user limit

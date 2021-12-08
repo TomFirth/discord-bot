@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require("discord.js")
 
 module.exports = {
   emoji: '📝',
@@ -9,7 +9,7 @@ module.exports = {
     const help_embed = new MessageEmbed()
       .setTitle(`${client.user.username}'s Commands`)
       .setThumbnail(client.user.displayAvatarURL())
-      .setColor('GREEN')
+      .setColor("GREEN")
       .setDescription(client.botCommands.filter(command => { return !exclusions.includes(command.name) }).map(command => {
         return `\`${command.emoji || '✔️'}\` \`.${command.name}\` - *${command.description || `No description available.`}*`
       }).join(`\n`))

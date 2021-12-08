@@ -1,4 +1,4 @@
-const { fetchSubreddit } = require('fetch-subreddit')
+const { fetchSubreddit } = require("fetch-subreddit")
 
 module.exports = {
   emoji: '🎵',
@@ -20,7 +20,7 @@ module.exports = {
         let rand = Math.floor(Math.random() * everything.length - 1)
         if (everything[rand]
           && !randomTracks.includes(everything[rand])
-          && everything[rand].includes('youtu')) {
+          && everything[rand].includes("youtu")) {
             randomTracks.push(everything[rand])
         }
       }

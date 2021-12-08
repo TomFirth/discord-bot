@@ -1,9 +1,9 @@
-const cron = require('cron')
-const config = require('../config.json')
+const cron = require("cron")
+const config = require("../config.json")
 
 class PruneCron {
   static start(client) {
-    let scheduledMessage = new cron.CronJob('00 00 03 * * *', () => {
+    let scheduledMessage = new cron.CronJob("00 00 03 * * *", () => {
       let tempText = client.channels.cache.filter(c => c.parentId === config.discord.categories.tempText)
       let tempVoice = client.channels.cache.filter(c => c.parentId === config.discord.categories.tempVoice)
       const now = new Date()

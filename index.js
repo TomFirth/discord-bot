@@ -1,32 +1,32 @@
-const fs = require('fs')
-const config = require('./config.json')
-const { Client, Intents, Collection, MessageEmbed } = require('discord.js')
+const fs = require("fs")
+const config = require("./config.json")
+const { Client, Intents, Collection, MessageEmbed } = require("discord.js")
 const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
 })
-const firebase = require('firebase-admin')
+const firebase = require("firebase-admin")
 firebase.initializeApp({
-	credential: firebase.credential.cert(require('./credentials.json')),
+	credential: firebase.credential.cert(require("./credentials.json")),
 })
 const db = firebase.firestore()
-const timedCache = require('timed-cache')
-const cache = new timedCache({ defaultTtl: 18 * 1000000 })
-if (process.env.NODE_ENV) require('dotenv').config()
+const timedCache = require("timed-cache")
+const cache = new timedCache({ defaultTtl: 18 * 1000000 }) // 5hrs
+if (process.env.NODE_ENV) require("dotenv").config()
 
-const quiz = require('./scheduled/quiz')
-const riddles = require('./scheduled/riddles')
-const unSpecial = require('./scheduled/unSpecial')
+const quiz = require("./scheduled/quiz")
+const riddles = require("./scheduled/riddles")
+const unSpecial = require("./scheduled/unSpecial")
 const prune = require("./scheduled/prune")
 
-// const patches = require('./streams/patches')
-// const reddit = require('./streams/reddit')
-const rss = require('./streams/rss')
+// const patches = require("./streams/patches")
+// const reddit = require("./streams/reddit")
+const rss = require("./streams/rss")
 
-const twitter = require('./streams/socials/twitter')
-// const youtube = require('./streams/socials/youtube')
-// const instagram = require('./streams/socials/instragram')
-// const twitch = require('./streams/socials/twitch')
+const twitter = require("./streams/socials/twitter")
+// const youtube = require("./streams/socials/youtube")
+// const instagram = require("./streams/socials/instragram")
+// const twitch = require("./streams/socials/twitch")
 
 client.prefix = config.bot.prefix
 client.botCommands = new Collection()
@@ -35,15 +35,15 @@ client.botCommands = new Collection()
 client.error = (error_msg, channel) => {
   if (!error_msg || !channel) return
   const error_embed = new MessageEmbed()
-    .setTitle('An Error occured!')
-    .setColor('RED')
+    .setTitle("An Error occured!")
+    .setColor("RED")
     .setDescription(`\`\`\`${error_msg}\`\`\``)
     .setTimestamp()
   return channel.send({ embeds: [error_embed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
 }
 
 // EVENT HANDLER
-fs.readdir('./events/', (error, files) => {
+fs.readdir("./events/", (error, files) => {
   if (error) return console.error(err)
   client.removeAllListeners()
   files.forEach(file => {
@@ -91,7 +91,7 @@ twitter.start(client)
 // twitch.start()
 
 // COMMAND HANDLER
-fs.readdir('./commands/', (error, files) => {
+fs.readdir("./commands/", (error, files) => {
   if (error) return console.error(err)
   const command_files = files.filter(fileName => fileName.endsWith(".js"))
   command_files.forEach(file => {
