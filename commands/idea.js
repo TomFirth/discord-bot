@@ -14,7 +14,8 @@ module.exports = {
     return str
   },
   async execute(client, message, args) {
-    await db.collection("ideas").doc(this.randomString(20)).set({
+    const docId = await this.randomString(20)
+    await db.collection("ideas").doc(docId).set({
       author: message.member,
       idea: args.join(" ")
     }, {merge: true})
