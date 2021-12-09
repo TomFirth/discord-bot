@@ -20,7 +20,7 @@ const unSpecial = require("./scheduled/unSpecial")
 const prune = require("./scheduled/prune")
 
 // const patches = require("./streams/patches")
-// const reddit = require("./streams/reddit")
+const reddit = require("./streams/reddit")
 const rss = require("./streams/rss")
 
 const twitter = require("./streams/socials/twitter")
@@ -77,9 +77,9 @@ config.rss.forEach(feed => {
 // })
 
 // SUBREDDITS
-// config.reddit.forEach(subreddit => {
-//   reddit.start(client, subreddit, db)
-// })
+config.reddit.forEach(subreddit => {
+  reddit.start(client, subreddit, db)
+})
 
 // BETAS
 
