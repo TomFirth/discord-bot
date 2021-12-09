@@ -16,9 +16,3 @@ module.exports = {
     })
   },
 }
-
-// detect emojis
-// if they exist, use them as poll reactions instead of thumb up / thumb down
-// defaults to thumbs
-
-// after time give result of poll

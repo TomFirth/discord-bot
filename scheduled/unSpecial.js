@@ -14,7 +14,7 @@ class UnSpecialCron {
 					}
 				})
 			})
-			.catch(error => console.log(error))
+			.catch(error => console.error(error, message.channel))
 		})
 		scheduledMessage.start()
 	}

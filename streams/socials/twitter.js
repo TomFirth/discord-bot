@@ -27,6 +27,9 @@ class TwitterFeed {
       channel.send(`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`)
       return false
     })
+    stream.on("error", error => {
+      console.error(error)
+    })
   }
 }
 

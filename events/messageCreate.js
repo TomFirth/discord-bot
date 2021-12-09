@@ -86,7 +86,6 @@ module.exports = (client, message) => {
   try {
     command.execute(client, message, args)
   } catch (error) {
-    console.log(error)
-    return client.error(error, message.channel)
+    return client.error(error)
   }
 }

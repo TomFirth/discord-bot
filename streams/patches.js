@@ -41,7 +41,7 @@ class Patches {
         }
       })
       response.on("error", (error) => {
-        console.log("error")
+        console.error(error)
       })
     })
   }

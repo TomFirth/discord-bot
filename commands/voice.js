@@ -12,11 +12,9 @@ module.exports = {
     else channelName = clock + " " + args.join(" ")
     message.guild.channels.create(channelName, {
       type: "GUILD_VOICE",
-      permissionOverwrites: [
-        {
-          id: message.guild.roles.everyone
-        }
-      ],
+      permissionOverwrites: [{
+        id: message.guild.roles.everyone
+      }],
     }).then((channel) => {
       channel.setParent(config.discord.categories.tempVoice)
     })

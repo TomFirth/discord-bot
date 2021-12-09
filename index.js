@@ -32,13 +32,14 @@ client.prefix = config.bot.prefix
 client.botCommands = new Collection()
 
 // ERROR MESSAGE
-client.error = (error_msg, channel) => {
+client.error = (error_msg) => {
   if (!error_msg || !channel) return
   const error_embed = new MessageEmbed()
     .setTitle("An Error occured!")
     .setColor("RED")
     .setDescription(`\`\`\`${error_msg}\`\`\``)
     .setTimestamp()
+  let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
   return channel.send({ embeds: [error_embed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
 }
 
@@ -53,7 +54,7 @@ fs.readdir("./events/", (error, files) => {
     try {
       client.on(event_name, event.bind(null, client))
     } catch(error) {
-      console.log(error)
+      console.error(error)
     }
   })
 })
@@ -100,4 +101,4 @@ fs.readdir("./commands/", (error, files) => {
   })
 })
 
-client.login(process.env.TOKEN).catch(console.error)
+client.login(process.env.TOKEN).catch(error => console.error(error))

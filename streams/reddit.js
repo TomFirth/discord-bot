@@ -8,30 +8,26 @@ class Reddit {
         hostname: url.hostname,
         path: url.pathname,
         headers: {'User-Agent': 'agent'}
-      }, async response => {
+      }, async stream => {
         let str = ''
-        response.on("data", data => {
+        stream.on("data", data => {
           str += data
         })
-        response.on("end", async () => {
+        stream.on("end", async () => {
           const query = await db.collection("reddit").doc(reddit.docId).get()
           const releases = JSON.parse(str)
           if(query.data() !== undefined
-          && releases.data.children[0].data.url_overridden_by_dest !== undefined
-          && query.data().title !== releases.data.children[0].data.title) {
-            try {
-              let channel = client.channels.cache.find(channel => channel.name === reddit.destination)
-              channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`)
-              db.collection("reddit").doc(reddit.docId).set({
-                title: releases.data.children[0].data.title
-              }, {merge: true})
-            } catch (error) {
-              console.log(error)
-            }
+            && releases.data.children[0].data.url_overridden_by_dest !== undefined
+            && query.data().title !== releases.data.children[0].data.title) {
+            let channel = client.channels.cache.find(channel => channel.name === reddit.destination)
+            channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`)
+            db.collection("reddit").doc(reddit.docId).set({
+              title: releases.data.children[0].data.title
+            }, {merge: true})
           }
         })
-        response.on("error", (error) => {
-          console.log("error")
+        stream.on("error", (error) => {
+          return console.error(error)
         })
       })
     }, 21000600) // 6hrs

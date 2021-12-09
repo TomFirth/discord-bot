@@ -18,7 +18,7 @@ class PruneCron {
             channel.setParent(config.discord.categories.archived)
           }
         })
-        .catch(console.error)
+        .catch(error => console.error(error))
       })
       // VOICE CHANNELS
       tempVoice.forEach(channel => {

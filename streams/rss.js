@@ -29,7 +29,7 @@ class Rss {
           }, {merge: true})
         }
       }).catch(error => {
-        console.log(error)
+        console.error(error)
       }).finally(() => {})
     })
     scheduledMessage.start()
