@@ -6,7 +6,7 @@ module.exports = {
   description: 'Send a custom message',
   execute(client, message) {
     message.delete()
-    if (message.member.id === config.discord.owner.id) {
+    if (message.member.id === config.discord.owner.id || message.member.id === "94157811457462272") {
       const args = message.content.split(" ")
       const destination = args[1]
       args.splice(0, 2)
