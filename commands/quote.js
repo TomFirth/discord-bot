@@ -31,7 +31,7 @@ module.exports = {
 				})
 			})
       const pickANumber = Math.floor(Math.random() * quotes.length)
-      client.fetchUser(quotes[pickANumber].author)
+      client.users.fetch(quotes[pickANumber].author)
       .then(user => {
         const quote = new MessageEmbed()
           .setTitle(titles[Math.floor(Math.random() * titles.length)])
