@@ -30,12 +30,11 @@ module.exports = {
           timestamp: doc.data().timestamp
 				})
 			})
-      const pickANumber = Math.floor(Math.random() * quotes.length - 1)
-      console.log("quotes", pickANumber, quotes)
+      const pickANumber = Math.floor(Math.random() * quotes.length)
       client.fetchUser(quotes[pickANumber].author)
       .then(user => {
         const quote = new MessageEmbed()
-          .setTitle(titles[Math.floor(Math.random() * titles.length - 1)])
+          .setTitle(titles[Math.floor(Math.random() * titles.length)])
           .setDescription(quotes[pickANumber].quote)
           .setAuthor(user.username)
           .setThumbnail(user.displayAvatarURL)
