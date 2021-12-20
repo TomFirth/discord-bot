@@ -7,8 +7,8 @@ module.exports = {
   name: 'quote',
   description: 'Quote people, forever',
   async execute(client, message, args) {
-    if (!args.length) return message.reply(`**Please add a type: add/random.**`)
     if (args[0] == "add") {
+      console.log("args", args)
       const userId = client.users.cache.find(user => user.username == args[1])
       await db.collection("quotes").add({
         author: userId,
@@ -16,7 +16,7 @@ module.exports = {
         timestamp: new Date()
       }, {merge: true})
       message.reply(`Thank you ${message.member} for adding a quote! - Use .quote random`)
-    } else if (args[0] == "random") {
+    } else {
       const titles = [
         "It\'s just a matter of time before this person\'s on a list.",
         "This person is legally an adult.",

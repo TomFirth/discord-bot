@@ -14,6 +14,10 @@ class Quiz {
 					answer: doc.data().answer
 				})
 			})
+			if (questions.length < 5) {
+				let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
+				channel.send("Less than 5 Quiz questions remaining.")
+			}
 			const random = Math.floor(Math.random() * questions.length - 1)
 			cache.put("quizAnswer", questions[random].answer)
 			db.collection("quiz").doc(questions[random].id).update({used: true})
