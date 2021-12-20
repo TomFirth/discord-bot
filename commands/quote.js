@@ -6,7 +6,7 @@ module.exports = {
   emoji: '👍',
   name: 'quote',
   description: 'Quote people, forever',
-  execute(client, message, args) {
+  async execute(client, message, args) {
     if (!args.length) return message.reply(`**Please add a type: add/random.**`)
     if (args[0] == "add") {
       const userId = client.users.cache.find(user => user.tag === args[1]).id
