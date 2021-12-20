@@ -31,17 +31,17 @@ module.exports = {
 				})
 			})
       const pickANumber = Math.floor(Math.random() * quotes.length - 1)
-      const userId = client.users.cache.get(quotes[pickANumber].author)
-      const { avatarURL, username } = await client.fetchUser(userId)
-        .catch(console.error)
-      
-      const quote = new MessageEmbed()
-        .setTitle(titles[Math.floor(Math.random() * titles.length - 1)])
-        .setDescription(quotes[pickANumber].quote)
-        .setAuthor(username)
-        .setThumbnail(avatarURL)
-        .setColor("RANDOM")
-      return message.channel.send({ embeds: [quote] })
+      client.fetchUser(quotes[pickANumber].author)
+      .then(user => {
+        const quote = new MessageEmbed()
+          .setTitle(titles[Math.floor(Math.random() * titles.length - 1)])
+          .setDescription(quotes[pickANumber].quote)
+          .setAuthor(user.username)
+          .setThumbnail(user.displayAvatarURL)
+          .setColor("RANDOM")
+        return message.channel.send({ embeds: [quote] })
+      })
+      .catch(console.error)
     }
   },
 }
