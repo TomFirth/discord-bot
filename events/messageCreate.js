@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js")
 const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 900 * 1000 })
 const config = require("../config.json")
+const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
   if (message.type === "DM" || message.author.bot) return
@@ -12,30 +13,26 @@ module.exports = (client, message) => {
   if (command_name.charAt(0) === ".") return
   if (command_name.charAt(0) === "/") return
 
-  // TROLL ADAM
-  if (message.content == "Hello" && Math.floor(Math.random() * 5) == 0) {
-    message.channel.send("Lmao")
-  }
-
-  // TROLL BORIS
-  else if (message.content.includes("LOL") && Math.floor(Math.random() * 5) == 0) {
-    message.channel.send("LOL")
-  }
-
-  // TROLL LUKE
-  else if (message.content.toLowerCase().includes("martin")) {
-    message.channel.send("Do you like Martins?").then(ownMessage => {
-      ownMessage.react("🦦")
-    })
-  }
-
-  // TROLL TOM
-  else if (message.content.toLowerCase().includes("streamer") && Math.floor(Math.random() * 5) == 0) {
-    message.channel.send("Are they a c***?")
-  }
+  trolls.forEach(troll => {
+    if (troll.includes && !troll.emoji) {
+      if (message.content == troll.message && Math.floor(Math.random() * troll.chance) == 0) {
+        message.channel.send(troll.response)
+      }
+    } else if (troll.includes && troll.emoji) {
+      if (message.content.toLowerCase().includes(troll.message)) {
+        message.channel.send(troll.response).then(ownMessage => {
+          ownMessage.react(troll.emoji)
+        })
+      }
+    } else if (!trolls.includes && !trolls.emoji) {
+      if (message.content == troll.message) {
+        message.channel.send(troll.response)
+      }
+    }
+  })
 
   // QUIZ ANSWER
-  else if(message.content.toLowerCase().includes("quiz")) {
+  if(message.content.toLowerCase().includes("quiz")) {
     const answer = cache.get("quizAnswer") || null
     const userAnswer = message.content.toLowerCase().replace("quiz ','")
     if(userAnswer.includes(answer)) {

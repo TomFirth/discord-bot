@@ -20,7 +20,12 @@ class Rss {
             .setColor(feed.colour)
             .setTimestamp()
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
-          channel.send({ embeds: [feedEmbed] })
+          channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
+            if (feed.poll) {
+              ownMessage.react(config.discord.emojis.thumbsUp)
+              ownMessage.react(config.discord.emojis.thumbsDown)
+            }
+          })
           db.collection("rss").doc(feed.docId).set({
             description: description,
             link: doc.link,
