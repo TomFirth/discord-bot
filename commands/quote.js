@@ -31,6 +31,7 @@ module.exports = {
 				})
 			})
       const pickANumber = Math.floor(Math.random() * quotes.length - 1)
+      console.log("quotes", pickANumber, quotes)
       client.fetchUser(quotes[pickANumber].author)
       .then(user => {
         const quote = new MessageEmbed()
