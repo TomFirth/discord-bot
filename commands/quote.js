@@ -30,7 +30,7 @@ module.exports = {
         const quote = new MessageEmbed()
           .setDescription(quotes[pickANumber].quote)
           .setAuthor(user.username)
-          .setImage(user.displayAvatarURL({ dynamic:true }))
+          .setThumbnail(user.displayAvatarURL({ dynamic:true }))
           .setColor("RANDOM")
         return message.channel.send({ embeds: [quote] })
       })
