@@ -10,7 +10,7 @@ module.exports = {
     if (args[0] == "add") {
       await db.collection("quotes").add({
         author: message.mentions.users.first().id,
-        quote: args.slice(0, 2).join(" "),
+        quote: args.slice(2).join(" "),
         timestamp: new Date()
       }, {merge: true})
       message.reply(`Thank you ${message.member} for adding a quote! - Use .quote random`)
