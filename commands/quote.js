@@ -14,13 +14,7 @@ module.exports = {
         timestamp: new Date()
       }, {merge: true})
       message.reply(`Thank you ${message.member} for adding a quote! - Use .quote random`)
-    } else {
-      const titles = [
-        "It\'s just a matter of time before this person\'s on a list.",
-        "This person is legally an adult.",
-        "Some things are best left unsaid."
-      ]
-      
+    } else {      
       const query = await firebase.firestore().collection('quotes').get()
       let quotes = []
 			query.forEach(doc => {
@@ -34,10 +28,9 @@ module.exports = {
       client.users.fetch(quotes[pickANumber].author)
       .then(user => {
         const quote = new MessageEmbed()
-          .setTitle(titles[Math.floor(Math.random() * titles.length)])
           .setDescription(quotes[pickANumber].quote)
           .setAuthor(user.username)
-          .setThumbnail(user.displayAvatarURL)
+          .setImage(user.avatarURL)
           .setColor("RANDOM")
         return message.channel.send({ embeds: [quote] })
       })
