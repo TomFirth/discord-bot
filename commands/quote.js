@@ -9,7 +9,7 @@ module.exports = {
   async execute(client, message, args) {
     if (!args.length) return message.reply(`**Please add a type: add/random.**`)
     if (args[0] == "add") {
-      const userId = client.users.cache.find(user => user.id == args[1])
+      const userId = client.users.cache.find(user => user.username == args[1])
       await db.collection("quotes").add({
         author: userId,
         quote: args.slice(0, 2).join(" "),
