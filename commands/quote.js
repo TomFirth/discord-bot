@@ -8,8 +8,8 @@ module.exports = {
   description: 'Quote people, forever',
   async execute(client, message, args) {
     if (args[0] == "add") {
-      console.log("args", args)
-      const userId = client.users.cache.find(user => user.username == args[1])
+
+      const userId = client.users.cache.find(user => user.username == args[1].slice(3).slice(0, str.length - 1))
       await db.collection("quotes").add({
         author: userId,
         quote: args.slice(0, 2).join(" "),
