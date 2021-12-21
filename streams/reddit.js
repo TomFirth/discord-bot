@@ -30,7 +30,7 @@ class Reddit {
           return console.error(error)
         })
       })
-    }, 21000600) // 6hrs
+    }, 84002400) // 24hrs
   }
 }
 

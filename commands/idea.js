@@ -8,7 +8,8 @@ module.exports = {
   async execute(client, message, args) {
     await db.collection("ideas").add({
       author: message.author.username,
-      idea: args.join(" ")
+      idea: args.join(" "),
+      complete: false
     }, {merge: true})
     message.reply(`Thank you ${message.member} for your idea!`)
   }
