@@ -17,6 +17,8 @@
     "feed-reader": "^1.1.6",
     "fetch-subreddit": "^3.0.0",
     "firebase-admin": "^7.3.0",
+    "googleapis": "92.0.0",
+    "@google-cloud/local-auth": "1.0.1",
     "google-it": "^1.6.2",
     "timed-cache": "^1.1.5",
     "twit": "^2.2.11"
