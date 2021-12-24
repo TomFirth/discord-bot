@@ -4,12 +4,6 @@ const https = require("https")
 class Reddit {
   static start(client, reddit, db) {
     const url = new URL("https://www.reddit.com/r/" + reddit.subreddit + "/top.json?t=" + reddit.frequency)
-    const min = 82800000 // 23hrs
-    const max = 90000000 // 25hrs
-    const timeout = Math.random() * (max - min) + min
-    setTimeout(() => {
-      getReddit()
-    }, timeout)
     (getReddit = () => {
       https.get({
         hostname: url.hostname,
@@ -43,6 +37,12 @@ class Reddit {
         })
       })
     })()
+    const min = 82800000 // 23hrs
+    const max = 90000000 // 25hrs
+    const timeout = Math.random() * (max - min) + min
+    setTimeout(() => {
+      getReddit()
+    }, timeout)
   }
 }
 
