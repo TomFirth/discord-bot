@@ -1,3 +1,4 @@
+const { getSubredditName } = require("fetch-subreddit")
 const https = require("https")
 
 class Reddit {
@@ -6,7 +7,10 @@ class Reddit {
     const min = 82800000 // 23hrs
     const max = 90000000 // 25hrs
     const timeout = Math.random() * (max - min) + min
-    setTimeout(function(){
+    setTimeout(() => {
+      getReddit()
+    }, timeout)
+    (getReddit = () => {
       https.get({
         hostname: url.hostname,
         path: url.pathname,
@@ -38,7 +42,7 @@ class Reddit {
           return console.error(error)
         })
       })
-    }, timeout)
+    })()
   }
 }
 
