@@ -1,5 +1,5 @@
-const { getSubredditName } = require("fetch-subreddit")
 const https = require("https")
+const config = require("../config.json")
 
 class Reddit {
   static start(client, reddit, db) {
