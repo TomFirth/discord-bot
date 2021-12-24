@@ -22,7 +22,7 @@ class Reddit {
             && query.data().title !== releases.data.children[0].data.title) {
             let channel = client.channels.cache.find(channel => channel.name === reddit.destination)
             channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`).then(ownMessage => {
-              if (feed.poll) {
+              if (reddit.poll) {
                 ownMessage.react(config.discord.emojis.thumbsUp)
                 ownMessage.react(config.discord.emojis.thumbsDown)
               }
