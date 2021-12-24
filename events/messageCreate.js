@@ -10,8 +10,8 @@ module.exports = (client, message) => {
   const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
   const command_name = args.shift().toLowerCase()
   if (!command_name) return
-  if (command_name.charAt(0) === ".") return
-  if (command_name.charAt(0) === "/") return
+  else if (command_name.charAt(0) === ".") return
+  else if (command_name.charAt(0) === "/") return
 
   trolls.forEach(troll => {
     if (troll.includes && !troll.emoji) {
@@ -24,7 +24,7 @@ module.exports = (client, message) => {
           ownMessage.react(troll.emoji)
         })
       }
-    } else if (!trolls.includes && !trolls.emoji) {
+    } else if (!troll.includes && !troll.emoji) {
       if (message.content == troll.message) {
         message.channel.send(troll.response)
       }

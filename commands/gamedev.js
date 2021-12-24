@@ -1,7 +1,6 @@
 const { MessageEmbed } = require("discord.js")
-const {google} = require('googleapis')
-const {authenticate} = require('@google-cloud/local-auth')
-const path = require('path')
+const { google } = require('googleapis')
+const { authenticate } = require('@google-cloud/local-auth')
 
 module.exports = {
   emoji: '📝',
@@ -10,10 +9,10 @@ module.exports = {
   execute(client, message) {
     const docs = google.docs('v1')
     const auth = await authenticate({
-      keyfilePath: "../oauth2.keys.json"),
+      keyfilePath: "../oauth2.keys.json",
       scopes: 'https://www.googleapis.com/auth/documents',
     })
-    google.options({auth})
+    google.options({ auth })
   
     const res = await docs.documents.get({
       documentId: '1IQ1nh0nUn-1Rbt6D_jqcxfZi5YULU1hS6jJKRDHbRhI',
