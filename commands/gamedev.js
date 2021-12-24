@@ -6,7 +6,7 @@ module.exports = {
   emoji: '📝',
   name: 'gamedev',
   description: 'Get a random GameDev idea!',
-  execute(client, message) {
+  async execute(client, message) {
     const docs = google.docs('v1')
     const auth = await authenticate({
       keyfilePath: "../oauth2.keys.json",
