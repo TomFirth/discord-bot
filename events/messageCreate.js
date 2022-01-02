@@ -34,7 +34,7 @@ module.exports = (client, message) => {
   // QUIZ ANSWER
   if(message.content.toLowerCase().includes("quiz")) {
     const answer = cache.get("quizAnswer") || null
-    const userAnswer = message.content.toLowerCase().replace("quiz ','")
+    const userAnswer = message.content.toLowerCase().replace("quiz ", "")
     if(userAnswer.includes(answer)) {
       const quiz_embed = new MessageEmbed()
         .setTitle(`QUIZ WINNER!`)
@@ -52,9 +52,9 @@ module.exports = (client, message) => {
   }
 
   // RIDDLES ANSWER
-  else if(message.content.toLowerCase().includes("riddle")) {
+  if(message.content.toLowerCase().includes("riddle")) {
     const answer = cache.get("riddleAnswer") || null
-    const userAnswer = message.content.toLowerCase().replace("riddle ','")
+    const userAnswer = message.content.toLowerCase().replace("riddle ","")
     if(userAnswer.includes(answer)) {
       const riddle_embed = new MessageEmbed()
         .setTitle(`RIDDLE SOLVED!`)
