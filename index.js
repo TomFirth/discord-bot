@@ -66,8 +66,8 @@ quiz.start(client, db, cache)
 riddles.start(client, db, cache)
 
 // STREAMS
-config.rss.forEach(feed => {
-  rss.start(client, feed, db)
+config.rss.forEach(async feed => {
+  await rss.start(client, feed, db)
 })
 
 // PATCH NOTES
@@ -78,8 +78,8 @@ config.rss.forEach(feed => {
 // })
 
 // SUBREDDITS
-config.reddit.forEach(subreddit => {
-  reddit.start(client, subreddit, db)
+config.reddit.forEach(async subreddit => {
+  await reddit.start(client, subreddit, db)
 })
 
 // BETAS
