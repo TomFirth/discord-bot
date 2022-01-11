@@ -64,10 +64,13 @@ fs.readdir("./events/", (error, files) => {
 })
 
 // SCHEDULED HANDLER
-lucky.start(client)
+// guesswho.start(client)
+// lucky.start(client)
+// maths.start(client)
 prune.start(client)
 quiz.start(client, db, cache)
 riddles.start(client, db, cache)
+// unlucky.start(client)
 unSpecial.start(client)
 
 // STREAMS
