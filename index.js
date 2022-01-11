@@ -14,10 +14,13 @@ const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 18 * 1000000 }) // 5hrs
 if (process.env.NODE_ENV) require("dotenv").config()
 
-const lucky = require("./scheduled/lucky")
+// const guesswho = require("./scheduled/guesswho")
+// const lucky = require("./scheduled/lucky")
+// const maths = require("./scheduled/maths")
 const prune = require("./scheduled/prune")
 const quiz = require("./scheduled/quiz")
 const riddles = require("./scheduled/riddles")
+// const unlucky = require("./scheduled/unlucky")
 const unSpecial = require("./scheduled/unSpecial")
 
 // const patches = require("./streams/patches")
