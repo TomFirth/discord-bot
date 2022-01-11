@@ -9,7 +9,7 @@ class Rss {
       parse(feed.url).then(async result => {
         const query = await db.collection("rss").doc(feed.docId).get()
         const doc = result.entries[0]
-        if(query.data().publishedDate !== doc.publishedDate
+        if (query.data().publishedDate !== doc.publishedDate
         && query.data().title == undefined
         || query.data().title !== doc.title) {
           const description = doc.contentSnippet.replace(/<.*>/, '')

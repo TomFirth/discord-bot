@@ -14,10 +14,11 @@ const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 18 * 1000000 }) // 5hrs
 if (process.env.NODE_ENV) require("dotenv").config()
 
+const lucky = require("./scheduled/lucky")
+const prune = require("./scheduled/prune")
 const quiz = require("./scheduled/quiz")
 const riddles = require("./scheduled/riddles")
 const unSpecial = require("./scheduled/unSpecial")
-const prune = require("./scheduled/prune")
 
 // const patches = require("./streams/patches")
 const reddit = require("./streams/reddit")
@@ -60,14 +61,20 @@ fs.readdir("./events/", (error, files) => {
 })
 
 // SCHEDULED HANDLER
-unSpecial.start(client)
+lucky.start(client)
 prune.start(client)
 quiz.start(client, db, cache)
 riddles.start(client, db, cache)
+unSpecial.start(client)
 
 // STREAMS
 config.rss.forEach(async feed => {
   await rss.start(client, feed, db)
+})
+
+// SUBREDDITS
+config.reddit.forEach(async subreddit => {
+  await reddit.start(client, subreddit, db)
 })
 
 // PATCH NOTES
@@ -76,11 +83,6 @@ config.rss.forEach(async feed => {
 //     patches.start(client, target, db)
 //   }
 // })
-
-// SUBREDDITS
-config.reddit.forEach(async subreddit => {
-  await reddit.start(client, subreddit, db)
-})
 
 // BETAS
 

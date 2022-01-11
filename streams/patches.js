@@ -22,7 +22,7 @@ class Patches {
           href = $(this).find("a").attr("href")
         })
         const query = await db.collection("patches").doc(target.docId).get()
-        if(query.data() !== undefined
+        if (query.data() !== undefined
         && query.data().title !== title) {
           let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.updates)
           const patchNotes = new MessageEmbed()

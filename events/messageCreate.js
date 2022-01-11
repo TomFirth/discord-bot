@@ -13,6 +13,14 @@ module.exports = (client, message) => {
   else if (command_name.charAt(0) === ".") return
   else if (command_name.charAt(0) === "/") return
 
+  // ADD POLL TO ANY MESSAGE
+  if (message.content.toLowerCase() == "add poll") {
+    message.delete()
+    message.react(config.discord.emojis.thumbsUp)
+    message.react(config.discord.emojis.thumbsDown)
+  }
+
+  // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
     if (troll.includes && !troll.emoji) {
       if (message.content == troll.message && Math.floor(Math.random() * troll.chance) == 0) {
@@ -32,10 +40,10 @@ module.exports = (client, message) => {
   })
 
   // QUIZ ANSWER
-  if(message.content.toLowerCase().includes("quiz")) {
+  if (message.content.toLowerCase().includes("quiz")) {
     const answer = cache.get("quizAnswer") || null
     const userAnswer = message.content.toLowerCase().replace("quiz ", "")
-    if(userAnswer.includes(answer)) {
+    if (userAnswer.includes(answer)) {
       const quiz_embed = new MessageEmbed()
         .setTitle(`QUIZ WINNER!`)
         .setThumbnail(message.author.displayAvatarURL())
@@ -48,14 +56,20 @@ module.exports = (client, message) => {
       // REWARD
       const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
       message.member.roles.add(role)
+      if (message.member.roles.cache.some(role => role.name !== "special")) {
+        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
+        channel.send(`Welcome ${message.member}`)
+      }
+    } else {
+      message.react(config.discord.emojis.thumbsDown)
     }
   }
 
   // RIDDLES ANSWER
-  if(message.content.toLowerCase().includes("riddle")) {
+  if (message.content.toLowerCase().includes("riddle")) {
     const answer = cache.get("riddleAnswer") || null
     const userAnswer = message.content.toLowerCase().replace("riddle ","")
-    if(userAnswer.includes(answer)) {
+    if (userAnswer.includes(answer)) {
       const riddle_embed = new MessageEmbed()
         .setTitle(`RIDDLE SOLVED!`)
         .setThumbnail(message.author.displayAvatarURL())
@@ -68,12 +82,18 @@ module.exports = (client, message) => {
       // REWARD
       const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
       message.member.roles.add(role)
+      if (message.member.roles.cache.some(role => role.name !== "special")) {
+        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
+        channel.send(`Welcome ${message.member}`)
+      }
+    } else {
+      message.react(config.discord.emojis.thumbsDown)
     }
   }
 
   // SPECIAL ROLE REWARD
   const reactArray = ['⭐','🏆','👏','👍','🥇']
-  if (message.member.roles.cache.some(role => role.name === "Special")
+  if (message.member.roles.cache.some(role => role.name === "special")
     && Math.floor(Math.random() * 49) == 0) {
     message.react(reactArray[Math.floor(Math.random() * reactArray.length)])
   }
