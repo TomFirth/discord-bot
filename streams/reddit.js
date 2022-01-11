@@ -6,7 +6,7 @@ class Reddit {
     let scheduledMessage = new cron.CronJob("* * * * * */1", () => {
       const url = new URL("https://www.reddit.com/r/" + reddit.subreddit + "/top.json?t=" + reddit.frequency)
       axios.get(url.hostname + url.pathname)
-        .then(response => {
+        .then(async response => {
           const query = await db.collection("reddit").doc(reddit.docId).get()
           const releases = JSON.parse(response)
           if (query.data() !== undefined
