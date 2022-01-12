@@ -18,7 +18,7 @@ module.exports = (client, message) => {
     message.delete()
     message.channel.fetch({ limit: 2 })
       .then(messageMappings => {
-        let messages = Array.from(messageMappings.values())
+        let messages = Array.from(messageMappings.first())
         let previousMessage = messages[1]
         previousMessage.react(config.discord.emojis.thumbsUp)
         previousMessage.react(config.discord.emojis.thumbsDown)
