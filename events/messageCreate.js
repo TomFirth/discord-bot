@@ -13,18 +13,6 @@ module.exports = (client, message) => {
   else if (command_name.charAt(0) === ".") return
   else if (command_name.charAt(0) === "/") return
 
-  // ADD POLL TO ANY MESSAGE
-  if (message.content.toLowerCase() == "add poll") {
-    message.delete()
-    message.channel.fetch({ limit: 2 })
-      .then(messageMappings => {
-        let previousMessage = messageMappings.first()
-        previousMessage.react(config.discord.emojis.thumbsUp)
-        previousMessage.react(config.discord.emojis.thumbsDown)
-      })
-      .catch(error => console.error(error))
-  }
-
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
     if (troll.includes && !troll.emoji) {
