@@ -79,8 +79,8 @@ config.rss.forEach(async feed => {
 })
 
 // SUBREDDITS
-config.reddit.forEach(async subreddit => {
-  const redditLoop = () => {
+config.reddit.forEach(subreddit => {
+  const redditLoop = async () => {
     setTimeout(() => {
       await reddit.start(client, subreddit, db)
       redditLoop()
