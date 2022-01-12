@@ -16,8 +16,14 @@ module.exports = (client, message) => {
   // ADD POLL TO ANY MESSAGE
   if (message.content.toLowerCase() == "add poll") {
     message.delete()
-    message.react(config.discord.emojis.thumbsUp)
-    message.react(config.discord.emojis.thumbsDown)
+    message.channel.fetchMessages({ limit: 2 })
+      .then(messageMappings => {
+        let messages = Array.from(messageMappings.values())
+        let previousMessage = messages[1]
+        previousMessage.react(config.discord.emojis.thumbsUp)
+        previousMessage.react(config.discord.emojis.thumbsDown)
+      })
+      .catch(error => console.error(error))
   }
 
   // SPECIFIC USER TROLLS

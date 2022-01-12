@@ -15,7 +15,7 @@ const cache = new timedCache({ defaultTtl: 18 * 1000000 }) // 5hrs
 if (process.env.NODE_ENV) require("dotenv").config()
 
 // const guesswho = require("./scheduled/guesswho")
-// const lucky = require("./scheduled/lucky")
+const lucky = require("./scheduled/lucky")
 // const maths = require("./scheduled/maths")
 const prune = require("./scheduled/prune")
 const quiz = require("./scheduled/quiz")
@@ -65,7 +65,7 @@ fs.readdir("./events/", (error, files) => {
 
 // SCHEDULED HANDLER
 // guesswho.start(client)
-// lucky.start(client)
+lucky.start(client)
 // maths.start(client)
 prune.start(client)
 quiz.start(client, db, cache)
@@ -80,7 +80,12 @@ config.rss.forEach(async feed => {
 
 // SUBREDDITS
 config.reddit.forEach(async subreddit => {
-  await reddit.start(client, subreddit, db)
+  const redditLoop = () => {
+    setTimeout(() => {
+      await reddit.start(client, subreddit, db)
+      redditLoop()
+    }, 82800000)
+  }
 })
 
 // PATCH NOTES
