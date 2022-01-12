@@ -20,7 +20,7 @@ const lucky = require("./scheduled/lucky")
 const prune = require("./scheduled/prune")
 const quiz = require("./scheduled/quiz")
 const riddles = require("./scheduled/riddles")
-// const unlucky = require("./scheduled/unlucky")
+const unlucky = require("./scheduled/unlucky")
 const unSpecial = require("./scheduled/unSpecial")
 
 // const patches = require("./streams/patches")
@@ -70,7 +70,7 @@ lucky.start(client)
 prune.start(client)
 quiz.start(client, db, cache)
 riddles.start(client, db, cache)
-// unlucky.start(client)
+unlucky.start(client)
 unSpecial.start(client)
 
 // STREAMS

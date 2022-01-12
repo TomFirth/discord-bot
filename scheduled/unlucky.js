@@ -1,7 +1,7 @@
 const cron = require("cron")
 const config = require("../config.json")
 
-class LuckyCron {
+class UnluckyCron {
   static start(client) {
 		let scheduledMessage = new cron.CronJob("00 00 12 * * 3", () => {
 			const guild = client.guilds.cache.get(config.discord.guildId)
@@ -10,12 +10,12 @@ class LuckyCron {
 			.then(members => {
 				members.forEach((member, index) => {
 					if (member.user.username !== config.discord.owner.name && member._roles.includes("860466953582936094") && index == winner) {
-						const role = member.guild.roles.cache.find(role => role.name === "special")
-						member.roles.add(role)
-						if (member.roles.cache.some(role => role.name !== "special")) {
-							let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
-							channel.send(`Welcome ${member.user.username}`)
-						}
+						member.guild.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
+              .then(() => {
+                let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
+                channel.send(`${member} has been timed out for 5 minutes.`)
+              })
+              .catch(console.error)
 					}
 				})
 			})
@@ -25,4 +25,4 @@ class LuckyCron {
 	}
 }
 
-module.exports = LuckyCron
+module.exports = UnluckyCron
