@@ -80,8 +80,8 @@ config.rss.forEach(async feed => {
 
 // SUBREDDITS
 config.reddit.forEach(subreddit => {
-  const redditLoop = async () => {
-    setTimeout(() => {
+  const redditLoop = () => {
+    setTimeout(async () => {
       await reddit.start(client, subreddit, db)
       redditLoop()
     }, 82800000)
