@@ -10,12 +10,13 @@ class PruneCron {
       const aFortnight = now.setDate(now.getDate() - 14)
       // TEXT CHANNELS
       tempText.forEach(channel => {
-        channel.messages.fetch({ limit: 1 }).then(message => {
-          let lastMessage = message.first()
-          if (lastMessage.createdTimestamp != undefined
-            && aFortnight > lastMessage.createdTimestamp
-            && channel.name.includes(config.discord.emojis.clock)) {
-            channel.setParent(config.discord.categories.archived)
+        channel.messages.fetch({ limit: 1 })
+          .then(message => {
+            let lastMessage = message.first()
+            if (lastMessage.createdTimestamp != undefined
+              && aFortnight > lastMessage.createdTimestamp
+              && channel.name.includes(config.discord.emojis.clock)) {
+              channel.setParent(config.discord.categories.archived)
           }
         })
         .catch(error => console.error(error))

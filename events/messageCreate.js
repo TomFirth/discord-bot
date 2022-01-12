@@ -16,7 +16,7 @@ module.exports = (client, message) => {
   // ADD POLL TO ANY MESSAGE
   if (message.content.toLowerCase() == "add poll") {
     message.delete()
-    message.channel.fetchMessages({ limit: 2 })
+    message.channel.fetch({ limit: 2 })
       .then(messageMappings => {
         let messages = Array.from(messageMappings.values())
         let previousMessage = messages[1]
