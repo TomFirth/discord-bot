@@ -41,15 +41,10 @@ class Reddit {
         })
       })
     }
-    const min = 82800000 // 23hrs
-    const max = 90000000 // 25hrs
-    const timeout = Math.random() * (max - min) + min
-    while (true) {
-      setTimeout(() => {
-        getReddit()
-      }, timeout)
+    setTimeout(() => {
       getReddit()
-    }
+    }, 82800000)
+    getReddit()
   }
 }
 
