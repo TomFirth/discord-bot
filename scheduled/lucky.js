@@ -7,7 +7,7 @@ class LuckyCron {
 			console.log("1")
 			const guild = client.guilds.cache.get(config.discord.guildId)
 			console.log("2")
-			const winner = Math.floor(Math.random() * guild.members.length)
+			const winner = Math.floor(Math.random() * guild.memberCount)
 			console.log("3", winner)
 			guild.members.fetch()
 			.then(members => {
