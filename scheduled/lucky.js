@@ -6,17 +6,15 @@ class LuckyCron {
 		let scheduledMessage = new cron.CronJob("00 */1 12 * * *", () => {
 			console.log("1")
 			const guild = client.guilds.cache.get(config.discord.guildId)
-			console.log("2")
-			const winner = Math.floor(Math.random() * guild.memberCount)
-			console.log("3", winner)
 			guild.members.fetch()
 			.then(members => {
-				console.log("4")
+				const winner = Math.floor(Math.random() * members.length)
+				console.log("2", winner)
 				let index = 0
 				members.forEach(member => {
-					console.log("5", index, member.user.username)
+					console.log("3", index, member.user.username)
 					if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
-						console.log("6")
+						console.log("4")
 						const role = member.guild.roles.cache.find(role => role.name === "special")
 						member.roles.add(role)
 						let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
