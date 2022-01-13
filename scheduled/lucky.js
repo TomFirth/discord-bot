@@ -3,7 +3,7 @@ const config = require("../config.json")
 
 class LuckyCron {
   static start(client) {
-		let scheduledMessage = new cron.CronJob("00 */1 12 * * *", () => {
+		let scheduledMessage = new cron.CronJob("00 00 13 * * *", () => {
 			const guild = client.guilds.cache.get(config.discord.guildId)
 			guild.members.fetch()
 			.then(members => {
