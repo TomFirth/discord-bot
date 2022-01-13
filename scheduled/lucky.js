@@ -8,21 +8,18 @@ class LuckyCron {
 			const guild = client.guilds.cache.get(config.discord.guildId)
 			console.log("2")
 			const winner = Math.floor(Math.random() * guild.members.length)
-			console.log("3")
+			console.log("3", winner)
 			guild.members.fetch()
 			.then(members => {
 				console.log("4")
 				members.forEach((member, index) => {
-					console.log("5")
-					if (member.user.username !== config.discord.owner.name && member._roles.includes("860466953582936094") && index == winner) {
+					console.log("5", index, member.user.username)
+					if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
 						console.log("6")
 						const role = member.guild.roles.cache.find(role => role.name === "special")
 						member.roles.add(role)
-						if (member.roles.cache.some(role => role.name !== "special")) {
-							console.log("7")
-							let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
-							channel.send(`Welcome ${member.user.username}`)
-						}
+						let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
+						channel.send(`Welcome ${member.user.username}`)
 					}
 				})
 			})
