@@ -28,7 +28,7 @@ module.exports = {
       client.users.fetch(quotes[pickANumber].author)
       .then(user => {
         const quote = new MessageEmbed()
-          .setDescription(quotes[pickANumber].quote)
+          .setDescription(`"${quotes[pickANumber].quote}"`)
           .setAuthor(user.username)
           .setThumbnail(user.displayAvatarURL({ dynamic:true }))
           .setColor("RANDOM")
