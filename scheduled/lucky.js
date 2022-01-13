@@ -7,12 +7,10 @@ class LuckyCron {
 			const guild = client.guilds.cache.get(config.discord.guildId)
 			guild.members.fetch()
 			.then(members => {
-				const memberLength = guild.members.filter(member => !member.user.bot).size
+				const memberLength = members.size
 				const winner = Math.floor(Math.random() * memberLength)
-				console.log("winner", memberLength)
 				let index = 0
 				members.forEach(member => {
-					console.log(index, member.user.username)
 					if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
 						const role = member.guild.roles.cache.find(role => role.name === "special")
 						member.roles.add(role)
