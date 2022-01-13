@@ -8,9 +8,8 @@ class LuckyCron {
 			const guild = client.guilds.cache.get(config.discord.guildId)
 			guild.members.fetch()
 			.then(members => {
-				const memberCount = guild.members.filter(member => !member.user.bot).size
 				const memberLength = members.size
-				const winner = Math.floor(Math.random() * memberCount, memberLength)
+				const winner = Math.floor(Math.random() * memberLength)
 				console.log("2", members)
 				let index = 0
 				members.forEach(member => {
