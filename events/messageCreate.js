@@ -34,7 +34,7 @@ module.exports = (client, message) => {
 
   // QUIZ ANSWER
   if (message.content.toLowerCase().includes("quiz")) {
-    const answer = cache.get("quizAnswer") || null
+    const answer = cache.get("quizAnswer") || ""
     const userAnswer = message.content.toLowerCase().replace("quiz ", "")
     if (userAnswer.includes(answer)) {
       const quiz_embed = new MessageEmbed()
