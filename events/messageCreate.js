@@ -34,7 +34,7 @@ module.exports = (client, message) => {
 
   // QUIZ ANSWER
   if (message.content.toLowerCase().includes("quiz")) {
-    const answer = cache.get("quizAnswer") || ""
+    const answer = cache.get("quizAnswer") || false
     const userAnswer = message.content.toLowerCase().replace("quiz ", "")
     if (userAnswer.includes(answer)) {
       const quiz_embed = new MessageEmbed()
@@ -54,7 +54,7 @@ module.exports = (client, message) => {
         channel.send(`Welcome ${message.member}`)
       }
     } else {
-      if (answer != "" || answer != null) {
+      if (answer != "" || answer) {
         message.react(config.discord.emojis.thumbsDown)
       }
     }
@@ -82,7 +82,7 @@ module.exports = (client, message) => {
         channel.send(`Welcome ${message.member}`)
       }
     } else {
-      if (answer != "" || answer != null) {
+      if (answer != "" || answer) {
         message.react(config.discord.emojis.thumbsDown)
       }
     }
