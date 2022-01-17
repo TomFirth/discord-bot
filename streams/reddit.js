@@ -1,21 +1,14 @@
-const https = require("https")
+const axios = require("axios")
 const config = require("../config.json")
 
 class Reddit {
   static start(client, reddit, db) {
     const url = new URL("https://www.reddit.com/r/" + reddit.subreddit + "/top.json?t=" + reddit.frequency)
-    https.get({
-      hostname: url.hostname,
-      path: url.pathname,
-      headers: {'User-Agent': 'agent'}
-    }, async stream => {
-      let str = ''
-      stream.on("data", data => {
-        str += data
-      })
+    axios.get(url.hostname + url.pathname)
+    .then(response => {
       stream.on("end", async () => {
         const query = await db.collection("reddit").doc(reddit.docId).get()
-        const releases = JSON.parse(str)
+        const releases = JSON.parse(response.data)
         if(query.data() !== undefined
           && releases.data.children[0].data.url_overridden_by_dest !== undefined
           && query.data().title !== releases.data.children[0].data.title) {

@@ -75,17 +75,18 @@ unSpecial.start(client)
 
 // STREAMS
 config.rss.forEach(async feed => {
-  await rss.start(client, feed, db)
+  let scheduledMessage = new cron.CronJob("00 */15 * * * *", () => {
+    await rss.start(client, feed, db)
+  })
+  scheduledMessage.start()
 })
 
 // SUBREDDITS
 config.reddit.forEach(subreddit => {
-  const redditLoop = () => {
-    setTimeout(async () => {
-      await reddit.start(client, subreddit, db)
-      redditLoop()
-    }, 82800000)
-  }
+  let scheduledMessage = new cron.CronJob("00 00 20 * * *", () => {
+    await reddit.start(client, subreddit, db)
+  })
+  scheduledMessage.start()
 })
 
 // PATCH NOTES

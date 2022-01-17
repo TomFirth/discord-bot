@@ -54,7 +54,9 @@ module.exports = (client, message) => {
         channel.send(`Welcome ${message.member}`)
       }
     } else {
-      message.react(config.discord.emojis.thumbsDown)
+      if (answer !== "" || answer !== null) {
+        message.react(config.discord.emojis.thumbsDown)
+      }
     }
   }
 
@@ -62,7 +64,7 @@ module.exports = (client, message) => {
   if (message.content.toLowerCase().includes("riddle")) {
     const answer = cache.get("riddleAnswer") || null
     const userAnswer = message.content.toLowerCase().replace("riddle ","")
-    if (userAnswer.includes(answer)) {
+    if (userAnswer.includes(answer) && (answer !== "" || answer !== null)) {
       const riddle_embed = new MessageEmbed()
         .setTitle(`RIDDLE SOLVED!`)
         .setThumbnail(message.author.displayAvatarURL())
@@ -80,7 +82,9 @@ module.exports = (client, message) => {
         channel.send(`Welcome ${message.member}`)
       }
     } else {
-      message.react(config.discord.emojis.thumbsDown)
+      if (answer !== "" || answer !== null) {
+        message.react(config.discord.emojis.thumbsDown)
+      }
     }
   }
 

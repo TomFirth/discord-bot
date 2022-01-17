@@ -15,7 +15,7 @@ class LuckyCron {
 						const role = member.guild.roles.cache.find(role => role.name === "special")
 						member.roles.add(role)
 						let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
-						channel.send(`Welcome ${member.user.username}`)
+						channel.send(`Welcome ${member.displayName}`)
 					}
 					index++
 				})
