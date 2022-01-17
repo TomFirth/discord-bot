@@ -74,8 +74,8 @@ unlucky.start(client)
 unSpecial.start(client)
 
 // STREAMS
-config.rss.forEach(async feed => {
-  let scheduledMessage = new cron.CronJob("00 */15 * * * *", () => {
+config.rss.forEach(feed => {
+  let scheduledMessage = new cron.CronJob("00 */15 * * * *", async () => {
     await rss.start(client, feed, db)
   })
   scheduledMessage.start()
@@ -83,7 +83,7 @@ config.rss.forEach(async feed => {
 
 // SUBREDDITS
 config.reddit.forEach(subreddit => {
-  let scheduledMessage = new cron.CronJob("00 00 20 * * *", () => {
+  let scheduledMessage = new cron.CronJob("00 00 20 * * *", async () => {
     await reddit.start(client, subreddit, db)
   })
   scheduledMessage.start()
