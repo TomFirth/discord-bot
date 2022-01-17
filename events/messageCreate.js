@@ -54,7 +54,7 @@ module.exports = (client, message) => {
         channel.send(`Welcome ${message.member}`)
       }
     } else {
-      if (answer !== "" || answer !== null) {
+      if (answer == "" || answer == null) {
         message.react(config.discord.emojis.thumbsDown)
       }
     }
@@ -82,7 +82,7 @@ module.exports = (client, message) => {
         channel.send(`Welcome ${message.member}`)
       }
     } else {
-      if (answer !== "" || answer !== null) {
+      if (answer == "" || answer == null) {
         message.react(config.discord.emojis.thumbsDown)
       }
     }
