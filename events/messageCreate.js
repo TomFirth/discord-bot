@@ -62,7 +62,7 @@ module.exports = (client, message) => {
 
   // RIDDLES ANSWER
   if (message.content.toLowerCase().includes("riddle")) {
-    const answer = cache.get("riddleAnswer") || null
+    const answer = cache.get("riddleAnswer") || false
     const userAnswer = message.content.toLowerCase().replace("riddle ","")
     if (userAnswer.includes(answer) && (answer !== "" || answer !== null)) {
       const riddle_embed = new MessageEmbed()
