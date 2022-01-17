@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js")
-const cron = require("cron")
 const parse = require("feed-reader").parse
 const config = require("../config.json")
 

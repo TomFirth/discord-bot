@@ -1,5 +1,5 @@
 const fs = require("fs")
-const config = require("./config.json")
+const cron = require("cron")
 const { Client, Intents, Collection, MessageEmbed } = require("discord.js")
 const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
@@ -12,6 +12,7 @@ firebase.initializeApp({
 const db = firebase.firestore()
 const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 18 * 1000000 }) // 5hrs
+const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
 // const guesswho = require("./scheduled/guesswho")
