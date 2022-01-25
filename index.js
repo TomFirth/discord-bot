@@ -15,12 +15,9 @@ const cache = new timedCache({ defaultTtl: 18 * 1000000 }) // 5hrs
 const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
-// const guesswho = require("./scheduled/guesswho")
+const games = require("./scheduled/games")
 const lucky = require("./scheduled/lucky")
-// const maths = require("./scheduled/maths")
 const prune = require("./scheduled/prune")
-const quiz = require("./scheduled/quiz")
-const riddles = require("./scheduled/riddles")
 const unlucky = require("./scheduled/unlucky")
 const unSpecial = require("./scheduled/unSpecial")
 
@@ -65,12 +62,8 @@ fs.readdir("./events/", (error, files) => {
 })
 
 // SCHEDULED HANDLER
-// guesswho.start(client)
 lucky.start(client)
-// maths.start(client)
 prune.start(client)
-quiz.start(client, db, cache)
-riddles.start(client, db, cache)
 unlucky.start(client)
 unSpecial.start(client)
 
@@ -82,12 +75,14 @@ config.rss.forEach(feed => {
   scheduledMessage.start()
 })
 
+// GAMES
+config.games.forEach(game => {
+  await games.start(client, db, cache, game)
+})
+
 // SUBREDDITS
 config.reddit.forEach(subreddit => {
-  let scheduledMessage = new cron.CronJob("00 00 20 * * *", async () => {
-    await reddit.start(client, subreddit, db)
-  })
-  scheduledMessage.start()
+  await reddit.start(client, subreddit, db)
 })
 
 // PATCH NOTES

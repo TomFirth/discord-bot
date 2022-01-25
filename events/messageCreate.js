@@ -32,61 +32,35 @@ module.exports = (client, message) => {
     }
   })
 
-  // QUIZ ANSWER
-  if (message.content.toLowerCase().includes("quiz")) {
-    const answer = cache.get("quizAnswer") || false
-    const userAnswer = message.content.toLowerCase().replace("quiz ", "")
-    if (userAnswer.includes(answer)) {
-      const quiz_embed = new MessageEmbed()
-        .setTitle(`QUIZ WINNER!`)
-        .setThumbnail(message.author.displayAvatarURL())
-        .setColor("GOLD")
-        .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-      message.channel.send({ embeds: [quiz_embed] }).then(ownMessage => {
-        ownMessage.react(config.discord.emojis.clap)
-      })
-      cache.remove("quizAnswer")
-      // REWARD
-      const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
-      message.member.roles.add(role)
-      if (message.member.roles.cache.some(role => role.name !== "special")) {
-        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
-        channel.send(`Welcome ${message.member}`)
-      }
-    } else {
-      if (answer != "" || answer) {
-        message.react(config.discord.emojis.thumbsDown)
-      }
-    }
-  }
-
-  // RIDDLES ANSWER
-  if (message.content.toLowerCase().includes("riddle")) {
-    const answer = cache.get("riddleAnswer") || false
-    const userAnswer = message.content.toLowerCase().replace("riddle ","")
-    if (userAnswer.includes(answer) && (answer !== "" || answer !== null)) {
-      const riddle_embed = new MessageEmbed()
-        .setTitle(`RIDDLE SOLVED!`)
-        .setThumbnail(message.author.displayAvatarURL())
-        .setColor("GOLD")
-        .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-      message.channel.send({ embeds: [riddle_embed] }).then(ownMessage => {
-        ownMessage.react(config.discord.emojis.clap)
-      })
-      cache.remove("riddleAnswer")
-      // REWARD
-      const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
-      message.member.roles.add(role)
-      if (message.member.roles.cache.some(role => role.name !== "special")) {
-        let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
-        channel.send(`Welcome ${message.member}`)
-      }
-    } else {
-      if (answer != "" || answer) {
-        message.react(config.discord.emojis.thumbsDown)
+  // GAMES RESPONSES
+  config.games.forEach(game => {
+    if (message.content.toLowerCase().includes(game.name)) {
+      const answer = cache.get(`${game.name}Answer`) || false
+      const userAnswer = message.content.toLowerCase().replace(`${game.name} `, "")
+      if (userAnswer.includes(answer)) {
+        const gameEmbed = new MessageEmbed()
+          .setTitle(`${game.name} WINNER!`)
+          .setThumbnail(message.author.displayAvatarURL())
+          .setColor("GOLD")
+          .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+        message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
+          ownMessage.react(config.discord.emojis.clap)
+        })
+        cache.remove(`${game.name}Answer`)
+        // REWARD
+        const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
+        message.member.roles.add(role)
+        if (message.member.roles.cache.some(role => role.name !== "special")) {
+          let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
+          channel.send(`Welcome ${message.member}`)
+        }
+      } else {
+        if (answer != "" || answer) {
+          message.react(config.discord.emojis.thumbsDown)
+        }
       }
     }
-  }
+  })
 
   // SPECIAL ROLE REWARD
   const reactArray = ['⭐','🏆','👏','👍','🥇']
