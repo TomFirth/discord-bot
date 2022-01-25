@@ -16,14 +16,14 @@ class Game {
 			})
 			if (questions.length < 5) {
 				let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
-				channel.send(`Less than 5 ${game.name} questions remaining.`)
+				channel.send(`Less than 5 ${game.game} questions remaining.`)
 			}
 			const random = Math.floor(Math.random() * questions.length)
-			cache.put(`${game.name}Answer`, questions[random].answer)
+			cache.put("answer", questions[random].answer)
 			db.collection(game.db).doc(questions[random].id).update({ used: true })
 			let channel = client.channels.cache.find(channel => channel.name === game.destination)
 			const gameEmbed = new MessageEmbed()
-				.setDescription(questions[random].question + `\nReply with: "${game.name} <your answer>"`)
+				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
 				.setColor("GREEN")
 			channel.send({ embeds: [gameEmbed] })
 		})
@@ -32,9 +32,3 @@ class Game {
 }
 
 module.exports = Game
-
-
-// "game": "riddle",
-// "destination": "general",
-// "db": "riddles",
-// "frequency": "00 00 19 * * 4"

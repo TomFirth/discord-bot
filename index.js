@@ -16,6 +16,7 @@ const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
 const games = require("./scheduled/games")
+const jokes = require("./scheduled/jokes")
 const lucky = require("./scheduled/lucky")
 const prune = require("./scheduled/prune")
 const unlucky = require("./scheduled/unlucky")
@@ -62,6 +63,7 @@ fs.readdir("./events/", (error, files) => {
 })
 
 // SCHEDULED HANDLER
+jokes.start(client, db)
 lucky.start(client)
 prune.start(client)
 unlucky.start(client)

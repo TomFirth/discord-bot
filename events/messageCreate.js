@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js")
 const timedCache = require("timed-cache")
-const cache = new timedCache({ defaultTtl: 900 * 1000 })
+const cache = new timedCache({ defaultTtl: 18 * 1000000 })
 const config = require("../config.json")
 const trolls = require("../troll.json")
 
@@ -34,19 +34,19 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   config.games.forEach(game => {
-    if (message.content.toLowerCase().includes(game.name)) {
-      const answer = cache.get(`${game.name}Answer`) || false
-      const userAnswer = message.content.toLowerCase().replace(`${game.name} `, "")
+    if (message.content.toLowerCase().includes("answer ")) {
+      const answer = cache.get("answer") || false
+      const userAnswer = message.content.toLowerCase().replace("answer ", "")
       if (userAnswer.includes(answer)) {
         const gameEmbed = new MessageEmbed()
-          .setTitle(`${game.name} WINNER!`)
+          .setTitle(`${game.game} WINNER!`)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor("GOLD")
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
         message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
           ownMessage.react(config.discord.emojis.clap)
         })
-        cache.remove(`${game.name}Answer`)
+        cache.remove("answer")
         // REWARD
         const role = message.guild.roles.cache.find(r => r.id === "860466953582936094")
         message.member.roles.add(role)
