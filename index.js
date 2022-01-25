@@ -76,12 +76,12 @@ config.rss.forEach(feed => {
 })
 
 // GAMES
-config.games.forEach(game => {
+config.games.forEach(async game => {
   await games.start(client, db, cache, game)
 })
 
 // SUBREDDITS
-config.reddit.forEach(subreddit => {
+config.reddit.forEach(async subreddit => {
   await reddit.start(client, subreddit, db)
 })
 
