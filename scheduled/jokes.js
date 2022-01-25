@@ -4,7 +4,7 @@ const config = require("../config.json")
 
 class Joke {
   static start(client, db) {
-		let scheduledMessage = new cron.CronJob("* * 10 * * 7", async () => {
+		let scheduledMessage = new cron.CronJob("* * 10 * * 0", async () => {
 			const query = await db.collection("jokes").where("used", "==", false).get()
 			let jokes = []
 			query.forEach(doc => {
