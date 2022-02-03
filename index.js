@@ -84,7 +84,10 @@ config.games.forEach(async game => {
 
 // SUBREDDITS
 config.reddit.forEach(async subreddit => {
-  await reddit.start(client, subreddit, db)
+  let scheduledMessage = new cron.CronJob("00 */30 * * * *", async () => {
+    await reddit.start(client, subreddit, db)
+  })
+  scheduledMessage.start()
 })
 
 // PATCH NOTES
