@@ -48,12 +48,11 @@ module.exports = (client, message) => {
         })
         cache.remove("answer")
         // REWARD
-        const role = message.member.roles.cache.find(r => r.id === "860466953582936094")
-        if (role) {
+        if (!message.member.roles.cache.find(r => r.id === "860466953582936094")) {
           let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
           channel.send(`Welcome ${message.member}`)
+          message.member.roles.add("special")
         }
-        message.member.roles.add(role)
       } else {
         if (answer != "" || answer) {
           message.react(config.discord.emojis.thumbsDown)
