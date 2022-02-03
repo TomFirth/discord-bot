@@ -17,10 +17,10 @@ class Reddit {
         // check safe for work hours
         const startTime = '19:00:00';
         const endTime = '23:59:00';
-        currentDate = new Date()   
-        startDate = new Date(currentDate.getTime())
+        const currentDate = new Date()   
+        let startDate = new Date(currentDate.getTime())
         startDate.setHours(startTime.split(":")[0])
-        endDate = new Date(currentDate.getTime())
+        let endDate = new Date(currentDate.getTime())
         endDate.setHours(endTime.split(":")[0])
         endDate.setMinutes(endTime.split(":")[1])
         const valid = startDate < currentDate && endDate > currentDate
