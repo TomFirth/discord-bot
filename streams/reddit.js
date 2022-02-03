@@ -25,7 +25,7 @@ class Reddit {
         endDate.setMinutes(endTime.split(":")[1])
         const valid = startDate < currentDate && endDate > currentDate
 
-        if (nsfw && !valid) {
+        if (reddit.nsfw && !valid) {
           // Do nothing
         } else {
           const query = await db.collection("reddit").doc(reddit.docId).get()
