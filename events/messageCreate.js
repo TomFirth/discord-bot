@@ -13,6 +13,20 @@ module.exports = (client, message) => {
   else if (command_name.charAt(0) === ".") return
   else if (command_name.charAt(0) === "/") return
 
+  if (message.content == message.content.toUpperCase() && Math.floor(Math.random() * 3) == 0) {
+    message.channel.send(`${message.member} keep it down!`)
+  }
+
+  const noAnswer = [
+    "I'm afraid I don't know.",
+    "Mm, i'm not sure of that one.",
+    "Try .search <question>",
+    "..searching for answer",
+  ]
+  if (message.content.slice(-1) == "?" && Math.floor(Math.random() * 5) == 0) {
+    message.channel.send(noAnswer[Math.floor(Math.random() * noAnswer.length)])
+  }
+
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
     if (troll.includes && !troll.emoji) {
@@ -48,7 +62,7 @@ module.exports = (client, message) => {
         })
         cache.remove("answer")
         // REWARD
-        if (!message.member.roles.cache.find(r => r.id === "860466953582936094")) {
+        if (!message.member.roles.cache.some(role => role.name === "special")) {
           let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
           channel.send(`Welcome ${message.member}`)
           message.member.roles.add("special")

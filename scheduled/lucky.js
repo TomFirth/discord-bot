@@ -16,6 +16,8 @@ class LuckyCron {
 						member.roles.add(role)
 						let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
 						channel.send(`Welcome ${member.displayName}`)
+						let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
+						channel.send(`${member.displayName} Is this week's lucky winner!`)
 					}
 					index++
 				})
