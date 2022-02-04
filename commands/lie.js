@@ -1,6 +1,6 @@
 module.exports = {
   emoji: '🗣️',
-  name: 'lie',
+  name: 'liedetector',
   description: 'Lie Detector',
   execute(client, message) {
     message.delete()
