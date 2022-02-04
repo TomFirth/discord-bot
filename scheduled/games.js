@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js")
 const cron = require("cron")
+const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class Game {
@@ -15,17 +16,15 @@ class Game {
 				})
 			})
 			if (questions.length < 5) {
-				let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
-				channel.send(`Less than 5 ${game.game} questions remaining.`)
+				utilities.channel(client, config.discord.channels.bot, `Less than 5 ${game.game} questions remaining.`)
 			}
 			const random = Math.floor(Math.random() * questions.length)
 			cache.put("answer", questions[random].answer)
 			db.collection(game.db).doc(questions[random].id).update({ used: true })
-			let channel = client.channels.cache.find(channel => channel.name === game.destination)
 			const gameEmbed = new MessageEmbed()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
 				.setColor("GREEN")
-			channel.send({ embeds: [gameEmbed] })
+			utilities.channel(client, game.destination, { embeds: [gameEmbed] })
 		})
 		scheduledMessage.start()
 	}

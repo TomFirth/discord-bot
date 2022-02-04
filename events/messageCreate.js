@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js")
 const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 18 * 1000000 })
+const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 const trolls = require("../troll.json")
 
@@ -63,8 +64,7 @@ module.exports = (client, message) => {
         cache.remove("answer")
         // REWARD
         if (!message.member.roles.cache.some(role => role.name === "special")) {
-          let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
-          channel.send(`Welcome ${message.member}`)
+          utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
           message.member.roles.add("special")
         }
       } else {

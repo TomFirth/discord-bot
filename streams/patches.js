@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js")
 const https = require("https")
 const cheerio = require("cheerio")
+const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class Patches {
@@ -24,7 +25,6 @@ class Patches {
         const query = await db.collection("patches").doc(target.docId).get()
         if (query.data() !== undefined
         && query.data().title !== title) {
-          let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.updates)
           const patchNotes = new MessageEmbed()
             .setAuthor(target.name)
             .setTitle(title)
@@ -34,7 +34,7 @@ class Patches {
             // .addField("") // scheduled release date
             // .addField("") // headlines
             .setTimestamp()
-          channel.send({ embeds: [patchNotes]})
+          utilities.channel(client, config.discord.channels.updates, { embeds: [patchNotes]})
           db.collection("patches").doc(target.docId).set({
             title: title
           }, {merge: true})

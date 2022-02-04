@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js")
 const parse = require("feed-reader").parse
+const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class Rss {

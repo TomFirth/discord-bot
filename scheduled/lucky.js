@@ -1,4 +1,5 @@
 const cron = require("cron")
+const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class LuckyCron {
@@ -10,14 +11,12 @@ class LuckyCron {
 				const memberLength = members.size
 				const winner = Math.floor(Math.random() * memberLength)
 				let index = 0
-				members.forEach(member => {
+				members.forEach(async member => {
 					if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
 						const role = member.guild.roles.cache.find(role => role.name === "special")
 						member.roles.add(role)
-						let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.special)
-						channel.send(`Welcome ${member.displayName}`)
-						channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
-						channel.send(`${member.displayName} Is this week's lucky winner!`)
+						await utilities.channel(client, config.discord.channels.special, `Welcome ${member.displayName}`)
+						await utilities.channel(client, config.discord.channels.general, `${member.displayName} Is this week's lucky winner!`)
 					}
 					index++
 				})

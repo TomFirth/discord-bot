@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js")
 const cron = require("cron")
+const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class Joke {
@@ -16,16 +17,14 @@ class Joke {
 					})
 				})
 				if (jokes.length < 5) {
-					let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
-					channel.send(`Less than 5 jokes remaining.`)
+					utilities.channel(client, config.discord.channels.bot, `Less than 5 jokes remaining.`)
 				}
 				const random = Math.floor(Math.random() * jokes.length)
 				db.collection("jokes").doc(jokes[random].id).update({ used: true })
-				let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
 				const embed = new MessageEmbed()
 					.setDescription(jokes[random].joke)
 					.setColor("RANDOM")
-				channel.send({ embeds: [embed] })
+				utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
 				run = false
 			}
 		})

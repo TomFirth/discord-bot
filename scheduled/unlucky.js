@@ -1,4 +1,5 @@
 const cron = require("cron")
+const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class UnluckyCron {
@@ -14,8 +15,7 @@ class UnluckyCron {
 					if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
 						member.guild.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
 						.then(() => {
-							let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
-							channel.send(`${member} has been timed out for 5 minutes.`)
+							utilities.channel(client, config.discord.channels.general, `${member} has been timed out for 5 minutes.`)
 						})
 					}
 					index++
