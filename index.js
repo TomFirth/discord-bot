@@ -27,7 +27,7 @@ const unSpecial = require("./scheduled/unSpecial")
 const reddit = require("./streams/reddit")
 const rss = require("./streams/rss")
 
-const twitter = require("./streams/socials/twitter")
+// const twitter = require("./streams/socials/twitter")
 // const youtube = require("./streams/socials/youtube")
 // const instagram = require("./streams/socials/instragram")
 // const twitch = require("./streams/socials/twitch")
@@ -101,7 +101,7 @@ config.games.forEach(async game => {
 // BETAS
 
 // SOCIALS
-twitter.start(client)
+// twitter.start(client)
 // youtube.start(client, config.socials.youtube.channel1)
 // youtube.start(client, config.socials.youtube.channel2)
 // instagram.start()
