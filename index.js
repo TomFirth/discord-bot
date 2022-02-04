@@ -5,7 +5,6 @@ const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
 })
-client.login(process.env.TOKEN).catch(error => console.error(error))
 const firebase = require("firebase-admin")
 firebase.initializeApp({
 	credential: firebase.credential.cert(require("./credentials.json")),
@@ -85,12 +84,12 @@ config.games.forEach(async game => {
 })
 
 // SUBREDDITS
-config.reddit.forEach(async subreddit => {
-  let scheduledMessage = new cron.CronJob("* * */1 * * *", async () => {
-    await reddit.start(client, subreddit, db)
-  })
-  scheduledMessage.start()
-})
+// config.reddit.forEach(async subreddit => {
+//   let scheduledMessage = new cron.CronJob("* * */1 * * *", async () => {
+//     await reddit.start(client, subreddit, db)
+//   })
+//   scheduledMessage.start()
+// })
 
 // PATCH NOTES
 // config.streams.forEach(target => {
@@ -117,3 +116,5 @@ fs.readdir("./commands/", (error, files) => {
     client.botCommands.set(command.name, command)
   })
 })
+
+client.login(process.env.TOKEN).catch(error => console.error(error))
