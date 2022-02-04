@@ -5,6 +5,7 @@ const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
 })
+client.login(process.env.TOKEN).catch(error => console.error(error))
 const firebase = require("firebase-admin")
 firebase.initializeApp({
 	credential: firebase.credential.cert(require("./credentials.json")),
@@ -116,5 +117,3 @@ fs.readdir("./commands/", (error, files) => {
     client.botCommands.set(command.name, command)
   })
 })
-
-client.login(process.env.TOKEN).catch(error => console.error(error))
