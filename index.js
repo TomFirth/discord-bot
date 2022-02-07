@@ -63,7 +63,7 @@ fs.readdir("./events/", (error, files) => {
   })
 })
 
-// SCHEDULED HANDLER
+// SCHEDULED
 jokes.start(client, db)
 lucky.start(client)
 prune.start(client)

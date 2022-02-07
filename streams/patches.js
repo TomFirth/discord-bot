@@ -26,7 +26,7 @@ class Patches {
         if (query.data() !== undefined
         && query.data().title !== title) {
           const patchNotes = new MessageEmbed()
-            .setAuthor(target.name)
+            .setAuthor({ name: target.name })
             .setTitle(title)
             .setColor(target.colour)
             .setThumbnail("")

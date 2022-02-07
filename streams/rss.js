@@ -15,7 +15,7 @@ class Rss {
         const feedEmbed = new MessageEmbed()
           .setTitle(doc.title)
           .setURL(doc.link)
-          .setAuthor(feed.author)
+          .setAuthor({ name: feed.author})
           .setDescription(description)
           .setColor(feed.colour)
           .setTimestamp()

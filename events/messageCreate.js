@@ -16,6 +16,8 @@ module.exports = (client, message) => {
 
   if (message.content == message.content.toUpperCase() && Math.floor(Math.random() * 3) == 0) {
     message.channel.send(`${message.member} keep it down!`)
+    // they can hear you in Africa
+    // You're compensating for something with that amount of capslock
   }
 
   const noAnswer = [
