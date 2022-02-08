@@ -11,9 +11,9 @@ const twitterConf = {
 const twitterClient = new Twitter(twitterConf)
 
 class TwitterFeed {
-  static start(client) {
+  static start(client, user, destination) {
     const stream = twitterClient.stream("statuses/filter", {
-      follow: config.socials.twitter.user
+      follow: user
     })
 
     stream.on("tweet", tweet => {
@@ -23,9 +23,13 @@ class TwitterFeed {
         || tweet.in_reply_to_user_id
         || tweet.in_reply_to_user_id_str
         || tweet.in_reply_to_screen_name) return false
-      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.socials)
-      channel.send(`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`)
-      return false
+      const channel = client.channels.cache.find(channel => channel.name === destination)
+      channel.send(`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`).then(ownMessage => {
+        if (destination == config.discord.channels.free) {
+          ownMessage.react(config.discord.emojis.thumbsUp)
+          ownMessage.react(config.discord.emojis.thumbsDown)
+        }
+      })
     })
     stream.on("error", error => {
       console.error(error)
