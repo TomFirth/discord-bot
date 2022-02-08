@@ -10,7 +10,7 @@ module.exports = {
     channel.send(send)
   },
 
-  special: (client, user) => {
+  special: async (client, user) => {
     const query = await db.collection("special").where("user", "==", user).get()
     let users = []
     query.forEach(doc => {
