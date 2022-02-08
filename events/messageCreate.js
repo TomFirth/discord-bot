@@ -14,20 +14,14 @@ module.exports = (client, message) => {
   else if (command_name.charAt(0) === ".") return
   else if (command_name.charAt(0) === "/") return
 
-  if (message.content == message.content.toUpperCase() && Math.floor(Math.random() * 3) == 0) {
-    message.channel.send(`${message.member} keep it down!`)
-    // they can hear you in Africa
-    // You're compensating for something with that amount of capslock
+  if (message.content == message.content.toUpperCase()
+    && isNaN(message.content)
+    && Math.floor(Math.random() * 3) == 0) {
+      message.channel.send(config.discord.daddy[Math.floor(Math.random() * noAnswer.length)])
   }
 
-  const noAnswer = [
-    "I'm afraid I don't know.",
-    "Mm, i'm not sure of that one.",
-    "Try .search <question>",
-    "..searching for answer"
-  ]
   if (message.content.slice(-1) == "?" && Math.floor(Math.random() * 5) == 0) {
-    message.channel.send(noAnswer[Math.floor(Math.random() * noAnswer.length)])
+    message.channel.send(config.discord.noAnswer[Math.floor(Math.random() * noAnswer.length)])
   }
 
   // SPECIFIC USER TROLLS
@@ -67,7 +61,8 @@ module.exports = (client, message) => {
         // REWARD
         if (!message.member.roles.cache.some(role => role.name === "special")) {
           utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
-          message.member.roles.add("special")
+          const role = member.guild.roles.cache.find(role => role.name === "special")
+          message.member.roles.add(role)
         }
       } else {
         if (answer != "" || answer) {
