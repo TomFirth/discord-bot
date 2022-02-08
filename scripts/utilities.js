@@ -1,5 +1,6 @@
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
+const config = require("../config.json")
 
 module.exports = {
   channel: (client, destination, send) => {

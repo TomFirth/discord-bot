@@ -17,11 +17,11 @@ module.exports = (client, message) => {
   if (message.content == message.content.toUpperCase()
     && isNaN(message.content)
     && Math.floor(Math.random() * 3) == 0) {
-      message.channel.send(config.discord.daddy[Math.floor(Math.random() * noAnswer.length)])
+      message.channel.send(config.discord.daddy[Math.floor(Math.random() * config.discord.daddy.length)])
   }
 
   if (message.content.slice(-1) == "?" && Math.floor(Math.random() * 5) == 0) {
-    message.channel.send(config.discord.noAnswer[Math.floor(Math.random() * noAnswer.length)])
+    message.channel.send(config.discord.noAnswer[Math.floor(Math.random() * config.discord.noAnswer.length)])
   }
 
   // SPECIFIC USER TROLLS
@@ -61,7 +61,7 @@ module.exports = (client, message) => {
         // REWARD
         if (!message.member.roles.cache.some(role => role.name === "special")) {
           utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
-          const role = member.guild.roles.cache.find(role => role.name === "special")
+          const role = message.guild.roles.find(role => role.name === "special")
           message.member.roles.add(role)
         }
       } else {
