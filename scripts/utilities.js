@@ -1,7 +1,4 @@
 const firebase = require("firebase-admin")
-firebase.initializeApp({
-	credential: firebase.credential.cert(require("../credentials.json")),
-})
 const db = firebase.firestore()
 
 module.exports = {
