@@ -14,8 +14,10 @@ module.exports = (client, message) => {
   else if (command_name.charAt(0) === ".") return
   else if (command_name.charAt(0) === "/") return
 
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   if (message.content == message.content.toUpperCase()
     && isNaN(message.content)
+    && !format.test(message.content)
     && Math.floor(Math.random() * 3) == 0) {
       message.channel.send(config.discord.daddy[Math.floor(Math.random() * config.discord.daddy.length)])
   }
