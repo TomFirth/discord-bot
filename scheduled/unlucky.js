@@ -2,29 +2,27 @@ const cron = require("cron")
 const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
-class UnluckyCron {
-  static init(client) {
-		let scheduledMessage = new cron.CronJob("00 00 12 * * 3", () => {
-			const guild = client.guilds.cache.get(config.discord.guildId)
-			guild.members.fetch()
-			.then(members => {
-				const memberLength = members.size
-				const winner = Math.floor(Math.random() * memberLength)
-				let index = 0
-				members.forEach(member => {
-					if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
-						member.guild.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
-						.then(() => {
-							utilities.channel(client, config.discord.channels.general, `${member} has been timed out for 5 minutes.`)
-						})
-					}
-					index++
-				})
+function init(client) {
+	let scheduledMessage = new cron.CronJob("00 00 12 * * 3", () => {
+		const guild = client.guilds.cache.get(config.discord.guildId)
+		guild.members.fetch()
+		.then(members => {
+			const memberLength = members.size
+			const winner = Math.floor(Math.random() * memberLength)
+			let index = 0
+			members.forEach(member => {
+				if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
+					member.guild.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
+					.then(() => {
+						utilities.channel(client, config.discord.channels.general, `${member} has been timed out for 5 minutes.`)
+					})
+				}
+				index++
 			})
-			.catch(error => console.error(error))
 		})
-		scheduledMessage.start()
-	}
+		.catch(error => console.error(error))
+	})
+	scheduledMessage.start()
 }
 
-module.exports = UnluckyCron
+module.exports = init
