@@ -7,7 +7,7 @@ function init(client, db) {
 		let today = new Date(doc.data().birthday)
 		let todayMonth = today.getMonth()
 		let todayDay = today.getDay()
-		query.forEach(doc => {
+		query.forEach(async doc => {
 			let userBirthday = new Date(doc.data().birthday)
 			let userBirthdayMonth = userBirthday.getMonth()
 			let userBirthdayDay = userBirthday.getDay()
