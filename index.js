@@ -18,7 +18,7 @@ if (process.env.NODE_ENV) require("dotenv").config()
 
 // SCHEDULED
 const leet = require("./scheduled/1337")(client)
-const birthdays = require("./scheduled/birthdays")(client, db)
+const birthdays = require("./scheduled/birthday")(client, db)
 const games = require("./scheduled/games")
 const jokes = require("./scheduled/jokes")(client, db)
 const lucky = require("./scheduled/lucky")(client)
