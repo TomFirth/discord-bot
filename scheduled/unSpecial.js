@@ -4,7 +4,7 @@ const firebase = require("firebase-admin")
 const config = require("../config.json")
 
 class UnSpecialCron {
-  static start(client) {
+  static init(client) {
 		let scheduledMessage = new cron.CronJob("00 00 00 */1 * *", async () => {
 			const query = await firebase.firestore().collection("special").get()
       let users = []

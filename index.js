@@ -16,12 +16,15 @@ const utilities = require("./scripts/utilities")
 const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
+// SCHEDULED
+const leet = require("./scheduled/1337")(client)
+const birthdays = require("./scheduled/birthdays")(client, db)
 const games = require("./scheduled/games")
-const jokes = require("./scheduled/jokes")
-const lucky = require("./scheduled/lucky")
-const prune = require("./scheduled/prune")
-const unlucky = require("./scheduled/unlucky")
-const unSpecial = require("./scheduled/unSpecial")
+const jokes = require("./scheduled/jokes")(client, db)
+const lucky = require("./scheduled/lucky")(client)
+const prune = require("./scheduled/prune")(client)
+const unlucky = require("./scheduled/unlucky")(client)
+const unSpecial = require("./scheduled/unSpecial")(client)
 
 // const patches = require("./streams/patches")
 const reddit = require("./streams/reddit")
@@ -63,13 +66,6 @@ fs.readdir("./events/", (error, files) => {
   })
 })
 
-// SCHEDULED
-jokes.start(client, db)
-lucky.start(client)
-prune.start(client)
-unlucky.start(client)
-unSpecial.start(client)
-
 // STREAMS
 config.rss.forEach(feed => {
   let scheduledMessage = new cron.CronJob("00 */15 * * * *", async () => {
@@ -102,7 +98,7 @@ config.reddit.forEach(async subreddit => {
 
 // SOCIALS
 twitter.start(client, config.socials.twitter.user, config.discord.channels.socials)
-twitter.start(client, config.socials.twitter.primeGaming, config.discord.channels.free) // Amazon Prime Gaming
+twitter.start(client, config.socials.twitter.primeGaming, config.discord.channels.free) // Amazon Prime Gaming "freebies"
 // youtube.start(client, config.socials.youtube.channel1)
 // youtube.start(client, config.socials.youtube.channel2)
 // instagram.start()

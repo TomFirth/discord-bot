@@ -4,7 +4,7 @@ const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class Joke {
-  static start(client, db) {
+  static init(client, db) {
 		let scheduledMessage = new cron.CronJob("* * 10 * * 0", async () => {
 			let run = true
 			while (run) {

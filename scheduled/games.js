@@ -4,7 +4,7 @@ const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class Game {
-  static start(client, db, cache, game) {
+  static init(client, db, cache, game) {
 		let scheduledMessage = new cron.CronJob(game.frequency, async () => {
 			const query = await db.collection(game.db).where("used", "==", false).get()
 			let questions = []
