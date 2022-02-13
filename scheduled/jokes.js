@@ -4,7 +4,7 @@ const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 function init(client, db) {
-	let scheduledMessage = new cron.CronJob("* * 10 * * 0", async () => {
+	let scheduledMessage = new cron.CronJob("00 00 10 * * 0", async () => {
 		let run = true
 		while (run) {
 			const query = await db.collection("jokes").where("used", "==", false).get()
