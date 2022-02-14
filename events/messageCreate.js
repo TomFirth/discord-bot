@@ -22,10 +22,6 @@ module.exports = (client, message) => {
       message.channel.send(config.discord.daddy[Math.floor(Math.random() * config.discord.daddy.length)])
   }
 
-  if (message.content.slice(-1) == "?" && Math.floor(Math.random() * 5) == 0) {
-    message.channel.send(config.discord.noAnswer[Math.floor(Math.random() * config.discord.noAnswer.length)])
-  }
-
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
     if (troll.includes && !troll.emoji) {
