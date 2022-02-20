@@ -17,7 +17,6 @@ function init(client) {
 					await utilities.channel(client, config.discord.channels.special, `Welcome ${member.displayName}`)
 					await utilities.channel(client, config.discord.channels.general, `${member.displayName} Is this week's lucky winner!`)
 				}
-				index++
 			})
 		})
 		.catch(error => console.error(error))
