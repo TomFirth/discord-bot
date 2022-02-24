@@ -9,8 +9,7 @@ function init(client) {
 		.then(members => {
 			const memberLength = members.size
 			const winner = Math.floor(Math.random() * memberLength)
-			let index = 0
-			members.forEach(async member => {
+			members.forEach(async (index, member) => {
 				if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
 					const role = member.guild.roles.cache.find(role => role.name === "special")
 					member.roles.add(role)
