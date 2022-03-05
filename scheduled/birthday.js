@@ -4,7 +4,7 @@ const config = require("../config.json")
 function init(client, db) {
 	let scheduledMessage = new cron.CronJob("00 00 9 * * *", async () => {
 		const query = await db.collection('birthdays').get()
-		let today = new Date(doc.data().birthday)
+		let today = new Date()
 		let todayMonth = today.getMonth()
 		let todayDay = today.getDay()
 		query.forEach(async doc => {

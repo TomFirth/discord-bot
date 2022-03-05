@@ -47,6 +47,7 @@ class Reddit {
               db.collection("reddit").doc(reddit.docId).set({
                 title: releases.data.children[0].data.title
               }, {merge: true})
+              console.log(reddit.desination, reddit.subreddit)
             } catch(error) {
               console.error("channel error", error, reddit)
             }
