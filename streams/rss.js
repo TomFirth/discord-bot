@@ -33,7 +33,6 @@ class Rss {
           title: doc.title
         }, {merge: true})
       }
-      console.log(feed.destination, feed.author)
     }).catch(error => {
       console.error(error)
     }).finally(() => {})
