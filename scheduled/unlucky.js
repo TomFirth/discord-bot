@@ -12,7 +12,7 @@ function init(client) {
 			let index = 0
 			members.forEach(member => {
 				if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
-					member.guild.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
+					member.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
 					.then(() => {
 						utilities.channel(client, config.discord.channels.general, `${member} has been timed out for 5 minutes.`)
 					})

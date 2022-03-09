@@ -13,7 +13,7 @@ function init(client) {
 					const role = member.guild.roles.cache.find(role => role.name === "special")
 					member.roles.add(role)
 					await utilities.channel(client, config.discord.channels.special, `Welcome ${member.displayName}`)
-					await utilities.channel(client, config.discord.channels.general, `${member.displayName} Is this week's lucky winner!`)
+					await utilities.channel(client, config.discord.channels.general, `${member.displayName} is this week's lucky winner!`)
 				}
 			})
 		} catch (error) {
