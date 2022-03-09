@@ -33,24 +33,19 @@ class Reddit {
           if (query.data() !== undefined
             && releases.data.children[0].data.url_overridden_by_dest !== undefined
             && query.data().title !== releases.data.children[0].data.title) {
-            try {
-              await client.channels.fetch(reddit.destination)
-              .then(channel => {
-                channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`)
-                .then(ownMessage => {
-                  if (reddit.poll) {
-                    ownMessage.react(config.discord.emojis.thumbsUp)
-                    ownMessage.react(config.discord.emojis.thumbsDown)
-                  }
-                })
+            await client.channels.fetch(reddit.destination)
+            .then(channel => {
+              channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`)
+              .then(ownMessage => {
+                if (reddit.poll) {
+                  ownMessage.react(config.discord.emojis.thumbsUp)
+                  ownMessage.react(config.discord.emojis.thumbsDown)
+                }
               })
-              db.collection("reddit").doc(reddit.docId).set({
-                title: releases.data.children[0].data.title
-              }, {merge: true})
-              console.log(reddit.destination, reddit.subreddit)
-            } catch(error) {
-              console.error("channel error", error, reddit)
-            }
+            })
+            db.collection("reddit").doc(reddit.docId).set({
+              title: releases.data.children[0].data.title
+            }, {merge: true})
           }
         }
       })
