@@ -51,7 +51,7 @@ module.exports = (client, message) => {
         // REWARD
         if (!message.member.roles.cache.some(role => role.name === "special")) {
           utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
-          const role = message.guild.roles.find(role => role.name === "special")
+          const role = message.guild.roles.cache.find(role => role.name === "special")
           message.member.roles.add(role)
         }
       } else {
