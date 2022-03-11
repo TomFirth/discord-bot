@@ -98,7 +98,6 @@ config.reddit.forEach(async subreddit => {
 
 // SOCIALS
 twitter.start(client, config.socials.twitter.user, config.discord.channels.socials)
-twitter.start(client, config.socials.twitter.primeGaming, config.discord.channels.free) // Amazon Prime Gaming "freebies"
 // youtube.start(client, config.socials.youtube.channel1)
 // youtube.start(client, config.socials.youtube.channel2)
 // instagram.start()
