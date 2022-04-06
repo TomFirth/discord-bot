@@ -12,11 +12,11 @@ function init(client) {
 				if (winner.user !== config.discord.owner.name && !winner.user._roles.includes("860466953582936094")) {
 					const role = member.guild.roles.cache.find(role => role.name === "special")
 					member.roles.add(role)
-					await utilities.channel(client, config.discord.channels.special, `Welcome ${winner.user}`)
-					await utilities.channel(client, config.discord.channels.general, `${winner.user} is this week's lucky winner!`)
+					utilities.channel(client, config.discord.channels.special, `Welcome ${winner.user}`)
+					utilities.channel(client, config.discord.channels.general, `${winner.user} is this week's lucky winner!`)
 					selected = true
 				} else {
-					await utilities.channel(client, config.discord.channels.general, `${winner.user} won! (again).`)
+					utilities.channel(client, config.discord.channels.general, `${winner.user} won! (again).`)
 				}
 			}
 		} catch (error) {
