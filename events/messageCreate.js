@@ -35,7 +35,8 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   config.games.forEach(game => {
-    if (message.content.toLowerCase().includes("answer ")) {
+    const first = message.content.toLowerCase().split(' ')[0]
+    if (first == "answer" && message.content.toLowerCase().includes("answer ")) {
       const answer = cache.get("answer") || false
       const userAnswer = message.content.toLowerCase().replace("answer ", "")
       if (userAnswer.includes(answer)) {
