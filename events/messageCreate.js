@@ -34,14 +34,14 @@ module.exports = (client, message) => {
   })
 
   // GAMES RESPONSES
-  config.games.forEach(game => {
-    const first = message.content.toLowerCase().split(' ')[0]
-    if (first == "answer" && message.content.toLowerCase().includes("answer ")) {
-      const answer = cache.get("answer") || false
+  if (message.content.toLowerCase().split(' ')[0] == "answer") {
+    const answer = cache.get("answer") || false
+    config.games.forEach(game => {
       const userAnswer = message.content.toLowerCase().replace("answer ", "")
       if (userAnswer.includes(answer)) {
+        const gameType = game.game.charAt(0).toUpperCase() + game.game.slice(1)
         const gameEmbed = new MessageEmbed()
-          .setTitle(`${game.game} WINNER!`)
+          .setTitle(`${gameType} WINNER!`)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor("GOLD")
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
@@ -56,12 +56,20 @@ module.exports = (client, message) => {
           message.member.roles.add(role)
         }
       } else {
-        if (answer != "" || answer) {
+        if (answer != "" || !answer) {
+          const guessArray = userAnswer.split(' ')
+          const answerArray = answer.split(' ')
+          answerArray.forEach(value => {
+            if (guessArray.includes(value)) {
+              message.react("🤏")
+              return
+            }
+          })
           message.react(config.discord.emojis.thumbsDown)
         }
       }
-    }
-  })
+    })
+  }
 
   // SPECIAL ROLE REWARD
   const reactArray = ['⭐','🏆','👏','👍','🥇']
