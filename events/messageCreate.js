@@ -36,12 +36,22 @@ module.exports = (client, message) => {
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
     const answer = cache.get("answer") || false
-    config.games.forEach(game => {
+    config.games.forEach(() => {
       const userAnswer = message.content.toLowerCase().replace("answer ", "")
       if (userAnswer.includes(answer)) {
-        const gameType = game.game.charAt(0).toUpperCase() + game.game.slice(1)
+        const games = [
+          "",
+          "Quiz",
+          "Maths",
+          "",
+          "Riddle",
+          "Movie",
+          ""
+        ]
+        const date = new Date()
+        const today = date.getDay()
         const gameEmbed = new MessageEmbed()
-          .setTitle(`${gameType} WINNER!`)
+          .setTitle(`${games[today]} WINNER!`)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor("GOLD")
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
@@ -55,6 +65,7 @@ module.exports = (client, message) => {
           const role = message.guild.roles.cache.find(role => role.name === "special")
           message.member.roles.add(role)
         }
+        return
       } else {
         if (answer != "" || !answer) {
           const guessArray = userAnswer.split(' ')
