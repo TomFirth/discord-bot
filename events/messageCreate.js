@@ -36,50 +36,48 @@ module.exports = (client, message) => {
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
     const answer = cache.get("answer") || false
-    config.games.forEach(() => {
-      const userAnswer = message.content.toLowerCase().replace("answer ", "")
-      if (userAnswer.includes(answer)) {
-        const games = [
-          "",
-          "Quiz",
-          "Maths",
-          "",
-          "Riddle",
-          "Movie",
-          ""
-        ]
-        const date = new Date()
-        const today = date.getDay()
-        const gameEmbed = new MessageEmbed()
-          .setTitle(`${games[today]} WINNER!`)
-          .setThumbnail(message.author.displayAvatarURL())
-          .setColor("GOLD")
-          .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-        message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
-          ownMessage.react(config.discord.emojis.clap)
-        })
-        cache.remove("answer")
-        // REWARD
-        if (!message.member.roles.cache.some(role => role.name === "special")) {
-          utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
-          const role = message.guild.roles.cache.find(role => role.name === "special")
-          message.member.roles.add(role)
-        }
-        return
-      } else {
-        if (answer != "" || !answer) {
-          const guessArray = userAnswer.split(' ')
-          const answerArray = answer.split(' ')
-          answerArray.forEach(value => {
-            if (guessArray.includes(value)) {
-              message.react("🤏")
-              return
-            }
-          })
-          message.react(config.discord.emojis.thumbsDown)
-        }
+    const userAnswer = message.content.toLowerCase().replace("answer ", "")
+    if (userAnswer.includes(answer)) {
+      const games = [
+        "",
+        "Quiz",
+        "Maths",
+        "",
+        "Riddle",
+        "Movie",
+        ""
+      ]
+      const date = new Date()
+      const today = date.getDay()
+      const gameEmbed = new MessageEmbed()
+        .setTitle(`${games[today]} WINNER!`)
+        .setThumbnail(message.author.displayAvatarURL())
+        .setColor("GOLD")
+        .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+      message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
+        ownMessage.react(config.discord.emojis.clap)
+      })
+      cache.remove("answer")
+      // REWARD
+      if (!message.member.roles.cache.some(role => role.name === "special")) {
+        utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
+        const role = message.guild.roles.cache.find(role => role.name === "special")
+        message.member.roles.add(role)
       }
-    })
+      return
+    } else {
+      if (answer != "" || !answer) {
+        const guessArray = userAnswer.split(' ')
+        const answerArray = answer.split(' ')
+        answerArray.forEach(value => {
+          if (guessArray.includes(value)) {
+            message.react("🤏")
+            return
+          }
+        })
+        message.react(config.discord.emojis.thumbsDown)
+      }
+    }
   }
 
   // SPECIAL ROLE REWARD

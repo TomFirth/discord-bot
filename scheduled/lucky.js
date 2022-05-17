@@ -3,7 +3,7 @@ const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 function init(client) {
-	let scheduledMessage = new cron.CronJob("00 00 14 * * 3", () => {
+	let scheduledMessage = new cron.CronJob("00 00 12 * * 3", () => {
 		try {
 			let selected = false
 			while (!selected) {
