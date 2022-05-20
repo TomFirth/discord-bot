@@ -5,6 +5,7 @@ const config = require("../config.json")
 function init(client) {
 	let scheduledMessage = new cron.CronJob("00 00 12 * * 3", () => {
 		try {
+			const guild = client.guilds.cache.get(config.discord.guildId)
 			let selected = false
 			while (!selected) {
 				let winner = guild.members.cache.random().user
