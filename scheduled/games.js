@@ -19,12 +19,19 @@ class Game {
 				utilities.channel(client, config.discord.channels.bot, `Less than 5 ${game.game} questions remaining.`)
 			}
 			const random = Math.floor(Math.random() * questions.length)
-			cache.put("answer", questions[random].answer)
+			cache.put("answer", questions[random].answer.trim())
 			db.collection(game.db).doc(questions[random].id).update({ used: true })
 			const gameEmbed = new MessageEmbed()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
 				.setColor("GREEN")
 			utilities.channel(client, game.destination, { embeds: [gameEmbed] })
+			// answer for debugging
+			const answer = '"' + cache.get("answer") + '"'
+			const answerEmbed = new MessageEmbed()
+				.setDescription("Question: " + questions[random].question)
+				.setColor("RANDOM")
+				.addFields({ name: 'Answer', value: answer })
+			utilities.channel(client, config.discord.channels.bot, answerEmbed)
 		})
 		scheduledMessage.start()
 	}
