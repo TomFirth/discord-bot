@@ -31,7 +31,7 @@ class Game {
 				.setDescription("Question: " + questions[random].question)
 				.setColor("RANDOM")
 				.addFields({ name: 'Answer', value: answer })
-			utilities.channel(client, config.discord.channels.bot, answerEmbed)
+			utilities.channel(client, config.discord.channels.bot, { embeds: [answerEmbed] })
 		})
 		scheduledMessage.start()
 	}
