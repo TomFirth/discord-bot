@@ -12,7 +12,6 @@ firebase.initializeApp({
 const db = firebase.firestore()
 const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 18 * 1000000 }) // 5hrs
-const utilities = require("./scripts/utilities")
 const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 

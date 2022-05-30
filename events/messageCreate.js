@@ -1,4 +1,9 @@
 const { MessageEmbed } = require("discord.js")
+const firebase = require("firebase-admin")
+firebase.initializeApp({
+	credential: firebase.credential.cert(require("../credentials.json")),
+})
+const db = firebase.firestore()
 const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 18 * 1000000 })
 const utilities = require("../scripts/utilities.js")
@@ -35,7 +40,7 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    const answer = cache.get("answer") || false
+    const answer = cache.get("answer")
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     if (userAnswer.includes(answer)) {
       const games = [
@@ -58,6 +63,7 @@ module.exports = (client, message) => {
         ownMessage.react(config.discord.emojis.clap)
       })
       cache.remove("answer")
+      db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
       // REWARD
       if (!message.member.roles.cache.some(role => role.name === "special")) {
         utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
@@ -76,6 +82,7 @@ module.exports = (client, message) => {
           }
         })
         message.react(config.discord.emojis.thumbsDown)
+        console.log("userAnswer", userAnswer, "answer", answer)
       }
     }
   }
