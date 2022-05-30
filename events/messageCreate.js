@@ -1,8 +1,5 @@
 const { MessageEmbed } = require("discord.js")
 const firebase = require("firebase-admin")
-firebase.initializeApp({
-	credential: firebase.credential.cert(require("../credentials.json")),
-})
 const db = firebase.firestore()
 const timedCache = require("timed-cache")
 const cache = new timedCache({ defaultTtl: 18 * 1000000 })
