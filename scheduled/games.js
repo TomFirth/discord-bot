@@ -4,7 +4,7 @@ const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 
 class Game {
-  static start(client, db, cache, game) {
+  static async start(client, db, cache, game) {
 		const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
 		const doc = await lastQuestion.get()
 		if (!doc.data().used) {
