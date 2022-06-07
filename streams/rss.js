@@ -11,7 +11,11 @@ class Rss {
       if (query.data().publishedDate !== doc.publishedDate
       && query.data().title == undefined
       || query.data().title !== doc.title) {
-        const description = doc.contentSnippet.replace(/<.*>/, '')
+        let description = ""
+        if (doc.contentSnippet !== "") { description = doc.contentSnippet.replace(/<.*>/, '') }
+        else {
+          console.log("rss - no contentSnippet", doc)
+        }
         const feedEmbed = new MessageEmbed()
           .setTitle(doc.title)
           .setURL(doc.link)

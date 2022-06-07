@@ -28,6 +28,8 @@ class Game {
 			cache.put("answer", questionAnswer)
 			db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
 				answer: questionAnswer,
+				id: doc.id,
+				db: game.db,
 				used: false
 			})
 			db.collection(game.db).doc(questions[random].id).update({ used: true })

@@ -87,7 +87,8 @@ module.exports = (client, message) => {
   // SPECIAL ROLE REWARD
   const reactArray = ['⭐','🏆','👏','👍','🥇']
   if (message.member.roles.cache.some(role => role.name === "special")
-    && Math.floor(Math.random() * 49) == 0) {
+    && Math.floor(Math.random() * 49) == 0
+    && !message.content.toLowerCase().split(' ')[0] == "answer") {
     message.react(reactArray[Math.floor(Math.random() * reactArray.length)])
   }
   
