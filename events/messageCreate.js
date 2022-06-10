@@ -66,6 +66,8 @@ module.exports = (client, message) => {
         utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
         const role = message.guild.roles.cache.find(role => role.name === "special")
         message.member.roles.add(role)
+      } else {
+        utilities.specialSort(message.author.id)
       }
       return
     } else {

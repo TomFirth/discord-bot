@@ -9,7 +9,7 @@ function init(client) {
 			let selected = false
 			while (!selected) {
 				let winner = guild.members.cache.random().user
-				if (winner !== config.discord.owner.name && !winner.user._roles.includes("860466953582936094")) {
+				if (winner !== config.discord.owner.name && !winner.user.roles.includes("860466953582936094")) {
 					const role = member.guild.roles.cache.find(role => role.name === "special")
 					member.roles.add(role)
 					utilities.channel(client, config.discord.channels.special, `Welcome ${winner}`)
@@ -18,6 +18,7 @@ function init(client) {
 				} else {
 					utilities.channel(client, config.discord.channels.general, `${winner} won! (again).`)
 				}
+				utilities.special(winner)
 			}
 		} catch (error) {
 			console.error(error)

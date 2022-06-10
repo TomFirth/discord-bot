@@ -17,9 +17,6 @@ module.exports = {
         timestamp: doc.data().timestamp
       })
     })
-    // add new date to their doc
-    // let d = new Date()
-		// d.setDate(d.getDate() + parseInt(7))
     const guild = client.guilds.cache.get(config.discord.guildId)
 			guild.members.fetch()
 			.then(members => {
@@ -33,5 +30,50 @@ module.exports = {
 				})
 			})
 			.catch(error => console.error(error))
+  },
+
+  compare: (a, b) => {
+    if (a.timestamp < b.timestamp) {
+      return -1
+    }
+    if (a.timestamp > b.timestamp) {
+      return 1
+    }
+    return 0
+  },
+
+  specialSort: async (user) => {
+    const query = await db.collection("special").get()
+    const timestamp = new Date()
+    let userArray = []
+    let updated = false
+    query.forEach(doc => {
+      if (user !== doc.data().user) {
+        userArray.push({
+          id: doc.id,
+          timestamp: doc.data().timestamp,
+          user: doc.data().user
+        })
+      } else {
+        db.collection("special").doc(doc.id).update({ timestamp })
+        updated = true
+      }
+    })
+    if (!updated) {
+      userArray.sort(compare)
+      const newUser = {
+        id: userArray[1].id,
+        timestamp: timestamp,
+        user
+      }
+      userArray.shift()
+      userArray.push(newUser)
+    }
+    userArray.forEach(user => {
+      await db.collection("special").doc(user.id).set({
+        user: user.user,
+        timestamp
+      })
+    })
   }
 }

@@ -9,17 +9,23 @@ class Rss {
       const query = await db.collection("rss").doc(feed.docId).get()
       const doc = result.entries[0]
       if (query.data().publishedDate !== doc.publishedDate
-      && query.data().title == undefined
-      || query.data().title !== doc.title) {
+        && query.data().title == undefined
+        || query.data().title !== doc.title) {
         let description = ""
-        if (doc.contentSnippet !== "") { description = doc.contentSnippet.replace(/<.*>/, '') }
-        else {
-          console.log("rss - no contentSnippet", doc)
+        if (doc.contentSnippet !== "") {
+          description = doc.contentSnippet.replace(/<.*>/, '')
+        } else {
+          console.log("rss - no contentSnippet", doc) // 
+        }
+        if (config.ignore.some(element => description.includes(element))) {
+          return // don't post these
+        } else if(config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 3 == 0) {
+          return // random chance to post these
         }
         const feedEmbed = new MessageEmbed()
           .setTitle(doc.title)
           .setURL(doc.link)
-          .setAuthor({ name: feed.author})
+          .setAuthor({ name: feed.author })
           .setDescription(description)
           .setColor(feed.colour)
           .setTimestamp()
