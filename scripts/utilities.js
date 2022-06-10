@@ -33,16 +33,12 @@ module.exports = {
   },
 
   compare: (a, b) => {
-    if (a.timestamp < b.timestamp) {
-      return -1
-    }
-    if (a.timestamp > b.timestamp) {
-      return 1
-    }
+    if (a.timestamp < b.timestamp) { return -1 }
+    else if (a.timestamp > b.timestamp) { return 1 }
     return 0
   },
 
-  specialSort: async (user) => {
+  specialSort: async user => {
     const query = await db.collection("special").get()
     const timestamp = new Date()
     let userArray = []
@@ -69,8 +65,8 @@ module.exports = {
       userArray.shift()
       userArray.push(newUser)
     }
-    userArray.forEach(user => {
-      await db.collection("special").doc(user.id).set({
+    userArray.forEach(async user => {
+      await db.collection("special").doc(user.id).update({
         user: user.user,
         timestamp
       })
