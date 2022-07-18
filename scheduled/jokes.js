@@ -34,7 +34,7 @@ function init(client, db) {
 							.setColor("RANDOM")
 						utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
 						utilities.channel(client, config.discord.channels.bot, `Safe to remove joke code`)
-					}
+					})
 				}
 			} else { // remove
 				const random = Math.floor(Math.random() * jokes.length)
