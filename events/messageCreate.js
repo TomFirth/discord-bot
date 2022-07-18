@@ -37,7 +37,7 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    const answer = cache.get("answer")
+    const answer = cache.get("answer").toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     if (userAnswer.includes(answer)) {
       const games = [
@@ -66,10 +66,8 @@ module.exports = (client, message) => {
         utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
         const role = message.guild.roles.cache.find(role => role.name === "special")
         message.member.roles.add(role)
-      } else {
-        utilities.specialSort(message.author.id)
       }
-      return
+      utilities.specialSort(message.author.id)
     } else {
       if (answer != "" || !answer) {
         const guessArray = userAnswer.split(' ')
