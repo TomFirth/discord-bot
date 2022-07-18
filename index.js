@@ -25,7 +25,7 @@ fs.readdir("./scheduled/", (error, files) => {
 // const leet = require("./scheduled/1337")(client)
 // const birthdays = require("./scheduled/birthday")(client, db)
 // const gameCheck = require("./scheduled/gameCheck")(client, db)
-// const games = require("./scheduled/games")
+const games = require("./scheduled/games")
 // const jokes = require("./scheduled/jokes")(client, db)
 // const lucky = require("./scheduled/lucky")(client)
 // const prune = require("./scheduled/prune")(client)
@@ -82,7 +82,7 @@ config.rss.forEach(feed => {
 
 // GAMES
 config.games.forEach(async game => {
-  await game.start(client, db, cache, game)
+  await games.start(client, db, cache, game)
 })
 
 // SUBREDDITS
