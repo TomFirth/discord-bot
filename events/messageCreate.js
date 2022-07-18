@@ -37,7 +37,8 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    const answer = cache.get("answer").toLowerCase()
+    const answer = cache.get("answer")
+    answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     if (userAnswer.includes(answer)) {
       const games = [
