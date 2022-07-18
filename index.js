@@ -82,7 +82,7 @@ config.rss.forEach(feed => {
 
 // GAMES
 config.games.forEach(async game => {
-  await new games.start(client, db, cache, game)
+  await games.start(client, db, cache, game)
 })
 
 // SUBREDDITS
