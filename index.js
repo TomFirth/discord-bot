@@ -16,21 +16,21 @@ const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
 // SCHEDULED
-fs.readdir("./scheduled/", (error, files) => {
-  if (error) return console.error(error)
-  files.forEach(file => {
-      require("./scheduled/" + file)(client, db)
-  })
-})
-// const leet = require("./scheduled/1337")(client)
-// const birthdays = require("./scheduled/birthday")(client, db)
-// const gameCheck = require("./scheduled/gameCheck")(client, db)
+// fs.readdir("./scheduled/", (error, files) => {
+//   if (error) return console.error(error)
+//   files.forEach(file => {
+//       require("./scheduled/" + file)(client, db)
+//   })
+// })
+const leet = require("./scheduled/1337")(client)
+const birthdays = require("./scheduled/birthday")(client, db)
+const gameCheck = require("./scheduled/gameCheck")(client, db)
 const games = require("./scheduled/games")
-// const jokes = require("./scheduled/jokes")(client, db)
-// const lucky = require("./scheduled/lucky")(client)
-// const prune = require("./scheduled/prune")(client)
-// const unlucky = require("./scheduled/unlucky")(client)
-// const unSpecial = require("./scheduled/unSpecial")(client)
+const jokes = require("./scheduled/jokes")(client, db)
+const lucky = require("./scheduled/lucky")(client)
+const prune = require("./scheduled/prune")(client)
+const unlucky = require("./scheduled/unlucky")(client)
+const unSpecial = require("./scheduled/unSpecial")(client)
 
 // const patches = require("./streams/patches")
 const reddit = require("./streams/reddit")
