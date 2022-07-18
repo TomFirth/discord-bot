@@ -15,16 +15,36 @@ function init(client, db) {
 					joke: doc.data().joke
 				})
 			})
-			if (jokes.length < 5) {
-				utilities.channel(client, config.discord.channels.bot, `Less than 5 jokes remaining.`)
+			if (jokes.length == 0) {
+				const url = new URL("https://www.reddit.com/r/" + reddit.subreddit + "/top.json?t=" + reddit.frequency)
+				https.get({
+					hostname: url.hostname,
+					path: url.pathname,
+					headers: {'User-Agent': 'agent'}
+				}, async stream => {
+					let str = ''
+					stream.on("data", data => {
+						str += data
+					})
+					stream.on("end", async () => {
+						const jokes = JSON.parse(str)
+						console.log()
+						const embed = new MessageEmbed()
+							.setDescription(jokes[random].joke)
+							.setColor("RANDOM")
+						utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
+						utilities.channel(client, config.discord.channels.bot, `Safe to remove joke code`)
+					}
+				}
+			} else { // remove
+				const random = Math.floor(Math.random() * jokes.length)
+				db.collection("jokes").doc(jokes[random].id).update({ used: true })
+				const embed = new MessageEmbed()
+					.setDescription(jokes[random].joke)
+					.setColor("RANDOM")
+				utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
+				run = false
 			}
-			const random = Math.floor(Math.random() * jokes.length)
-			db.collection("jokes").doc(jokes[random].id).update({ used: true })
-			const embed = new MessageEmbed()
-				.setDescription(jokes[random].joke)
-				.setColor("RANDOM")
-			utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
-			run = false
 		}
 	})
 	scheduledMessage.start()
