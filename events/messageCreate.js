@@ -23,13 +23,13 @@ module.exports = (client, message) => {
         message.channel.send(troll.response)
       }
     } else if (troll.includes && troll.emoji) {
-      if (message.content.toLowerCase().includes(troll.message)) {
+      if (message.content.toLowerCase().includes(troll.message) && Math.floor(Math.random() * troll.chance) == 0) {
         message.channel.send(troll.response).then(ownMessage => {
           ownMessage.react(troll.emoji)
         })
       }
     } else if (!troll.includes && !troll.emoji) {
-      if (message.content == troll.message) {
+      if (message.content == troll.message && Math.floor(Math.random() * troll.chance) == 0) {
         message.channel.send(troll.response)
       }
     }
