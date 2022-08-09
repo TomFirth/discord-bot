@@ -16,8 +16,8 @@ class Patches {
         const $ = cheerio.load(data)
       })
       response.on("end", async () => {
-        const title
-        const href
+        const title = ""
+        const href = ""
         $(target.find, data).each(() => {
           title = $(this).text
           href = $(this).find("a").attr("href")

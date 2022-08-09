@@ -2,7 +2,8 @@
   "name": "barber",
   "version": "1.0.0",
   "description": "Discord bot to manage various things.",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
   "scripts": {
     "start": "node .",
     "dev": "set NODE_ENV=local && node index.js",
