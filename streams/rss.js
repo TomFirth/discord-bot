@@ -7,10 +7,10 @@ class Rss {
   static start(client, feed, db) {
     (async () => {
       const query = await db.collection("rss").doc(feed.docId).get()
-      const feed = parser.parseURL(feed.url)
-      feed.items.forEach(async (item) => {
+      const feeds = parser.parseURL(feed.url)
+      feeds.items.forEach(async (item) => {
         console.log("item", item)
-        if (query.data().publishedDate !== item.publishedDate
+        if (query.data().publishedDate !== item.pubDate
           || query.data().title !== item.title) {
           let description = ""
           if (feed.contentSnippet !== "") {
@@ -24,8 +24,8 @@ class Rss {
             return // random chance to post these
           }
           const feedEmbed = new MessageEmbed()
-            .setTitle(doc.title)
-            .setURL(doc.link)
+            .setTitle(item.title)
+            .setURL(item.link)
             .setAuthor({ name: feed.author })
             .setDescription(description)
             .setColor(feed.colour)
@@ -39,9 +39,9 @@ class Rss {
           })
           db.collection("rss").doc(feed.docId).set({
             description: description,
-            link: doc.link,
-            publishedDate: doc.publishedDate,
-            title: doc.title
+            link: item.link,
+            publishedDate: item.pubDate,
+            title: item.title
           }, {merge: true})
         }
       })
