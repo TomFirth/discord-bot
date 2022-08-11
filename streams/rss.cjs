@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const parse = require("feed-reader").parse
+import { parse } from "feed-reader"
 const config = require("../config.json")
 
 class Rss {

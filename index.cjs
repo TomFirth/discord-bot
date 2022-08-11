@@ -12,11 +12,8 @@ firebase.initializeApp({
 	credential: firebase.credential.cert(require("./credentials.json")),
 })
 const db = firebase.firestore()
-const cache = null;
-(importModules = async () => {
-  const Cache = await import("timed-cache")
-  cache = new Cache({ defaultTtl: 18 * 1000000 }) // 5hrs
-})()
+import Cache from "timed-cache"
+cache = new Cache({ defaultTtl: 18 * 1000000 }) // 5hrs
 const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
@@ -39,7 +36,7 @@ const unSpecial = require("./scheduled/unSpecial")(client)
 
 // const patches = require("./streams/patches")
 const reddit = require("./streams/reddit")
-const rss = require("./streams/rss")
+const rss = require("./streams/rss.cjs")
 
 const twitter = require("./streams/socials/twitter")
 // const youtube = require("./streams/socials/youtube")

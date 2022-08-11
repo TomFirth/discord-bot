@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Discord bot to manage various things.",
   "type": "commonjs",
-  "exports": "./index.js",
+  "exports": "./index.cjs",
   "scripts": {
     "start": "node .",
     "dev": "set NODE_ENV=local && node index.js",
