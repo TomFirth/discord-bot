@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Discord bot to manage various things.",
   "type": "commonjs",
-  "exports": "./index.cjs",
+  "exports": "./index.js",
   "scripts": {
     "start": "node .",
     "dev": "set NODE_ENV=local && node index.js",
@@ -21,7 +21,7 @@
     "googleapis": "105.0.0",
     "@google-cloud/local-auth": "2.1.0",
     "google-it": "^1.6.3",
-    "timed-cache": "^2.0.0",
+    "node-cache": "^5.1.2",
     "twit": "^2.2.11"
   },
   "devDependencies": {

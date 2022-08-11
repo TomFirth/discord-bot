@@ -8,7 +8,7 @@ class Game {
 		const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
 		const doc = await lastQuestion.get()
 		if (!doc.data().used) {
-			cache.put("answer", doc.data().answer)
+			cache.set("answer", doc.data().answer)
 		}
 		let scheduledMessage = new cron.CronJob(game.frequency, async () => {
 			const query = await db.collection(game.db).where("used", "==", false).get()
@@ -25,7 +25,7 @@ class Game {
 			}
 			const random = Math.floor(Math.random() * questions.length)
 			const questionAnswer = questions[random].answer.trim()
-			cache.put("answer", questionAnswer)
+			cache.set("answer", questionAnswer)
 			db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
 				answer: questionAnswer,
 				id: doc.id,
