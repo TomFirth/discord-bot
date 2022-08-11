@@ -2,8 +2,8 @@
   "name": "barber",
   "version": "1.0.0",
   "description": "Discord bot to manage various things.",
-  "type": "Commonjs",
-  "exports": "./index.cjs",
+  "type": "commonjs",
+  "exports": "./index.js",
   "scripts": {
     "start": "node .",
     "dev": "set NODE_ENV=local && node index.js",

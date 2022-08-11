@@ -1,6 +1,8 @@
 const { MessageEmbed } = require("discord.js")
-const parse = require("feed-reader").parse
-const utilities = require("../scripts/utilities.js")
+const parse = null
+(importModules = async () => {
+  parse = await import("feed-reader").parse
+})()
 const config = require("../config.json")
 
 class Rss {
