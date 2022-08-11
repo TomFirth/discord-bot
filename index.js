@@ -12,8 +12,11 @@ firebase.initializeApp({
 	credential: firebase.credential.cert(require("./credentials.json")),
 })
 const db = firebase.firestore()
-const Cache = import("timed-cache")
-const cache = new Cache({ defaultTtl: 18 * 1000000 }) // 5hrs
+const cache = null;
+(importModules = async () => {
+  const Cache = await import("timed-cache")
+  cache = new Cache({ defaultTtl: 18 * 1000000 }) // 5hrs
+})()
 const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
