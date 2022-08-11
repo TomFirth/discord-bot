@@ -36,7 +36,7 @@ const unSpecial = require("./scheduled/unSpecial")(client)
 
 // const patches = require("./streams/patches")
 const reddit = require("./streams/reddit")
-const rss = require("./streams/rss.cjs")
+const rss = require("./streams/rss.js")
 
 const twitter = require("./streams/socials/twitter")
 // const youtube = require("./streams/socials/youtube")
