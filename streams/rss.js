@@ -8,7 +8,7 @@ class Rss {
     (async () => {
       const query = await db.collection("rss").doc(feed.docId).get()
       const feed = parser.parseURL(feed.url)
-      feed.items.forEach(item => {
+      feed.items.forEach(async (item) => {
         console.log("item", item)
         if (query.data().publishedDate !== item.publishedDate
           || query.data().title !== item.title) {
