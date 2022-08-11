@@ -8,6 +8,7 @@ class Rss {
     parser.parseURL(feed.url).then(async results => {
       const query = await db.collection("rss").doc(feed.docId).get()
       const latest = results[0]
+      console.log("latest", latest)
       if (query.data().publishedDate !== latest.publishedDate
         && query.data().title == undefined
         || query.data().title !== latest.title) {
