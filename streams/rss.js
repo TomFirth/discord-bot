@@ -1,20 +1,21 @@
 const { MessageEmbed } = require("discord.js")
-const parse = require("feed-reader").parse
+const Parser = require("rss-parser")
+const parser = new Parser()
 const config = require("../config.json")
 
 class Rss {
   static start(client, feed, db) {
-    parse(feed.url).then(async result => {
+    parser.parseURL(feed.url).then(async results => {
       const query = await db.collection("rss").doc(feed.docId).get()
-      const doc = result.entries[0]
-      if (query.data().publishedDate !== doc.publishedDate
+      const latest = results[0]
+      if (query.data().publishedDate !== latest.publishedDate
         && query.data().title == undefined
-        || query.data().title !== doc.title) {
+        || query.data().title !== latest.title) {
         let description = ""
-        if (doc.contentSnippet !== "") {
-          description = doc.contentSnippet.replace(/<.*>/, '')
+        if (feed.contentSnippet !== "") {
+          description = latest.contentSnippet.replace(/<.*>/, '')
         } else {
-          console.log("rss - no contentSnippet", doc) // 
+          console.log("rss - no contentSnippet", latest) // 
         }
         if (config.ignore.some(element => description.includes(element))) {
           return // don't post these
