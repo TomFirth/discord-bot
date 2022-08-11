@@ -9,7 +9,7 @@ module.exports = {
 
     google({'query': args.join(" ")}).then(results => {
       console.log(results) // remove
-      return message.channel.send(`${results[0].title} ${results[0].link}`)
+      return message.channel.send(`${results[0].link || "0 results"}`)
     })
   },
 }
