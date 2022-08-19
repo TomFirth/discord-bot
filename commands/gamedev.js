@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const { google } = require('googleapis')
 const { authenticate } = require('@google-cloud/local-auth')
 
@@ -19,7 +19,7 @@ module.exports = {
     })
     console.log("res.data", res.data)
 
-    // const game_embed = new MessageEmbed()
+    // const game_embed = new EmbedBuilder()
     //   .setTitle()
     //   .setThumbnail()
     //   .setColor("RANDOM")

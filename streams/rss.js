@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const Parser = require("rss-parser")
 const parser = new Parser()
 const config = require("../config.json")
@@ -18,7 +18,7 @@ class Rss {
         if (config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 == 0) {
           return // random chance to post these
         } else {
-          const feedEmbed = new MessageEmbed()
+          const feedEmbed = new EmbedBuilder()
           .setTitle(item.title)
           .setURL(item.link)
           .setAuthor({ name: feed.author })

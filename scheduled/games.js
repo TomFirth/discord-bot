@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
@@ -33,7 +33,7 @@ class Game {
 				used: false
 			})
 			db.collection(game.db).doc(questions[random].id).update({ used: true })
-			const gameEmbed = new MessageEmbed()
+			const gameEmbed = new EmbedBuilder()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
 				.setColor("GREEN")
 			utilities.channel(client, game.destination, { embeds: [gameEmbed] })

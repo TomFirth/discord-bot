@@ -1,6 +1,6 @@
 const fs = require("fs")
 const cron = require("cron")
-const { Client, IntentsBitField, Collection, MessageEmbed } = require("discord.js")
+const { Client, IntentsBitField, Collection, EmbedBuilder } = require("discord.js")
 const intents = new IntentsBitField();
 intents.add(IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers);
 const client = new Client({
@@ -49,7 +49,7 @@ client.botCommands = new Collection()
 // ERROR MESSAGE
 client.error = (error_msg) => {
   if (!error_msg || !channel) return
-  const error_embed = new MessageEmbed()
+  const error_embed = new EmbedBuilder()
     .setTitle("An Error occured!")
     .setColor("RED")
     .setDescription(`\`\`\`${error_msg}\`\`\``)

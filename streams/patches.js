@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const https = require("https")
 const cheerio = require("cheerio")
 const utilities = require("../scripts/utilities.js")
@@ -25,7 +25,7 @@ class Patches {
         const query = await db.collection("patches").doc(target.docId).get()
         if (query.data() !== undefined
         && query.data().title !== title) {
-          const patchNotes = new MessageEmbed()
+          const patchNotes = new EmbedBuilder()
             .setAuthor({ name: target.name })
             .setTitle(title)
             .setColor(target.colour)

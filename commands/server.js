@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
     emoji: '📊',
@@ -14,7 +14,7 @@ module.exports = {
         if (dd<10) dd = '0' + dd
         if (mm<10) mm = '0' + mm
         var createdAt = dd + '/' + mm + '/' + yyyy
-        const server_embed = new MessageEmbed()
+        const server_embed = new EmbedBuilder()
           .setTitle(message.guild.name)
           .setThumbnail(message.guild.iconURL())
           .setColor("NAVY")

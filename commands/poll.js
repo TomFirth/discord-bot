@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const config = require("../config.json")
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
   description: 'Let others decide',
   execute(client, message, args) {
     if (!args.length) return message.reply(`**Please add a question.**`)
-    const poll = new MessageEmbed()
+    const poll = new EmbedBuilder()
       .setDescription(`Poll: **${args.join(" ")}**`)
       .setColor("RANDOM")
     return message.channel.send({ embeds: [poll] }).then(ownMessage => {

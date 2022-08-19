@@ -1,4 +1,3 @@
-const { MessageEmbed } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")

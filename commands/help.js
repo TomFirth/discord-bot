@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
   emoji: '📝',
@@ -6,7 +6,7 @@ module.exports = {
   description: 'A list of my commands!',
   execute(client, message) {
     const exclusions = ["help", "ping", "server", "uptime", "message", "quote", "gamedev", "special", "answer"]
-    const help_embed = new MessageEmbed()
+    const help_embed = new EmbedBuilder()
       .setTitle(`${client.user.username}'s Commands`)
       .setThumbnail(client.user.displayAvatarURL())
       .setColor("GREEN")

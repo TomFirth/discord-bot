@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
 
@@ -27,7 +27,7 @@ module.exports = {
       const pickANumber = Math.floor(Math.random() * quotes.length)
       client.users.fetch(quotes[pickANumber].author)
       .then(user => {
-        const quote = new MessageEmbed()
+        const quote = new EmbedBuilder()
           .setDescription(`"${quotes[pickANumber].quote}"`)
           .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
           .setColor("RANDOM")

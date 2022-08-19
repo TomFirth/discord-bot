@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
 const Cache = require("node-cache")
@@ -52,7 +52,7 @@ module.exports = (client, message) => {
       ]
       const date = new Date()
       const today = date.getDay()
-      const gameEmbed = new MessageEmbed()
+      const gameEmbed = new EmbedBuilder()
         .setTitle(`${games[today]} WINNER!`)
         .setThumbnail(message.author.displayAvatarURL())
         .setColor("GOLD")

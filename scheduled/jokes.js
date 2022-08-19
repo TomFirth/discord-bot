@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
@@ -29,7 +29,7 @@ function init(client, db) {
 					stream.on("end", async () => {
 						const jokes = JSON.parse(str)
 						console.log()
-						const embed = new MessageEmbed()
+						const embed = new EmbedBuilder()
 							.setDescription(jokes[random].joke)
 							.setColor("RANDOM")
 						utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
@@ -39,7 +39,7 @@ function init(client, db) {
 			} else { // remove
 				const random = Math.floor(Math.random() * jokes.length)
 				db.collection("jokes").doc(jokes[random].id).update({ used: true })
-				const embed = new MessageEmbed()
+				const embed = new EmbedBuilder()
 					.setDescription(jokes[random].joke)
 					.setColor("RANDOM")
 				utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
