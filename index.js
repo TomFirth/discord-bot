@@ -115,7 +115,7 @@ twitter.start(client, config.socials.twitter.user, config.discord.channels.socia
 // COMMAND HANDLER
 fs.readdir("./commands/", (error, files) => {
   if (error) return console.error(err)
-  const command_files = files.filter(fileName => fileName.endsWith(".js"))
+  const commandFiles = files.filter(fileName => fileName.endsWith(".js"))
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file)
     const command = require(filePath)
