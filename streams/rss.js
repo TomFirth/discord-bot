@@ -9,18 +9,18 @@ class Rss {
       const query = await db.collection("rss").doc(feed.docId).get()
       const feeds = await parser.parseURL(feed.url)
       const item = feeds.items[0]
-      if (query.data().publishedDate !== item.items.pubDate
-        || query.data().title !== item.items.title) {
+      if (query.data().publishedDate !== item.pubDate
+        || query.data().title !== item.title) {
         let description = ""
-        if (item.items.contentSnippet !== "") {
-          description = item.items.contentSnippet.replace(/<.*>/, '')
+        if (item.contentSnippet !== "") {
+          description = item.contentSnippet.replace(/<.*>/, '')
         }
         if (config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 == 0) {
           return // random chance to post these
         } else {
           const feedEmbed = new MessageEmbed()
-          .setTitle(item.items.title)
-          .setURL(item.items.link)
+          .setTitle(item.title)
+          .setURL(item.link)
           .setAuthor({ name: feed.author })
           .setDescription(description)
           .setColor(feed.colour)
@@ -40,7 +40,7 @@ class Rss {
         }, {merge: true})
         }
       }
-    })
+    })()
   }
 }
 
