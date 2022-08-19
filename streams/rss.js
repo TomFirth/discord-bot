@@ -9,6 +9,9 @@ class Rss {
       const query = await db.collection("rss").doc(feed.docId).get()
       const feeds = parser.parseURL(feed.url)
       const item = feeds.items[0]
+      console.log("fee author")
+      console.log("----------------------")
+      console.log("item", item)
       if (query.data().publishedDate !== item.pubDate
         || query.data().title !== item.title) {
         let description = ""
