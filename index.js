@@ -118,7 +118,7 @@ fs.readdir("./commands/", (error, files) => {
   const commandFiles = files.filter(fileName => fileName.endsWith(".js"))
   for (const file of commandFiles) {
     const command = require(`./commands/${file}`)
-    client.commands.set(command.data.name, command)
+    client.commands.set(command.name, command)
   }
 })
 
