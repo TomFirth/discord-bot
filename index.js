@@ -7,6 +7,7 @@ const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents
 })
+client.commands = new Collection();
 const firebase = require("firebase-admin")
 firebase.initializeApp({
 	credential: firebase.credential.cert(require("./credentials.json")),
@@ -115,10 +116,11 @@ twitter.start(client, config.socials.twitter.user, config.discord.channels.socia
 fs.readdir("./commands/", (error, files) => {
   if (error) return console.error(err)
   const command_files = files.filter(fileName => fileName.endsWith(".js"))
-  command_files.forEach(file => {
-    const command = require(`./commands/${file}`)
-    client.commands.set(command.name, command)
-  })
+  for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file)
+    const command = require(filePath)
+    client.commands.set(command.data.name, command)
+  }
 })
 
 client.login(process.env.TOKEN).catch(error => console.error(error))
