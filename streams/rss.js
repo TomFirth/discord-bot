@@ -11,11 +11,14 @@ class Rss {
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
+        console.log("1")
       let description = ""
       if (item.contentSnippet !== "") {
+        console.log("2")
         description = item.contentSnippet.replace(/<.*>/, '')
       }
       if (config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
+        console.log("3")
         const feedEmbed = new EmbedBuilder()
         .setTitle(item.title)
         .setURL(item.link)
@@ -23,13 +26,16 @@ class Rss {
         .setDescription(description)
         .setColor(feed.colour)
         .setTimestamp()
+        console.log("4")
         let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
+        console.log("5")
         channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
           if (feed.poll) {
             ownMessage.react(config.discord.emojis.thumbsUp)
             ownMessage.react(config.discord.emojis.thumbsDown)
           }
         })
+        console.log("6")
         db.collection("rss").doc(feed.docId).set({
           description: description,
           link: item.link,
