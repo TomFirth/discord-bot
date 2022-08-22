@@ -14,9 +14,7 @@ class Rss {
       if (item.contentSnippet !== "") {
         description = item.contentSnippet.replace(/<.*>/, '')
       }
-      if (config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 == 0) {
-        return // random chance to post these
-      } else {
+      if (config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         const feedEmbed = new EmbedBuilder()
         .setTitle(item.title)
         .setURL(item.link)
