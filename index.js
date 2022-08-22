@@ -78,7 +78,6 @@ fs.readdir("./events/", (error, files) => {
 // STREAMS
 config.rss.forEach(feed => {
   let scheduledMessage = new cron.CronJob("00 */1 * * * *", async () => {
-    console.log("rss started")
     await rss.start(client, feed, db)
   })
   scheduledMessage.start()
