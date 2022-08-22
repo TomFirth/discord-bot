@@ -11,12 +11,13 @@ class Rss {
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
-        console.log("1")
       let description = ""
       if (item.contentSnippet !== "") {
-        console.log("2")
         description = item.contentSnippet.replace(/<.*>/, '')
       }
+      console.log("if", config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0)
+      console.log("config.kindOfIgnore", config.kindOfIgnore)
+      console.log("description", description)
       if (config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         console.log("3")
         const feedEmbed = new EmbedBuilder()
