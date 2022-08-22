@@ -15,10 +15,7 @@ class Rss {
       if (item.contentSnippet !== "") {
         description = item.contentSnippet.replace(/<.*>/, '')
       }
-      console.log("if", config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0)
-      console.log("config.kindOfIgnore", config.kindOfIgnore)
-      console.log("description", description)
-      if (config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
+      if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         console.log("3")
         const feedEmbed = new EmbedBuilder()
         .setTitle(item.title)
