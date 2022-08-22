@@ -16,7 +16,6 @@ class Rss {
         description = item.contentSnippet.replace(/<.*>/, '')
       }
       if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
-        console.log("3")
         const feedEmbed = new EmbedBuilder()
         .setTitle(item.title)
         .setURL(item.link)
@@ -24,7 +23,6 @@ class Rss {
         .setDescription(description)
         .setColor(feed.colour)
         .setTimestamp()
-        console.log("4")
         let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
         console.log("5")
         channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
