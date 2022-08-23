@@ -25,6 +25,7 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - [ ] News on video games betas.
 - [ ] Crypto integration
 - [ ] Trading
+- [ ] Add user Steam libraries and allow them to search for people to play with.
 
 ### Usage
 
