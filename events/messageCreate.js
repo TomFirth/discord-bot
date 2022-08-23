@@ -8,14 +8,22 @@ const config = require("../config.json")
 const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
-  if (message.type === "DM" || message.author.bot) return
-
-  const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
-  let commandName = args.shift().toLowerCase()
-  const commandGet = client.commands.get(commandName) || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
-  console.log("command", commandGet)
-  if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
-  commandGet.run(client, message, args, config.bot.prefix)
+  if (message.content.startsWith(config.bot.prefix)) {
+    if (message.type === "DM" || message.author.bot) return
+    const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
+    const commandName = args.shift().toLowerCase();
+    const commandGet = client.commands.get(commandName)
+      || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
+    console.log("command", commandGet)
+    if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
+    else {
+      try {
+        command.run(client, message, args, config.bot.prefix)
+      } catch (error) {
+        console.error(error)
+    }
+    }
+  }
 
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
