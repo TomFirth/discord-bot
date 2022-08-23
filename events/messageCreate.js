@@ -8,16 +8,13 @@ const config = require("../config.json")
 const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
-  console.log("message")
   if (message.type === "DM" || message.author.bot) return
 
   const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
-  const commandName = args.shift().toLowerCase()
-  console.log("command", commandName)
-  command = client.commands.get(commandName) || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
-  if (!commandName) return
-  else if (commandName.charAt(0) === ".") return
-  else if (commandName.charAt(0) === "/") return
+  let commandName = args.shift().toLowerCase()
+  const commandGet = client.commands.get(commandName) || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
+  if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
+  commandGet.run(client, message, args, config.bot.prefix);
 
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {

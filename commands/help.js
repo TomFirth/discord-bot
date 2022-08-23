@@ -5,7 +5,6 @@ module.exports = {
   name: 'help',
   description: 'A list of my commands!',
   run(client, message) {
-    console.log("help")
     const exclusions = ["help", "ping", "server", "uptime", "message", "quote", "gamedev", "special"]
     const help_embed = new EmbedBuilder()
       .setTitle(`${client.user.username}'s Commands`)
