@@ -51,7 +51,7 @@ client.botCommands = new Collection()
 client.error = (error_msg) => {
   const error_embed = new EmbedBuilder()
     .setTitle("An Error occured!")
-    .setColor("RED")
+    .setColor(0xFF0000)
     .setDescription(`\`\`\`${error_msg}\`\`\``)
     .setTimestamp()
   let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
