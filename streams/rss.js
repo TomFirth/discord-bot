@@ -21,7 +21,7 @@ class Rss {
         .setURL(item.link)
         .setAuthor({ name: feed.author })
         .setDescription(description)
-        .setColor(feed.colour)
+        .setColor("RANDOM")
         .setTimestamp()
         let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
         console.log("5")
