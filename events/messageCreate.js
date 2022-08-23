@@ -8,7 +8,7 @@ const config = require("../config.json")
 const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
-  console.log("message", message.content)
+  console.log("message", message)
   console.log("start", message.content.charAt(0))
   console.log("prefix", config.bot.prefix)
   console.log("if", message.content.charAt(0) == config.bot.prefix)
