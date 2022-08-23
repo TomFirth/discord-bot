@@ -24,7 +24,6 @@ class Reddit {
         endDate.setHours(endTime.split(":")[0])
         endDate.setMinutes(endTime.split(":")[1])
         const valid = startDate < currentDate && endDate > currentDate
-
         if (reddit.nsfw && !valid) {
           // Do nothing
         } else {

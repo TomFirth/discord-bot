@@ -16,6 +16,7 @@ class Rss {
       }
       if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         const feedEmbed = new EmbedBuilder()
+        .setColor(feed.colour)
         .setTitle(item.title)
         .setURL(item.link)
         .setAuthor({ name: feed.author })
