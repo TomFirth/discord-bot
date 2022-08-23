@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js")
+const { Discord, EmbedBuilder } = require("discord.js")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
 const Cache = require("node-cache")
@@ -8,6 +8,7 @@ const config = require("../config.json")
 const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
+  console.log("message")
   if (message.type === "DM" || message.author.bot) return
 
   const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
