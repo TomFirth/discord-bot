@@ -5,7 +5,6 @@ const config = require("../config.json")
 
 class Rss {
   static async start(client, feed, db) {
-    console.log("hi", feed.author)
     const query = await db.collection("rss").doc(feed.docId).get()
     const feeds = await parser.parseURL(feed.url)
     const item = feeds.items[0]
@@ -30,7 +29,6 @@ class Rss {
             ownMessage.react(config.discord.emojis.thumbsDown)
           }
         })
-        console.log("6")
         db.collection("rss").doc(feed.docId).set({
           description: description,
           link: item.link,
