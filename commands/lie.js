@@ -3,7 +3,7 @@ module.exports = {
   name: 'lie',
   aliases: ["lie", "liedetector"],
   description: 'Lie Detector',
-  run(client, message) {
+  execute(client, message) {
     message.delete()
     const lies = [
       "That was most certainly bullshit.",

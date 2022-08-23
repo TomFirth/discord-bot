@@ -6,7 +6,7 @@ module.exports = {
   name: 'feature',
   aliases: ["feature", "idea", "suggest"],
   description: 'Suggest a new bot feature!',
-  async run(client, message, args) {
+  async execute(client, message, args) {
     await db.collection("ideas").add({
       author: message.author.username,
       idea: args.join(" "),
