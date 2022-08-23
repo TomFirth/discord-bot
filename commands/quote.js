@@ -32,7 +32,7 @@ module.exports = {
         const quote = new EmbedBuilder()
           .setDescription(`"${quotes[pickANumber].quote}"`)
           .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
-          .setColor(colours.random)
+          .setColor(colours.black)
         return message.channel.send({ embeds: [quote] })
       })
       .catch(console.error)

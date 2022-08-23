@@ -32,7 +32,7 @@ function init(client, db) {
 						console.log()
 						const embed = new EmbedBuilder()
 							.setDescription(jokes[random].joke)
-							.setColor(colours.random)
+							.setColor(colours.black)
 						utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
 						utilities.channel(client, config.discord.channels.bot, `Safe to remove joke code`)
 					})
@@ -42,7 +42,7 @@ function init(client, db) {
 				db.collection("jokes").doc(jokes[random].id).update({ used: true })
 				const embed = new EmbedBuilder()
 					.setDescription(jokes[random].joke)
-					.setColor(colours.random)
+					.setColor(colours.black)
 				utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
 				run = false
 			}

@@ -11,7 +11,7 @@ module.exports = {
     if (!args.length) return message.reply(`**Please add a question.**`)
     const poll = new EmbedBuilder()
       .setDescription(`Poll: **${args.join(" ")}**`)
-      .setColor(colours.random)
+      .setColor(colours.black)
     return message.channel.send({ embeds: [poll] }).then(ownMessage => {
       ownMessage.react(config.discord.emojis.thumbsUp)
       ownMessage.react(config.discord.emojis.thumbsDown)
