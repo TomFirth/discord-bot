@@ -2,7 +2,7 @@ const fs = require("fs")
 const cron = require("cron")
 const { Client, Collection, EmbedBuilder, IntentsBitField } = require("discord.js")
 const myIntents = new IntentsBitField();
-myIntents.add(IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.DirectMessages, IntentsBitField.Flags.GuildMessages);
+myIntents.add(IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.DirectMessages, IntentsBitField.Flags.GuildMessages, IntentsBitField.Flags.MessageContent);
 const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents: myIntents
