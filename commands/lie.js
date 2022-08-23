@@ -2,7 +2,7 @@ module.exports = {
   emoji: '🗣️',
   name: 'lie',
   description: 'Lie Detector',
-  execute(client, message) {
+  run(client, message) {
     message.delete()
     const lies = [
       "That was most certainly bullshit.",

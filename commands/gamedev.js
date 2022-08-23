@@ -1,4 +1,3 @@
-const { EmbedBuilder } = require("discord.js")
 const { google } = require('googleapis')
 const { authenticate } = require('@google-cloud/local-auth')
 
