@@ -8,6 +8,7 @@ const client = new Client({
   intents: myIntents
 })
 client.commands = new Collection();
+client.prefix = config.bot.prefix
 const firebase = require("firebase-admin")
 firebase.initializeApp({
 	credential: firebase.credential.cert(require("./credentials.json")),
@@ -44,9 +45,6 @@ const twitter = require("./streams/socials/twitter")
 // const youtube = require("./streams/socials/youtube")
 // const instagram = require("./streams/socials/instragram")
 // const twitch = require("./streams/socials/twitch")
-
-client.prefix = config.bot.prefix
-client.botCommands = new Collection()
 
 // ERROR MESSAGE
 client.error = (error_msg) => {
