@@ -18,7 +18,7 @@ module.exports = (client, message) => {
     if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
     else {
       try {
-        command.run(client, message, args, config.bot.prefix)
+        commandGet.run(client, message, args, config.bot.prefix)
       } catch (error) {
         console.error(error)
     }
