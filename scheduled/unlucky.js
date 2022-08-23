@@ -16,7 +16,7 @@ function init(client) {
 						"You smell.",
 						"Are you lucky or unlucky?",
 						"Today, is not your day.",
-						"Better luck next time."
+						"Moron, Moron, Moron, Moron, Moron"
 					]
 					utilities.channel(client, config.discord.channels.general, `${member}, ${insult[Math.floor(Math.random() * insults.length)]}`)
 					// member.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
