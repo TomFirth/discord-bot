@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require("discord.js")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
+const colours = require("../colours.json")
 
 module.exports = {
   emoji: '👍',
@@ -31,7 +32,7 @@ module.exports = {
         const quote = new EmbedBuilder()
           .setDescription(`"${quotes[pickANumber].quote}"`)
           .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
-          .setColor("RANDOM")
+          .setColor(colours.random)
         return message.channel.send({ embeds: [quote] })
       })
       .catch(console.error)
