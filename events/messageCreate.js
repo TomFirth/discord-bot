@@ -8,8 +8,7 @@ const config = require("../config.json")
 const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
-  console.log("message!", message.content.startsWith(config.bot.prefix), "prefix", config.bot.prefix)
-  if (message.content.startsWith(config.bot.prefix)) {
+  if (message.content.charAt(0) == config.bot.prefix) {
     console.log("hi")
     if (message.type === "DM" || message.author.bot) return
     console.log("not dm or bot")
@@ -20,7 +19,7 @@ module.exports = (client, message) => {
     const commandGet = client.commands.get(commandName)
       || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
     console.log("commandGet", commandGet)
-    if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
+    if (!commandGet) return
     else {
       console.log("has command")
       try {
