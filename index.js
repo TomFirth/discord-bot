@@ -119,7 +119,6 @@ fs.readdir("./commands/", (error, files) => {
   for (const file of commandFiles) {
     const commandName = file.split(".")[0]
     const command = require(`./commands/${file}`)
-    console.log(`Attempting to load command ${commandName}`);
     client.commands.set(commandName, command)
   }
 })
