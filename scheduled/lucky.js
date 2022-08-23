@@ -1,5 +1,5 @@
 const cron = require("cron")
-const utilities = require("../scripts/utilities.js")
+const utilities = require("../scripts/utilities")
 const config = require("../config.json")
 
 function init(client) {

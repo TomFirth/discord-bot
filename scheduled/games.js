@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js")
 const cron = require("cron")
-const utilities = require("../scripts/utilities.js")
+const utilities = require("../scripts/utilities")
 const config = require("../config.json")
 const colours = require("../colours.json")
 

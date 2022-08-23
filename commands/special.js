@@ -1,4 +1,4 @@
-const utilities = require("../scripts/utilities.js")
+const utilities = require("../scripts/utilities")
 const config = require("../config.json")
 
 module.exports = {
