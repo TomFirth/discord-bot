@@ -1,12 +1,12 @@
 const { EmbedBuilder } = require("discord.js")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
-const colours = require("../colours.json")
+const utilities = require("../scripts/utilities")
 
 module.exports = {
   emoji: '👍',
   name: 'quote',
-  aliases: ["quote", "randomquote"],
+  aliases: ["quote", "randomquote", "wiggzsaid"],
   description: 'Quote people, forever',
   async execute(client, message, args) {
     if (args[0] == "add") {
@@ -32,7 +32,7 @@ module.exports = {
         const quote = new EmbedBuilder()
           .setDescription(`"${quotes[pickANumber].quote}"`)
           .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
-          .setColor(colours.black)
+          .setColor(utilities.randomColour())
         return message.channel.send({ embeds: [quote] })
       })
       .catch(console.error)

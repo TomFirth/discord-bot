@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js")
 const config = require("../config.json")
-const colours = require("../colours.json")
+const utilities = require("../scripts/utilities")
 
 module.exports = {
   emoji: '👍',
@@ -11,7 +11,7 @@ module.exports = {
     if (!args.length) return message.reply(`**Please add a question.**`)
     const poll = new EmbedBuilder()
       .setDescription(`Poll: **${args.join(" ")}**`)
-      .setColor(colours.black)
+      .setColor(utilities.randomColour())
     return message.channel.send({ embeds: [poll] }).then(ownMessage => {
       ownMessage.react(config.discord.emojis.thumbsUp)
       ownMessage.react(config.discord.emojis.thumbsDown)

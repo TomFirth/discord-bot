@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
-const colours = require("../colours.json")
+const utilities = require("../scripts/utilities")
 
 function init(client, db) {
 	let scheduledMessage = new cron.CronJob("00 00 10 * * 0", async () => {
@@ -32,7 +32,7 @@ function init(client, db) {
 						console.log()
 						const embed = new EmbedBuilder()
 							.setDescription(jokes[random].joke)
-							.setColor(colours.black)
+							.setColor(utilities.randomColour())
 						utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
 						utilities.channel(client, config.discord.channels.bot, `Safe to remove joke code`)
 					})
@@ -42,7 +42,7 @@ function init(client, db) {
 				db.collection("jokes").doc(jokes[random].id).update({ used: true })
 				const embed = new EmbedBuilder()
 					.setDescription(jokes[random].joke)
-					.setColor(colours.black)
+					.setColor(utilities.randomColour())
 				utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
 				run = false
 			}
