@@ -7,8 +7,6 @@ const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents: myIntents
 })
-client.commands = new Collection();
-client.prefix = config.bot.prefix
 const firebase = require("firebase-admin")
 firebase.initializeApp({
 	credential: firebase.credential.cert(require("./credentials.json")),
@@ -16,9 +14,12 @@ firebase.initializeApp({
 const db = firebase.firestore()
 const Cache = require("node-cache")
 cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
-const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 const colours = require("./colours.json")
+const config = require("./config.json")
+
+client.commands = new Collection();
+client.prefix = config.bot.prefix
 
 // SCHEDULED
 // fs.readdir("./scheduled/", (error, files) => {
