@@ -1,6 +1,6 @@
 const fs = require("fs")
 const cron = require("cron")
-const { Client, Collection, EmbedBuilder } = require("discord.js")
+const { Client, Collection, EmbedBuilder, Intents } = require("discord.js")
 const allIntents = new Intents(32767);
 const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
