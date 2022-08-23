@@ -18,7 +18,7 @@ function init(client) {
 						"Today, is not your day.",
 						"Better luck next time."
 					]
-					utilities.channel(client, config.discord.channels.general, `${member}, ${insult[Math.floor(Math.random() * insults.length])}`)
+					utilities.channel(client, config.discord.channels.general, `${member}, ${insult[Math.floor(Math.random() * insults.length)]}`)
 					// member.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
 					// .then(() => {
 					// 	utilities.channel(client, config.discord.channels.general, `${member} has been timed out for 5 minutes.`)
