@@ -13,8 +13,9 @@ module.exports = (client, message) => {
   const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
   let commandName = args.shift().toLowerCase()
   const commandGet = client.commands.get(commandName) || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
+  console.log("command", commandGet)
   if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
-  commandGet.run(client, message, args, config.bot.prefix);
+  commandGet.run(client, message, args, config.bot.prefix)
 
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
