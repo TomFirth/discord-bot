@@ -12,6 +12,7 @@ module.exports = (client, message) => {
 
   const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
   const commandName = args.shift().toLowerCase()
+  console.log("command", commandName)
   command = client.commands.get(commandName) || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
   if (!commandName) return
   else if (commandName.charAt(0) === ".") return
