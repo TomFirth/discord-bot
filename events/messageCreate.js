@@ -14,7 +14,6 @@ module.exports = (client, message) => {
     const commandName = args.shift().toLowerCase();
     const commandGet = client.commands.get(commandName)
       || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
-    console.log("command", commandGet)
     if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
     else {
       try {
@@ -100,11 +99,5 @@ module.exports = (client, message) => {
     && Math.floor(Math.random() * 49) == 0
     && !message.content.toLowerCase().split(' ')[0] == "answer") {
     message.react(reactArray[Math.floor(Math.random() * reactArray.length)])
-  }
-   
-  try {
-    command.execute(client, message, args)
-  } catch (error) {
-    return client.error(error)
   }
 }
