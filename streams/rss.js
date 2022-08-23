@@ -22,7 +22,6 @@ class Rss {
         .setDescription(description)
         .setTimestamp()
         let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
-        console.log("5")
         channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
           if (feed.poll) {
             ownMessage.react(config.discord.emojis.thumbsUp)
