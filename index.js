@@ -17,6 +17,7 @@ const Cache = require("node-cache")
 cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
 const config = require("./config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
+const colours = require("./colours.json")
 
 // SCHEDULED
 // fs.readdir("./scheduled/", (error, files) => {
@@ -51,7 +52,7 @@ client.botCommands = new Collection()
 client.error = (error_msg) => {
   const error_embed = new EmbedBuilder()
     .setTitle("An Error occured!")
-    .setColor(0xFF0000)
+    .setColor(colours.red)
     .setDescription(`\`\`\`${error_msg}\`\`\``)
     .setTimestamp()
   let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)

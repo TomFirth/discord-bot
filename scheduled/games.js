@@ -2,6 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
+const colours = require("../colours.json")
 
 class Game {
   static async start(client, db, cache, game) {
@@ -35,7 +36,7 @@ class Game {
 			db.collection(game.db).doc(questions[random].id).update({ used: true })
 			const gameEmbed = new EmbedBuilder()
 				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
-				.setColor("GREEN")
+				.setColor(colours.green)
 			utilities.channel(client, game.destination, { embeds: [gameEmbed] })
 		})
 		scheduledMessage.start()

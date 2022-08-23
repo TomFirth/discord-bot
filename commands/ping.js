@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require("discord.js")
+const colours = require("../colours.json")
 
 module.exports = {
   emoji: '🏓',
@@ -11,7 +12,7 @@ module.exports = {
       result_message.delete()
       const latencies = new EmbedBuilder()
         .setTitle(`'${client.user.username}' Latency Test`)
-        .setColor("BLURPLE")
+        .setColor(colours.blurple)
         .addField(`Ping`, `\`${ping} ms\``)
         .setTimestamp()
         message.channel.send({ embeds: [latencies]})

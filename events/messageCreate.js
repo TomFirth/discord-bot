@@ -6,26 +6,17 @@ const cache = new Cache({ stdTTL: 18 * 1000000 })
 const utilities = require("../scripts/utilities.js")
 const config = require("../config.json")
 const trolls = require("../troll.json")
+const colours = require("../colours.json")
 
 module.exports = (client, message) => {
-  console.log("message", message)
-  console.log("start", message.content.charAt(0))
-  console.log("prefix", config.bot.prefix)
-  console.log("if", message.content.charAt(0) == config.bot.prefix)
   if (message.content.charAt(0) == config.bot.prefix) {
-    console.log("hi")
     if (message.type === "DM" || message.author.bot) return
-    console.log("not dm or bot")
     const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
-    console.log("args?")
     const commandName = args.shift().toLowerCase();
-    console.log("has command name")
     const commandGet = client.commands.get(commandName)
       || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
-    console.log("commandGet", commandGet)
     if (!commandGet) return
     else {
-      console.log("has command")
       try {
         commandGet.execute(client, message, args, config.bot.prefix)
       } catch (error) {
@@ -73,7 +64,7 @@ module.exports = (client, message) => {
       const gameEmbed = new EmbedBuilder()
         .setTitle(`${games[today]} WINNER!`)
         .setThumbnail(message.author.displayAvatarURL())
-        .setColor("GOLD")
+        .setColor(colours.gold)
         .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
       message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)

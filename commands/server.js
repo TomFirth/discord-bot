@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require("discord.js")
+const colours = require("../colours.json")
 
 module.exports = {
     emoji: '📊',
@@ -17,7 +18,7 @@ module.exports = {
         const server_embed = new EmbedBuilder()
           .setTitle(message.guild.name)
           .setThumbnail(message.guild.iconURL())
-          .setColor("NAVY")
+          .setColor(colours.navy)
           .setDescription(`\`🙂\` \`Members\` **- \`${message.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
         return message.channel.send({ embeds: [server_embed] })
     },
