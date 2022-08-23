@@ -8,7 +8,7 @@ const config = require("../config.json")
 const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
-  console.log("message!")
+  console.log("message!", message.content.startsWith(config.bot.prefix))
   if (message.content.startsWith(config.bot.prefix)) {
     console.log("hi")
     if (message.type === "DM" || message.author.bot) return
