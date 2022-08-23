@@ -117,9 +117,9 @@ fs.readdir("./commands/", (error, files) => {
   if (error) return console.error(err)
   const commandFiles = files.filter(fileName => fileName.endsWith(".js"))
   for (const file of commandFiles) {
-    console.log("file", file)
     const commandName = file.split(".")[0]
     const command = require(`./commands/${file}`)
+    console.log(`Attempting to load command ${commandName}`);
     client.commands.set(commandName, command)
   }
 })
