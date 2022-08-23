@@ -4,6 +4,7 @@ const config = require("../config.json")
 module.exports = {
   emoji: '👍',
   name: 'poll',
+  aliases: ["poll", "decide", "vote"],
   description: 'Let others decide',
   execute(client, message, args) {
     if (!args.length) return message.reply(`**Please add a question.**`)

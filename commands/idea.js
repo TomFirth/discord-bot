@@ -4,6 +4,7 @@ const db = firebase.firestore()
 module.exports = {
   emoji: '❓',
   name: 'feature',
+  aliases: ["feature", "idea", "suggest"],
   description: 'Suggest a new bot feature!',
   async run(client, message, args) {
     await db.collection("ideas").add({

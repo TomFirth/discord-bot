@@ -3,6 +3,7 @@ const { EmbedBuilder } = require("discord.js")
 module.exports = {
   emoji: '🏓',
   name: 'ping',
+  aliases: ["ping", "pong"],
   description: 'Check that Barber\'s ok',
   execute(client, message) {  
     message.channel.send("\`🏓\` **- Getting my ping ...**").then(result_message => {

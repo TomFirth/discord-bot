@@ -11,10 +11,11 @@ module.exports = (client, message) => {
   if (message.type === "DM" || message.author.bot) return
 
   const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
-  const command_name = args.shift().toLowerCase()
-  if (!command_name) return
-  else if (command_name.charAt(0) === ".") return
-  else if (command_name.charAt(0) === "/") return
+  const commandName = args.shift().toLowerCase()
+  command = client.commands.get(commandName) || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
+  if (!commandName) return
+  else if (commandName.charAt(0) === ".") return
+  else if (commandName.charAt(0) === "/") return
 
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {

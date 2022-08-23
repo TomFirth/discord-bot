@@ -5,6 +5,7 @@ const db = firebase.firestore()
 module.exports = {
   emoji: '👍',
   name: 'quote',
+  aliases: ["quote", "randomquote"],
   description: 'Quote people, forever',
   async execute(client, message, args) {
     if (args[0] == "add") {

@@ -4,6 +4,7 @@ const config = require("../config.json")
 module.exports = {
   emoji: '🗒️',
   name: 'message',
+  aliases: ["message", "barber"],
   description: 'Send a custom message',
   execute(client, message) {
     message.delete()
