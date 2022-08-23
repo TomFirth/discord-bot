@@ -101,9 +101,7 @@ module.exports = (client, message) => {
     && !message.content.toLowerCase().split(' ')[0] == "answer") {
     message.react(reactArray[Math.floor(Math.random() * reactArray.length)])
   }
-  
-  const command = client.botCommands.get(command_name)
-  if (!command) return 
+   
   try {
     command.execute(client, message, args)
   } catch (error) {
