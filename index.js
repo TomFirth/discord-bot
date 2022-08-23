@@ -1,10 +1,11 @@
 const fs = require("fs")
 const cron = require("cron")
-const { Client, Collection, EmbedBuilder, Intents } = require("discord.js")
-const allIntents = new Intents(32767);
+const { Client, Collection, EmbedBuilder, IntentsBitField } = require("discord.js")
+const myIntents = new IntentsBitField();
+myIntents.add(IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.DirectMessages, IntentsBitField.Flags.GuildMessages);
 const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
-  intents: allIntents
+  intents: myIntents
 })
 client.commands = new Collection();
 const firebase = require("firebase-admin")
