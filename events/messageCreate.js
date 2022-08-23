@@ -9,14 +9,19 @@ const trolls = require("../troll.json")
 
 module.exports = (client, message) => {
   if (message.content.startsWith(config.bot.prefix)) {
+    console.log("hi")
     if (message.type === "DM" || message.author.bot) return
+    console.log("not dm or bot")
     const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
+    console.log("args?")
     const commandName = args.shift().toLowerCase();
+    console.log("has command name")
     const commandGet = client.commands.get(commandName)
       || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
-      console.log("commandGet", commandGet)
+    console.log("commandGet", commandGet)
     if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
     else {
+      console.log("has command")
       try {
         commandGet.execute(client, message, args, config.bot.prefix)
       } catch (error) {
