@@ -49,13 +49,13 @@ client.botCommands = new Collection()
 
 // ERROR MESSAGE
 client.error = (error_msg) => {
-  if (!error_msg || !channel) return
   const error_embed = new EmbedBuilder()
     .setTitle("An Error occured!")
     .setColor("RED")
     .setDescription(`\`\`\`${error_msg}\`\`\``)
     .setTimestamp()
   let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
+  if (!error_msg || !channel) return
   return channel.send({ embeds: [error_embed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
 }
 
