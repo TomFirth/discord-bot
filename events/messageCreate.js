@@ -14,13 +14,14 @@ module.exports = (client, message) => {
     const commandName = args.shift().toLowerCase();
     const commandGet = client.commands.get(commandName)
       || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
+      console.log("commandGet", commandGet)
     if (!commandGet || commandGet.charAt(0) === "." || commandGet.charAt(0) === "/") return
     else {
       try {
         commandGet.execute(client, message, args, config.bot.prefix)
       } catch (error) {
         console.error(error)
-    }
+      }
     }
   }
 
