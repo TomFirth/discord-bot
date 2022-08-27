@@ -1,4 +1,4 @@
-const { Discord, EmbedBuilder } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
 const Cache = require("node-cache")
@@ -9,6 +9,7 @@ const trolls = require("../troll.json")
 const colours = require("../colours.json")
 
 module.exports = (client, message) => {
+  console.log("message", message.content)
   if (message.content.charAt(0) == config.bot.prefix && message.type !== "DM" || !message.author.bot) {
     const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
     const commandName = args.shift().toLowerCase();
@@ -45,11 +46,11 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
+    console.log("an answer has been given!")
     let answer = cache.get("answer")
     answer = answer.toLowerCase()
-    const userAnswer = message.content.toLowerCase().replace("answer ", "")
-    console.log("an answer has been given!")
     console.log("answer?", answer)
+    const userAnswer = message.content.toLowerCase().replace("answer ", "")
     console.log("userAnswer", userAnswer)
     if (userAnswer == answer) {
       const games = [
