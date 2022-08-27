@@ -24,6 +24,7 @@ module.exports = (client, message) => {
       }
     }
   }
+  console.log("after check")
 
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
@@ -43,6 +44,8 @@ module.exports = (client, message) => {
       }
     }
   })
+
+  console.log("is answer?", message.content.toLowerCase().split(' ')[0])
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
