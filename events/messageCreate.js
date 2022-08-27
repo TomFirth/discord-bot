@@ -11,18 +11,20 @@ const colours = require("../colours.json")
 module.exports = (client, message) => {
   console.log("message", message.content)
   console.log("is command", message.content.charAt(0) == config.bot.prefix)
-  if (message.content.charAt(0) == config.bot.prefix && message.type !== "DM" || !message.author.bot) {
-    console.log("this is a command")
-    const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
-    const commandName = args.shift().toLowerCase();
-    const commandGet = client.commands.get(commandName)
-      || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
-    if (!commandGet) return
-    else {
-      try {
-        commandGet.execute(client, message, args, config.bot.prefix)
-      } catch (error) {
-        console.error(error)
+  if (message.content.charAt(0) == config.bot.prefix) {
+      if(message.type !== "DM" || !message.author.bot) {
+      console.log("this is a command")
+      const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
+      const commandName = args.shift().toLowerCase();
+      const commandGet = client.commands.get(commandName)
+        || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
+      if (!commandGet) return
+      else {
+        try {
+          commandGet.execute(client, message, args, config.bot.prefix)
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
   }
