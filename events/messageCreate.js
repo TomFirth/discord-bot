@@ -9,11 +9,8 @@ const trolls = require("../troll.json")
 const colours = require("../colours.json")
 
 module.exports = (client, message) => {
-  console.log("message", message.content)
-  console.log("is command", message.content.charAt(0) == config.bot.prefix)
   if (message.content.charAt(0) == config.bot.prefix) {
-      if(message.type !== "DM" || !message.author.bot) {
-      console.log("this is a command")
+      if (message.type !== "DM" || !message.author.bot) { // this is messy
       const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
       const commandName = args.shift().toLowerCase();
       const commandGet = client.commands.get(commandName)
@@ -28,7 +25,6 @@ module.exports = (client, message) => {
       }
     }
   }
-  console.log("after check")
 
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
@@ -49,16 +45,11 @@ module.exports = (client, message) => {
     }
   })
 
-  console.log("is answer?", message.content.toLowerCase().split(' ')[0])
-
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    console.log("an answer has been given!")
     let answer = cache.get("answer") || ""
     answer = answer.toLowerCase()
-    console.log("answer?", answer)
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
-    console.log("userAnswer", userAnswer)
     if (userAnswer == answer) {
       const games = [
         "",
@@ -89,7 +80,7 @@ module.exports = (client, message) => {
       }
       utilities.specialSort(message.author.id)
     } else {
-      if (answer != "" || !answer) {
+      if (answer !== "" || !answer) {
         const guessArray = userAnswer.split(' ')
         const answerArray = answer.split(' ')
         answerArray.forEach(value => {
@@ -99,6 +90,8 @@ module.exports = (client, message) => {
           }
         })
         message.react(config.discord.emojis.thumbsDown)
+      } else {
+        message.channel.send("The game has ended for now.")
       }
     }
   }
