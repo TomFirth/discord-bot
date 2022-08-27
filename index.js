@@ -48,15 +48,15 @@ const twitter = require("./streams/socials/twitter")
 // const twitch = require("./streams/socials/twitch")
 
 // ERROR MESSAGE
-client.error = (error_msg) => {
-  const error_embed = new EmbedBuilder()
+client.error = (error) => {
+  const errorEmbed = new EmbedBuilder()
     .setTitle("An Error occured!")
     .setColor(colours.red)
-    .setDescription(`\`\`\`${error_msg}\`\`\``)
+    .setDescription(`\`\`\`${error}\`\`\``)
     .setTimestamp()
   let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
-  if (!error_msg || !channel) return
-  return channel.send({ embeds: [error_embed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
+  if (!error || !channel) return
+  return channel.send({ embeds: [errorEmbed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
 }
 
 // EVENT HANDLER

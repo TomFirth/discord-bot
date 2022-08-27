@@ -7,6 +7,7 @@ const colours = require("../colours.json")
 class Game {
   static async start(client, db, cache, game) {
 		const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
+		// if after midnight - this shouldn't happen
 		const doc = await lastQuestion.get()
 		if (!doc.data().used) {
 			cache.set("answer", doc.data().answer)

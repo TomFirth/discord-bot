@@ -9,8 +9,7 @@ const trolls = require("../troll.json")
 const colours = require("../colours.json")
 
 module.exports = (client, message) => {
-  if (message.content.charAt(0) == config.bot.prefix) {
-    if (message.type === "DM" || message.author.bot) return
+  if (message.content.charAt(0) == config.bot.prefix && message.type !== "DM" || !message.author.bot) {
     const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
     const commandName = args.shift().toLowerCase();
     const commandGet = client.commands.get(commandName)
@@ -49,7 +48,10 @@ module.exports = (client, message) => {
     let answer = cache.get("answer")
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
-    if (userAnswer.includes(answer)) {
+    console.log("an answer has been given!")
+    console.log("answer?", answer)
+    console.log("userAnswer", userAnswer)
+    if (userAnswer == answer) {
       const games = [
         "",
         "Quiz",
@@ -89,7 +91,6 @@ module.exports = (client, message) => {
           }
         })
         message.react(config.discord.emojis.thumbsDown)
-        console.log("userAnswer", userAnswer, "answer", answer)
       }
     }
   }

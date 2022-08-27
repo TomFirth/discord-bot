@@ -5,14 +5,11 @@
   the bot is then able to find other users with the same games
   both users are then contacted, and hopefully will want to play together */
 
-const { EmbedBuilder } = require("discord.js")
-const colours = require("../colours.json")
-
 module.exports = {
   emoji: '📝',
   name: 'steam',
   description: 'Steam helper',
-  execute(client, message) {
+  execute(client, message, args) {
     // add library
     // remove library
     // find players
