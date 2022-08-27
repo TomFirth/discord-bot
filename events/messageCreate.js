@@ -10,8 +10,9 @@ const colours = require("../colours.json")
 
 module.exports = (client, message) => {
   console.log("message", message.content)
+  console.log("is command", message.content.charAt(0) == config.bot.prefix)
   if (message.content.charAt(0) == config.bot.prefix && message.type !== "DM" || !message.author.bot) {
-    console.log("is command")
+    console.log("this is a command")
     const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
     const commandName = args.shift().toLowerCase();
     const commandGet = client.commands.get(commandName)
