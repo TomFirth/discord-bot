@@ -50,7 +50,9 @@ module.exports = (client, message) => {
     let answer = cache.get("answer") || ""
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
+    console.log(answer, userAnswer)
     if (userAnswer == answer) {
+      console.log("we have an answer!")
       const games = [
         "",
         "Quiz",
@@ -91,7 +93,7 @@ module.exports = (client, message) => {
         })
         message.react(config.discord.emojis.thumbsDown)
       } else {
-        message.channel.send("The game has ended for now.")
+        message.channel.send("The game has ended for now.") // this isn't working?
       }
     }
   }
