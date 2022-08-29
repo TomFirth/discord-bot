@@ -42,7 +42,6 @@ module.exports = {
     const query = await db.collection("special").get()
     const timestamp = new Date()
     let userArray = []
-    let updated = false
     query.forEach(doc => {
       if (user !== doc.data().user) {
         userArray.push({
@@ -50,20 +49,16 @@ module.exports = {
           timestamp: doc.data().timestamp,
           user: doc.data().user
         })
-      } else {
-        db.collection("special").doc(doc.id).update({ timestamp })
-        updated = true
       }
     })
     if (!updated) {
-      userArray.sort(compare)
-      const newUser = {
-        id: userArray[1].id,
-        timestamp: timestamp,
-        user
-      }
+      userArray.sort(utilities.compare())
       userArray.shift()
-      userArray.push(newUser)
+      userArray.push({
+        id: userArray[1].id,
+        timestamp,
+        user
+      })
     }
     userArray.forEach(async user => {
       await db.collection("special").doc(user.id).update({
