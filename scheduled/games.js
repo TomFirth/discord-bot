@@ -13,6 +13,8 @@ class Game {
 		if (!doc.data().used) {
 			console.log("answer is reset")
 			cache.set("answer", doc.data().answer)
+			const test = cache.get("answer")
+			console.log("test", test)
 		}
 		let scheduledMessage = new cron.CronJob(game.frequency, async () => {
 			const query = await db.collection(game.db).where("used", "==", false).get()
