@@ -13,7 +13,7 @@ firebase.initializeApp({
 })
 const db = firebase.firestore()
 const Cache = require("node-cache")
-cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
+const cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
 if (process.env.NODE_ENV) require("dotenv").config()
 const colours = require("./colours.json")
 const config = require("./config.json")
