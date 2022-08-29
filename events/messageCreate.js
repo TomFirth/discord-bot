@@ -8,7 +8,7 @@ const config = require("../config.json")
 const trolls = require("../troll.json")
 const colours = require("../colours.json")
 
-module.exports = (client, message) => {
+module.exports = async (client, message) => {
   if (message.content.charAt(0) == config.bot.prefix) {
       if (message.type !== "DM" || !message.author.bot) { // this is messy
       const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
