@@ -48,6 +48,7 @@ module.exports = (client, message) => {
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
     let answer = cache.get("answer") || ""
+    console.log("cache", cache.get("answer"))
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     console.log(answer, userAnswer)

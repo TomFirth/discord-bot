@@ -61,14 +61,14 @@ client.error = (error) => {
 
 // EVENT HANDLER
 fs.readdir("./events/", (error, files) => {
-  if (error) return console.error(err)
+  if (error) return console.error(error)
   client.removeAllListeners()
   files.forEach(file => {
     if (fs.lstatSync(`./events/${file}`).isDirectory()) return
     const event = require(`./events/${file}`)
-    const event_name = file.split(".")[0]
+    const eventName = file.split(".")[0]
     try {
-      client.on(event_name, event.bind(null, client))
+      client.on(eventName, event.bind(null, client))
     } catch(error) {
       console.error(error)
     }
