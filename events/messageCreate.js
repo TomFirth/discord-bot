@@ -47,7 +47,11 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    let answer = cache.get("answer") || ""
+    if (!cache.has("answer")) {
+      console.log("no cache")
+      return
+    }
+    let answer = cache.get("answer")
     console.log("cache", cache.get("answer"))
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
@@ -73,7 +77,7 @@ module.exports = (client, message) => {
       message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })
-      cache.remove("answer")
+      cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
       // REWARD
       if (!message.member.roles.cache.some(role => role.name === "special")) {
