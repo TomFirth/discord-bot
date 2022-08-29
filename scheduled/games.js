@@ -9,7 +9,9 @@ class Game {
 		const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
 		// if after midnight - this shouldn't happen
 		const doc = await lastQuestion.get()
+		console.log("used?", doc.data().used)
 		if (!doc.data().used) {
+			console.log("answer is reset")
 			cache.set("answer", doc.data().answer)
 		}
 		let scheduledMessage = new cron.CronJob(game.frequency, async () => {
