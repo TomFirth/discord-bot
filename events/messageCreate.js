@@ -47,9 +47,23 @@ module.exports = (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    if (!cache.has("answer")) {
-      console.log("no cache")
-      return
+    // check safe for work hours
+    const startTime = '19:00:00';
+    const endTime = '23:59:59';
+    const currentDate = new Date()   
+    let startDate = new Date(currentDate.getTime())
+    startDate.setHours(startTime.split(":")[0])
+    let endDate = new Date(currentDate.getTime())
+    endDate.setHours(endTime.split(":")[0])
+    endDate.setMinutes(endTime.split(":")[1])
+    const valid = startDate < currentDate && endDate > currentDate
+    if (!cache.has("answer") && valid) {
+      const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
+      const doc = await lastQuestion.get()
+      console.log("used?", doc.data().used)
+      if (!doc.data().used) {
+        cache.set("answer", doc.data().answer)
+      }
     }
     let answer = cache.get("answer")
     console.log("cache", cache.get("answer"))

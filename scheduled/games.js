@@ -6,14 +6,6 @@ const colours = require("../colours.json")
 
 class Game {
   static async start(client, db, cache, game) {
-		const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
-		// if after midnight - this shouldn't happen
-		const doc = await lastQuestion.get()
-		console.log("used?", doc.data().used)
-		if (!doc.data().used) {
-			cache.set("answer", doc.data().answer)
-			console.log("cache check", cache.get("answer"))
-		}
 		let scheduledMessage = new cron.CronJob(game.frequency, async () => {
 			const query = await db.collection(game.db).where("used", "==", false).get()
 			let questions = []
