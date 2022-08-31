@@ -20,7 +20,7 @@ function init(client, db, cache) {
 				db: "game.db",
 				used: false
 			})
-    }).catch(function (error) {
+    }).catch(error => {
       console.error(error)
     })
 	})
