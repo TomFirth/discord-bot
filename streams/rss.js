@@ -20,7 +20,7 @@ class Rss {
         .setTitle(item.title)
         .setURL(item.link)
         .setAuthor({ name: feed.author })
-        .setDescription(description)
+        .setDescription(`${description.substring(0, 180)}...`)
         .setTimestamp()
         let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
         channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
