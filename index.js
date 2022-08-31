@@ -25,7 +25,7 @@ client.prefix = config.bot.prefix
 // fs.readdir("./scheduled/", (error, files) => {
 //   if (error) return console.error(error)
 //   files.forEach(file => {
-//       require("./scheduled/" + file)(client, db)
+//       require("./scheduled/" + file)(client, db, cache)
 //   })
 // })
 const leet = require("./scheduled/1337")(client)
@@ -35,6 +35,7 @@ const games = require("./scheduled/games")
 const jokes = require("./scheduled/jokes")(client, db)
 const lucky = require("./scheduled/lucky")(client)
 const prune = require("./scheduled/prune")(client)
+const riddles = require("./scheduled/riddles")(client, db, cache)
 const unlucky = require("./scheduled/unlucky")(client)
 const unSpecial = require("./scheduled/unSpecial")(client)
 
