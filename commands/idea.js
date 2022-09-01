@@ -6,12 +6,12 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("feature")
     .setDescription("Suggest a new feature")
-    .addStringOption(option => {
+    .addStringOption(option =>
       option
       .setName("feature")
       .setDescription("Your idea")
       .setRequired(true)
-    }),
+    ),
   async execute(interaction) {
     await db.collection("ideas").add({
       author: interaction.author.username,

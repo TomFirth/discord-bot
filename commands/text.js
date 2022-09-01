@@ -5,12 +5,12 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setname("text")
     .setDescription("Create a text channel")
-    .addStringOption(option => {
+    .addStringOption(option =>
       option
       .setName("name")
       .setDescription("Channel name")
       .setRequired(true)
-    }),
+    ),
   async execute(interaction) {
     // set user limit
     // set private/public

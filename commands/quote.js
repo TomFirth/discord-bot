@@ -8,7 +8,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("quote")
     .setDescription("Check that Barber\'s ok")
-    .addStringOption(option => {
+    .addStringOption(option =>
       option
         .setName("user")
         .setDescription("Who said it?")
@@ -17,7 +17,7 @@ module.exports = {
         .setName("quote")
         .setDescription("What did they say?")
         .setRequired(false)
-    }),
+    ),
   async execute(interaction) {
     if (!interaction.options.getString("user")) {
       const query = await firebase.firestore().collection('quotes').get()

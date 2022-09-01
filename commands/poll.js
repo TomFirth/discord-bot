@@ -7,12 +7,12 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setname("poll")
     .setDescription("Create a poll")
-    .addStringOption(option => {
+    .addStringOption(option =>
       option
       .setName("question")
       .setDescription("Poll question")
       .setRequired(true)
-    }),
+    ),
   async execute(interaction) {
     const poll = new EmbedBuilder()
       .setDescription(`Poll: **${interaction.options.getString("question")}**`)

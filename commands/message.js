@@ -6,7 +6,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("message")
     .setDescription("Send a custom message")
-    .addStringOption(option => {
+    .addStringOption(option =>
       option
         .setName("destination")
         .setDescription("Where to?")
@@ -15,7 +15,7 @@ module.exports = {
        .setName("message")
        .setDescription("What is your message?")
        .setRequired(true)
-    }),
+    ),
   async execute(client, interaction) {
     interaction.delete()
     utilities.channel(client, interaction.options.getString("destination"), interaction.options.getString("message"))
