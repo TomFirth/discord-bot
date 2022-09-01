@@ -6,7 +6,7 @@ const utilities = require("../scripts/utilities")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("quote")
+    .setName("quote")
     .setDescription("Check that Barber\'s ok")
     .addStringOption(option => {
       option

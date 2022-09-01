@@ -4,7 +4,7 @@ const { authenticate } = require('@google-cloud/local-auth')
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("gamedev")
+    .setName("gamedev")
     .setDescription("Gamedev doc access"),
   async execute(interaction) {
     const docs = google.docs('v1')

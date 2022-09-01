@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("uptime")
+    .setName("uptime")
     .setDescription("Barber\'s uptime"),
   async execute(interaction) {
     let totalSeconds = (client.uptime / 1000)

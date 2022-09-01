@@ -4,7 +4,7 @@ const colours = require("../colours.json")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("ping")
+    .setName("ping")
     .setDescription("Check that Barber\'s ok"),
   async execute(interaction) {
     var members = await interaction.guild.members.fetch()

@@ -9,7 +9,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("steam")
+    .setName("steam")
     .setDescription("Find someone to play with"),
   async execute(interaction) {
     // add library

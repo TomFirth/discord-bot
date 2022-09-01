@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("lie")
+    .setName("lie")
     .setDescription("Lie detector"),
   async execute(interaction) {
     interaction.delete()

@@ -3,7 +3,7 @@ const config = require("../config.json")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("voice")
+    .setName("voice")
     .setDescription("Create a voice channel")
     .addStringOption(option => {
       option

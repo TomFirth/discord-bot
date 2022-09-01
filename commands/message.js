@@ -4,7 +4,7 @@ const config = require("../config.json")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("message")
+    .setName("message")
     .setDescription("Send a custom message")
     .addStringOption(option => {
       option
