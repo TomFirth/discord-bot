@@ -21,7 +21,6 @@ module.exports = {
       ephemeral: false
     })
     interaction.deleteReply()
-    const channel = interaction.channels.cache.find(channel => channel.id === interaction.options.getChannel('destination'))
-    channel.send(interaction.options.getString("message"))
+    interaction.channels.get(interaction.options.getChannel('destination')).send(interaction.options.getString("message"))
   }
 }
