@@ -17,7 +17,10 @@ module.exports = {
        .setDescription("What is your message?")
        .setRequired(true)),
   async execute(client, interaction) {
-    interaction.deleteReply()
+    interaction.reply({
+      content: "thinking...",
+      ephemeral: true
+    })
     utilities.channel(client, interaction.options.getChannel('destination'), interaction.options.getString("message"))
   }
 }

@@ -21,8 +21,10 @@ module.exports = {
       .setThumbnail(interaction.guild.iconURL())
       .setColor(colours.navy)
       .setDescription(`\`🙂\` \`Members\` **- \`${interaction.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
-    interaction.reply()
-    interaction.deleteReply()
+      interaction.reply({
+        content: "thinking...",
+        ephemeral: true
+      })
     interaction.channel.send({ embeds: [server_embed] })
   }
 }

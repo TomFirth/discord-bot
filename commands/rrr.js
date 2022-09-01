@@ -25,8 +25,10 @@ module.exports = {
             randomTracks.push(everything[rand])
         }
       }
-      interaction.reply()
-      interaction.deleteReply()
+      interaction.reply({
+        content: "thinking...",
+        ephemeral: true
+      })
       randomTracks = randomTracks.slice(0, 3)
       randomTracks.forEach((track, index) => {
         interaction.channel.send(track)

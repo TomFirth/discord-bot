@@ -13,8 +13,10 @@ module.exports = {
     ),
   async execute(interaction) {
     google({'query': interaction.options.getString("search")}).then(results => {
-      interaction.reply()
-      interaction.deleteReply()
+      interaction.reply({
+        content: "thinking...",
+        ephemeral: true
+      })
       interaction.channel.send(`${results[0].link || "0 results"}`)
     })
   }
