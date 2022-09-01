@@ -29,9 +29,15 @@ module.exports = {
           timestamp: doc.data().timestamp
 				})
 			})
+      interaction.reply({
+        content: "thinking...",
+        ephemeral: false
+      })
+      interaction.deleteReply()
+      const interactionUser = await interaction.guild.members.fetch(doc.data().author)
       const quote = new EmbedBuilder()
         .setDescription(`"${quotes[Math.floor(Math.random() * quotes.length)].quote}"`)
-        .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
+        .setAuthor({ name: interactionUser.user.username, iconURL: interactionUser.user.displayAvatarURL({ dynamic:true }) })
         .setColor(utilities.randomColour())
       return interaction.channel.send({ embeds: [quote] })
     } else {
