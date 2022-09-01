@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require("discord.js")
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { google } = require('googleapis')
+const utilities = require("../scripts/utilities")
 
 module.exports = {
   data: new SlashCommandBuilder()
