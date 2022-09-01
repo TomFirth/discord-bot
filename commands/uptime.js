@@ -5,7 +5,7 @@ module.exports = {
     .setName("uptime")
     .setDescription("Barber\'s uptime"),
   async execute(interaction) {
-    let totalSeconds = (client.uptime / 1000)
+    let totalSeconds = (interaction.client.uptime / 1000)
     let days = Math.floor(totalSeconds / 86400)
     totalSeconds %= 86400
     let hours = Math.floor(totalSeconds / 3600)
