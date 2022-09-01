@@ -51,7 +51,7 @@ module.exports = {
           })
           interaction.deleteReply()
           const game_embed = new EmbedBuilder()
-            .setTitle(title)
+            .setTitle(`Random game idea: ${title}`)
             .setThumbnail()
             .setColor(utilities.randomColour())
             .setDescription(game.toString())
