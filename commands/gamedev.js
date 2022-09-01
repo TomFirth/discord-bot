@@ -54,7 +54,7 @@ module.exports = {
             .setTitle(title)
             .setThumbnail()
             .setColor(utilities.randomColour())
-            .setDescription(game)
+            .setDescription(game.toString())
           return interaction.channel.send({ embeds: [game_embed] })
         });
       } else {
