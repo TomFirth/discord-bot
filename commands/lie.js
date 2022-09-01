@@ -25,6 +25,8 @@ module.exports = {
       "Liar liar, pants on fire!",
       "That one was off the scale."
     ]
+    interaction.reply()
+    interaction.deleteReply()
     await interaction.channel.send(lies[Math.floor(Math.random() * lies.length)])
   }
 }
