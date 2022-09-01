@@ -16,7 +16,7 @@ module.exports = {
     // set private/public
     if (!interaction.options.getString("name")) channelName = `${config.discord.emojis.clock} temp`
     else channelName = config.discord.emojis.clock + " " + interaction.options.getString("name")
-    interaction.guild.channels.create(channelName, {
+    client.guild.channels.create(channelName, {
       type: "text",
       permissionOverwrites: [
         {
