@@ -23,7 +23,7 @@ module.exports = {
       .setDescription(`\`🙂\` \`Members\` **- \`${interaction.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
       interaction.reply({
         content: "thinking...",
-        ephemeral: true
+        ephemeral: false
       })
     interaction.channel.send({ embeds: [server_embed] })
   }

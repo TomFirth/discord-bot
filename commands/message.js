@@ -19,7 +19,7 @@ module.exports = {
   async execute(client, interaction) {
     interaction.reply({
       content: "thinking...",
-      ephemeral: true
+      ephemeral: false
     })
     utilities.channel(client, interaction.options.getChannel('destination'), interaction.options.getString("message"))
   }

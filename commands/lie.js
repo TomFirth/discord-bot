@@ -28,7 +28,7 @@ module.exports = {
     await interaction.channel.send(lies[Math.floor(Math.random() * lies.length)])
     interaction.reply({
       content: "thinking...",
-      ephemeral: true
+      ephemeral: false
     })
     interaction.deleteReply()
   }

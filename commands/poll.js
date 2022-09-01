@@ -19,7 +19,7 @@ module.exports = {
       .setColor(utilities.randomColour())
       interaction.reply({
         content: "thinking...",
-        ephemeral: true
+        ephemeral: false
       })
     interaction.channel.send({ embeds: [poll] }).then(ownMessage => {
       ownMessage.react(config.discord.emojis.thumbsUp)

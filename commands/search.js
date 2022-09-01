@@ -15,7 +15,7 @@ module.exports = {
     google({'query': interaction.options.getString("search")}).then(results => {
       interaction.reply({
         content: "thinking...",
-        ephemeral: true
+        ephemeral: false
       })
       interaction.channel.send(`${results[0].link || "0 results"}`)
     })

@@ -27,7 +27,7 @@ module.exports = {
       }
       interaction.reply({
         content: "thinking...",
-        ephemeral: true
+        ephemeral: false
       })
       randomTracks = randomTracks.slice(0, 3)
       randomTracks.forEach((track, index) => {
