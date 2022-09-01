@@ -122,10 +122,11 @@ for (const file of commandFiles) {
 	commands.push(command.data.toJSON())
   client.commands.set(command.data.name, command)
 }
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN)
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 (async () => {
 	try {
-		await rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.guildId),
+		await rest.put(
+      Routes.applicationGuildCommands(config.discord.clientId, config.discord.guildId),
 			{ body: commands },
 		)
 	} catch (error) {
