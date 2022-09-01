@@ -12,7 +12,7 @@ module.exports = {
       "Say that again, with your hand on a bible.",
       "Honest as the day is long.",
       "Lie.",
-      "Honest Abe/'s second cousin, twice removed.",
+      "Honest Abe's second cousin, twice removed.",
       "Fake, false, untrue.",
       "I detect no lie.",
       "Go forth and remain pure.",
@@ -25,11 +25,11 @@ module.exports = {
       "Liar liar, pants on fire!",
       "That one was off the scale."
     ]
+    await interaction.channel.send(lies[Math.floor(Math.random() * lies.length)])
     interaction.reply({
       content: "thinking...",
       ephemeral: true
     })
     interaction.deleteReply()
-    await interaction.channel.send(lies[Math.floor(Math.random() * lies.length)])
   }
 }
