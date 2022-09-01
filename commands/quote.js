@@ -19,7 +19,7 @@ module.exports = {
         .setDescription("What did they say?")
         .setRequired(false)),
   async execute(interaction) {
-    if (!interaction.options.getString("user")) {
+    if (!interaction.options.getUser("user") && !interaction.options.getString("quote")) {
       const query = await db.collection('quotes').get()
       let quotes = []
 			query.forEach(doc => {
