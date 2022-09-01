@@ -47,7 +47,7 @@ module.exports = {
         quote: interaction.options.getString("quote"),
         timestamp: new Date()
       }, {merge: true})
-      await interaction.deferReply({
+      await interaction.reply({
         content: "Thank you for adding a quote!",
         ephemeral: true
       })
