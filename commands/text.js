@@ -9,7 +9,7 @@ module.exports = {
       option
       .setName("name")
       .setDescription("Channel name")
-      .setRequired(true)
+      .setRequired(false)
     ),
   async execute(interaction) {
     // set user limit

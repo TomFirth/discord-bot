@@ -15,7 +15,7 @@ module.exports = {
        .setName("message")
        .setDescription("What is your message?")
        .setRequired(true)),
-  async execute(client, interaction) {
+  async execute(interaction) {
     interaction.reply({
       content: "thinking...",
       ephemeral: false
