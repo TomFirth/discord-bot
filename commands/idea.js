@@ -18,7 +18,7 @@ module.exports = {
       idea: interaction.options.getString("idea"),
       complete: false
     }, {merge: true})
-    message.reply({
+    interaction.reply({
       content: `Thank you ${interaction.nickname} for your idea!`,
       ephemeral: true
     })
