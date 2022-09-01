@@ -12,12 +12,12 @@ module.exports = {
       option
         .setName('target')
         .setDescription("Who said it")
-        .setRequired(true))
+        .setRequired(false))
     .addStringOption(option =>
       option
         .setName("quote")
         .setDescription("What did they say?")
-        .setRequired(true)),
+        .setRequired(false)),
   async execute(interaction) {
     if (!interaction.options.getString("user")) {
       const query = await firebase.firestore().collection('quotes').get()
