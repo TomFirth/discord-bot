@@ -42,9 +42,8 @@ module.exports = {
         .setColor(utilities.randomColour())
       return interaction.channel.send({ embeds: [quote] })
     } else {
-      console.log("user", interaction.options.getUser('target'))
       await db.collection("quotes").add({
-        author: interaction.options.getUser('target'),
+        author: interaction.options.getUser('target').id,
         quote: interaction.options.getString("quote"),
         timestamp: new Date()
       }, {merge: true})
