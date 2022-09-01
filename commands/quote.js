@@ -34,9 +34,10 @@ module.exports = {
         ephemeral: false
       })
       interaction.deleteReply()
-      const interactionUser = await interaction.guild.members.fetch(doc.data().author)
+      const selected = quotes[Math.floor(Math.random() * quotes.length)]
+      const interactionUser = await interaction.guild.members.fetch(selected.author)
       const quote = new EmbedBuilder()
-        .setDescription(`"${quotes[Math.floor(Math.random() * quotes.length)].quote}"`)
+        .setDescription(`"${quotes[Math.floor(selected.quote}"`)
         .setAuthor({ name: interactionUser.user.username, iconURL: interactionUser.user.displayAvatarURL({ dynamic:true }) })
         .setColor(utilities.randomColour())
       return interaction.channel.send({ embeds: [quote] })
