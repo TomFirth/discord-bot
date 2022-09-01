@@ -10,7 +10,6 @@ module.exports = {
       option
         .setName('destination')
         .setDescription('Where to?'))
-        .setRequired(true)
     .addStringOption(option =>
       option
        .setName("message")
