@@ -5,8 +5,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("message")
     .setDescription("Send a custom message")
-    .addChannelOption(option =>
-      option
+    .addChannelOption(channel =>
+      channel
         .setName('destination')
         .setDescription('Where to?')
         .setRequired(true))
@@ -21,6 +21,7 @@ module.exports = {
       ephemeral: false
     })
     interaction.deleteReply()
-    utilities.channel(client, interaction.options.getChannel('destination'), interaction.options.getString("message"))
+    console.log("channel", interaction.options.getChannel('destination'))
+    interaction.channel.send(interaction.options.getChannel('destination'), interaction.options.getString("message"))
   }
 }
