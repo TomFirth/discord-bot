@@ -29,23 +29,18 @@ module.exports = {
           timestamp: doc.data().timestamp
 				})
 			})
-      const pickANumber = Math.floor(Math.random() * quotes.length)
-      client.users.fetch(quotes[pickANumber].author)
-      .then(user => {
-        const quote = new EmbedBuilder()
-          .setDescription(`"${quotes[pickANumber].quote}"`)
-          .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
-          .setColor(utilities.randomColour())
-        return interaction.channel.send({ embeds: [quote] })
-      })
-      .catch(console.error)
+      const quote = new EmbedBuilder()
+        .setDescription(`"${quotes[Math.floor(Math.random() * quotes.length)].quote}"`)
+        .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
+        .setColor(utilities.randomColour())
+      return interaction.channel.send({ embeds: [quote] })
     } else {
       await db.collection("quotes").add({
         author: interaction.options.getUser('target'),
         quote: interaction.options.getString("quote"),
         timestamp: new Date()
       }, {merge: true})
-      interaction.reply({
+      await interaction.deferReply({
         content: "Thank you for adding a quote!",
         ephemeral: true
       })
