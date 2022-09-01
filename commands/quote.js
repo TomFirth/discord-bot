@@ -8,15 +8,15 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("quote")
     .setDescription("Check that Barber\'s ok")
-    .addUserOption(option => 
-      option
-        .setName('target')
-        .setDescription("Who said it"))
     .addStringOption(option =>
       option
         .setName("quote")
         .setDescription("What did they say?")
         .setRequired(false)
+    .addUserOption(option => 
+      option
+        .setName('target')
+        .setDescription("Who said it"))
     ),
   async execute(interaction) {
     if (!interaction.options.getString("user")) {
