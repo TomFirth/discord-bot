@@ -6,11 +6,11 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("message")
     .setDescription("Send a custom message")
-    .addStringOption(option =>
+    .addChannelOption(option =>
       option
-        .setName("destination")
-        .setDescription("Where to?")
-        .setRequired(true),
+        .setName('destination')
+        .setDescription('Where to?'))
+    .addStringOption(option =>
       option
        .setName("message")
        .setDescription("What is your message?")

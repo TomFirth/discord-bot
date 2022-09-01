@@ -8,11 +8,11 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("quote")
     .setDescription("Check that Barber\'s ok")
-    .addStringOption(option =>
+    .addUserOption(option => 
       option
-        .setName("user")
-        .setDescription("Who said it?")
-        .setRequired(false),
+        .setName('target')
+        .setDescription("Who said it"))
+    .addStringOption(option =>
       option
         .setName("quote")
         .setDescription("What did they say?")
