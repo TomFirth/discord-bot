@@ -1,10 +1,11 @@
+const { SlashCommandBuilder } = require("@discordjs/builders")
 const { fetchSubreddit } = require("fetch-subreddit")
 
 module.exports = {
-  emoji: '🎵',
-  name: 'rrr',
-  description: 'Reddit Rhythm Roulette',
-  execute(client, message) {
+  data: new SlashCommandBuilder()
+    .setname("rrr")
+    .setDescription("Reddit Rhythm Roulette"),
+  async execute(interaction) {
     let randomTracks = []
     let everything = []
     fetchSubreddit([

@@ -1,3 +1,5 @@
+const { SlashCommandBuilder } = require("@discordjs/builders")
+
 // https://steamcommunity.com/dev
 // https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0001.29
 
@@ -6,12 +8,12 @@
   both users are then contacted, and hopefully will want to play together */
 
 module.exports = {
-  emoji: '📝',
-  name: 'steam',
-  description: 'Steam helper',
-  execute(client, message, args) {
+  data: new SlashCommandBuilder()
+    .setname("steam")
+    .setDescription("Find someone to play with"),
+  async execute(interaction) {
     // add library
     // remove library
     // find players
-  },
+  }
 }

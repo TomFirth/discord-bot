@@ -1,11 +1,12 @@
+const { SlashCommandBuilder } = require("@discordjs/builders")
 const { google } = require('googleapis')
 const { authenticate } = require('@google-cloud/local-auth')
 
 module.exports = {
-  emoji: '📝',
-  name: 'gamedev',
-  description: 'Get a random GameDev idea!',
-  async execute(client, message) {
+  data: new SlashCommandBuilder()
+    .setname("gamedev")
+    .setDescription("Gamedev doc access"),
+  async execute(interaction) {
     const docs = google.docs('v1')
     const auth = await authenticate({
       keyfilePath: "../oauth2.keys.json",
@@ -24,5 +25,5 @@ module.exports = {
     //   .setColor("RANDOM")
     //   .setDescription()
     // return message.channel.send({ embeds: [game_embed] })
-  },
+  }
 }

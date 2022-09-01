@@ -1,19 +1,23 @@
+const { SlashCommandBuilder } = require("@discordjs/builders")
 const utilities = require("../scripts/utilities")
 const config = require("../config.json")
 
 module.exports = {
-  emoji: '🗒️',
-  name: 'message',
-  aliases: ["message", "barber"],
-  description: 'Send a custom message',
-  execute(client, message) {
-    message.delete()
-    if (message.member.id === config.discord.owner.id) {
-      const args = message.content.split(" ")
-      const destination = args[1]
-      args.splice(0, 2)
-      const send = args.join(" ")
-      utilities.channel(client, destination, send)
-    }
-  },
+  data: new SlashCommandBuilder()
+    .setname("message")
+    .setDescription("Send a custom message")
+    .addStringOption(option => {
+      option
+        .setName("destination")
+        .setdescription("Where to?")
+        .setRequired(true),
+      option
+       .setName("message")
+       .setDescription("What is your message?")
+       .setRequired(true)
+    }),
+  async execute(client, interaction) {
+    interaction.delete()
+    utilities.channel(client, interaction.options.getString("destination"), interaction.options.getString("message"))
+  }
 }

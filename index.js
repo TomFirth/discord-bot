@@ -1,6 +1,8 @@
-const fs = require("fs")
+const fs = require("node:fs")
 const cron = require("cron")
 const { Client, Collection, EmbedBuilder, IntentsBitField } = require("discord.js")
+const { REST } = require('@discordjs/rest')
+const { Routes } = require("discord-api-types/v10")
 const myIntents = new IntentsBitField();
 myIntents.add(IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.DirectMessages, IntentsBitField.Flags.GuildMessages, IntentsBitField.Flags.MessageContent);
 const client = new Client({
@@ -18,7 +20,7 @@ if (process.env.NODE_ENV) require("dotenv").config()
 const colours = require("./colours.json")
 const config = require("./config.json")
 
-client.commands = new Collection();
+client.commands = new Collection()
 client.prefix = config.bot.prefix
 
 // SCHEDULED
@@ -114,13 +116,22 @@ twitter.start(client, config.socials.twitter.user, config.discord.channels.socia
 // twitch.start()
 
 // COMMAND HANDLER
-fs.readdir("./commands/", (error, files) => {
-  if (error) return console.error(err)
-  const commandFiles = files.filter(fileName => fileName.endsWith(".js"))
-  for (const file of commandFiles) {
-    const command = require(`./commands/${file}`)
-    client.commands.set(command.name, command)
-  }
-})
+const commands = []
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`)
+	commands.push(command.data.toJSON())
+  client.commands.set(command.data.name, command)
+}
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN)
+(async () => {
+	try {
+		await rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.guildId),
+			{ body: commands },
+		)
+	} catch (error) {
+		console.error(error)
+	}
+})()
 
 client.login(process.env.TOKEN).catch(error => console.error(error))

@@ -1,10 +1,11 @@
+const { SlashCommandBuilder } = require("@discordjs/builders")
+
 module.exports = {
-  emoji: '🗣️',
-  name: 'lie',
-  aliases: ["lie", "liedetector"],
-  description: 'Lie Detector',
-  execute(client, message) {
-    message.delete()
+  data: new SlashCommandBuilder()
+    .setname("lie")
+    .setDescription("Lie detector"),
+  async execute(interaction) {
+    interaction.delete()
     const lies = [
       "That was most certainly bullshit.",
       "No lie was detected.",
@@ -25,6 +26,6 @@ module.exports = {
       "Liar liar, pants on fire!",
       "That one was off the scale."
     ]
-    message.channel.send(lies[Math.floor(Math.random() * lies.length)])
-  },
+    interaction.channel.send(lies[Math.floor(Math.random() * lies.length)])
+  }
 }

@@ -1,12 +1,14 @@
+const { SlashCommandBuilder } = require("@discordjs/builders")
+
 module.exports = {
-  emoji: '🟡',
-  name: 'coin',
-  description: 'Flip a coin!',
-  execute(client, message) {
+  data: new SlashCommandBuilder()
+    .setname("coin")
+    .setDescription("Flip a coin!"),
+  async execute(interaction) {
     const coin = [
       "heads",
       "tails"
     ]
-    return message.channel.send(coin[Math.floor(Math.random() * coin.length)])
-  },
+    interaction.reply(coin[Math.floor(Math.random() * coin.length)])
+  }
 }

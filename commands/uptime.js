@@ -1,8 +1,10 @@
+const { SlashCommandBuilder } = require("@discordjs/builders")
+
 module.exports = {
-  emoji: '⏲️',
-  name: 'uptime',
-  description: 'Barber\'s uptime',
-  async execute(client, message) {
+  data: new SlashCommandBuilder()
+    .setname("uptime")
+    .setDescription("Barber\'s uptime"),
+  async execute(interaction) {
     let totalSeconds = (client.uptime / 1000)
     let days = Math.floor(totalSeconds / 86400)
     totalSeconds %= 86400
@@ -11,6 +13,6 @@ module.exports = {
     let minutes = Math.floor(totalSeconds / 60)
     let seconds = Math.floor(totalSeconds % 60)
     let uptime = `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`
-		await message.reply(uptime)
+		await interaction.reply(uptime)
   }
 }

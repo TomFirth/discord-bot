@@ -1,22 +1,25 @@
 const { EmbedBuilder } = require("discord.js")
+const { SlashCommandBuilder } = require("@discordjs/builders")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
 const utilities = require("../scripts/utilities")
 
 module.exports = {
-  emoji: '👍',
-  name: 'quote',
-  aliases: ["quote", "randomquote", "wiggzsaid"],
-  description: 'Quote people, forever',
-  async execute(client, message, args) {
-    if (args[0] == "add") {
-      await db.collection("quotes").add({
-        author: message.mentions.users.first().id,
-        quote: args.slice(2).join(" "),
-        timestamp: new Date()
-      }, {merge: true})
-      message.reply(`Thank you ${message.member} for adding a quote! - Use .quote random`)
-    } else {      
+  data: new SlashCommandBuilder()
+    .setname("quote")
+    .setDescription("Check that Barber\'s ok")
+    .addStringOption(option => {
+      option
+        .setName("user")
+        .setdescription("Who said it?")
+        .setRequired(false),
+      option
+        .setName("quote")
+        .setdescription("What did they say?")
+        .setRequired(false)
+    }),
+  async execute(interaction) {
+    if (!interaction.options.getString("user")) {
       const query = await firebase.firestore().collection('quotes').get()
       let quotes = []
 			query.forEach(doc => {
@@ -33,9 +36,19 @@ module.exports = {
           .setDescription(`"${quotes[pickANumber].quote}"`)
           .setAuthor({ name: user.username, iconURL: user.displayAvatarURL({ dynamic:true }) })
           .setColor(utilities.randomColour())
-        return message.channel.send({ embeds: [quote] })
+        return interaction.channel.send({ embeds: [quote] })
       })
       .catch(console.error)
+    } else {
+      await db.collection("quotes").add({
+        author: interaction.options.getString("user"),
+        quote: interaction.options.getString("quote"),
+        timestamp: new Date()
+      }, {merge: true})
+      interaction.reply({
+        content: "Thank you for adding a quote!",
+        ephemeral: true
+      })
     }
-  },
+  }
 }

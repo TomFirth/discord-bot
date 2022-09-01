@@ -9,23 +9,6 @@ const trolls = require("../troll.json")
 const colours = require("../colours.json")
 
 module.exports = async (client, message) => {
-  if (message.content.charAt(0) == config.bot.prefix) {
-      if (message.type !== "DM" || !message.author.bot) { // this is messy
-      const args = message.content.slice(config.bot.prefix.length).trim().split(/ +/)
-      const commandName = args.shift().toLowerCase();
-      const commandGet = client.commands.get(commandName)
-        || client.commands.find(command => command.aliases && command.aliases.includes(commandName))
-      if (!commandGet) return
-      else {
-        try {
-          commandGet.execute(client, message, args, config.bot.prefix)
-        } catch (error) {
-          console.error(error)
-        }
-      }
-    }
-  }
-
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
     if (troll.includes && !troll.emoji) {
@@ -60,18 +43,14 @@ module.exports = async (client, message) => {
     if (!cache.has("answer") && valid) {
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
-      console.log("used?", doc.data().used)
       if (!doc.data().used) {
         cache.set("answer", doc.data().answer)
       }
     }
     let answer = cache.get("answer")
-    console.log("cache", cache.get("answer"))
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
-    console.log(answer, userAnswer)
     if (userAnswer == answer) {
-      console.log("we have an answer!")
       const games = [
         "",
         "Quiz",
