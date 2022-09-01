@@ -9,7 +9,7 @@ module.exports = {
     .addStringOption(option => {
       option
         .setName("destination")
-        .setdescription("Where to?")
+        .setDescription("Where to?")
         .setRequired(true),
       option
        .setName("message")

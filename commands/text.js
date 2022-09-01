@@ -8,7 +8,7 @@ module.exports = {
     .addStringOption(option => {
       option
       .setName("name")
-      .setdescription("Channel name")
+      .setDescription("Channel name")
       .setRequired(true)
     }),
   async execute(interaction) {

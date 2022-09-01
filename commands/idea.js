@@ -9,7 +9,7 @@ module.exports = {
     .addStringOption(option => {
       option
       .setName("feature")
-      .setdescription("Your idea")
+      .setDescription("Your idea")
       .setRequired(true)
     }),
   async execute(interaction) {

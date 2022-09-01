@@ -11,11 +11,11 @@ module.exports = {
     .addStringOption(option => {
       option
         .setName("user")
-        .setdescription("Who said it?")
+        .setDescription("Who said it?")
         .setRequired(false),
       option
         .setName("quote")
-        .setdescription("What did they say?")
+        .setDescription("What did they say?")
         .setRequired(false)
     }),
   async execute(interaction) {

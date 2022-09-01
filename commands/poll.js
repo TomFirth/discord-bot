@@ -10,7 +10,7 @@ module.exports = {
     .addStringOption(option => {
       option
       .setName("question")
-      .setdescription("Poll question")
+      .setDescription("Poll question")
       .setRequired(true)
     }),
   async execute(interaction) {
