@@ -2,7 +2,7 @@ const fs = require("node:fs")
 const cron = require("cron")
 const { Client, Collection, EmbedBuilder, IntentsBitField } = require("discord.js")
 const { REST } = require('@discordjs/rest')
-const { Routes } = require("discord-api-types/v10")
+const { Routes } = require("discord-api-types/v9")
 const myIntents = new IntentsBitField();
 myIntents.add(IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.DirectMessages, IntentsBitField.Flags.GuildMessages, IntentsBitField.Flags.MessageContent);
 const client = new Client({
@@ -123,7 +123,7 @@ for (const file of commandFiles) {
 	commands.push(command.data.toJSON())
   client.commands.set(command.data.name, command)
 }
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN)
+const rest = new REST({ version: '9' }).setToken(process.env.TOKEN)
 (async () => {
 	try {
 		await rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.guildId),
