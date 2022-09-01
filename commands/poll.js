@@ -5,7 +5,7 @@ const utilities = require("../scripts/utilities")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("poll")
+    .setName("poll")
     .setDescription("Create a poll")
     .addStringOption(option =>
       option
