@@ -17,6 +17,7 @@ module.exports = {
         content: "thinking...",
         ephemeral: false
       })
+      interaction.deleteReply()
       interaction.channel.send(`${results[0].link || "0 results"}`)
     })
   }

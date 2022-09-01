@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const utilities = require("../scripts/utilities")
-const config = require("../config.json")
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -21,6 +20,7 @@ module.exports = {
       content: "thinking...",
       ephemeral: false
     })
+    interaction.deleteReply()
     utilities.channel(client, interaction.options.getChannel('destination'), interaction.options.getString("message"))
   }
 }

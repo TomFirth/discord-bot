@@ -29,6 +29,7 @@ module.exports = {
         content: "thinking...",
         ephemeral: false
       })
+      interaction.deleteReply()
       randomTracks = randomTracks.slice(0, 3)
       randomTracks.forEach((track, index) => {
         interaction.channel.send(track)

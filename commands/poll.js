@@ -21,6 +21,7 @@ module.exports = {
         content: "thinking...",
         ephemeral: false
       })
+      interaction.deleteReply()
     interaction.channel.send({ embeds: [poll] }).then(ownMessage => {
       ownMessage.react(config.discord.emojis.thumbsUp)
       ownMessage.react(config.discord.emojis.thumbsDown)

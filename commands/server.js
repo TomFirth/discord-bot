@@ -25,6 +25,7 @@ module.exports = {
         content: "thinking...",
         ephemeral: false
       })
+      interaction.deleteReply()
     interaction.channel.send({ embeds: [server_embed] })
   }
 }
