@@ -21,6 +21,6 @@ module.exports = {
       ephemeral: false
     })
     interaction.deleteReply()
-    interaction.channels.get(interaction.options.getChannel('destination')).send(interaction.options.getString("message"))
+    interaction.client.channels.get(interaction.options.getChannel('destination')).send(interaction.options.getString("message"))
   }
 }
