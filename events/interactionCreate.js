@@ -10,7 +10,7 @@ module.exports = async (client, interaction) => {
   } catch (error) {
     console.error(error)
     await interaction.reply({
-      content: "There was an error with this command",
+      content: error,
       ephemeral: true
     })
   }

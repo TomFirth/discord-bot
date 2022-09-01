@@ -4,18 +4,18 @@ const db = firebase.firestore()
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("feature")
-    .setDescription("Suggest a new feature")
+    .setName("idea")
+    .setDescription("Suggest a new idea")
     .addStringOption(option =>
       option
-      .setName("feature")
+      .setName("idea")
       .setDescription("Your idea")
       .setRequired(true)
     ),
   async execute(interaction) {
     await db.collection("ideas").add({
       author: interaction.author.username,
-      idea: interaction.options.getString("feature"),
+      idea: interaction.options.getString("idea"),
       complete: false
     }, {merge: true})
     message.reply({
