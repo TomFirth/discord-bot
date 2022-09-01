@@ -3,7 +3,7 @@ const config = require("../config.json")
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setname("text")
+    .setName("text")
     .setDescription("Create a text channel")
     .addStringOption(option =>
       option
