@@ -8,16 +8,16 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("quote")
     .setDescription("Check that Barber\'s ok")
+    .addUserOption(option => 
+      option
+        .setName('target')
+        .setDescription("Who said it")
+        .setRequired(true))
     .addStringOption(option =>
       option
         .setName("quote")
         .setDescription("What did they say?")
-        .setRequired(false)
-    .addUserOption(option => 
-      option
-        .setName('target')
-        .setDescription("Who said it"))
-    ),
+        .setRequired(true)),
   async execute(interaction) {
     if (!interaction.options.getString("user")) {
       const query = await firebase.firestore().collection('quotes').get()
@@ -41,7 +41,7 @@ module.exports = {
       .catch(console.error)
     } else {
       await db.collection("quotes").add({
-        author: interaction.options.getString("user"),
+        author: interaction.options.getUser('target'),
         quote: interaction.options.getString("quote"),
         timestamp: new Date()
       }, {merge: true})
