@@ -27,7 +27,7 @@ module.exports = {
       }
       randomTracks = randomTracks.slice(0, 3)
       randomTracks.forEach((track, index) => {
-        message.channel.send(track)
+        interaction.channel.send(track)
       })
     })
     .catch(error => console.error(error))

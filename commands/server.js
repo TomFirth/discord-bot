@@ -21,6 +21,6 @@ module.exports = {
       .setThumbnail(interaction.guild.iconURL())
       .setColor(colours.navy)
       .setDescription(`\`🙂\` \`Members\` **- \`${interaction.guild.memberCount}\`**\n\n\`🤖\` \`Bots\` **- \`${botSize}\`**\n\`👋\` \`Users\` **- \`${userSize}\`**\n\n\`📆\` \`Created\` **- \`${createdAt}\`**`)
-    return interaction.channel.send({ embeds: [server_embed] })
+    interaction.channel.send({ embeds: [server_embed] })
   }
 }

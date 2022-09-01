@@ -13,7 +13,7 @@ module.exports = {
     ),
   async execute(interaction) {
     google({'query': interaction.options.getString("search")}).then(results => {
-      return interaction.channel.send(`${results[0].link || "0 results"}`)
+      interaction.channel.send(`${results[0].link || "0 results"}`)
     })
   }
 }

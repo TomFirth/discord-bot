@@ -7,6 +7,9 @@ module.exports = {
   async execute(interaction) {
     const initial = interaction.createdTimestamp
     const now = new Date()
-    interaction.reply(`${now - initial}ms`)
+    interaction.reply({
+      content: `${now - initial}ms`,
+      ephemeral: true
+    })
   }
 }
