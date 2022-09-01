@@ -14,12 +14,12 @@ module.exports = {
     ),
   async execute(interaction) {
     await db.collection("ideas").add({
-      author: interaction.author.username,
+      author: interaction.user.username,
       idea: interaction.options.getString("idea"),
       complete: false
     }, {merge: true})
     message.reply({
-      content: `Thank you ${interaction.member} for your idea!`,
+      content: `Thank you ${interaction.nickname} for your idea!`,
       ephemeral: true
     })
   }
