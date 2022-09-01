@@ -1,10 +1,11 @@
 const cron = require("cron")
 const firebase = require("firebase-admin")
+const db = firebase.firestore()
 const config = require("../config.json")
 
 function init(client) {
 	let scheduledMessage = new cron.CronJob("00 00 00 */1 * *", async () => {
-		const query = await firebase.firestore().collection("special").get()
+		const query = await db.collection("special").get()
 		let users = []
 		query.forEach(doc => {
 			users.push({

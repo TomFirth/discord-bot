@@ -20,7 +20,7 @@ module.exports = {
         .setRequired(false)),
   async execute(interaction) {
     if (!interaction.options.getString("user")) {
-      const query = await firebase.firestore().collection('quotes').get()
+      const query = await db.collection('quotes').get()
       let quotes = []
 			query.forEach(doc => {
 				quotes.push({
