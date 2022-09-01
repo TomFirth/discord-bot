@@ -19,7 +19,7 @@ module.exports = {
       complete: false
     }, {merge: true})
     interaction.reply({
-      content: `Thank you ${interaction.nickname} for your idea!`,
+      content: `Thank you ${interaction.user.username} for your idea!`,
       ephemeral: true
     })
   }

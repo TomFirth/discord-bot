@@ -24,6 +24,6 @@ module.exports = {
     //   .setThumbnail()
     //   .setColor("RANDOM")
     //   .setDescription()
-    // return message.channel.send({ embeds: [game_embed] })
+    // return interaction.channel.send({ embeds: [game_embed] })
   }
 }
