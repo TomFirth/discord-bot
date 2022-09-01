@@ -12,6 +12,7 @@ module.exports = {
       option
         .setName('target')
         .setDescription("Who said it"))
+        .setRequired(true)
     .addStringOption(option =>
       option
         .setName("quote")
