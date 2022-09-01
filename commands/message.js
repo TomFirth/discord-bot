@@ -17,7 +17,7 @@ module.exports = {
        .setDescription("What is your message?")
        .setRequired(true)),
   async execute(client, interaction) {
-    interaction.delete()
+    interaction.deleteReply()
     utilities.channel(client, interaction.options.getChannel('destination'), interaction.options.getString("message"))
   }
 }

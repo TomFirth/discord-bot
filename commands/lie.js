@@ -5,7 +5,7 @@ module.exports = {
     .setName("lie")
     .setDescription("Lie detector"),
   async execute(interaction) {
-    interaction.delete()
+    interaction.deleteReply()
     const lies = [
       "That was most certainly bullshit.",
       "No lie was detected.",

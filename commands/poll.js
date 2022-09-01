@@ -17,7 +17,7 @@ module.exports = {
     const poll = new EmbedBuilder()
       .setDescription(`Poll: **${interaction.options.getString("question")}**`)
       .setColor(utilities.randomColour())
-    return interaction.channel.send({ embeds: [poll] }).then(ownMessage => {
+    interaction.channel.send({ embeds: [poll] }).then(ownMessage => {
       ownMessage.react(config.discord.emojis.thumbsUp)
       ownMessage.react(config.discord.emojis.thumbsDown)
     })
