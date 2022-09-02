@@ -9,6 +9,13 @@ const trolls = require("../troll.json")
 const colours = require("../colours.json")
 
 module.exports = async (client, message) => {
+  // AUTO PUBLISH FREE GAMES
+  if (message.channel.type === "free" && message.author.bot) {
+    message.crosspost()
+      .then(() => console.log("Message published"))
+      .catch(error => console.error(error))
+  }
+
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
     if (troll.includes && !troll.emoji) {
