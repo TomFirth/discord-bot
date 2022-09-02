@@ -26,21 +26,23 @@ module.exports = {
     if (!interaction.options.getString("name")) channelName = `${config.discord.emojis.clock} temp`
     else channelName = config.discord.emojis.clock + " " + interaction.options.getString("name")
 
-    let type = "text"
+    let type = "GUILD_TEXT"
     let parent = config.discord.categories.tempText
 
     if (interaction.options.getString("type") == "channel_text") {
-      type = "text"
+      type = "GUILD_TEXT"
       parent = config.discord.categories.tempText
     } else if (interaction.options.getString("name") == "channel_voice") {
       type = "GUILD_VOICE"
       parent = config.discord.categories.tempVoice
     }
-    interaction.guild.channels.create({
-      name: channelName,
-      type: "GUILD_VOICE",
-      permissionOverwrites: [{
-        id: interaction.guild.roles.everyone
+    await interaction.guild.channels.create(channelName, {
+      type,
+      permissionOverwrites: [
+      {
+          id: interaction.guild.roles.everyone,
+          allow: ["VIEW_CHANNEL", "SEND_MESSAGES", "CONNECT"],
+          deny: []
       }],
     }).then(channel => {
       channel.setParent(config.discord.categories.tempVoice)
