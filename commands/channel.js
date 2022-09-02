@@ -12,8 +12,8 @@ module.exports = {
         .setDescription("The type of channel")
         .setRequired(true)
         .addChoices(
-          { name: 'Text', value: 'channel_text' },
-          { name: 'Voice', value: 'channel_voice' },
+          { name: 'text', value: 'channel_text' },
+          { name: 'voice', value: 'channel_voice' },
         ))
     .addStringOption(option =>
       option
@@ -27,8 +27,6 @@ module.exports = {
         .setDescription("Set the user limit for the channel")
         .setRequired(false)),
   async execute(interaction) {
-    // set user limit
-    // set private/public
     let channelName = `${config.discord.emojis.clock} temp`
     if (interaction.options.getString("name") !== "") { channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}` }
 
