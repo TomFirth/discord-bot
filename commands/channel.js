@@ -36,7 +36,8 @@ module.exports = {
       type = "GUILD_VOICE"
       parent = config.discord.categories.tempVoice
     }
-    interaction.guild.channels.create(channelName, {
+    interaction.guild.channels.create({
+      name: channelName,
       type: "GUILD_VOICE",
       permissionOverwrites: [{
         id: interaction.guild.roles.everyone
