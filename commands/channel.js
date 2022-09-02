@@ -23,8 +23,8 @@ module.exports = {
   async execute(interaction) {
     // set user limit
     // set private/public
-    if (!interaction.options.getString("name")) channelName = `${config.discord.emojis.clock} temp`
-    else channelName = config.discord.emojis.clock + " " + interaction.options.getString("name")
+    let channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}`
+    if (interaction.options.getString("name")) channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}`
 
     let type = "GUILD_TEXT"
     let parent = config.discord.categories.tempText
@@ -36,7 +36,8 @@ module.exports = {
       type = "GUILD_VOICE"
       parent = config.discord.categories.tempVoice
     }
-    await interaction.guild.channels.create(channelName, {
+    await interaction.guild.channels.create({
+      name: channelName,
       type,
       permissionOverwrites: [
       {
