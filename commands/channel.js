@@ -36,15 +36,14 @@ module.exports = {
       type = "GUILD_VOICE"
       parent = config.discord.categories.tempVoice
     }
-    await interaction.guild.channel.create({
+    await interaction.guild.channels.create({
       name: channelName,
       type,
+      parent,
       permissionOverwrites: [
       {
           id: interaction.guild.roles.everyone
       }],
-    }).then(channel => {
-      channel.setParent(config.discord.categories.tempVoice)
     })
   }
 }
