@@ -27,6 +27,7 @@ module.exports = {
         .setDescription("Set the user limit for the channel")
         .setRequired(false)),
   async execute(interaction) {
+    console.log("input", interaction.options.getString("name"))
     let channelName = `${config.discord.emojis.clock} temp`
     if (interaction.options.getString("name") !== "") { channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}` }
 
