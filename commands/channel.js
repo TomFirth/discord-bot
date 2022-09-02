@@ -50,5 +50,9 @@ module.exports = {
           id: interaction.guild.roles.everyone
       }],
     })
+    interaction.reply({
+      content: "Your channel has been created.",
+      ephemeral: true
+    })
   }
 }
