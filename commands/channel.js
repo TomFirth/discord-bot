@@ -26,8 +26,8 @@ module.exports = {
     if (!interaction.options.getString("name")) channelName = `${config.discord.emojis.clock} temp`
     else channelName = config.discord.emojis.clock + " " + interaction.options.getString("name")
 
-    const type = "text"
-    const parent = config.discord.categories.tempText
+    let type = "text"
+    let parent = config.discord.categories.tempText
 
     if (interaction.options.getString("type") == "channel_text") {
       type = "text"
