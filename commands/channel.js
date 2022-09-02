@@ -21,7 +21,7 @@ module.exports = {
         .setDescription("Channel name")
         .setRequired(false)
     )
-    .addNumberOptions(option =>
+    .addNumberOption(option =>
       option
         .setName("limit")
         .setDescription("Set the user limit for the channel")
