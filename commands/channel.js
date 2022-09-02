@@ -41,9 +41,7 @@ module.exports = {
       type,
       permissionOverwrites: [
       {
-          id: interaction.guild.roles.everyone,
-          allow: ["VIEW_CHANNEL", "SEND_MESSAGES", "CONNECT"],
-          deny: []
+          id: interaction.guild.roles.everyone
       }],
     }).then(channel => {
       channel.setParent(config.discord.categories.tempVoice)
