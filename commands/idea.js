@@ -8,9 +8,9 @@ module.exports = {
     .setDescription("Suggest a new idea for Barber")
     .addStringOption(option =>
       option
-      .setName("idea")
-      .setDescription("Your idea")
-      .setRequired(true)
+        .setName("idea")
+        .setDescription("Your idea")
+        .setRequired(true)
     ),
   async execute(interaction) {
     await db.collection("ideas").add({

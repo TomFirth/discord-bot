@@ -8,8 +8,8 @@ module.exports = {
     .setDescription("Create a temporary channel")
     .addStringOption(option =>
       option
-        .setName('type')
-        .setDescription('The type of channel')
+        .setName("type")
+        .setDescription("The type of channel")
         .setRequired(true)
         .addChoices(
           { name: 'Text', value: 'channel_text' },
@@ -29,8 +29,8 @@ module.exports = {
   async execute(interaction) {
     // set user limit
     // set private/public
-    let channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}`
-    if (interaction.options.getString("name")) channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}`
+    let channelName = `${config.discord.emojis.clock} temp`
+    if (interaction.options.getString("name") !== "") { channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}` }
 
     let type = ChannelType.GuildText
     let parent = config.discord.categories.tempText
