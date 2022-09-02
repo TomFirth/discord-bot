@@ -4,7 +4,7 @@ const google = require("google-it")
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("search")
-    .setDescription("Google search")
+    .setDescription("Google search.")
     .addStringOption(option =>
       option
         .setName("search")

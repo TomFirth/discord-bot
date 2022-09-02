@@ -7,7 +7,7 @@ const utilities = require("../scripts/utilities")
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("quote")
-    .setDescription("Check that Barber\'s ok")
+    .setDescription("Randomly select a quote (nsfw) or add a new one!")
     .addUserOption(user => 
       user
         .setName('target')

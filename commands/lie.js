@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("lie")
-    .setDescription("Lie detector"),
+    .setDescription("Barber will decide if someone is telling the truth, or not."),
   async execute(interaction) {
     const lies = [
       "That was most certainly bullshit.",

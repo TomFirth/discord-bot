@@ -4,7 +4,7 @@ const utilities = require("../scripts/utilities")
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("message")
-    .setDescription("Send a custom message")
+    .setDescription("Send a custom message from Barber")
     .addChannelOption(channel =>
       channel
         .setName('destination')

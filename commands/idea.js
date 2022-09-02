@@ -5,7 +5,7 @@ const db = firebase.firestore()
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("idea")
-    .setDescription("Suggest a new idea")
+    .setDescription("Suggest a new idea for Barber")
     .addStringOption(option =>
       option
       .setName("idea")

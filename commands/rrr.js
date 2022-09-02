@@ -4,7 +4,7 @@ const { fetchSubreddit } = require("fetch-subreddit")
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("rrr")
-    .setDescription("Reddit Rhythm Roulette"),
+    .setDescription("Reddit Rhythm Roulette - randomly selects three songs for you."),
   async execute(interaction) {
     let randomTracks = []
     let everything = []

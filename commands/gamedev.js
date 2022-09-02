@@ -6,7 +6,7 @@ const utilities = require("../scripts/utilities")
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("gamedev")
-    .setDescription("Gamedev doc access"),
+    .setDescription("Randomly selects a game idea from Beardmachine's gamedev ideas doc."),
   async execute(interaction) {
     const credentials = require('../credentials.json')
     const scopes = [
