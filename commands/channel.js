@@ -1,4 +1,4 @@
-const { channelType } = require("discord.js")
+const { ChannelType } = require("discord.js")
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const config = require("../config.json")
 
@@ -32,12 +32,12 @@ module.exports = {
     let channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}`
     if (interaction.options.getString("name")) channelName = `${config.discord.emojis.clock} ${interaction.options.getString("name")}`
 
-    let type = channelType.GuildText
+    let type = ChannelType.GuildText
     let parent = config.discord.categories.tempText
     let userLimit = interaction.options.getNumber("limit") || 2
 
     if (interaction.options.getString("type") == "channel_voice") {
-      type = channelType.GuildVoice
+      type = ChannelType.GuildVoice
       parent = config.discord.categories.tempVoice
     }
     await interaction.guild.channels.create({
