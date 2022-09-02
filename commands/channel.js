@@ -29,10 +29,7 @@ module.exports = {
     let type = "GUILD_TEXT"
     let parent = config.discord.categories.tempText
 
-    if (interaction.options.getString("type") == "channel_text") {
-      type = "GUILD_TEXT"
-      parent = config.discord.categories.tempText
-    } else if (interaction.options.getString("name") == "channel_voice") {
+    if (interaction.options.getString("type") == "channel_voice") {
       type = "GUILD_VOICE"
       parent = config.discord.categories.tempVoice
     }
