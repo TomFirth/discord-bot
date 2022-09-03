@@ -11,16 +11,12 @@ class Rss {
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
-      let description = ""
-      if (item.contentSnippet !== "") {
-        description = item.contentSnippet.replace(/<.*>/, '')
-      }
       const feedEmbed = new EmbedBuilder()
       .setColor(utilities.randomColour())
       .setTitle(item.title)
       .setURL(item.link)
       .setAuthor({ name: "Prime Gaming" })
-      .setDescription(`${description.substring(0, 180)}...`)
+      .setDescription(`${item.content.substring(0, 180)}...`)
       .setTimestamp()
       let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.free)
       channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
