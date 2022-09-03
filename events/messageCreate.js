@@ -37,7 +37,6 @@ module.exports = async (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    // check safe for work hours
     const startTime = '19:00:00';
     const endTime = '23:59:59';
     const currentDate = new Date()   
@@ -106,7 +105,7 @@ module.exports = async (client, message) => {
   // SPECIAL ROLE REWARD
   const reactArray = ['⭐','🏆','👏','👍','🥇']
   if (message.member.roles.cache.some(role => role.name === "special")
-    && Math.floor(Math.random() * 49) == 0
+    && Math.floor(Math.random() * 36) == 0
     && !message.content.toLowerCase().split(' ')[0] == "answer") {
     message.react(reactArray[Math.floor(Math.random() * reactArray.length)])
   }

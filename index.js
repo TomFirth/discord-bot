@@ -41,6 +41,7 @@ const unlucky = require("./scheduled/unlucky")(client)
 const unSpecial = require("./scheduled/unSpecial")(client)
 
 // const patches = require("./streams/patches")
+const primeGaming = require("./streams/primeGaming.js")
 const reddit = require("./streams/reddit")
 const rss = require("./streams/rss.js")
 
@@ -76,6 +77,12 @@ fs.readdir("./events/", (error, files) => {
     }
   })
 })
+
+// PRIME GAMING
+let scheduledMessage = new cron.CronJob("00 */15 * * * *", async () => {
+  await primeGaming.start(client, db)
+})
+scheduledMessage.start()
 
 // STREAMS
 config.rss.forEach(feed => {

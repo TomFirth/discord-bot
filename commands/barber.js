@@ -12,9 +12,9 @@ module.exports = {
         .setDescription("Barber's commands")
         .setRequired(true)
         .addChoices(
-          { name: 'Ping', value: 'barber_ping' },
-          { name: 'Server', value: 'barber_server' },
-          { name: 'Uptime', value: 'barber_uptime' },
+          { name: 'ping', value: 'barber_ping' },
+          { name: 'server', value: 'barber_server' },
+          { name: 'uptime', value: 'barber_uptime' },
         )
     ),
   async execute(interaction) {
