@@ -24,7 +24,7 @@ module.exports = {
       num1 = interaction.options.getNumber("num2")
     }
     interaction.reply({
-      content: Math.floor(Math.random() * (num2 - num1 + 1) + num1),
+      content: `${Math.floor(Math.random() * (num2 - num1 + 1) + num1)}`,
       ephemeral: false
     })
   }
