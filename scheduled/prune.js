@@ -1,5 +1,5 @@
 const cron = require("cron")
-const config = require("../config/config.json")
+const config = require("../config.json")
 
 function init(client) {
   let scheduledMessage = new cron.CronJob("00 00 03 * * *", () => {

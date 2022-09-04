@@ -1,5 +1,5 @@
 const Twitter = require("twit")
-const config = require("../../config/config.json")
+const config = require("../../config.json")
 if (process.env.NODE_ENV) require("dotenv").config()
 
 const twitterConf = {

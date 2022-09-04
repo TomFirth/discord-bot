@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 const https = require("https")
 const cheerio = require("cheerio")
 const utilities = require("../scripts/utilities")
-const config = require("../config/config.json")
+const config = require("../config.json")
 
 class Patches {
   static start(client, target, db) {

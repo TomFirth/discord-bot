@@ -16,8 +16,8 @@ const db = firebase.firestore()
 const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
 if (process.env.NODE_ENV) require("dotenv").config()
-const colours = require("../config/colours.json")
-const config = require("../config/config.json")
+const colours = require("./colours.json")
+const config = require("./config.json")
 
 client.commands = new Collection()
 client.prefix = config.bot.prefix

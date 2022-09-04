@@ -2,8 +2,8 @@ const { Discord } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities")
 
-const config = require("../config/config.json")
-const { kanto } = require("../config/pokemon.json")
+const config = require("../config.json")
+const { kanto } = require("../pokemon.json")
 
 const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 })

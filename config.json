@@ -1,0 +1,221 @@
+{
+  "bot": {
+    "prefix": "/"
+  },
+  "discord": {
+    "categories": {
+      "archived": "899680061601501254",
+      "tempText": "899680061601501254",
+      "tempVoice": "622501516695044118"
+    },
+    "channels": {
+      "bin": "bin",
+      "bot": "bot",
+      "free": "free",
+      "general": "general",
+      "news": "news",
+      "secret": "secret",
+      "socials": "socials",
+      "special": "special",
+      "updates": "updates"
+    },
+    "clientId": "887613195349524490",
+    "emojis": {
+      "twitter": "732315096143102074",
+      "instagram": "871757809056890971",
+      "youtube": "732315056305471518",
+      "twitch": "732315142888620193",
+      "clock": "⏰",
+      "thumbsUp": "👍",
+      "thumbsDown": "👎",
+      "clap": "👏"
+    },
+    "guildId": "622501516695044109",
+    "owner": {
+      "name": "Beardmachine",
+      "id": "603324775833665553"
+    },
+    "specials": [
+      "6gKOiYlaBLbdJLpqTAwi",
+      "V6O1eZgICzCRY7XtBBC4",
+      "dhTayqE1Mr1dC9RPwRMX",
+      "p820b3mUFvUwXtbfePQa",
+      "rv6tTloWQvI5xglsQ6By"
+    ]
+  },
+  "socials":{
+    "twitter": {
+      "user": "1160601675205357568",
+      "primeGaming": "759027320560627712"
+    },
+    "youtube": {
+      "channel1": "TomFirth",
+      "channel2": "UCZJE2Tv5z-k5K3P8SUHvrgA"
+    },
+    "instagram": {
+      "user": "fomtirth"
+    },
+    "twitch": {
+      "user": "beardmachine"
+    }
+  },
+  "reddit": [{
+    "subreddit": "photoshopbattles",
+    "destination": "908335522978627595",
+    "docId": "XxJO6ob6bf1LMbQbP0BA",
+    "nsfw": "",
+    "frequency": "day",
+    "poll": false
+  },{
+    "subreddit": "chrissimpsonsartist",
+    "destination": "908335522978627595",
+    "docId": "dUC9sgzVTOLxGmf5hbFn",
+    "nsfw": "",
+    "frequency": "day",
+    "poll": false
+  },{
+    "subreddit": "gonewild",
+    "destination": "864852488753643530",
+    "docId": "0k7OhheJiUs3IzdloXXT",
+    "nsfw": "||",
+    "frequency": "day",
+    "poll": true
+  },{
+    "subreddit": "memes",
+    "destination": "923517416896626739",
+    "docId": "nCob2L5dKPPLdduHOPIg",
+    "nsfw": "",
+    "frequency": "day",
+    "poll": false
+  },{
+    "subreddit": "funny",
+    "destination": "923517416896626739",
+    "docId": "oIhgkmTkTr8Jdasx91Pp",
+    "nsfw": "",
+    "frequency": "day",
+    "poll": false
+  },{
+    "subreddit": "nsfw",
+    "destination": "864852488753643530",
+    "docId": "kXSrS6iEU44Q3S1TRCSm",
+    "nsfw": "||",
+    "frequency": "day",
+    "poll": true
+  },{
+    "subreddit": "BustyPetite",
+    "destination": "864852488753643530",
+    "docId": "Tyuh9LvyFPf0pqiLz628",
+    "nsfw": "||",
+    "frequency": "day",
+    "poll": true
+  }],
+  "rss": [
+    {
+      "url": "https://steamcommunity.com/groups/freegamesfinders/rss/",
+      "destination": "free",
+      "docId": "agEt3DFhkDVt0O71Nf7x",
+      "author": "Steam",
+      "colour": "0x58804D",
+      "poll": true
+    },{
+      "url": "https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss",
+      "destination": "news",
+      "docId": "fsgTURLo5vXDAMh3YGnB",
+      "author": "NASA",
+      "colour": "0x0B3D91",
+      "poll": false
+    },{
+      "url": "https://www.theguardian.com/uk/technology/rss",
+      "destination": "news",
+      "docId": "fK74bZV8J4PTOaRXRJLY",
+      "author": "The Guardian",
+      "colour": "0x052962",
+      "poll": false
+    },{
+      "url": "http://feeds.bbci.co.uk/news/technology/rss.xml?edition=uk",
+      "destination": "news",
+      "docId": "UCtsXOGl5lOXOxQdEoxn",
+      "author": "BBC",
+      "colour": "0xB90005",
+      "poll": false
+    },{
+      "url": "https://act.eff.org/action.atom",
+      "destination": "news",
+      "docId": "TRQaI3wf7yTEnqi3veom",
+      "author": "EFF",
+      "colour": "0xEC1E1E",
+      "poll": false
+    },{
+      "url": "https://pbfcomics.com/feed/",
+      "destination": "bin",
+      "docId": "2DqV1FO3627iglafFKd5",
+      "author": "The Perry Bible Fellowship",
+      "colour": "0xFFC0CB",
+      "poll": false
+    }
+  ],
+  "kindOfIgnore": [
+    "twitter",
+    "elon musk",
+    "tesla",
+    "apple"
+  ],
+  "streams": [{
+    "name": "Apex Legends",
+    "docId": "e7EyCCaAZq0P1h8nStB2",
+    "find": "",
+    "url": "https://answers.ea.com/t5/News-Game-Updates/bd-p/apex-legends-news-en"
+  }, {
+    "name": "Betas",
+    "docId": "ZPq8WCZDnTk8sWUFgLt9",
+    "find": "",
+    "url": "https://www.gamepressure.com/games/beta-tests.asp"
+  }, {
+    "name": "Blender",
+    "docId": "gDlOgSWV2RHIITGy7Zo9",
+    "find": "",
+    "url": ""
+  }, {
+    "name": "Halo Infinite",
+    "docId": "7vncAddoZgeNOvUCqMkD",
+    "find": "article-list-link",
+    "colour": "#6c8d71",
+    "url": "https://support.halowaypoint.com/hc/en-us/sections/4410503655444-Release-Notes"
+  }, {
+    "name": "Rocket League",
+    "docId": "8QO4z9aiJ3xpDsiTEAck",
+    "find": "",
+    "url": "https://www.rocketleague.com/news/"
+  }, {
+    "name": "Unity",
+    "docId": "kh8oMmOoo3qsXFRm7wT3",
+    "find": "",
+    "url": ""
+  }, {
+    "name": "Callf of Duty: Warzone",
+    "docId": "xDhx8ZA5v6U02Vexi5fR",
+    "find": "",
+    "url": "https://www.ravensoftware.com/community"
+  }, {
+    "name": "World of Tanks",
+    "docId": "hwefO5bUO5VJvnER3AAs",
+    "find": "",
+    "url": ""
+  }],
+  "games": [{
+    "game": "quiz",
+    "destination": "general",
+    "db": "quiz",
+    "frequency": "00 00 19 * * 1"
+  },{
+    "game": "maths",
+    "destination": "general",
+    "db": "maths",
+    "frequency": "00 00 19 * * 2"
+  },{
+    "game": "movie",
+    "destination": "general",
+    "db": "movies",
+    "frequency": "00 00 19 * * 5"
+  }]
+}

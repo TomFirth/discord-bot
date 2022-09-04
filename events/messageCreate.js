@@ -4,10 +4,10 @@ const db = firebase.firestore()
 const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 })
 const utilities = require("../scripts/utilities")
-const colours = require("../config/colours.json")
-const config = require("../config/config.json")
-const { kanto } = require("../config/pokemon.json")
-const trolls = require("../config/troll.json")
+const colours = require("../colours.json")
+const config = require("../config.json")
+const { kanto } = require("../pokemon.json")
+const trolls = require("../troll.json")
 
 module.exports = async (client, message) => {
   // AUTO PUBLISH FREE GAMES
