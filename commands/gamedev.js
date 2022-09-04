@@ -8,6 +8,12 @@ module.exports = {
     .setName("gamedev")
     .setDescription("Randomly selects a game idea from Beardmachine's gamedev ideas doc."),
   async execute(interaction) {
+    if (interaction.channel.name.toLowerCase() !== config.discord.channels.gamedev) {
+      interaction.reply({
+        content: `This command only works in #${config.discord.channels.gamedev}`,
+        ephemeral: true
+      })
+    }
     const credentials = require('../credentials.json')
     const scopes = [
       'https://www.googleapis.com/auth/drive'
