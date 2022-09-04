@@ -14,6 +14,7 @@ module.exports = {
         content: `This command only works in #${config.discord.channels.gamedev}`,
         ephemeral: true
       })
+      return
     }
     const credentials = require('../credentials.json')
     const scopes = [
