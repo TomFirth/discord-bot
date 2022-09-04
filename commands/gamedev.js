@@ -37,7 +37,7 @@ module.exports = {
               let j = i + 1
               while (res.data.body.content[j] !== undefined && current) {
                 if (res.data.body.content[j].paragraph.paragraphStyle.namedStyleType == "NORMAL_TEXT") {
-                  let newString = res.data.body.content[j].paragraph.elements[0].textRun.content.replace(",", "\n")
+                  let newString = res.data.body.content[j].paragraph.elements[0].textRun.content
                   game.push(newString)
                   j++
                 } else {
