@@ -62,5 +62,13 @@
     "response": "Mother dog.",
     "chance": 3,
     "emoji": false
+  },
+  {
+    "description": "who's that pokemon annoying",
+    "includes": true,
+    "message": "answer pikachu",
+    "response": "Hahahahaha............",
+    "chance": 3,
+    "emoji": false
   }
 ]

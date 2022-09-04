@@ -6,9 +6,13 @@ const config = require("../config.json")
 
 function init(client) {
 	let scheduledMessage = new cron.CronJob("00 00 10 * * 0", async () => {
-		axios.request({
+    await axios.request({
       method: 'GET',
-      url: 'https://icanhazdadjoke.com/m'
+      headers: {
+        "Accept" : "application/json",
+        'User-Agent': 'Barber'
+      },
+      url: 'https://icanhazdadjoke.com'
     }).then(response => {
       const embed = new EmbedBuilder()
 				.setDescription(response.data.joke)
