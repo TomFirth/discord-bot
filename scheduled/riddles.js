@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 const axios = require("axios");
 const cron = require("cron")
 const utilities = require("../scripts/utilities")
-const config = require("../config.json")
+const config = require("../config/config.json")
 
 function init(client, db, cache) {
 	let scheduledMessage = new cron.CronJob("00 00 19 * * 4", () => {

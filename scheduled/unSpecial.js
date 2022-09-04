@@ -1,7 +1,7 @@
 const cron = require("cron")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
-const config = require("../config.json")
+const config = require("../config/config.json")
 
 function init(client) {
 	let scheduledMessage = new cron.CronJob("00 00 00 */1 * *", async () => {

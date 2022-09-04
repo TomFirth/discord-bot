@@ -1,5 +1,5 @@
 const https = require("https")
-const config = require("../config.json")
+const config = require("../config/config.json")
 
 class Reddit {
   static start(client, reddit, db) {

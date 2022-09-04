@@ -33,7 +33,7 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - Find somewhere to host your new bot (maybe on a spare Raspberry Pi?) [Heroku have affordable plans](https://www.heroku.com).
 - Clone this repo to your host.
 - `cd <your bot dir> && npm i`
-- Create files: `config.json` and `ecosystem.config.js` (remote) and additionally `.env` (local) - I also have a credentials.json file for the Google Firestore.
+- Create files: `config/config.json` and `ecosystem.config.js` (remote) and additionally `.env` (local) - I also have a credentials.json file for the Google Firestore.
 - Install `pm2` and follow setup steps (`sudo apt-get install pm2`)
 - `pm2 start <your bot file>`
 

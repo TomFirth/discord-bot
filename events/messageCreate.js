@@ -4,9 +4,10 @@ const db = firebase.firestore()
 const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 })
 const utilities = require("../scripts/utilities")
-const config = require("../config.json")
-const trolls = require("../troll.json")
-const colours = require("../colours.json")
+const colours = require("../config/colours.json")
+const config = require("../config/config.json")
+const { kanto } = require("../config/pokemon.json")
+const trolls = require("../config/troll.json")
 
 module.exports = async (client, message) => {
   // AUTO PUBLISH FREE GAMES
@@ -60,7 +61,7 @@ module.exports = async (client, message) => {
       const games = [
         "",
         "Quiz",
-        "Maths",
+        "Pokemon",
         "",
         "Riddle",
         "Movie",
@@ -68,11 +69,30 @@ module.exports = async (client, message) => {
       ]
       const date = new Date()
       const today = date.getDay()
-      const gameEmbed = new EmbedBuilder()
-        .setTitle(`${games[today]} WINNER!`)
-        .setThumbnail(message.author.displayAvatarURL())
-        .setColor(colours.gold)
-        .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+      let gameEmbed
+      if (games[today] == "Pokemon") {
+        let number
+        kanto.forEach((name, index) => {
+          if (userAnswer == name) {
+            number = index + 1
+          }
+        })
+        const attachment = new Discord
+          .MessageAttachment(`./images/answer/${number}.jpg`, "pokemon")
+        gameEmbed = new Discord.MessageEmbed()
+          .setTitle("Who's that Pokemon? WINNER!")
+          .attachFiles(attachment)
+          .setImage(`attachment://pokemon`)
+          .setThumbnail(message.author.displayAvatarURL())
+          .setColor(colours.gold)
+          .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+      } else {
+        gameEmbed = new EmbedBuilder()
+          .setTitle(`${games[today]} WINNER!`)
+          .setThumbnail(message.author.displayAvatarURL())
+          .setColor(colours.gold)
+          .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+      }
       message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
         ownMessage.react(config.discord.emojis.clap)
       })

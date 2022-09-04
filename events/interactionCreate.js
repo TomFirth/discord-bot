@@ -1,4 +1,4 @@
-const config = require("../config.json")
+const config = require("../config/config.json")
 
 module.exports = async (client, interaction) => {
 	if (!interaction.isCommand()) return

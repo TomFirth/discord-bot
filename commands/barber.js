@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js")
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const colours = require("../colours.json")
+const colours = require("../config/colours.json")
 
 module.exports = {
   data: new SlashCommandBuilder()

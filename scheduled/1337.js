@@ -1,6 +1,6 @@
 const cron = require("cron")
 const utilities = require("../scripts/utilities")
-const config = require("../config.json")
+const config = require("../config/config.json")
 
 function init(client) {
   let scheduledMessage = new cron.CronJob("00 37 13 * * *", () => {

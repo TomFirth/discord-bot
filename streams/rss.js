@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require("discord.js")
 const Parser = require("rss-parser")
 const parser = new Parser()
-const config = require("../config.json")
+const config = require("../config/config.json")
 
 class Rss {
   static async start(client, feed, db) {

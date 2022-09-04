@@ -16,8 +16,8 @@ const db = firebase.firestore()
 const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
 if (process.env.NODE_ENV) require("dotenv").config()
-const colours = require("./colours.json")
-const config = require("./config.json")
+const colours = require("./config/colours.json")
+const config = require("./config/config.json")
 
 client.commands = new Collection()
 client.prefix = config.bot.prefix
@@ -35,6 +35,7 @@ const birthdays = require("./scheduled/birthday")(client, db)
 const games = require("./scheduled/games")
 const jokes = require("./scheduled/jokes")(client, db)
 const lucky = require("./scheduled/lucky")(client)
+const pokemon = require("./scheduled/pokemon")(client, db, cache)
 const prune = require("./scheduled/prune")(client)
 const riddles = require("./scheduled/riddles")(client, db, cache)
 const unlucky = require("./scheduled/unlucky")(client)

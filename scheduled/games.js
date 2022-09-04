@@ -1,8 +1,8 @@
 const { EmbedBuilder } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities")
-const config = require("../config.json")
-const colours = require("../colours.json")
+const config = require("../config/config.json")
+const colours = require("../config/colours.json")
 
 class Game {
   static async start(client, db, cache, game) {
