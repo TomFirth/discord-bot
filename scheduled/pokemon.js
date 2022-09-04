@@ -1,6 +1,6 @@
 const { Discord } = require("discord.js")
 const cron = require("cron")
-const utilities = require("./scripts/utilities")
+const utilities = require("../scripts/utilities")
 
 const config = require("../config/config.json")
 const { kanto } = require("../config/pokemon.json")
