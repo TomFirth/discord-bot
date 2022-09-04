@@ -10,13 +10,15 @@ class Rss {
     const feeds = await parser.parseURL("https://primegaming.blog/feed")
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
-      || query.data().title !== item.title) {
+      || query.data().title !== item.title
+      && item.categories.includes("prime-gaming")) {
+        const description = item['content:encoded'].substring(0, 180)
       const feedEmbed = new EmbedBuilder()
       .setColor(utilities.randomColour())
       .setTitle(item.title)
       .setURL(item.link)
       .setAuthor({ name: "Prime Gaming" })
-      .setDescription(`${item.content.substring(0, 180)}...`)
+      .setDescription(`${description}...`)
       .setTimestamp()
       let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.free)
       channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
@@ -26,7 +28,7 @@ class Rss {
         }
       })
       db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").set({
-        description: description,
+        description,
         link: item.link,
         publishedDate: item.pubDate,
         title: item.title
