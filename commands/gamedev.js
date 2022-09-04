@@ -51,6 +51,7 @@ module.exports = {
             ephemeral: false
           })
           interaction.deleteReply()
+          game = game.join("")
           const game_embed = new EmbedBuilder()
             .setTitle(`Random game idea: ${title}`)
             .setThumbnail()
