@@ -23,10 +23,8 @@ class Rss {
       .setTimestamp()
       let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.free)
       channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
-        if (feed.poll) {
-          ownMessage.react(config.discord.emojis.thumbsUp)
-          ownMessage.react(config.discord.emojis.thumbsDown)
-        }
+        ownMessage.react(config.discord.emojis.thumbsUp)
+        ownMessage.react(config.discord.emojis.thumbsDown)
       })
       db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").set({
         description,
