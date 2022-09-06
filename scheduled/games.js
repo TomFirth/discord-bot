@@ -9,7 +9,9 @@ class Game {
 		let scheduledMessage = new cron.CronJob(game.frequency, async () => {
 			const query = await db.collection(game.db).where("used", "==", false).get()
 			let questions = []
+			let docId
 			query.forEach(doc => {
+				docId = doc.id
 				questions.push({
 					id: doc.id,
 					question: doc.data().question,
@@ -24,7 +26,7 @@ class Game {
 			cache.set("answer", questionAnswer)
 			db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
 				answer: questionAnswer,
-				id: doc.id,
+				id: docId,
 				db: "riddles",
 				used: false
 			})
