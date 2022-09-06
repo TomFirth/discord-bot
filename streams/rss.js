@@ -11,8 +11,9 @@ class Rss {
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
       let description = ""
-      if (item.contentSnippet !== "") {
-        description = item.contentSnippet.replace(/<.*>/, '')
+      if (item.content || item.contentSnippet) {
+        description = item.content || item.contentSnippet || ""
+        description.replace(/<.*>/, '')
       }
       if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         const feedEmbed = new EmbedBuilder()
