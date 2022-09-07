@@ -55,7 +55,8 @@ module.exports = async (client, message) => {
       }
     }
     let answer = cache.get("answer")
-    answer = answer.toString().toLowerCase()
+    answer.toString()
+    answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     if (userAnswer == answer) {
       const games = [
