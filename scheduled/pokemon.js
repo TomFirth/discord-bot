@@ -18,7 +18,7 @@ function init(client, db, cache) {
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "answer <your answer>`)
       .setImage(`attachment://${number}.jpg`)
-    const pokemon = kanto[random + 1]
+    const pokemon = kanto[random]
     cache.set("answer", pokemon)
     utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../discord-bot/images/pokemon/questions/${number}.jpg`] })
     db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
