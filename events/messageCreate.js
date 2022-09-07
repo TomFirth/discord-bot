@@ -77,7 +77,7 @@ module.exports = async (client, message) => {
             number = index + 1
           }
         })
-        gameEmbed = new Discord.MessageEmbed()
+        gameEmbed = new EmbedBuilder()
           .setTitle("Who's that Pokemon? WINNER!")
           .setImage(`../images/pokemon/answers/${number}.jpg`)
           .setThumbnail(message.author.displayAvatarURL())
