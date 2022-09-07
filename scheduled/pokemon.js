@@ -14,15 +14,13 @@ function pad (n) {
 }
 
 function init(client, db, cache) {
-	let scheduledMessage = new cron.CronJob("00 00 19 * * 3", () => {
+	let scheduledMessage = new cron.CronJob("00 30 19 * * 3", () => {
     const number = pad(Math.floor(Math.random() * 151))
-    const attachment = new Discord
-      .MessageAttachment(`../images/pokemon/questions/${number}.jpg`, "pokemon")
     const pokeEmbed = new Discord.MessageEmbed()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "answer <your answer>`)
       .attachFiles(attachment)
-      .setImage(`attachment://pokemon`)
+      .setImage(`../images/pokemon/questions/${number}.jpg`)
     const pokemon = kanto[number + 1]
     cache.set("answer", pokemon)
     utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed] })
