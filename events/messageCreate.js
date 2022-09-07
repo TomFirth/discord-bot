@@ -55,7 +55,7 @@ module.exports = async (client, message) => {
       }
     }
     let answer = cache.get("answer")
-    answer.toString()
+    answer + ""
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     if (userAnswer == answer) {
