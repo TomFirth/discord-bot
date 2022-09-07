@@ -18,6 +18,7 @@ function init(client, db, cache) {
       .setDescription(`Reply with: "answer <your answer>`)
       .setImage(`attachment://${number}.jpg`)
     const pokemon = kanto[number + 1]
+    console.log("kanto", kanto)
     console.log("kanto", kanto[number + 1])
     cache.set("answer", pokemon)
     utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../images/pokemon/questions/${number}.jpg`] })
