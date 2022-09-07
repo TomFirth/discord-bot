@@ -72,7 +72,7 @@ module.exports = async (client, message) => {
       let gameEmbed
       if (games[today] == "Pokemon") {
         let number
-        kanto.forEach((name, index) => {
+        kanto.kanto.forEach((name, index) => {
           if (userAnswer == name) {
             number = index + 1
           }
