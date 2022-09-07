@@ -11,7 +11,7 @@ function pad (n) {
 }
 
 function init(client, db, cache) {
-	let scheduledMessage = new cron.CronJob("00 12 20 * * 3", () => {
+	let scheduledMessage = new cron.CronJob("00 13 20 * * 3", () => {
     const random = Math.floor(Math.random() * kanto.length)
     const number = pad(random)
     const pokeEmbed = new EmbedBuilder()
