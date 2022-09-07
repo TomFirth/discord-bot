@@ -17,7 +17,7 @@ class Rss {
         }
       if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         let feedEmbed
-        if (feed.author) {
+        if (feed.author == "NASA") {
           feedEmbed = new EmbedBuilder()
           .setColor(feed.colour)
           .setTitle(item.title)
