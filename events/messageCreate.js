@@ -65,7 +65,7 @@ module.exports = async (client, message) => {
         "",
         "Quiz",
         "Pokemon",
-        "Pokemon",
+        "",
         "Riddle",
         "Movie",
         ""
