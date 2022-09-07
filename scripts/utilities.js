@@ -51,15 +51,13 @@ module.exports = {
         })
       }
     })
-    if (!updated) {
-      userArray.sort(utilities.compare())
-      userArray.shift()
-      userArray.push({
-        id: userArray[1].id,
-        timestamp,
-        user
-      })
-    }
+    userArray.sort(utilities.compare())
+    userArray.shift()
+    userArray.push({
+      id: userArray[1].id,
+      timestamp,
+      user
+    })
     userArray.forEach(async user => {
       await db.collection("special").doc(user.id).update({
         user: user.user,

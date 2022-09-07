@@ -77,15 +77,12 @@ module.exports = async (client, message) => {
       if (games[today] == "Pokemon") {
         let number
         kanto.forEach((pokemon, index) => {
-          console.log("match", userAnswer, pokemon)
           if (userAnswer == pokemon.toLowerCase()) {
             const len = 3 - ('' + index).length
             const newIndex = (len > 0 ? new Array(++len).join('0') : '') + index
             number = newIndex
-            console.log("matched number", number)
           }
         })
-        console.log("number", number)
         gameEmbed = new EmbedBuilder()
           .setTitle("Who's that Pokemon? WINNER!")
           .setImage(`attachment://${number}.jpg`)
@@ -111,7 +108,7 @@ module.exports = async (client, message) => {
         const role = message.guild.roles.cache.find(role => role.name === "special")
         message.member.roles.add(role)
       }
-      utilities.specialSort(message.author.id)
+      // utilities.specialSort(message.author.id)
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else {
