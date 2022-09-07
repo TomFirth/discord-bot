@@ -77,12 +77,9 @@ module.exports = async (client, message) => {
             number = index + 1
           }
         })
-        const attachment = new Discord
-          .MessageAttachment(`../images/pokemon/answers/${number}.jpg`, "pokemon")
         gameEmbed = new Discord.MessageEmbed()
           .setTitle("Who's that Pokemon? WINNER!")
-          .attachFiles(attachment)
-          .setImage(`attachment://pokemon`)
+          .setImage(`../images/pokemon/answers/${number}.jpg`)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
