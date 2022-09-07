@@ -75,6 +75,7 @@ module.exports = async (client, message) => {
       if (games[today] == "Pokemon") {
         let number
         kanto.forEach((pokemon, index) => {
+          console.log("match", userAnswer, pokemon)
           if (userAnswer == pokemon) {
             const len = 3 - ('' + index).length
             const newIndex = (len > 0 ? new Array(++len).join('0') : '') + index
