@@ -10,6 +10,11 @@ class Rss {
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
+      let description = ""
+        if (item.content || item.contentSnippet) {
+          description = item.content || item.contentSnippet || ""
+          description.replace(/<.*>/, '')
+        }
       if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         let feedEmbed
         if (feed.author) {
@@ -21,11 +26,6 @@ class Rss {
           .setImage(item.enclosure.url)
           .setTimestamp()
         } else {
-          let description = ""
-          if (item.content || item.contentSnippet) {
-            description = item.content || item.contentSnippet || ""
-            description.replace(/<.*>/, '')
-          }
           feedEmbed = new EmbedBuilder()
           .setColor(feed.colour)
           .setTitle(item.title)
