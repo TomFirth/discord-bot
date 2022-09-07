@@ -55,10 +55,10 @@ module.exports = async (client, message) => {
       }
     }
     let answer = cache.get("answer")
-    if (answer instanceof String) answer = answer.toLowerCase()
+    if (typeof answer == String) answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     console.log("answer", userAnswer, answer)
-    console.log("instanceof", answer instanceof String)
+    console.log("typeof", typeof answer)
     if (userAnswer == answer) {
       const games = [
         "",
