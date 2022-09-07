@@ -17,7 +17,7 @@ function init(client, db, cache) {
 	let scheduledMessage = new cron.CronJob("00 00 19 * * 3", () => {
     const number = pad(Math.floor(Math.random() * 151))
     const attachment = new Discord
-      .MessageAttachment(`./images/questions/${number}.jpg`, "pokemon")
+      .MessageAttachment(`../images/pokemon/questions/${number}.jpg`, "pokemon")
     const pokeEmbed = new Discord.MessageEmbed()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "answer <your answer>`)

@@ -78,7 +78,7 @@ module.exports = async (client, message) => {
           }
         })
         const attachment = new Discord
-          .MessageAttachment(`./images/answer/${number}.jpg`, "pokemon")
+          .MessageAttachment(`../images/pokemon/answers/${number}.jpg`, "pokemon")
         gameEmbed = new Discord.MessageEmbed()
           .setTitle("Who's that Pokemon? WINNER!")
           .attachFiles(attachment)
