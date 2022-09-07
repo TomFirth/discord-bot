@@ -11,7 +11,7 @@ function pad (n) {
 }
 
 function init(client, db, cache) {
-	let scheduledMessage = new cron.CronJob("00 13 20 * * 3", () => {
+	let scheduledMessage = new cron.CronJob("00 16 20 * * 3", () => {
     const random = Math.floor(Math.random() * kanto.length)
     const number = pad(random)
     const pokeEmbed = new EmbedBuilder()
@@ -22,7 +22,7 @@ function init(client, db, cache) {
     console.log("number", number)
     console.log("kanto", kanto[random + 1])
     cache.set("answer", pokemon)
-    utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../images/pokemon/questions/${number}.jpg`] })
+    utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../discord-bot/images/pokemon/questions/${number}.jpg`] })
     db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
       answer: pokemon,
       id: "null",

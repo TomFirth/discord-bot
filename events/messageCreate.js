@@ -72,9 +72,11 @@ module.exports = async (client, message) => {
       let gameEmbed
       if (games[today] == "Pokemon") {
         let number
-        kanto.kanto.forEach((name, index) => {
+        kanto.forEach((name, index) => {
           if (userAnswer == name) {
-            number = index + 1
+            var len = 3 - ('' + index).length
+            const newIndex = (len > 0 ? new Array(++len).join('0') : '') + index
+            number = newIndex + 1
           }
         })
         gameEmbed = new EmbedBuilder()
@@ -83,7 +85,7 @@ module.exports = async (client, message) => {
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-        message.channel.send({ embeds: [gameEmbed], files: [`../images/pokemon/questions/${number}.jpg`] }).then(ownMessage => {
+        message.channel.send({ embeds: [gameEmbed], files: [`../discord-bot/images/pokemon/questions/${number}.jpg`] }).then(ownMessage => {
           ownMessage.react(config.discord.emojis.clap)
         })
       } else {
