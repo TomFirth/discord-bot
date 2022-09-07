@@ -59,7 +59,6 @@ module.exports = async (client, message) => {
     let answer = cache.get("answer")
     answer + ""
     answer = answer.toLowerCase()
-    console.log("answer", answer)
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     if (userAnswer == answer) {
       const games = [
@@ -74,6 +73,7 @@ module.exports = async (client, message) => {
       const date = new Date()
       const today = date.getDay()
       let gameEmbed
+      const channel = client.channels.cache.find(channel => channel.name === config.discord.channels.general)
       if (games[today] == "Pokemon") {
         let number
         kanto.forEach((pokemon, index) => {
@@ -90,7 +90,7 @@ module.exports = async (client, message) => {
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-        message.channel.send({ embeds: [gameEmbed], files: [`../discord-bot/images/pokemon/answers/${number}.jpg`] }).then(ownMessage => {
+        channel.send({ embeds: [gameEmbed], files: [`../discord-bot/images/pokemon/answers/${number}.jpg`] }).then(ownMessage => {
           ownMessage.react(config.discord.emojis.clap)
         })
       } else {
@@ -99,7 +99,7 @@ module.exports = async (client, message) => {
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
-        message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
+        channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
           ownMessage.react(config.discord.emojis.clap)
         })
       }
