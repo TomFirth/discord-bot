@@ -82,9 +82,10 @@ module.exports = async (client, message) => {
             const len = 3 - ('' + index).length
             const newIndex = (len > 0 ? new Array(++len).join('0') : '') + index
             number = newIndex
-            console.log("number", number)
+            console.log("matched number", number)
           }
         })
+        console.log("number", number)
         gameEmbed = new EmbedBuilder()
           .setTitle("Who's that Pokemon? WINNER!")
           .setImage(`attachment://${number}.jpg`)
