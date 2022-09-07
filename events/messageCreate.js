@@ -79,6 +79,7 @@ module.exports = async (client, message) => {
             const len = 3 - ('' + index).length
             const newIndex = (len > 0 ? new Array(++len).join('0') : '') + index
             number = newIndex
+            console.log("number", number)
           }
         })
         gameEmbed = new EmbedBuilder()
@@ -100,8 +101,6 @@ module.exports = async (client, message) => {
           ownMessage.react(config.discord.emojis.clap)
         })
       }
-      cache.del("answer")
-      db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
       // REWARD
       if (!message.member.roles.cache.some(role => role.name === "special")) {
         utilities.channel(client, config.discord.channels.special, `Welcome ${message.member}`)
@@ -109,6 +108,8 @@ module.exports = async (client, message) => {
         message.member.roles.add(role)
       }
       utilities.specialSort(message.author.id)
+      cache.del("answer")
+      db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else {
       if (answer !== "" || answer) {
         const guessArray = userAnswer.split(' ')
