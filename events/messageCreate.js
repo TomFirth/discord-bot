@@ -78,7 +78,7 @@ module.exports = async (client, message) => {
         let number
         kanto.forEach((pokemon, index) => {
           console.log("match", userAnswer, pokemon)
-          if (userAnswer == pokemon) {
+          if (userAnswer == pokemon.toLowerCase()) {
             const len = 3 - ('' + index).length
             const newIndex = (len > 0 ? new Array(++len).join('0') : '') + index
             number = newIndex
