@@ -54,7 +54,7 @@ module.exports = async (client, message) => {
         cache.set("answer", doc.data().answer)
       }
     }
-    let answer = cache.get("answer")
+    let answer = cache.get("answer").toString()
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     if (userAnswer == answer) {
