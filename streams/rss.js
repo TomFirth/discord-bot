@@ -13,7 +13,7 @@ class Rss {
       let description = ""
         if (item.content || item.contentSnippet) {
           description = item.content || item.contentSnippet || ""
-          description.replace(/<.*>/, '')
+          description.replace(/<\/?[^>]+(>|$)/g, "")
         }
       if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
         let feedEmbed
