@@ -58,6 +58,7 @@ module.exports = async (client, message) => {
     if (answer instanceof String) answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
     console.log("answer", userAnswer, answer)
+    console.log("instanceof", answer instanceof String)
     if (userAnswer == answer) {
       const games = [
         "",
@@ -73,9 +74,9 @@ module.exports = async (client, message) => {
       let gameEmbed
       if (games[today] == "Pokemon") {
         let number
-        kanto.forEach((name, index) => {
-          if (userAnswer == name) {
-            var len = 3 - ('' + index).length
+        kanto.forEach((pokemon, index) => {
+          if (userAnswer == pokemon) {
+            const len = 3 - ('' + index).length
             const newIndex = (len > 0 ? new Array(++len).join('0') : '') + index
             number = newIndex + 1
           }
