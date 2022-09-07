@@ -53,6 +53,8 @@ module.exports = async (client, message) => {
       if (!doc.data().used) {
         cache.set("answer", doc.data().answer)
       }
+    } else {
+      message.reply("There is no game running")
     }
     let answer = cache.get("answer")
     console.log("answer", answer)
