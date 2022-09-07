@@ -79,20 +79,23 @@ module.exports = async (client, message) => {
         })
         gameEmbed = new EmbedBuilder()
           .setTitle("Who's that Pokemon? WINNER!")
-          .setImage(`../images/pokemon/answers/${number}.jpg`)
+          .setImage(`attachment://${number}.jpg`)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+        message.channel.send({ embeds: [gameEmbed], files: [`../images/pokemon/questions/${number}.jpg`] }).then(ownMessage => {
+          ownMessage.react(config.discord.emojis.clap)
+        })
       } else {
         gameEmbed = new EmbedBuilder()
           .setTitle(`${games[today]} WINNER!`)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${message.member} with the correct answer of: ${userAnswer}!`)
+        message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
+          ownMessage.react(config.discord.emojis.clap)
+        })
       }
-      message.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
-        ownMessage.react(config.discord.emojis.clap)
-      })
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
       // REWARD
