@@ -14,12 +14,11 @@ function pad (n) {
 }
 
 function init(client, db, cache) {
-	let scheduledMessage = new cron.CronJob("00 45 19 * * 3", () => {
+	let scheduledMessage = new cron.CronJob("00 47 19 * * 3", () => {
     const number = pad(Math.floor(Math.random() * 151))
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "answer <your answer>`)
-      .attachFiles(attachment)
       .setImage(`../images/pokemon/questions/${number}.jpg`)
     const pokemon = kanto[number + 1]
     cache.set("answer", pokemon)
