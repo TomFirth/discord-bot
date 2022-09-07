@@ -62,7 +62,7 @@ module.exports = async (client, message) => {
         "",
         "Quiz",
         "Pokemon",
-        "",
+        "Pokemon",
         "Riddle",
         "Movie",
         ""
@@ -108,7 +108,7 @@ module.exports = async (client, message) => {
       }
       utilities.specialSort(message.author.id)
     } else {
-      if (answer !== "" || !answer) {
+      if (answer !== "" || answer) {
         const guessArray = userAnswer.split(' ')
         const answerArray = answer.split(' ')
         answerArray.forEach(value => {
