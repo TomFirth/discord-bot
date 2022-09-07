@@ -5,23 +5,20 @@ const utilities = require("../scripts/utilities")
 const config = require("../config.json")
 const { kanto } = require("../pokemon.json")
 
-const Cache = require("node-cache")
-const cache = new Cache({ stdTTL: 18 * 1000000 })
-
 function pad (n) {
-  var len = 3 - (''  +n).length
+  var len = 3 - ('' + n).length
   return (len > 0 ? new Array(++len).join('0') : '') + n
 }
 
 function init(client, db, cache) {
-	let scheduledMessage = new cron.CronJob("00 59 19 * * 3", () => {
+	let scheduledMessage = new cron.CronJob("00 01 20 * * 3", () => {
     const number = pad(Math.floor(Math.random() * 151))
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "answer <your answer>`)
       .setImage(`attachment://${number}.jpg`)
     const pokemon = kanto[number + 1]
-    console.log("pokemon", pokemon)
+    console.log("number", number)
     cache.set("answer", pokemon)
     utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../images/pokemon/questions/${number}.jpg`] })
     db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
