@@ -14,7 +14,7 @@ function pad (n) {
 }
 
 function init(client, db, cache) {
-	let scheduledMessage = new cron.CronJob("00 54 19 * * 3", () => {
+	let scheduledMessage = new cron.CronJob("00 56 19 * * 3", () => {
     const number = pad(Math.floor(Math.random() * 151))
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
@@ -25,7 +25,7 @@ function init(client, db, cache) {
     utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../images/pokemon/questions/${number}.jpg`] })
     db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
       answer: pokemon,
-      id: null,
+      id: "null",
       db: "pokemon",
       used: false
     })
