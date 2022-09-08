@@ -41,7 +41,7 @@ const riddles = require("./scheduled/riddles")(client, db, cache)
 const unlucky = require("./scheduled/unlucky")(client)
 const unSpecial = require("./scheduled/unSpecial")(client)
 
-// const patches = require("./streams/patches")
+const patches = require("./streams/patches")
 const primeGaming = require("./streams/primeGaming.js")
 const reddit = require("./streams/reddit")
 const rss = require("./streams/rss.js")
@@ -84,6 +84,14 @@ let scheduledMessage = new cron.CronJob("00 */15 * * * *", async () => {
   await primeGaming.start(client, db)
 })
 scheduledMessage.start()
+
+// PATCH NOTES
+config.patchNotes.forEach(patch => {
+  let scheduledMessage = new cron.CronJob("00 */15 * * * *", async () => {
+    await patches.start(client, patch, db)
+  })
+  scheduledMessage.start()
+})
 
 // STREAMS
 config.rss.forEach(feed => {

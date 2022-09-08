@@ -1,49 +1,46 @@
 const { EmbedBuilder } = require("discord.js")
-const https = require("https")
-const cheerio = require("cheerio")
-const utilities = require("../scripts/utilities")
+const Parser = require("rss-parser")
+const parser = new Parser()
 const config = require("../config.json")
 
 class Patches {
-  static start(client, target, db) {
-    const url = new URL(config.streams[target.name].url)
-    https.get({
-      hostname: url.hostname,
-      path: url.pathname,
-      headers: {'User-Agent': 'agent'}
-    }, async response => {
-      response.on("data", data => {
-        const $ = cheerio.load(data)
-      })
-      response.on("end", async () => {
-        const title = ""
-        const href = ""
-        $(target.find, data).each(() => {
-          title = $(this).text
-          href = $(this).find("a").attr("href")
-        })
-        const query = await db.collection("patches").doc(target.docId).get()
-        if (query.data() !== undefined
-        && query.data().title !== title) {
-          const patchNotes = new EmbedBuilder()
-            .setAuthor({ name: target.name })
-            .setTitle(title)
-            .setColor(target.colour)
-            .setThumbnail("")
-            .setURL(href)
-            // .addField("") // scheduled release date
-            // .addField("") // headlines
-            .setTimestamp()
-          utilities.channel(client, config.discord.channels.updates, { embeds: [patchNotes]})
-          db.collection("patches").doc(target.docId).set({
-            title: title
-          }, {merge: true})
-        }
-      })
-      response.on("error", (error) => {
-        console.error(error)
-      })
-    })
+  static async start(client, feed, db) {
+    const query = await db.collection("rss").doc(feed.docId).get()
+    let feeds = await parser.parseURL(feed.url)
+    try {
+      if (feed.url.split('.').pop() == ".xml" || feed.url.split('.').pop() == "xml") {
+        feeds = await parser.parseString(feed.url)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+    const item = feeds.items[0]
+    if (query.data().publishedDate !== item.pubDate
+      || query.data().title !== item.title) {
+      let description = ""
+      if (item.content || item.contentSnippet) {
+        description = item.content || item.contentSnippet || item.description || ""
+        description.replace(/<\/?[^>]+(>|$)/g, "")
+      }
+      if (item.title.includes("patch") || item.title.includes("release") || item.title.includes("update")) {
+        let feedEmbed
+        feedEmbed = new EmbedBuilder()
+        .setColor(feed.colour)
+        .setTitle(item.title)
+        .setURL(item.link)
+        .setAuthor({ name: feed.author })
+        .setDescription(`${description.substring(0, 180)}...`)
+        .setTimestamp()
+      let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.updates)
+      channel.send({ embeds: [feedEmbed] })
+      db.collection("patches").doc(feed.docId).set({
+        description: description,
+        link: item.link,
+        publishedDate: item.pubDate,
+        title: item.title
+      }, {merge: true})
+      }
+    }
   }
 }
 

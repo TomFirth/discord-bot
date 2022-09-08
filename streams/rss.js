@@ -43,8 +43,6 @@ class Rss {
           }
         })
         db.collection("rss").doc(feed.docId).set({
-          description: description,
-          link: item.link,
           publishedDate: item.pubDate,
           title: item.title
         }, {merge: true})
