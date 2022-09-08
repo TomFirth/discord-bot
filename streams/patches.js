@@ -1,15 +1,16 @@
 const { EmbedBuilder } = require("discord.js")
 const Parser = require("rss-parser")
 const parser = new Parser()
-const config = require("../config.json")
 const utilities = require("../scripts/utilities")
 
 class Patches {
   static async start(client, feed, db) {
-    const query = await db.collection("patches").doc(feed.docId).get()
+    const query = await db.collection("rss").doc(feed.docId).get()
     let feeds = await parser.parseURL(feed.url)
     try {
-      if (feed.url.split('.').pop() == ".xml" || feed.url.split('.').pop() == "xml") {
+      const filetype = feed.url.split('.').pop()
+      console.log("filetype", filetype)
+      if (filetype == ".xml" || filetype == "xml") {
         feeds = await parser.parseString(feed.url)
       }
     } catch (error) {
@@ -31,7 +32,7 @@ class Patches {
         .setURL(item.link)
         .setDescription(`${description.substring(0, 180)}...`)
         .setTimestamp()
-      let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
+      let channel = await client.channels.cache.find(channel => channel.name === feed)
       channel.send({ embeds: [feedEmbed] })
       db.collection("patches").doc(feed.docId).set({
         description: description,
