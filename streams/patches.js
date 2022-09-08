@@ -2,6 +2,7 @@ const { EmbedBuilder } = require("discord.js")
 const Parser = require("rss-parser")
 const parser = new Parser()
 const config = require("../config.json")
+const utilities = require("../scripts/utilities")
 
 class Patches {
   static async start(client, feed, db) {
@@ -25,13 +26,12 @@ class Patches {
       if (item.title.includes("patch") || item.title.includes("release") || item.title.includes("update")) {
         let feedEmbed
         feedEmbed = new EmbedBuilder()
-        .setColor(feed.colour)
+        .setColor(utilities.randomColour())
         .setTitle(item.title)
         .setURL(item.link)
-        .setAuthor({ name: feed.author })
         .setDescription(`${description.substring(0, 180)}...`)
         .setTimestamp()
-      let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.updates)
+      let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
       channel.send({ embeds: [feedEmbed] })
       db.collection("patches").doc(feed.docId).set({
         description: description,
