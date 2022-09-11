@@ -7,15 +7,6 @@ class Patches {
   static async start(client, feed, db) {
     const query = await db.collection("rss").doc(feed.docId).get()
     let feeds = await parser.parseURL(feed.url)
-    try {
-      const filetype = feed.url.split('.').pop()
-      console.log("filetype", filetype)
-      if (filetype == ".xml" || filetype == "xml") {
-        feeds = await parser.parseString(feed.url)
-      }
-    } catch (error) {
-      console.error(error)
-    }
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
