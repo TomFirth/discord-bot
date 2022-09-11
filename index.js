@@ -52,9 +52,10 @@ client.error = async (error) => {
     .setColor(colours.red)
     .setDescription(`\`\`\`${error}\`\`\``)
     .setTimestamp()
-  let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
-  if (!error || !channel) return
-  return channel.send({ embeds: [errorEmbed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
+    await client.channels.fetch(config.discord.channels.bot)
+      .then(channel => {
+        channel.send({ embeds: [errorEmbed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
+      })
 }
 
 // EVENT HANDLER

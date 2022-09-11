@@ -8,7 +8,6 @@ class YoutubeFeed {
   static async start(client, db, user) {
     const query = await db.collection("youtube").doc(user.docId).get()
     const feeds = await parser.parseURL(`https://www.youtube.com/feeds/videos.xml?channel_id=${user.id}`)
-    console.log(feeds.items[0])
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
@@ -23,8 +22,10 @@ class YoutubeFeed {
         .setURL(item.link)
         .setAuthor({ name: item.title })
         .setTimestamp()
-      let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.socials)
-      channel.send({ embeds: [feedEmbed] })
+      await client.channels.fetch(config.discord.channels.socials)
+        .then(channel => {
+          channel.send({ embeds: [feedEmbed] })
+        })
       db.collection("youtube").doc(user.docId).set({
         publishedDate: item.pubDate,
         title: item.title

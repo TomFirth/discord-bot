@@ -24,6 +24,10 @@ class Patches {
           .setURL(item.link)
           .setDescription(`${description.substring(0, 180)}...`)
           .setTimestamp()
+          await client.channels.fetch(config.discord.channels.bot)
+            .then(channel => {
+              channel.send({ embeds: [errorEmbed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
+            })
         let channel = await client.channels.cache.find(channel => channel.name === feed)
         channel.send({ embeds: [feedEmbed] })
         db.collection("patches").doc(feed.docId).set({
