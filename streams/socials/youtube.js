@@ -9,7 +9,7 @@ class YoutubeFeed {
     const query = await db.collection("youtube").doc(user.docId).get()
     const feeds = await parser.parseURL(`https://www.youtube.com/feeds/videos.xml?channel_id=${user.id}`)
     const item = feeds.items[0]
-    console.log(item)
+    if (item.pubDate == undefined) return
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
       let description = ""
