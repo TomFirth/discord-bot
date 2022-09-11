@@ -23,10 +23,8 @@ class YoutubeFeed {
         .setURL(item.link)
         .setAuthor({ name: item.title })
         .setTimestamp()
-      await client.channels.fetch(config.discord.channels.socials)
-        .then(channel => {
-          channel.send({ embeds: [feedEmbed] })
-        })
+        const channel = client.channels.cache.find(channel => channel.name === destination)
+        channel.send({ embeds: [feedEmbed] })
       db.collection("youtube").doc(user.docId).set({
         publishedDate: item.pubDate,
         title: item.title
