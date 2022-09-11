@@ -23,7 +23,7 @@ class YoutubeFeed {
         .setURL(item.link)
         .setAuthor({ name: item.title })
         .setTimestamp()
-      await client.channels.cache.find(channel => channel.name === config.discord.channels.socials)
+      await client.channels.cache.fetch(config.discord.channels.socials)
         .then(channel => {
           channel.send({ embeds: [embed] })
         })
