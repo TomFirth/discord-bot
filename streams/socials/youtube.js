@@ -7,7 +7,7 @@ const config = require("../../config.json")
 class YoutubeFeed {
   static async start(client, db, user) {
     const query = await db.collection("youtube").doc(user.docId).get()
-    parser.parseURL(`https://www.youtube.com/feeds/videos.xml?channel_id=${user.id}`)
+    const feeds = parser.parseURL(`https://www.youtube.com/feeds/videos.xml?channel_id=${user.id}`)
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
