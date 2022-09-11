@@ -5,7 +5,7 @@ const utilities = require("../scripts/utilities")
 
 class Patches {
   static async start(client, feed, db) {
-    const query = await db.collection("rss").doc(feed.docId).get()
+    const query = await db.collection("patches").doc(feed.docId).get()
     let feeds = await parser.parseURL(feed.url)
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
