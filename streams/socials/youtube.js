@@ -7,7 +7,8 @@ const config = require("../../config.json")
 class YoutubeFeed {
   static async start(client, db, user) {
     const query = await db.collection("youtube").doc(user.docId).get()
-    const feeds = parser.parseURL(`https://www.youtube.com/feeds/videos.xml?channel_id=${user.id}`)
+    const feeds = await parser.parseURL(`https://www.youtube.com/feeds/videos.xml?channel_id=${user.id}`)
+    console.log(feeds.items)
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
@@ -21,6 +22,7 @@ class YoutubeFeed {
         .setColor(colours.red)
         .setTitle(item.title)
         .setURL(item.link)
+        .setAuthor({ name: item.title })
         .setTimestamp()
       let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.socials)
       channel.send({ embeds: [feedEmbed] })
