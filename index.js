@@ -46,13 +46,13 @@ const youtube = require("./streams/socials/youtube")
 // const soundcloud = require("./streams/socials/soundcloud")
 
 // ERROR MESSAGE
-client.error = (error) => {
+client.error = async (error) => {
   const errorEmbed = new EmbedBuilder()
     .setTitle("An Error occured!")
     .setColor(colours.red)
     .setDescription(`\`\`\`${error}\`\`\``)
     .setTimestamp()
-  let channel = client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
+  let channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.bot)
   if (!error || !channel) return
   return channel.send({ embeds: [errorEmbed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
 }
