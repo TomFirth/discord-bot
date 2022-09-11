@@ -17,14 +17,14 @@ class YoutubeFeed {
         description = item.content || item.contentSnippet || item.description || ""
         description.replace(/<\/?[^>]+(>|$)/g, "")
       }
-      const feedEmbed = new EmbedBuilder()
+      const embed = new EmbedBuilder()
         .setColor(colours.red)
         .setTitle(item.title)
         .setURL(item.link)
         .setAuthor({ name: item.title })
         .setTimestamp()
-        const channel = await client.channels.cache.find(channel => channel.name === destination)
-        channel.send({ embeds: [feedEmbed] })
+        const channel = await client.channels.cache.find(channel => channel.name === config.discord.channels.socials)
+        channel.send({ embeds: [embed] })
       db.collection("youtube").doc(user.docId).set({
         publishedDate: item.pubDate,
         title: item.title
