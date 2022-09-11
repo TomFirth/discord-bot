@@ -21,7 +21,7 @@ class YoutubeFeed {
         .setColor(colours.red)
         .setTitle(item.title)
         .setURL(item.link)
-        .setAuthor({ name: feed.author })
+        .setAuthor({ name: item.author })
         .setTimestamp()
       await client.channels.fetch(config.discord.channels.socials)
         .then(channel => {
