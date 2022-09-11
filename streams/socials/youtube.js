@@ -19,6 +19,7 @@ class YoutubeFeed {
       }
       await client.channels.fetch("897090512836771911")
         .then(channel => {
+          if (!channel) return
           channel.send(item.link)
         })
       db.collection("youtube").doc(user.docId).set({
