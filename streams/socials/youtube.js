@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require("discord.js")
 const Parser = require("rss-parser")
 const parser = new Parser()
-const utilities = require("../scripts/utilities")
+const colours = require("../../colours")
 const config = require("../../config.json")
 
 class YoutubeFeed {
@@ -18,7 +18,7 @@ class YoutubeFeed {
       }
       let feedEmbed
       feedEmbed = new EmbedBuilder()
-        .setColor(utilities.randomColour())
+        .setColor(colours.red)
         .setTitle(item.title)
         .setURL(item.link)
         .setTimestamp()
