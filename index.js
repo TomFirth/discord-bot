@@ -22,13 +22,6 @@ const config = require("./config.json")
 client.commands = new Collection()
 client.prefix = config.bot.prefix
 
-// SCHEDULED
-// fs.readdir("./scheduled/", (error, files) => {
-//   if (error) return console.error(error)
-//   files.forEach(file => {
-//       require("./scheduled/" + file)(client, db, cache)
-//   })
-// })
 const leet = require("./scheduled/1337")(client)
 const birthdays = require("./scheduled/birthday")(client, db)
 // const gameCheck = require("./scheduled/gameCheck")(client, db)
@@ -47,9 +40,10 @@ const reddit = require("./streams/reddit")
 const rss = require("./streams/rss.js")
 
 const twitter = require("./streams/socials/twitter")
-// const youtube = require("./streams/socials/youtube")
+const youtube = require("./streams/socials/youtube")
 // const instagram = require("./streams/socials/instragram")
 // const twitch = require("./streams/socials/twitch")
+// const soundcloud = require("./streams/socials/soundcloud")
 
 // ERROR MESSAGE
 client.error = (error) => {
@@ -114,21 +108,16 @@ config.reddit.forEach(async subreddit => {
   scheduledMessage.start()
 })
 
-// PATCH NOTES
-// config.streams.forEach(target => {
-//   if (target.url !== "") {
-//     patches.start(client, target, db)
-//   }
-// })
-
 // BETAS
 
 // SOCIALS
 twitter.start(client, config.socials.twitter.user, config.discord.channels.socials)
-// youtube.start(client, config.socials.youtube.channel1)
-// youtube.start(client, config.socials.youtube.channel2)
+config.socials.youtube.forEach(async user => {
+  youtube.start(client, db, user)
+})
 // instagram.start()
 // twitch.start()
+// soundcloud.start()
 
 // COMMAND HANDLER
 const commands = []
