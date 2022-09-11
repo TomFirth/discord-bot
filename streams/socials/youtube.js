@@ -17,15 +17,9 @@ class YoutubeFeed {
         description = item.content || item.contentSnippet || item.description || ""
         description.replace(/<\/?[^>]+(>|$)/g, "")
       }
-      const embed = new EmbedBuilder()
-        .setColor(colours.red)
-        .setTitle(item.title)
-        .setURL(item.link)
-        .setAuthor({ name: item.author })
-        .setTimestamp()
       await client.channels.fetch("897090512836771911")
         .then(channel => {
-          channel.send({ embeds: [embed] })
+          channel.send(item.link)
         })
       db.collection("youtube").doc(user.docId).set({
         publishedDate: item.pubDate,
