@@ -113,7 +113,7 @@ config.reddit.forEach(async subreddit => {
 // SOCIALS
 twitter.start(client, config.socials.twitter.user, config.discord.channels.socials)
 config.socials.youtube.forEach(async user => {
-  youtube.start(client, db, user)
+  await youtube.start(client, db, user)
 })
 // instagram.start()
 // twitch.start()
