@@ -8,7 +8,7 @@ class YoutubeFeed {
   static async start(client, db, user) {
     const query = await db.collection("youtube").doc(user.docId).get()
     const feeds = await parser.parseURL(`https://www.youtube.com/feeds/videos.xml?channel_id=${user.id}`)
-    console.log(feeds.items)
+    console.log(feeds.items[0])
     const item = feeds.items[0]
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title) {
@@ -17,8 +17,7 @@ class YoutubeFeed {
         description = item.content || item.contentSnippet || item.description || ""
         description.replace(/<\/?[^>]+(>|$)/g, "")
       }
-      let feedEmbed
-      feedEmbed = new EmbedBuilder()
+      const feedEmbed = new EmbedBuilder()
         .setColor(colours.red)
         .setTitle(item.title)
         .setURL(item.link)
