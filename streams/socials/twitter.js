@@ -24,12 +24,7 @@ class TwitterFeed {
         || tweet.in_reply_to_user_id_str
         || tweet.in_reply_to_screen_name) return false
       const channel = client.channels.cache.find(channel => channel.name === destination)
-      channel.send(`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`).then(ownMessage => {
-        if (destination == config.discord.channels.free) {
-          ownMessage.react(config.discord.emojis.thumbsUp)
-          ownMessage.react(config.discord.emojis.thumbsDown)
-        }
-      })
+      channel.send(`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`)
     })
     stream.on("error", error => {
       console.error(error)
