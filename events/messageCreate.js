@@ -48,6 +48,7 @@ module.exports = async (client, message) => {
     endDate.setMinutes(endTime.split(":")[1])
     const valid = startDate < currentDate && endDate > currentDate
     if (!cache.has("answer") && valid) {
+      console.log("question still exists")
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
       if (!doc.data().used) {
