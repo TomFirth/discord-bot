@@ -6,6 +6,7 @@ const config = require("../config.json")
 class Rss {
   static async start(client, feed, db) {
     try {
+      console.log(feed.author)
       const query = await db.collection("rss").doc(feed.docId).get()
       const feeds = await parser.parseURL(feed.url)
       const item = feeds.items[0]
@@ -17,6 +18,7 @@ class Rss {
           description.replace(/<\/?[^>]+(>|$)/g, "")
         }
         if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
+          console.log("not ignored")
           let feedEmbed
           if (feed.author == "NASA") {
             feedEmbed = new EmbedBuilder()
@@ -47,6 +49,8 @@ class Rss {
             publishedDate: item.pubDate,
             title: item.title
           }, {merge: true})
+        } else {
+          console.log("ignored")
         }
       }
     } catch (error) {
