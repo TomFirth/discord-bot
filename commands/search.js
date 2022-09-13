@@ -14,7 +14,7 @@ module.exports = {
   async execute(interaction) {
     google({'query': interaction.options.getString("search")}).then(results => {
       interaction.reply({
-        content: "thinking...",
+        content: "Searching...",
         ephemeral: false
       })
       interaction.deleteReply()
