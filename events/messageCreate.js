@@ -38,7 +38,6 @@ module.exports = async (client, message) => {
 
   // GAMES RESPONSES
   if (message.content.toLowerCase().split(' ')[0] == "answer") {
-    console.log("---- answer start ----")
     const startTime = '19:00:00';
     const endTime = '23:59:59';
     const currentDate = new Date()   
@@ -48,17 +47,12 @@ module.exports = async (client, message) => {
     endDate.setHours(endTime.split(":")[0])
     endDate.setMinutes(endTime.split(":")[1])
     const valid = startDate < currentDate && endDate > currentDate
-    console.log("answer time!", cache.has("answer"), valid)
     if (!cache.has("answer") && valid) {
-      console.log("answer exists")
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
       if (!doc.data().used) {
         cache.set("answer", doc.data().answer)
       }
-    } else {
-      console.log("no answer")
-      message.reply("There is no game running")
     }
     let answer = cache.get("answer")
     answer += ""
