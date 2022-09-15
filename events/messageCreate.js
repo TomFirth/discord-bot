@@ -114,19 +114,7 @@ module.exports = async (client, message) => {
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else {
-      if (answer !== "" || answer) {
-        const guessArray = userAnswer.split(' ')
-        const answerArray = answer.split(' ')
-        answerArray.forEach(value => {
-          if (guessArray.includes(value)) {
-            message.react("🤏")
-            return
-          }
-        })
-        message.react(config.discord.emojis.thumbsDown)
-      } else {
-        message.channel.send("The game has ended for now.") // this isn't working?
-      }
+      message.react(config.discord.emojis.thumbsDown)
     }
   }
 
