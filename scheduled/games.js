@@ -27,7 +27,7 @@ class Game {
 			db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
 				answer: questionAnswer,
 				id: docId,
-				db: game.game,
+				db: game.db,
 				used: false
 			})
 			db.collection(game.db).doc(questions[random].id).update({ used: true })
