@@ -47,14 +47,14 @@ module.exports = async (client, message) => {
     endDate.setHours(endTime.split(":")[0])
     endDate.setMinutes(endTime.split(":")[1])
     const valid = startDate < currentDate && endDate > currentDate
-    if (!cache.has("answer") && valid) {
+    let answer = cache.get("answer")
+    if (!cache.has("answer") && answer !== undefined && valid) {
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
       if (!doc.data().used) {
         cache.set("answer", doc.data().answer)
       }
     }
-    let answer = cache.get("answer")
     answer += ""
     answer = answer.toLowerCase()
     const userAnswer = message.content.toLowerCase().replace("answer ", "")
@@ -64,7 +64,7 @@ module.exports = async (client, message) => {
         "",
         "Quiz",
         "Pokemon",
-        "Pokemon",
+        "",
         "Riddle",
         "Movie",
         ""
