@@ -48,7 +48,7 @@ module.exports = async (client, message) => {
     endDate.setMinutes(endTime.split(":")[1])
     const valid = startDate < currentDate && endDate > currentDate
     let answer = cache.get("answer")
-    if (!cache.has("answer") && answer !== "undefined" && valid) {
+    if (!cache.has("answer") && answer !== undefined && valid) {
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
       if (!doc.data().used) {
