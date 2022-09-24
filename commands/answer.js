@@ -20,14 +20,15 @@ module.exports = {
   async execute(interaction) {
     const startTime = '13:00:00';
     const endTime = '23:59:59';
-    const currentDate = new Date()   
-    let startDate = new Date(currentDate.getTime())
-    startDate.setHours(startTime.split(":")[0])
-    let endDate = new Date(currentDate.getTime())
-    endDate.setHours(endTime.split(":")[0])
-    endDate.setMinutes(endTime.split(":")[1])
-    const valid = startDate < currentDate && endDate > currentDate
+    const current = new Date()   
+    let start = new Date(current.getTime())
+    start.setHours(startTime.split(":")[0])
+    let end = new Date(current.getTime())
+    end.setHours(endTime.split(":")[0])
+    end.setMinutes(endTime.split(":")[1])
+    const valid = start < current && end > current
     let answer = cache.get("answer")
+    console.log("valid", start, end, valid)
     if ((!cache.has("answer") || answer === "undefined") && valid) {
       console.log("nothing cached")
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
