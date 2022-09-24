@@ -1,6 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
+const Cache = require("node-cache")
+const cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
+const config = require("../config.json")
+const { kanto } = require("../pokemon.json")
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -39,13 +43,13 @@ module.exports = {
     console.log("answer", userAnswer, answer)
     if (userAnswer == answer) {
       const games = [
-        "",
+        "Pokemon",
         "Quiz",
         "Pokemon",
         "",
         "Riddle",
         "Movie",
-        ""
+        "Pokemon"
       ]
       const date = new Date()
       const today = date.getDay()
@@ -82,7 +86,6 @@ module.exports = {
       }
       // REWARD
       if (!interaction.member.roles.cache.some(role => role.name === "special")) {
-        utilities.channel(client, config.discord.channels.special, `Welcome ${interaction.member}`)
         const role = interaction.guild.roles.cache.find(role => role.name === "special")
         interaction.member.roles.add(role)
       }
