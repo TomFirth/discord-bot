@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
+const { EmbedBuilder } = require("discord.js")
 const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
 const { kanto } = require("../pokemon.json")

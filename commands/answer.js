@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
+const { EmbedBuilder } = require("discord.js")
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
 const Cache = require("node-cache")
