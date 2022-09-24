@@ -18,7 +18,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const startTime = '09:00:00';
+    const startTime = '19:00:00';
     const endTime = '23:59:59';
     const current = new Date()   
     let start = new Date(current.getTime())
@@ -28,10 +28,8 @@ module.exports = {
     end.setMinutes(endTime.split(":")[1])
     const valid = start < current && end > current
     if ((!cache.has("answer") || answer === "undefined") && valid) {
-      console.log("nothing cached")
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
-      console.log("doc", doc.data().answer)
       if (!doc.data().used) {
         cache.set("answer", doc.data().answer)
       }
