@@ -16,7 +16,7 @@ function init(client, db, cache) {
     const number = pad(random)
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
-      .setDescription(`Reply with: "answer <your answer>`)
+      .setDescription(`Reply with: "/answer <your answer>`)
       .setImage(`attachment://${number}.jpg`)
     const pokemon = kanto[random + 1]
     cache.set("answer", pokemon.toString())

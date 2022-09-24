@@ -32,7 +32,7 @@ class Game {
 			})
 			db.collection(game.db).doc(questions[random].id).update({ used: true })
 			const gameEmbed = new EmbedBuilder()
-				.setDescription(questions[random].question + `\nReply with: "answer <your answer>"`)
+				.setDescription(questions[random].question + `\nReply with: "/answer <your answer>"`)
 				.setColor(colours.green)
 			utilities.channel(client, game.destination, { embeds: [gameEmbed] })
 		})
