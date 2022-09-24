@@ -33,7 +33,7 @@ module.exports = {
       console.log("nothing cached")
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
-      console.log("doc", doc)
+      console.log("doc", doc.data().answer)
       if (!doc.data().used) {
         cache.set("answer", doc.data().answer)
       }
