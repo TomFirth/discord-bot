@@ -18,7 +18,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const startTime = '13:00:00';
+    const startTime = '12:00:00';
     const endTime = '23:59:59';
     const current = new Date()   
     let start = new Date(current.getTime())
