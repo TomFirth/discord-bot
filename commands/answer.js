@@ -45,13 +45,13 @@ module.exports = {
     console.log("answer", userAnswer, answer)
     if (userAnswer == answer) {
       const games = [
-        "Pokemon",
+        "",
         "Quiz",
         "Pokemon",
         "",
         "Riddle",
         "Movie",
-        "Pokemon"
+        ""
       ]
       const date = new Date()
       const today = date.getDay()
