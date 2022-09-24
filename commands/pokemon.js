@@ -17,7 +17,7 @@ module.exports = {
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "/answer <your answer>`)
       .setImage(`attachment://${number}.jpg`)
-    const pokemon = kanto[random - 2]
+    const pokemon = kanto[random - 1]
     console.log("answer", pokemon.toString())
     cache.set("answer", pokemon.toString())
     interaction.reply({ embeds: [pokeEmbed], files: [`../discord-bot/images/pokemon/questions/${number}.jpg`] })
