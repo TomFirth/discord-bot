@@ -9,11 +9,8 @@ module.exports = {
     .setDescription("Who's that pokemon"),
   async execute(interaction) {
     const random = Math.floor(Math.random() * kanto.length)
-    let number
-    const len = 3 - ('' + index).length
-    let newIndex = index + 1
-    newIndex = (len > 0 ? new Array(++len).join('0') : '') + newIndex
-    number = newIndex
+    var len = 3 - ('' + random).length
+    number = (len > 0 ? new Array(++len).join('0') : '') + random
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "/answer <your answer>`)
