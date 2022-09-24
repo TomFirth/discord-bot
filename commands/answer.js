@@ -27,8 +27,6 @@ module.exports = {
     end.setHours(endTime.split(":")[0])
     end.setMinutes(endTime.split(":")[1])
     const valid = start < current && end > current
-    let answer = cache.get("answer")
-    console.log("valid", start, end, valid)
     if ((!cache.has("answer") || answer === "undefined") && valid) {
       console.log("nothing cached")
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
@@ -41,6 +39,7 @@ module.exports = {
       interaction.reply({ content: "There is no game being played", ephemeral: true })
       return
     }
+    answer = cache.get("answer")
     answer += ""
     answer = answer.toLowerCase()
     const userAnswerRaw = interaction.options.getString("answer").replace("answer ", "")
