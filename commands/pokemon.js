@@ -10,6 +10,7 @@ module.exports = {
     .setDescription("Who's that pokemon"),
   async execute(interaction) {
     const random = Math.floor(Math.random() * kanto.length)
+    console.log(kanto.length)
     var len = 3 - ('' + random).length
     number = (len > 0 ? new Array(++len).join('0') : '') + random
     const pokeEmbed = new EmbedBuilder()
