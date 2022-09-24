@@ -96,8 +96,8 @@ module.exports = {
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else {
-      console.log("-----", interaction)
-      interaction.react(config.discord.emojis.thumbsDown)
+      const message = await interaction.reply({ content: 'emoji!', fetchReply: true })
+      message.react(config.discord.emojis.thumbsDown)
     }
   }
 }
