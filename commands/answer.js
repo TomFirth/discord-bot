@@ -18,8 +18,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    console.log("have answer")
-    const startTime = '19:00:00';
+    const startTime = '13:00:00';
     const endTime = '23:59:59';
     const currentDate = new Date()   
     let startDate = new Date(currentDate.getTime())
@@ -38,6 +37,7 @@ module.exports = {
       }
     } else if (!valid) {
       interaction.reply({ content: "There is no game being played", ephemeral: true })
+      return
     }
     answer += ""
     answer = answer.toLowerCase()
