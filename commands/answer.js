@@ -35,7 +35,7 @@ module.exports = {
         cache.set("answer", doc.data().answer)
       }
     } else if (!valid) {
-      message.reply({ content: "There is no game being played", ephemeral: true })
+      interaction.reply({ content: "There is no game being played", ephemeral: true })
     }
     answer += ""
     answer = answer.toLowerCase()

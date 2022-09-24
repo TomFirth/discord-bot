@@ -13,12 +13,13 @@ function pad (n) {
 function init(client, db, cache) {
 	let scheduledMessage = new cron.CronJob("00 00 19 * * 3", () => {
     const random = Math.floor(Math.random() * kanto.length)
-    const number = pad(random)
+    var len = 3 - ('' + random).length
+    number = (len > 0 ? new Array(++len).join('0') : '') + random
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "/answer <your answer>`)
       .setImage(`attachment://${number}.jpg`)
-    const pokemon = kanto[random + 1]
+    const pokemon = kanto[random - 1]
     cache.set("answer", pokemon.toString())
     utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../discord-bot/images/pokemon/questions/${number}.jpg`] })
     db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
