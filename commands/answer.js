@@ -18,6 +18,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    console.log("have answer")
     const startTime = '19:00:00';
     const endTime = '23:59:59';
     const currentDate = new Date()   
@@ -29,6 +30,7 @@ module.exports = {
     const valid = startDate < currentDate && endDate > currentDate
     let answer = cache.get("answer")
     if ((!cache.has("answer") || answer === "undefined") && valid) {
+      console.log("nothing cached")
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
       if (!doc.data().used) {

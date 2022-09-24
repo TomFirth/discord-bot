@@ -12,7 +12,6 @@ module.exports = {
     const random = Math.floor(Math.random() * kanto.length)
     var len = 3 - ('' + random).length
     number = (len > 0 ? new Array(++len).join('0') : '') + random
-    console.log("number", random, number)
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "/answer <your answer>`)
