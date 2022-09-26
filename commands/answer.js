@@ -98,7 +98,7 @@ module.exports = {
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else {
-      const message = await interaction.reply({ content: `${interaction.member} gave the wrong answer of: ${interaction.options.getString("answer")}`, fetchReply: true })
+      const message = await interaction.reply({ content: `${interaction.member} is stupid and gave the wrong answer of: ${interaction.options.getString("answer")}`, fetchReply: true })
       message.react(config.discord.emojis.thumbsDown)
     }
   }
