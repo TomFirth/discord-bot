@@ -6,6 +6,7 @@ const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
 const config = require("../config.json")
 const { kanto } = require("../pokemon.json")
+const utilities = require("../scripts/utilities")
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -94,11 +95,11 @@ module.exports = {
         const role = interaction.guild.roles.cache.find(role => role.name === "special")
         interaction.member.roles.add(role)
       }
-      // utilities.specialSort(message.author.id)
+      utilities.specialSort(interaction.member.id)
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else {
-      const message = await interaction.reply({ content: `${interaction.member} is stupid and gave the wrong answer of: ${interaction.options.getString("answer")}`, fetchReply: true })
+      const message = await interaction.reply({ content: `${interaction.member} got it wrong with: ${interaction.options.getString("answer")}`, fetchReply: true })
       message.react(config.discord.emojis.thumbsDown)
     }
   }
