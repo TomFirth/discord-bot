@@ -6,6 +6,7 @@ const Cache = require("node-cache")
 const cache = new Cache({ stdTTL: 18 * 1000000 }) // 5hrs
 const config = require("../config.json")
 const { kanto } = require("../pokemon.json")
+const colours = require("../colours.json")
 const utilities = require("../scripts/utilities")
 
 module.exports = {
