@@ -29,7 +29,6 @@ module.exports = {
     end.setHours(endTime.split(":")[0])
     end.setMinutes(endTime.split(":")[1])
     const valid = start < current && end > current
-    console.log("valid", start, end, current)
     if ((!cache.has("answer") || answer === "undefined") && valid) {
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
