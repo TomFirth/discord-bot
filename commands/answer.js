@@ -81,7 +81,7 @@ module.exports = {
       } else {
         gameEmbed = new EmbedBuilder()
           .setTitle(`${games[today]} WINNER!`)
-          .setThumbnail(message.author.displayAvatarURL())
+          .setThumbnail(interaction.member.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${interaction.member} with the correct answer of: ${userAnswerRaw}!`)
         interaction.channel.send({ embeds: [gameEmbed] }).then(ownMessage => {
