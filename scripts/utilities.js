@@ -51,7 +51,7 @@ module.exports = {
         })
       }
     })
-    userArray.sort(utilities.compare())
+    userArray.sort(compare())
     userArray.shift()
     userArray.push({
       id: userArray[1].id,
