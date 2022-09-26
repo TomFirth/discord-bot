@@ -18,11 +18,12 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const startTime = '19:00:00';
-    const endTime = '23:59:59';
+    const startTime = '19:00:00'
+    const endTime = '23:59:59'
     const current = new Date()   
     let start = new Date(current.getTime())
     start.setHours(startTime.split(":")[0])
+    start.setMinutes(startTime.split(":")[1])
     let end = new Date(current.getTime())
     end.setHours(endTime.split(":")[0])
     end.setMinutes(endTime.split(":")[1])
