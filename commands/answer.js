@@ -37,7 +37,7 @@ module.exports = {
         cache.set("answer", doc.data().answer)
       }
     }
-    if (!valid) {
+    if (!valid || !cache.has("answer")) {
       interaction.reply({ content: "There is no game being played", ephemeral: true })
       return
     }
