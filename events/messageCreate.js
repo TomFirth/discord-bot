@@ -19,7 +19,7 @@ module.exports = async (client, message) => {
 
   // SPECIFIC USER TROLLS
   trolls.forEach(troll => {
-    if (react) {
+    if (troll.react) {
       if (message.content.toLowerCase().includes(troll.message.toLowerCase()) && Math.floor(Math.random() * troll.chance) == 0) {
         message.react(troll.react)
       }
