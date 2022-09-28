@@ -33,6 +33,10 @@ module.exports = async (client, message) => {
       if (message.content.toLowerCase() == troll.message.toLowerCase() && Math.floor(Math.random() * troll.chance) == 0) {
         message.channel.send(troll.response)
       }
+    } else if (react) {
+      if (message.content.toLowerCase().includes(troll.message.toLowerCase()) && Math.floor(Math.random() * troll.chance) == 0) {
+        message.react(troll.react)
+      }
     }
   })
 
