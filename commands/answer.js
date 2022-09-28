@@ -97,7 +97,7 @@ module.exports = {
       utilities.specialSort(interaction.member.id)
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
-    } else {
+    } else if (userAnswer !== answer && cache.has("answer")) {
       const message = await interaction.reply({ content: `${interaction.member} got it wrong with: ${interaction.options.getString("answer")}`, fetchReply: true })
       message.react(config.discord.emojis.thumbsDown)
     }
