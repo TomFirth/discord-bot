@@ -21,7 +21,7 @@ class Rss {
       .setAuthor({ name: "Prime Gaming" })
       .setDescription(`${description}...`)
       .setTimestamp()
-      await client.channels.fetch(config.discord.channels.free)
+      await client.channels.fetch("909843508431552583")
         .then(channel => {
           channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
             ownMessage.react(config.discord.emojis.thumbsUp)
