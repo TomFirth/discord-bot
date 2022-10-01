@@ -17,7 +17,7 @@ class Rss {
       .setColor(utilities.randomColour())
       .setTitle(item.title)
       .setURL(item.link)
-      .addField("Prime Gaming Website", "[gaming.amazon.com](https://gaming.amazon.com/home)")
+      .addFields({ name: "Prime Gaming Website", value: "[gaming.amazon.com](https://gaming.amazon.com/home)", inline: true })
       .setAuthor({ name: "Prime Gaming" })
       .setDescription(`${description}...`)
       .setTimestamp()
