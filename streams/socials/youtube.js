@@ -15,7 +15,7 @@ class YoutubeFeed {
       let description = ""
       if (item.content || item.contentSnippet) {
         description = item.content || item.contentSnippet || item.description || ""
-        description.replace(/<\/?[^>]+(>|$)/g, "")
+        description.replace(/<\/?[^>]+(>|$)/gi, "")
       }
       await client.channels.fetch("897090512836771911")
         .then(channel => {

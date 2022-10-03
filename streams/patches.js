@@ -14,7 +14,7 @@ class Patches {
         let description = ""
         if (item.content || item.contentSnippet) {
           description = item.content || item.contentSnippet || item.description || ""
-          description.replace(/<\/?[^>]+(>|$)/g, "")
+          description.replace(/<\/?[^>]+(>|$)/gi, "")
         }
         if (item.title.includes("patch") || item.title.includes("release") || item.title.includes("update")) {
           let feedEmbed
