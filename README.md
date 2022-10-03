@@ -13,19 +13,28 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 
 - [X] Temporary voice and text channels creation with pruning after inactivity.
 - [X] Polls.
-- [X] The ability to follow multiple social media channels (twitter, youtube, twitch and instagram coming soon).
+- [X] The ability to follow multiple social media channels
+- - [X] Twitter
+- - [X] Youtube
+- - [ ] Twitch
+- - [ ] Instagram
+- - [ ] Soundcloud
 - [X] Can be self hosted (a good use for a spare raspberry pi).
 - [X] Google search that returns the top result.
 - [X] Reddit Rhythm Roulette integration (provides three songs to be used as samples).
 - [X] Meme of the day.
-- [X] Weekly quiz with a prize!
+- [X] Weekly quizzes with a prize!
 - [X] Notifications of Free games.
+- [X] Amazon Gaming freebies
 - [X] Gaming news.
-- [ ] Patch notes for certain video games.
+- [X] Patch notes for certain video games.
 - [ ] News on video games betas.
 - [ ] Crypto integration
 - [ ] Trading
 - [ ] Add user Steam libraries and allow them to search for people to play with.
+- [ ] Valheim server
+- [ ] Game of games
+- [ ] Pet fighting discord game
 
 ### Usage
 

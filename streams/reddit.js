@@ -8,12 +8,12 @@ class Reddit {
       hostname: url.hostname,
       path: url.pathname,
       headers: {'User-Agent': 'agent'}
-    }, async stream => {
-      let str = ''
-      stream.on("data", data => {
-        str += data
+    }, async res => {
+      let data = []
+      res.on('data', chunk => {
+        data.push(chunk)
       })
-      stream.on("end", async () => {
+      res.on('end', async () => {
         // check safe for work hours
         const startTime = '19:00:00';
         const endTime = '23:59:00';
@@ -28,7 +28,7 @@ class Reddit {
           // Do nothing
         } else {
           const query = await db.collection("reddit").doc(reddit.docId).get()
-          const releases = JSON.parse(str)
+          const releases = JSON.parse(Buffer.concat(data).toString())
           if (releases.reason) console.error("subreddit is private")
           else {
             try {
@@ -59,7 +59,7 @@ class Reddit {
           }
         }
       })
-      stream.on("error", (error) => {
+      res.on("error", (error) => {
         return console.error(error)
       })
     })
