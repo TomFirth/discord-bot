@@ -13,8 +13,7 @@ function pad (n) {
 function init(client, db, cache) {
 	let scheduledMessage = new cron.CronJob("00 00 19 * * 2", () => {
     const random = Math.floor(Math.random() * kanto.length)
-    var len = 3 - ('' + random).length
-    number = (len > 0 ? new Array(++len).join('0') : '') + random
+    const number = pad(random)
     const pokeEmbed = new EmbedBuilder()
       .setTitle("Who's that Pokemon?")
       .setDescription(`Reply with: "/answer <your answer>`)

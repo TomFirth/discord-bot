@@ -42,7 +42,8 @@ module.exports = {
         "Could be either, most likely both.",
         "You have said many truths, this was not one of them.",
         "Liar liar, pants on fire!",
-        "That one was off the scale."
+        "That one was off the scale.",
+        "Chinny"
       ]
       await interaction.channel.send(lies[Math.floor(Math.random() * lies.length)])
       interaction.reply({

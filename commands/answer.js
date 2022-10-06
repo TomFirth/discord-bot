@@ -46,7 +46,6 @@ module.exports = {
     answer = answer.toLowerCase()
     const userAnswerRaw = interaction.options.getString("answer").replace("answer ", "")
     const userAnswer = userAnswerRaw.toLowerCase()
-    console.log("answer", userAnswer, answer)
     if (userAnswer == answer) {
       const games = [
         "",
@@ -59,6 +58,11 @@ module.exports = {
       ]
       const date = new Date()
       const today = date.getDay()
+      interaction.reply({
+        content: "thinking...",
+        ephemeral: false
+      })
+      interaction.deleteReply()
       let gameEmbed
       if (games[today] == "Pokemon") {
         let number
@@ -98,7 +102,7 @@ module.exports = {
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else if (userAnswer !== answer && cache.has("answer")) {
-      const message = await interaction.reply({ content: `${interaction.member} got it wrong with: ${interaction.options.getString("answer")}`, fetchReply: true })
+      const message = await interaction.reply({ content: `${interaction.member} was wrong with: ${interaction.options.getString("answer")}`, fetchReply: true })
       message.react(config.discord.emojis.thumbsDown)
     }
   }

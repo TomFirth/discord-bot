@@ -18,13 +18,11 @@ function init(client) {
 						"Today, is not your day.",
 						"Moron, Moron, Moron, Moron, Moron",
 						"twat.",
-						"You'll never be the man, that your mother is."
+						"You'll never be the man, that your mother is.",
+						"Ask me what, chicken snot. Ask me why, chicken pie",
+						"Yer mum!"
 					]
 					utilities.channel(client, config.discord.channels.general, `${member}, ${insults[Math.floor(Math.random() * insults.length)]}`)
-					// member.timeout(5 * 60 * 1000, 'Are you lucky or unlucky?')
-					// .then(() => {
-					// 	utilities.channel(client, config.discord.channels.general, `${member} has been timed out for 5 minutes.`)
-					// })
 				}
 				index++
 			})
