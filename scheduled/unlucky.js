@@ -9,8 +9,7 @@ function init(client) {
 		.then(members => {
 			const memberLength = members.size
 			const winner = Math.floor(Math.random() * memberLength)
-			let index = 0
-			members.forEach(member => {
+			members.forEach((member, index) => {
 				if (member.user.username !== config.discord.owner.name && !member._roles.includes("860466953582936094") && index == winner) {
 					const insults = [
 						"You smell.",
@@ -24,7 +23,6 @@ function init(client) {
 					]
 					utilities.channel(client, config.discord.channels.general, `${member}, ${insults[Math.floor(Math.random() * insults.length)]}`)
 				}
-				index++
 			})
 		})
 		.catch(error => console.error(error))

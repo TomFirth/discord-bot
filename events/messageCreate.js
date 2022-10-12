@@ -1,12 +1,3 @@
-const { EmbedBuilder } = require("discord.js")
-const firebase = require("firebase-admin")
-const db = firebase.firestore()
-const Cache = require("node-cache")
-const cache = new Cache({ stdTTL: 18 * 1000000 })
-const utilities = require("../scripts/utilities")
-const colours = require("../colours.json")
-const config = require("../config.json")
-const { kanto } = require("../pokemon.json")
 const trolls = require("../troll.json")
 
 module.exports = async (client, message) => {

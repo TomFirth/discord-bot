@@ -37,7 +37,7 @@ module.exports = {
         cache.set("answer", doc.data().answer)
       }
     }
-    if (!valid || !cache.has("answer")) {
+    if (!valid || !cache.has("answer") || ![1, 2, 4, 5].includes(current.getDay())) { // if games are added, amend this
       interaction.reply({ content: "There is no game being played", ephemeral: true })
       return
     }
@@ -105,5 +105,7 @@ module.exports = {
       const message = await interaction.reply({ content: `${interaction.member} was wrong with: ${interaction.options.getString("answer")}`, fetchReply: true })
       message.react(config.discord.emojis.thumbsDown)
     }
+    // check if answer has a or the at the beginning of string
+    // check if word cached answer includes user answer
   }
 }

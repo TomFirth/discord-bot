@@ -6,20 +6,23 @@ function init(client) {
 	let scheduledMessage = new cron.CronJob("00 00 12 * * 3", () => {
 		try {
 			const guild = client.guilds.cache.get(config.discord.guildId)
-			let selected = false
-			while (!selected) {
-				let winner = guild.members.cache.random().user
-				if (winner !== config.discord.owner.name && !winner.user.roles.includes("860466953582936094")) {
-					const role = member.guild.roles.cache.find(role => role.name === "special")
-					member.addRole(role)
-					utilities.channel(client, config.discord.channels.special, `Welcome ${winner}`)
-					utilities.channel(client, config.discord.channels.general, `${winner} is this week's lucky winner!`)
-					selected = true
-				} else {
-					utilities.channel(client, config.discord.channels.general, `${winner} won! (again).`)
-				}
-				utilities.special(winner)
-			}
+			guild.members.fetch()
+			.then(members => {
+				const memberLength = members.size
+				const winner = Math.floor(Math.random() * memberLength)
+				members.forEach((member, index) => {
+					if (index == winner) {
+						const role = member.guild.roles.cache.find(role => role.name === "special")
+						member.addRole(role)
+						utilities.channel(client, config.discord.channels.special, `Welcome ${winner}`)
+						utilities.channel(client, config.discord.channels.general, `${winner} is this week's lucky winner!`)
+						selected = true
+					} else {
+						utilities.channel(client, config.discord.channels.general, `${winner} won! (again).`)
+					}
+					utilities.special(winner)
+				})
+			})
 		} catch (error) {
 			console.error(error)
 		}
