@@ -8,12 +8,12 @@ class Reddit {
       hostname: url.hostname,
       path: url.pathname,
       headers: {'User-Agent': 'agent'}
-    }, async res => {
+    }, async response => {
       let data = []
-      res.on('data', chunk => {
+      response.on('data', chunk => {
         data.push(chunk)
       })
-      res.on('end', async () => {
+      response.on('end', async () => {
         // check safe for work hours
         const startTime = '19:00:00';
         const endTime = '23:59:00';
@@ -59,9 +59,10 @@ class Reddit {
           }
         }
       })
-      res.on("error", (error) => {
+      response.on("error", (error) => {
         return console.error(error)
       })
+      response.destroy()
     })
   }
 }

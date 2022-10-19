@@ -1,8 +1,5 @@
-const { EmbedBuilder } = require("discord.js")
 const Parser = require("rss-parser")
 const parser = new Parser()
-const colours = require("../../colours")
-const config = require("../../config.json")
 
 class YoutubeFeed {
   static async start(client, db, user) {

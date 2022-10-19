@@ -12,7 +12,7 @@ function init(client, db, cache) {
     }).then(response => {
       cache.set("answer", response.data.answer)
       const embed = new EmbedBuilder()
-				.setDescription(response.data.riddle)
+				.setDescription(response.data.riddle + `\nReply with: "/answer <your answer>"`)
 				.setColor(utilities.randomColour())
 			utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
