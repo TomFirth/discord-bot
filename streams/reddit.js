@@ -58,11 +58,11 @@ class Reddit {
             }
           }
         }
+        response.destroy()
       })
       response.on("error", (error) => {
         return console.error(error)
       })
-      response.destroy()
     })
   }
 }

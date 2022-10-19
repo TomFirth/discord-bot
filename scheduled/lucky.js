@@ -17,10 +17,10 @@ function init(client) {
 						utilities.channel(client, config.discord.channels.special, `Welcome ${winner}`)
 						utilities.channel(client, config.discord.channels.general, `${winner} is this week's lucky winner!`)
 						selected = true
+						utilities.special(winner)
 					} else {
 						utilities.channel(client, config.discord.channels.general, `${winner} won! (again).`)
 					}
-					utilities.special(winner)
 				})
 			})
 		} catch (error) {
