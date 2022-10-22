@@ -24,6 +24,7 @@ client.prefix = config.bot.prefix
 
 const leet = require("./scheduled/1337")(client)
 const birthdays = require("./scheduled/birthday")(client, db)
+const facts = require("./scheduled/facts")(client, db)
 // const gameCheck = require("./scheduled/gameCheck")(client, db)
 const games = require("./scheduled/games")
 const jokes = require("./scheduled/jokes")(client, db)
