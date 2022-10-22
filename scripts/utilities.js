@@ -65,6 +65,6 @@ exports.specialSort = async function (user) {
   })
 }
 
-exports.randomColour () {
+exports.randomColour = function () {
   return Math.floor(Math.random()*16777215).toString(16)
 }
