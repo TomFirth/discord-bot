@@ -2,12 +2,12 @@ const firebase = require("firebase-admin")
 const db = firebase.firestore()
 const config = require("../config.json")
 
-function channel (client, destination, send) {
+exports.channel = function (client, destination, send) {
   const channel = client.channels.cache.find(channel => channel.name === destination)
   channel.send(send)
 }
 
-async function special (client, user) {
+exports.special = async function (client, user) {
   const query = await db.collection("special").where("user", "==", user).get()
   let users = []
   query.forEach(doc => {
@@ -37,7 +37,7 @@ function compare (a, b) {
   return 0
 }
 
-async function specialSort (user) {
+exports.specialSort = async function (user) {
   const query = await db.collection("special").get()
   const timestamp = new Date()
   let userArray = []
@@ -65,8 +65,6 @@ async function specialSort (user) {
   })
 }
 
-function randomColour () {
+exports.randomColour () {
   return Math.floor(Math.random()*16777215).toString(16)
 }
-
-export { channel, special, specialSort, randomColour }
