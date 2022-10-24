@@ -102,10 +102,15 @@ module.exports = {
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else if (userAnswer !== answer && cache.has("answer")) {
+      const answerExplode = answer.split(" ")
+      const userFirstWord = userAnswer.split(" ")[0]
+      // wrong answer reaction
       const message = await interaction.reply({ content: `${interaction.member} was wrong with: ${interaction.options.getString("answer")}`, fetchReply: true })
-      message.react(config.discord.emojis.thumbsDown)
+      if ((answerExplode[0].toLowerCase() == "a" || answerExplode[0].toLowerCase() == "the") && answerExplode[1].toLowerCase() == userFirstWord[0].toLowerCase()) {
+        message.react(config.discord.emojis.pinch)
+      } else {
+        message.react(config.discord.emojis.thumbsDown)
+      }
     }
-    // check if answer has a or the at the beginning of string
-    // check if word cached answer includes user answer
   }
 }
