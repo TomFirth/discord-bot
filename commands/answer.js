@@ -68,7 +68,7 @@ module.exports = {
         let number
         kanto.forEach((pokemon, index) => {
           if (userAnswer == pokemon.toLowerCase()) {
-            const len = 3 - ('' + index).length
+            let len = 3 - ('' + index).length
             let newIndex = index + 1
             newIndex = (len > 0 ? new Array(++len).join('0') : '') + newIndex
             number = newIndex
