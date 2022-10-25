@@ -77,7 +77,6 @@ module.exports = {
         gameEmbed = new EmbedBuilder()
           .setTitle("Who's that Pokemon? WINNER!")
           .setImage(`attachment://${number}.jpg`)
-          .setThumbnail(interaction.author.displayAvatarURL())
           .setColor(colours.gold)
           .setDescription(`Congratulations ${interaction.member} with the correct answer of: ${userAnswerRaw}!`)
         interaction.channel.send({ embeds: [gameEmbed], files: [`../discord-bot/images/pokemon/answers/${number}.jpg`] }).then(ownMessage => {
