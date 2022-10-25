@@ -9,14 +9,13 @@ class Rss {
       const query = await db.collection("rss").doc(feed.docId).get()
       const feeds = await parser.parseURL(feed.url)
       const item = feeds.items[0]
-      if (query.data().publishedDate !== item.pubDate
-        || query.data().title !== item.title) {
+      if (query.data().title !== item.title) {
         let description = ""
         if (item.content || item.contentSnippet) {
           description = item.content || item.contentSnippet || ""
           description.replace(/<\/?[^>]+(>|$)/gi, "")
         }
-        if (!config.kindOfIgnore.some(element => description.includes(element)) && Math.random() * 2 !== 0) {
+        if (!config.kindOfIgnore.some(element => item.title.includes(element)) && Math.random() * 2 !== 0) {
           let feedEmbed
           if (feed.author == "NASA") {
             feedEmbed = new EmbedBuilder()
@@ -25,7 +24,6 @@ class Rss {
             .setURL(item.link)
             .setAuthor({ name: feed.author })
             .setImage(item.enclosure.url)
-            .setTimestamp()
           } else {
             feedEmbed = new EmbedBuilder()
             .setColor(feed.colour)
@@ -33,7 +31,6 @@ class Rss {
             .setURL(item.link)
             .setAuthor({ name: feed.author })
             .setDescription(`${description.substring(0, 180)}...`)
-            .setTimestamp()
           }
           
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
