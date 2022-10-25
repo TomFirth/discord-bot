@@ -97,7 +97,7 @@ module.exports = {
         const role = interaction.guild.roles.cache.find(role => role.name === "special")
         interaction.member.roles.add(role)
       }
-      utilities.specialSort(interaction.member.id)
+      // utilities.specialSort(interaction.member.id)
       cache.del("answer")
       db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
     } else if (userAnswer !== answer && cache.has("answer")) {
