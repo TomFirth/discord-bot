@@ -76,6 +76,7 @@ module.exports = {
         })
         gameEmbed = new EmbedBuilder()
           .setTitle("Who's that Pokemon? WINNER!")
+          // .setThumbnail(interaction.member.displayAvatarURL())
           .setImage(`attachment://${number}.jpg`)
           .setColor(colours.gold)
           .setDescription(`Congratulations ${interaction.member} with the correct answer of: ${userAnswerRaw}!`)
