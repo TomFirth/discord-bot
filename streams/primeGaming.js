@@ -4,7 +4,7 @@ const parser = new Parser()
 const config = require("../config.json")
 const utilities = require("../scripts/utilities")
 
-class Rss {
+class primeGaming {
   static async start(client, db) {
     const query = await db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").get()
     const feeds = await parser.parseURL("https://primegaming.blog/feed")
@@ -38,4 +38,4 @@ class Rss {
   }
 }
 
-module.exports = Rss
+module.exports = primeGaming

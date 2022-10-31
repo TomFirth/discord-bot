@@ -4,7 +4,7 @@ const cron = require("cron")
 const utilities = require("../scripts/utilities")
 const config = require("../config.json")
 
-function riddleRequest(client, db, cache) {
+function riddleRequest() {
 	axios.request({
 		method: 'GET',
 		url: 'https://riddles-api.vercel.app/random'
@@ -19,8 +19,8 @@ function init(client, db, cache) {
 	let scheduledMessage = new cron.CronJob("00 00 19 * * 4", () => {
 		let haveRiddle = false
 		while (!haveRiddle) {
-			let response = riddleRequest(client, db, cache)
-			if (response.data.riddle.split(" ").length < 3) !haveRiddle
+			let response = riddleRequest()
+			if (response.data.answer.split(" ").length < 3) haveRiddle = true
 		}
 
 		cache.set("answer", response.data.answer)
