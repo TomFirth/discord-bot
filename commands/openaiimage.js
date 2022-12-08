@@ -24,13 +24,9 @@ module.exports = {
       n: 1,
       size: "1024x1024",
     })
-    const openImage = new EmbedBuilder()
-      .setURL(response.data.data[0].url)
-    await interaction.deferReply()
-    await wait(4000)
-    setTimeout(async () => {
-      console.log("++", response.data.data[0].url)
-      await interaction.editReply({ embeds: [openImage] })
-    }, 4000)
+    const code = new EmbedBuilder()
+      .setImage(response.data.data[0].url)
+      .setColor(utilities.randomColour())
+    return interaction.channel.send({ embeds: [code] })
   }
 }
