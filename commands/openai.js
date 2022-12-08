@@ -20,7 +20,7 @@ module.exports = {
     ),
   async execute(interaction) {
     const response = await openai.createCompletion({
-      model: "code-davinci-002",
+      model: "text-davinci-003",
       prompt: interaction.options.getString("question"),
     })
     return interaction.deferReply(response.data.choices[0].text)
