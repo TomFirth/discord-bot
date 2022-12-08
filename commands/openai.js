@@ -23,9 +23,6 @@ module.exports = {
       model: "code-davinci-002",
       prompt: interaction.options.getString("question"),
     })
-    const code = new EmbedBuilder()
-      .setDescription(response.data.choices[0].text)
-      .setColor(utilities.randomColour())
-    return interaction.channel.send({ embeds: [code] })
+    return interaction.channel.deferReply(response.data.choices[0].text)
   }
 }

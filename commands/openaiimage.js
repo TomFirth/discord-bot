@@ -24,9 +24,6 @@ module.exports = {
       n: 1,
       size: "1024x1024",
     })
-    const code = new EmbedBuilder()
-      .setImage(response.data.data[0].url)
-      .setColor(utilities.randomColour())
-    return interaction.channel.send({ embeds: [code] })
+    return interaction.channel.deferReply(response.data.data[0].url)
   }
 }
