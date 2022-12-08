@@ -24,8 +24,9 @@ module.exports = {
       prompt: interaction.options.getString("question"),
     })
     await interaction.deferReply()
-    await wait(4000)
-    console.log("++", response.data.choices[0].text)
-		await interaction.editReply(response.data.choices[0].text)
+    setTimeout(async () => {
+      console.log("++", response.data.choices[0].text)
+      await interaction.editReply(response.data.choices[0].text)
+    }, 4000)
   }
 }
