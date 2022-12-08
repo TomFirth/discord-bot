@@ -63,7 +63,7 @@ client.error = async (error) => {
 
 // EVENT HANDLER
 fs.readdir("./events/", (error, files) => {
-  if (error) return console.error(error)
+  if (error) return console.error
   client.removeAllListeners()
   files.forEach(file => {
     if (fs.lstatSync(`./events/${file}`).isDirectory()) return
@@ -72,7 +72,7 @@ fs.readdir("./events/", (error, files) => {
     try {
       client.on(eventName, event.bind(null, client))
     } catch(error) {
-      console.error(error)
+      console.error
     }
   })
 })
@@ -139,8 +139,8 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN); // semicol
 			{ body: commands },
 		)
 	} catch (error) {
-		console.error(error)
+		console.error
 	}
 })()
 
-client.login(process.env.TOKEN).catch(error => console.error(error))
+client.login(process.env.TOKEN).catch(error => console.error)

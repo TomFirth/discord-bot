@@ -39,7 +39,7 @@ class Patches {
         }
       }
     } catch (error) {
-      console.error(error)
+      console.error
     }
   }
 }

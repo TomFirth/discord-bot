@@ -11,7 +11,7 @@ function riddleRequest() {
 	}).then(response => {
 		return response
 	}).catch(error => {
-		console.error(error)
+		console.error
 	})
 }
 

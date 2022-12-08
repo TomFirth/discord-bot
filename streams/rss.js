@@ -39,7 +39,7 @@ class Rss {
               ownMessage.react(config.discord.emojis.thumbsUp)
               ownMessage.react(config.discord.emojis.thumbsDown)
             }
-          })
+          }).catch(console.error)
           db.collection("rss").doc(feed.docId).set({
             publishedDate: item.pubDate,
             title: item.title
@@ -47,7 +47,7 @@ class Rss {
         }
       }
     } catch (error) {
-      console.error(error)
+      console.error
     }
   }
 }

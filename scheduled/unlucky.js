@@ -25,7 +25,7 @@ function init(client) {
 				}
 			})
 		})
-		.catch(error => console.error(error))
+		.catch(error => console.error)
 	})
 	scheduledMessage.start()
 }

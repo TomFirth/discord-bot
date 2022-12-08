@@ -31,7 +31,7 @@ module.exports = {
     await interaction.deferReply()
     setTimeout(async () => {
       console.log(response.data)
-      await interaction.editReply(String(response.data.choices[0].text))
+      await interaction.editReply(String(response.data.choices[0].text)).catch(console.error)
     }, 4000)
   }
 }

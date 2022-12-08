@@ -28,7 +28,7 @@ exports.special = async function (client, user) {
         }
       })
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error)
 }
 
 function compare (a, b) {

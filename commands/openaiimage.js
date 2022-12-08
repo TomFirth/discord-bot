@@ -28,9 +28,9 @@ module.exports = {
       const code = new EmbedBuilder()
         .setImage(response.data.data[0].url)
         .setColor(utilities.randomColour())
-      await interaction.channel.send({ embeds: [code] })
+      await interaction.channel.send({ embeds: [code] }).catch(console.error)
     } catch (error) {
-      console.error(error)
+      console.error
     }
   }
 }

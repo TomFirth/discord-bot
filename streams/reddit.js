@@ -45,23 +45,24 @@ class Reddit {
                           ownMessage.react(config.discord.emojis.thumbsDown)
                         }
                       })
+                      .catch(console.error)
                     })
                     db.collection("reddit").doc(reddit.docId).set({
                       title: releases.data.children[0].data.title
                     }, {merge: true})
                   } catch (error) {
-                    console.error(error)
+                    console.error
                   }
               }
             } catch (error) {
-              console.error(error)
+              console.error
             }
           }
         }
         response.destroy()
       })
       response.on("error", (error) => {
-        return console.error(error)
+        return console.error
       })
     })
   }
