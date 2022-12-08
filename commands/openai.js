@@ -23,6 +23,6 @@ module.exports = {
       model: "text-davinci-003",
       prompt: interaction.options.getString("question"),
     })
-    return interaction.deferReply(response.data.choices[0].text)
+    return interaction.channel.send(response.data.choices[0].text)
   }
 }

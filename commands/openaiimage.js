@@ -24,6 +24,6 @@ module.exports = {
       n: 1,
       size: "1024x1024",
     })
-    return interaction.deferReply(response.data.data[0].url)
+    return interaction.channel.send(response.data.data[0].url)
   }
 }
