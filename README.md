@@ -36,7 +36,7 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - [ ] Valheim server
 - [ ] Game of games
 - [ ] Pet fighting discord game
-- [ ] Random facts / cat facts
+- [ ] Random facts
 - [ ] Weather, coldest (12am) and hottest (12pm) of the day
 - [ ] Random art
 - [ ] Colourmind request
