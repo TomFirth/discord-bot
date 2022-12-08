@@ -22,6 +22,11 @@ module.exports = {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: interaction.options.getString("question"),
+      'max_tokens': 150,
+      'temperature': 0.9,
+      'frequency_penalty': 0,
+      'presence_penalty': 0.6,
+      'stop': '\nHuman'
     })
     await interaction.deferReply()
     setTimeout(async () => {
