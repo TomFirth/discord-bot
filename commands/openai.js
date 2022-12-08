@@ -25,6 +25,7 @@ module.exports = {
     })
     await interaction.deferReply()
     await wait(4000)
+    console.log("++", response.data.choices[0].text)
 		await interaction.editReply(response.data.choices[0].text)
   }
 }

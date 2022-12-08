@@ -26,6 +26,7 @@ module.exports = {
     })
     await interaction.deferReply()
     await wait(4000)
+    console.log("++", response.data.data[0].url)
 		await interaction.editReply(response.data.data[0].url)
   }
 }
