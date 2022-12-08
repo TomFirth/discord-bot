@@ -10,7 +10,7 @@ function init(client) {
       method: 'GET',
       headers: {
         "Accept" : "application/json",
-        'User-Agent': 'Barber'
+        "User-Agent": "Barber"
       },
       url: 'https://icanhazdadjoke.com'
     }).then(response => {

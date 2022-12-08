@@ -20,7 +20,7 @@ function init(client, db, cache) {
 		let haveRiddle = false
 		while (!haveRiddle) {
 			let response = riddleRequest()
-			if (response.data.answer.split(" ").length < 3) haveRiddle = true
+			if (response.answer.split(" ").length < 3) haveRiddle = true
 		}
 
 		cache.set("answer", response.data.answer)

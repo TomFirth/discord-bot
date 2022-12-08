@@ -19,6 +19,8 @@ if (process.env.NODE_ENV) require("dotenv").config()
 const colours = require("./colours.json")
 const config = require("./config.json")
 
+client.COOLDOWN_SECONDS = 60
+
 client.commands = new Collection()
 client.prefix = config.bot.prefix
 

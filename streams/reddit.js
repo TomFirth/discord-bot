@@ -24,10 +24,11 @@ class Reddit {
         endDate.setHours(endTime.split(":")[0])
         endDate.setMinutes(endTime.split(":")[1])
         const valid = startDate < currentDate && endDate > currentDate
-        if (reddit.nsfw && !valid) {
+        if (reddit.hide && !valid) {
           // Do nothing
         } else {
           const query = await db.collection("reddit").doc(reddit.docId).get()
+          if (data.chatAt(0) == "<") return
           const releases = JSON.parse(Buffer.concat(data).toString())
           if (releases.reason) console.error("subreddit is private")
           else {
@@ -38,7 +39,7 @@ class Reddit {
                   try {
                     await client.channels.fetch(reddit.destination)
                     .then(channel => {
-                      channel.send(`${reddit.nsfw} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.nsfw}`)
+                      channel.send(`${reddit.hide} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.hide}`)
                       .then(ownMessage => {
                         if (reddit.poll) {
                           ownMessage.react(config.discord.emojis.thumbsUp)

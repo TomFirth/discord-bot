@@ -19,15 +19,16 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - - [ ] Twitch
 - - [ ] Instagram
 - - [ ] Soundcloud
-- [X] Can be self hosted (a good use for a spare raspberry pi).
+- [X] Hosted on RPi.
 - [X] Google search that returns the top result.
 - [X] Reddit Rhythm Roulette integration (provides three songs to be used as samples).
 - [X] Meme of the day.
 - [X] Weekly quizzes with a prize!
 - [X] Notifications of Free games.
 - [X] Amazon Gaming freebies
-- [X] Gaming news.
-- [X] Patch notes for certain video games.
+- [X] Gaming and Tech news.
+- [X] OpenAI integration
+- [ ] Patch notes for certain video games.
 - [ ] News on video games betas.
 - [ ] Crypto integration
 - [ ] Trading
@@ -35,6 +36,10 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - [ ] Valheim server
 - [ ] Game of games
 - [ ] Pet fighting discord game
+- [ ] Random facts / cat facts
+- [ ] Weather, coldest (12am) and hottest (12pm) of the day
+- [ ] Random art
+- [ ] Colourmind request
 
 ### Usage
 
@@ -42,11 +47,11 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - Find somewhere to host your new bot (maybe on a spare Raspberry Pi?) [Heroku have affordable plans](https://www.heroku.com).
 - Clone this repo to your host.
 - `cd <your bot dir> && npm i`
-- Create files: `config.json` and `ecosystem.config.js` (remote) and additionally `.env` (local) - I also have a credentials.json file for the Google Firestore.
+- Create files: `config.json` (bot config), `ecosystem.config.js` (PM2 config and environment variable), `credentials.json` (Google firestore config), `oauth2.json` Google drive.
 - Install `pm2` and follow setup steps (`sudo apt-get install pm2`)
-- `pm2 start <your bot file>`
+- `pm2 start <your bot ecosystem file>`
 
-*Updates are currently manual, but will be automatic once I stop messing about with it).*
+*Updates are currently manual, but will be automatic once I stop messing about with it).
 
 #### Useful resources
 
