@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration)
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("code")
+    .setName("openai")
     .setDescription("OpenAI Code helper")
     .addStringOption(option =>
       option
@@ -24,7 +24,6 @@ module.exports = {
       prompt: interaction.options.getString("question"),
     })
     const code = new EmbedBuilder()
-      .setTitle("OpenAI Helper")
       .setDescription(response.data.choices[0].text)
       .setColor(utilities.randomColour())
     return interaction.channel.send({ embeds: [code] })
