@@ -19,14 +19,18 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const response = await openai.createImage({
-      prompt: interaction.options.getString("create"),
-      n: 1,
-      size: "1024x1024",
-    })
-    const code = new EmbedBuilder()
-      .setImage(response.data.data[0].url)
-      .setColor(utilities.randomColour())
-    await interaction.channel.send({ embeds: [code] })
+    try {
+      const response = await openai.createImage({
+        prompt: interaction.options.getString("create"),
+        n: 1,
+        size: "1024x1024",
+      })
+      const code = new EmbedBuilder()
+        .setImage(response.data.data[0].url)
+        .setColor(utilities.randomColour())
+      await interaction.channel.send({ embeds: [code] })
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
