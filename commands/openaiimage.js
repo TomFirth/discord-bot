@@ -27,6 +27,9 @@ module.exports = {
     const code = new EmbedBuilder()
       .setImage(response.data.data[0].url)
       .setColor(utilities.randomColour())
-    return interaction.channel.send({ embeds: [code] })
+    await interaction.deferReply()
+    setTimeout(async () => {
+      await interaction.channel.send({ embeds: [code] })
+    }, 4000)
   }
 }
