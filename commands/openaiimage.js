@@ -24,11 +24,13 @@ module.exports = {
       n: 1,
       size: "1024x1024",
     })
+    const openImage = new EmbedBuilder()
+      .setURL(response.data.data[0].url)
     await interaction.deferReply()
     await wait(4000)
     setTimeout(async () => {
       console.log("++", response.data.data[0].url)
-      await interaction.editReply(response.data.data[0].url)
+      await interaction.editReply({ embeds: [openImage] })
     }, 4000)
   }
 }
