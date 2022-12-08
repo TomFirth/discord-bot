@@ -28,7 +28,6 @@ class Reddit {
           // Do nothing
         } else {
           const query = await db.collection("reddit").doc(reddit.docId).get()
-          if (data.charAt(0) == "<") return
           const releases = JSON.parse(Buffer.concat(data).toString())
           if (releases.reason) console.error("subreddit is private")
           else {
