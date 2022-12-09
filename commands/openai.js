@@ -1,7 +1,5 @@
-const { EmbedBuilder } = require("discord.js")
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { Configuration, OpenAIApi } = require("openai")
-const utilities = require("../scripts/utilities")
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,7 +8,7 @@ const openai = new OpenAIApi(configuration)
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("openai")
+    .setName("question")
     .setDescription("OpenAI Code helper")
     .addStringOption(option =>
       option
