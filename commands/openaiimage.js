@@ -30,7 +30,7 @@ module.exports = {
         .setColor(utilities.randomColour())
       await interaction.channel.send({ embeds: [code] }).catch(console.error)
     } catch (error) {
-      console.error
+      console.error(error)
     }
   }
 }

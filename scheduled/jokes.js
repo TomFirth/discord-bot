@@ -18,9 +18,7 @@ function init(client) {
 				.setDescription(response.data.joke)
 				.setColor(utilities.randomColour())
 			utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
-    }).catch(error => {
-      console.error
-    })
+    }).catch(console.error)
 	})
 	scheduledMessage.start()
 }

@@ -47,7 +47,7 @@ class Rss {
         }
       }
     } catch (error) {
-      console.error
+      console.error(error)
     }
   }
 }

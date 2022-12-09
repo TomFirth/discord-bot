@@ -5,7 +5,7 @@ module.exports = async (client, message) => {
   if (message.channel.type === "free" && message.author.bot) {
     message.crosspost()
       .then(() => console.log("Message published"))
-      .catch(error => console.error)
+      .catch(console.error)
   }
 
   // SPECIFIC USER TROLLS

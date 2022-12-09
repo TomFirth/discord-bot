@@ -26,7 +26,7 @@ class Patches {
           .setTimestamp()
           await client.channels.fetch(config.discord.channels.bot)
             .then(channel => {
-              channel.send({ embeds: [errorEmbed] }).catch(e => console.log(`Couldn't send error embed!\n${e}`))
+              channel.send({ embeds: [errorEmbed] }).catch(console.error)
             })
         let channel = await client.channels.cache.find(channel => channel.name === feed)
         channel.send({ embeds: [feedEmbed] })
@@ -39,7 +39,7 @@ class Patches {
         }
       }
     } catch (error) {
-      console.error
+      console.error(error)
     }
   }
 }

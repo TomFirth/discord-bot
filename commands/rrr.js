@@ -38,7 +38,7 @@ module.exports = {
           interaction.channel.send(track)
         })
       })
-      .catch(error => console.error)
+      .catch(console.error)
       client.cooldowns.set(interaction.user.id, true)
       setTimeout(() => {
         client.cooldowns.delete(interaction.user.id)

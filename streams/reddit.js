@@ -51,11 +51,11 @@ class Reddit {
                       title: releases.data.children[0].data.title
                     }, {merge: true})
                   } catch (error) {
-                    console.error
+                    console.error(error)
                   }
               }
             } catch (error) {
-              console.error
+              console.error(error)
             }
           }
         }

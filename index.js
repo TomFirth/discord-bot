@@ -72,7 +72,7 @@ fs.readdir("./events/", (error, files) => {
     try {
       client.on(eventName, event.bind(null, client))
     } catch(error) {
-      console.error
+      console.error(error)
     }
   })
 })
@@ -138,9 +138,9 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN); // semicol
       Routes.applicationGuildCommands(config.discord.clientId, config.discord.guildId),
 			{ body: commands },
 		)
-	} catch (error) {
-		console.error
-	}
+	} catch(error) {
+    console.error(error)
+  }
 })()
 
-client.login(process.env.TOKEN).catch(error => console.error)
+client.login(process.env.TOKEN).catch(console.error)

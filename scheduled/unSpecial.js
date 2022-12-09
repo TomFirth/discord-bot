@@ -29,7 +29,7 @@ function init(client) {
 				})
 			})
 		})
-		.catch(error => console.error(error, message.channel))
+		.catch(console.error)
 	})
 	scheduledMessage.start()
 }

@@ -18,7 +18,7 @@ function init(client) {
             channel.setParent(config.discord.categories.archived)
         }
       })
-      .catch(error => console.error)
+      .catch(console.error)
     })
     // VOICE CHANNELS
     tempVoice.forEach(channel => {

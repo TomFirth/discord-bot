@@ -10,9 +10,7 @@ function riddleRequest() {
 		url: 'https://riddles-api.vercel.app/random'
 	}).then(response => {
 		return response
-	}).catch(error => {
-		console.error
-	})
+	}).catch(console.error)
 }
 
 function init(client, db, cache) {
@@ -20,7 +18,7 @@ function init(client, db, cache) {
 		let haveRiddle = false
 		while (!haveRiddle) {
 			let response = riddleRequest()
-			if (response.answer.split(" ").length < 3) haveRiddle = true
+			if (response.data.answer.split(" ").length < 3) haveRiddle = true
 		}
 
 		cache.set("answer", response.data.answer)

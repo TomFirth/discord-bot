@@ -28,6 +28,7 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - [X] Amazon Gaming freebies
 - [X] Gaming and Tech news.
 - [X] OpenAI integration
+- [X] Random facts
 - [ ] Patch notes for certain video games.
 - [ ] News on video games betas.
 - [ ] Crypto integration
@@ -36,10 +37,7 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - [ ] Valheim server
 - [ ] Game of games
 - [ ] Pet fighting discord game
-- [ ] Random facts
 - [ ] Weather, coldest (12am) and hottest (12pm) of the day
-- [ ] Random art
-- [ ] Colourmind request
 
 ### Usage
 
