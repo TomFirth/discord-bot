@@ -10,12 +10,13 @@ function init(client) {
       method: 'GET',
       headers: {
         "Accept" : "application/json",
-        'User-Agent': 'Barber'
+        "User-Agent": "Barber",
+        "X-Api-Key": process.env.NINJA_API
       },
-      url: 'https://api.fungenerators.com/fact/random'
+      url: 'https://api.api-ninjas.com/v1/facts?limit=1'
     }).then(response => {
       const embed = new EmbedBuilder()
-				.setDescription(response.data.fact)
+				.setDescription(`Fact: ${response.data.fact}`)
 				.setColor(utilities.randomColour())
 			utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
     }).catch(error => {
