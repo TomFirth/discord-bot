@@ -11,9 +11,9 @@ class Rss {
       const item = feeds.items[0]
       if (query.data().title !== item.title) {
         let description = ""
-        if (item.content || item.contentSnippet) {
-          description = item.content || item.contentSnippet || ""
-          description.replace(/<\/?[^>]+(>|$)/gi, "")
+        if (item.contentSnippet || item.content) {
+          description = item.contentSnippet || item.content || ""
+          description = description.replace(/<\/?[^>]+(>|$)/gi, "")
         }
         if (!config.kindOfIgnore.some(element => item.title.includes(element)) && Math.random() * 2 !== 0) {
           let feedEmbed
