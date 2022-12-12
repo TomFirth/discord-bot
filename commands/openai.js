@@ -21,9 +21,10 @@ module.exports = {
       model: "text-davinci-003",
       prompt: interaction.options.getString("question"),
       'max_tokens': 150,
-      'temperature': 0.9,
+      'temperature': 1,
       'frequency_penalty': 0,
       'presence_penalty': 0.6,
+      'stream': false,
       'stop': '\nHuman'
     })
     await interaction.deferReply()

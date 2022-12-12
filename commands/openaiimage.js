@@ -24,6 +24,7 @@ module.exports = {
         prompt: interaction.options.getString("create"),
         n: 1,
         size: "1024x1024",
+        user: interaction.member.user.id
       })
       const code = new EmbedBuilder()
         .setImage(response.data.data[0].url)
