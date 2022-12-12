@@ -12,7 +12,8 @@ class primeGaming {
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title
       && item.categories.includes("prime-gaming")) {
-        const description = item['content:encoded'].substring(0, 180)
+        let description = item['content:encoded'].substring(0, 180)
+        description = description.replace(/<\/?[^>]+(>|$)/gi, "")
       const feedEmbed = new EmbedBuilder()
       .setColor(utilities.randomColour())
       .setTitle(item.title)

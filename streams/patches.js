@@ -13,8 +13,8 @@ class Patches {
         || query.data().title !== item.title) {
         let description = ""
         if (item.content || item.contentSnippet) {
-          description = item.content || item.contentSnippet || item.description || ""
-          description.replace(/<\/?[^>]+(>|$)/gi, "")
+          description = item.contentSnippet || item.content || item.description || ""
+          description = description.replace(/<\/?[^>]+(>|$)/gi, "")
         }
         if (item.title.includes("patch") || item.title.includes("release") || item.title.includes("update")) {
           let feedEmbed
