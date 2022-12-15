@@ -19,7 +19,8 @@ async function init(client, db) {
       const lastQuestion = db.collection("answer").doc("uLLtQDVl1lo41har8LqO")
       const doc = await lastQuestion.get()
       if (!doc.data().used) {
-        utilities.channel(client, config.discord.channels.general, doc.data().answer)
+        utilities.channel(client, config.discord.channels.general, `Today's answer was: ${doc.data().answer}`)
+        db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({ used: true })
       }
     }
   })

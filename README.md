@@ -56,8 +56,17 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 [discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome)
 [npm pm2](https://www.npmjs.com/package/pm2)
 [npm cron](https://www.npmjs.com/package/cron)
+[npm fetch-subreddit](https://www.npmjs.com/package/fetch-subreddit)
+[npm firebase-admin](https://www.npmjs.com/package/firebase-admin)
+[googleapis](https://www.npmjs.com/package/googleapis)
+[google-it](https://www.npmjs.com/package/google-it)
+[node-cache](https://www.npmjs.com/package/node-cache)
+[openai](https://www.npmjs.com/package/openai)
+[rss-parser](https://www.npmjs.com/package/rss-parser)
+[twit](https://www.npmjs.com/package/twit)
 
-#### Alternatives for Discord:
+##### Alternatives for Discord:
+
 [https://mee6.xyz/](MEE6)
 [https://patchbot.io/](PatchBot)
 [https://ifttt.com/](IFTTT)
