@@ -12,15 +12,12 @@ class primeGaming {
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title
       && item.categories.includes("prime-gaming")) {
-        let description = item['content:encoded'].substring(0, 180)
-        description = description.replace(/<\/?[^>]+(>|$)/gi, "")
       const feedEmbed = new EmbedBuilder()
       .setColor(utilities.randomColour())
       .setTitle(item.title)
       .setURL(item.link)
       .addFields({ name: "Prime Gaming Website", value: "[gaming.amazon.com](https://gaming.amazon.com/home)", inline: true })
       .setAuthor({ name: "Prime Gaming" })
-      .setDescription(`${description}...`)
       .setTimestamp()
       await client.channels.fetch("909843508431552583")
         .then(channel => {
