@@ -18,14 +18,19 @@ module.exports = {
     ),
   async execute(interaction) {
     const response = await openai.createCompletion({
-      model: "text-davinci-003",
+      model: "text-embedding-ada-002",
       prompt: interaction.options.getString("question"),
-      'max_tokens': 150,
-      'temperature': 1,
+      'response_length': 512,
+      'top_p': 1,
+      'echo': true,
+      'max_tokens': 4096,
+      'temperature': 0.9,
       'frequency_penalty': 0,
-      'presence_penalty': 0.6,
+      'presence_penalty': 0,
+      'best_of': 1,
       'stream': false,
-      'stop': '\nHuman'
+      'start': '\nAI',
+      'user': interaction.user.id
     })
     await interaction.deferReply()
     setTimeout(async () => {
