@@ -6,7 +6,7 @@ module.exports = (client) => {
 		status: 'available',
 		activity: {
 				name: 'SlashCommands',
-				type: ActivityType.Listening
+				type: 'LISTENING'
 		}
 })
 	console.log(`${today.toLocaleString()} - ${client.user.tag} is logged on.`)
