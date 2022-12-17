@@ -29,7 +29,7 @@ module.exports = {
       'presence_penalty': 0,
       'best_of': 1,
       'stream': false,
-      'start': '\nAI',
+      'stop': '\nHuman',
       'user': interaction.user.id
     })
     await interaction.deferReply()
