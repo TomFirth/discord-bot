@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js")
-const axios = require("axios");
+const axios = require("axios")
 const cron = require("cron")
 const utilities = require("../scripts/utilities")
 const config = require("../config.json")

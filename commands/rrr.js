@@ -7,7 +7,7 @@ module.exports = {
     .setDescription("Reddit Rhythm Roulette - randomly selects three songs for you."),
   async execute(interaction) {
     if (client.cooldowns.has(interaction.user.id)) {
-      interaction.reply({ content: "Please wait for cooldown to end", ephemeral: true });
+      interaction.reply({ content: "Please wait for cooldown to end", ephemeral: true })
     } else {
       let randomTracks = []
       let everything = []

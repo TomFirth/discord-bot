@@ -19,7 +19,7 @@ module.exports = {
     const credentials = require('../credentials.json')
     const scopes = [
       'https://www.googleapis.com/auth/drive'
-    ];
+    ]
     const auth = new google.auth.JWT(
       credentials.client_email, null,
       credentials.private_key, scopes
@@ -33,7 +33,7 @@ module.exports = {
           const docs = google.docs({version: 'v1', auth})
           const res = await docs.documents.get({
             documentId: file.id,
-          });
+          })
           const total = res.data.body.content.length - 10
           const start = Math.floor(Math.random() * total)
           let title = ""
@@ -66,10 +66,10 @@ module.exports = {
             .setColor(utilities.randomColour())
             .setDescription(game.toString())
           return interaction.channel.send({ embeds: [game_embed] })
-        });
+        })
       } else {
         console.error('No files found')
       }
-    });
+    })
   }
 }

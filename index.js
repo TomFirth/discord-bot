@@ -2,8 +2,8 @@ const fs = require("node:fs")
 const cron = require("cron")
 const { Client, Collection, EmbedBuilder, IntentsBitField, Routes, ActivityType  } = require("discord.js")
 const { REST } = require('@discordjs/rest')
-const myIntents = new IntentsBitField();
-myIntents.add(IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.DirectMessages, IntentsBitField.Flags.GuildMessages, IntentsBitField.Flags.MessageContent);
+const myIntents = new IntentsBitField()
+myIntents.add(IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.DirectMessages, IntentsBitField.Flags.GuildMessages, IntentsBitField.Flags.MessageContent)
 const client = new Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   intents: myIntents

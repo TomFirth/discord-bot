@@ -15,8 +15,8 @@ class Reddit {
       })
       response.on('end', async () => {
         // check safe for work hours
-        const startTime = '19:00:00';
-        const endTime = '23:59:00';
+        const startTime = '19:00:00'
+        const endTime = '23:59:00'
         const currentDate = new Date()   
         let startDate = new Date(currentDate.getTime())
         startDate.setHours(startTime.split(":")[0])
@@ -24,9 +24,7 @@ class Reddit {
         endDate.setHours(endTime.split(":")[0])
         endDate.setMinutes(endTime.split(":")[1])
         const valid = startDate < currentDate && endDate > currentDate
-        if (reddit.hide && !valid) {
-          // Do nothing
-        } else {
+        if ((reddit.hide && valid) || !reddit.hide) {
           const query = await db.collection("reddit").doc(reddit.docId).get()
           const releases = JSON.parse(Buffer.concat(data).toString())
           if (releases.reason) console.error("subreddit is private")
@@ -36,6 +34,7 @@ class Reddit {
                 && releases.data.children[0].data.url_overridden_by_dest !== undefined
                 && query.data().title !== releases.data.children[0].data.title) {
                   try {
+                    console.error("++", reddit.subreddit)
                     await client.channels.fetch(reddit.destination)
                     .then(channel => {
                       channel.send(`${reddit.hide} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.hide}`)
