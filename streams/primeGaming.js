@@ -9,10 +9,6 @@ class primeGaming {
     const query = await db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").get()
     const feeds = await parser.parseURL("https://primegaming.blog/feed")
     const item = feeds.items[0]
-    if (item.description) {
-      description = item.description || ""
-      description = description.replace(/<\/?[^>]+(>|$)/gi, "")
-    }
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title
       && item.categories.includes("prime-gaming")) {
@@ -32,7 +28,6 @@ class primeGaming {
           })
         })
       db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").set({
-        description,
         link: item.link,
         publishedDate: item.pubDate,
         title: item.title
