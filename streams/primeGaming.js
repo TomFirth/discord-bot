@@ -9,11 +9,16 @@ class primeGaming {
     const query = await db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").get()
     const feeds = await parser.parseURL("https://primegaming.blog/feed")
     const item = feeds.items[0]
+    if (item.description) {
+      description = item.description || ""
+      description = description.replace(/<\/?[^>]+(>|$)/gi, "")
+    }
     if (query.data().publishedDate !== item.pubDate
       || query.data().title !== item.title
       && item.categories.includes("prime-gaming")) {
       const feedEmbed = new EmbedBuilder()
       .setColor(utilities.randomColour())
+      .setdescription(description)
       .setTitle(item.title)
       .setURL(item.link)
       .addFields({ name: "Prime Gaming Website", value: "[gaming.amazon.com](https://gaming.amazon.com/home)", inline: true })
@@ -27,7 +32,7 @@ class primeGaming {
           })
         })
       db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").set({
-        description: item.description,
+        description,
         link: item.link,
         publishedDate: item.pubDate,
         title: item.title
