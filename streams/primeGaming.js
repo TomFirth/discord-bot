@@ -14,7 +14,6 @@ class primeGaming {
       && item.categories.includes("prime-gaming")) {
       const feedEmbed = new EmbedBuilder()
       .setColor(utilities.randomColour())
-      .setdescription(description)
       .setTitle(item.title)
       .setURL(item.link)
       .addFields({ name: "Prime Gaming Website", value: "[gaming.amazon.com](https://gaming.amazon.com/home)", inline: true })
