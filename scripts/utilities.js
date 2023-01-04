@@ -2,8 +2,8 @@ const firebase = require("firebase-admin")
 const db = firebase.firestore()
 const config = require("../config.json")
 
-exports.channel = function (client, destination, send) {
-  const channel = client.channels.cache.find(channel => channel.name === destination)
+exports.channel = async function (client, destination, send) {
+  const channel = await client.channels.cache.find(channel => channel.name === destination)
   channel.send(send)
 }
 

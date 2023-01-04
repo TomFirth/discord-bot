@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js")
+const { AttachmentBuilder, EmbedBuilder } = require("discord.js")
 const cron = require("cron")
 const utilities = require("../scripts/utilities")
 
@@ -19,8 +19,9 @@ function init(client, db, cache) {
       .setDescription(`Reply with: "/answer <your answer>`)
       .setImage(`attachment://${number}.jpg`)
     const pokemon = kanto[random - 1]
+    const file = new AttachmentBuilder(`../discord-bot/images/pokemon/questions/${number}.jpg`)
     cache.set("answer", pokemon.toString())
-    utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [`../discord-bot/images/pokemon/questions/${number}.jpg`] })
+    utilities.channel(client, config.discord.channels.general, { embeds: [pokeEmbed], files: [file] })
     db.collection("answer").doc("uLLtQDVl1lo41har8LqO").update({
       answer: pokemon,
       id: "null",

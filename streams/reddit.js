@@ -34,7 +34,6 @@ class Reddit {
                 && releases.data.children[0].data.url_overridden_by_dest !== undefined
                 && query.data().title !== releases.data.children[0].data.title) {
                   try {
-                    console.error("++", reddit.subreddit)
                     await client.channels.fetch(reddit.destination)
                     .then(channel => {
                       channel.send(`${reddit.hide} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.hide}`)
