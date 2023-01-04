@@ -27,7 +27,7 @@ class primeGaming {
           })
         })
       db.collection("rss").doc("el1ws1cWaXGuYkeCCHoZ").set({
-        description,
+        description: item.description,
         link: item.link,
         publishedDate: item.pubDate,
         title: item.title
