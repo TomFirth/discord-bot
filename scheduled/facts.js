@@ -16,7 +16,7 @@ function init(client) {
       url: 'https://api.api-ninjas.com/v1/facts?limit=1'
     }).then(response => {
       const embed = new EmbedBuilder()
-				.setDescription(`Fact: ${response.data.fact}`)
+				.setDescription(response.data.fact)
 				.setColor(utilities.randomColour())
 			utilities.channel(client, config.discord.channels.general, { embeds: [embed] })
     }).catch(console.error)
