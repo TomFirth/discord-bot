@@ -16,13 +16,12 @@ module.exports = {
       })
       return
     }
-    const credentials = require('../credentials.json')
     const scopes = [
       'https://www.googleapis.com/auth/drive'
     ]
     const auth = new google.auth.JWT(
-      credentials.client_email, null,
-      credentials.private_key, scopes
+      process.env.FIREBASE_CLIENT_EMAIL, null,
+      process.env.FIREBASE_PRIVATE_KEY, scopes
     )
     const drive = google.drive({ version: "v3", auth })
     drive.files.list({}, (err, res) => {

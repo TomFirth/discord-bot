@@ -5,7 +5,7 @@ const utilities = require("../scripts/utilities")
 const config = require("../config.json")
 
 function init(client) {
-	let scheduledMessage = new cron.CronJob("00 00 10 * * 6", async () => {
+	let scheduledMessage = new cron.CronJob("00 00 11 * * 6", async () => {
     await axios.request({
       method: 'GET',
       headers: {
