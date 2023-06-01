@@ -17,8 +17,9 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const response = await openai.createCompletion({
-      model: "text-embedding-ada-002",
+    await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: "Hello" }],
       prompt: interaction.options.getString("question"),
       'response_length': 512,
       'top_p': 1,
@@ -32,10 +33,9 @@ module.exports = {
       'stop': '\nHuman',
       'user': interaction.user.id
     })
-    await interaction.deferReply()
-    setTimeout(async () => {
-      console.log(response.data)
-      await interaction.editReply(String(response.data.choices[0].text)).catch(console.error)
-    }, 4000)
+    .then(async response => {
+      await interaction.deferReply()
+      await interaction.editReply(String(response.data.choices[0].message.content)).catch(console.error)
+    })
   }
 }
