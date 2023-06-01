@@ -68,3 +68,17 @@ exports.specialSort = async function (user) {
 exports.randomColour = function () {
   return Math.floor(Math.random()*16777215).toString(16)
 }
+
+exports.cooldown = function (interaction, userId) {
+  client = interaction.client
+  if (client.cooldowns.has(interaction.user.id)) {
+    interaction.reply({ content: "Please wait for cooldown to end", ephemeral: true })
+    throw new Error("Stop command")
+  } else {
+    client.cooldowns.set(interaction.user.id, true)
+  }
+}
+
+exports.reportCommand = function (client, user, cmd) {
+  channel(client, "bot", `${user} ran ${cmd}`)
+}

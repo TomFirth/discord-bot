@@ -19,6 +19,8 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    utilities.cooldown(interaction.client, interaction.member.id)
+    utilities.reportCommand(interaction.client, interaction.user.username, "openaiimage")
     try {
       const response = await openai.createImage({
         prompt: interaction.options.getString("create"),

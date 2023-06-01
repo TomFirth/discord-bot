@@ -52,5 +52,6 @@ module.exports = {
       content: "Your channel has been created.",
       ephemeral: true
     })
+    utilities.reportCommand(interaction.member, "channel")
   }
 }

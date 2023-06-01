@@ -60,5 +60,6 @@ module.exports = {
         ephemeral: true
       })
     }
+    utilities.reportCommand(interaction.member, "barber")
   }
 }

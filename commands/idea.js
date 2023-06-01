@@ -13,6 +13,8 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    utilities.cooldown(interaction.client, interaction.member.id)
+    utilities.reportCommand(interaction.client, interaction.user.username, "idea")
     await db.collection("ideas").add({
       author: interaction.user.username,
       idea: interaction.options.getString("idea"),

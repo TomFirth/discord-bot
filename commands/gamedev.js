@@ -70,5 +70,7 @@ module.exports = {
         console.error('No files found')
       }
     })
+    utilities.timeout()
+    utilities.reportCommand(interaction.member, "gamedev")
   }
 }

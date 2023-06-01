@@ -17,6 +17,8 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    utilities.cooldown(interaction.client, interaction.member.id)
+    utilities.reportCommand(interaction.client, interaction.user.username, "openai")
     await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: "Hello" }],

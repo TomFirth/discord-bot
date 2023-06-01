@@ -20,6 +20,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    utilities.reportCommand(interaction.client, interaction.user.username, "answer")
     const startTime = '19:00:00'
     const endTime = '23:59:59'
     const current = new Date()   
@@ -76,7 +77,6 @@ module.exports = {
         })
         gameEmbed = new EmbedBuilder()
           .setTitle("Who's that Pokemon? WINNER!")
-          // .setThumbnail(interaction.member.displayAvatarURL())
           .setImage(`attachment://${number}.jpg`)
           .setColor(colours.gold)
           .setDescription(`Congratulations ${interaction.member} with the correct answer of: ${userAnswerRaw}!`)

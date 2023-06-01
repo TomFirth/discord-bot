@@ -14,6 +14,8 @@ module.exports = {
       .setRequired(true)
     ),
   async execute(interaction) {
+    utilities.cooldown(interaction.client, interaction.member.id)
+    utilities.reportCommand(interaction.client, interaction.user.username, "poll")
     const poll = new EmbedBuilder()
       .setDescription(`Poll: **${interaction.options.getString("question")}**`)
       .setColor(utilities.randomColour())

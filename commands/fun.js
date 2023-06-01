@@ -12,18 +12,18 @@ module.exports = {
         .setDescription("Fun commands")
         .setRequired(true)
         .addChoices(
-          { name: 'coin', value: 'fun_coin' },
-          { name: 'lie', value: 'fun_lie' },
+          { name: 'coin', value: 'coin' },
+          { name: 'lie', value: 'lie' },
         )
     ),
   async execute(interaction) {
-    if (interaction.options.getString("command") === "fun_coin") {
+    if (interaction.options.getString("command") === "coin") {
       const coin = [
         "heads",
         "tails"
       ]
       interaction.reply(coin[Math.floor(Math.random() * coin.length)])
-    } else if (interaction.options.getString("command") === "fun_lie") {
+    } else if (interaction.options.getString("command") === "lie") {
       const lies = [
         "That was most certainly bullshit.",
         "No lie was detected.",
@@ -52,5 +52,6 @@ module.exports = {
       })
       interaction.deleteReply()
     }
+    utilities.reportCommand(interaction.member, "fun")
   }
 }

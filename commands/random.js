@@ -17,6 +17,8 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    utilities.cooldown(interaction.client, interaction.member.id)
+    utilities.reportCommand(interaction.client, interaction.user.username, "random")
     let num1 = interaction.options.getNumber("num1")
     let num2 = interaction.options.getNumber("num2")
     if (interaction.options.getNumber("num1") > interaction.options.getNumber("num2")) {

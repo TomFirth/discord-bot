@@ -19,6 +19,8 @@ module.exports = {
         .setDescription("What did they say?")
         .setRequired(false)),
   async execute(interaction) {
+    utilities.cooldown(interaction.client, interaction.member.id)
+    utilities.reportCommand(interaction.client, interaction.user.username, "quote")
     if (!interaction.options.getUser("user") && !interaction.options.getString("quote")) {
       const query = await db.collection('quotes').get()
       let quotes = []

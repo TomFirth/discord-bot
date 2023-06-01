@@ -12,6 +12,8 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    utilities.cooldown(interaction.client, interaction.member.id)
+    utilities.reportCommand(interaction.client, interaction.user.username, "search")
     google({'query': interaction.options.getString("search")}).then(results => {
       interaction.reply({
         content: "Searching...",

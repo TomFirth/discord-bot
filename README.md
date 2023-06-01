@@ -19,7 +19,6 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - - [ ] Twitch
 - - [ ] Instagram
 - - [ ] Soundcloud
-- [X] Hosted on RPi.
 - [X] Google search that returns the top result.
 - [X] Reddit Rhythm Roulette integration (provides three songs to be used as samples).
 - [X] Meme of the day.
@@ -28,8 +27,8 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - [X] Amazon Gaming freebies
 - [X] Gaming and Tech news.
 - [X] OpenAI integration
-- [X] Random facts
-- [ ] Patch notes for certain video games.
+- [X] Facts & Jokes
+- [X] Patch notes for specfic games and software
 - [ ] News on video games betas.
 - [ ] Crypto integration
 - [ ] Trading

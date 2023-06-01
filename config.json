@@ -66,35 +66,37 @@
       "user": "beardmachine"
     }
   },
-  "reddit": [{
-    "subreddit": "photoshopbattles",
-    "destination": "908335522978627595",
-    "docId": "XxJO6ob6bf1LMbQbP0BA",
-    "hide": "",
-    "frequency": "day",
-    "poll": false
-  },{
-    "subreddit": "chrissimpsonsartist",
-    "destination": "908335522978627595",
-    "docId": "dUC9sgzVTOLxGmf5hbFn",
-    "hide": "",
-    "frequency": "day",
-    "poll": false
-  },{
-    "subreddit": "memes",
-    "destination": "923517416896626739",
-    "docId": "nCob2L5dKPPLdduHOPIg",
-    "hide": "",
-    "frequency": "day",
-    "poll": false
-  },{
-    "subreddit": "funny",
-    "destination": "923517416896626739",
-    "docId": "oIhgkmTkTr8Jdasx91Pp",
-    "hide": "",
-    "frequency": "day",
-    "poll": false
-  }],
+  "reddit": [
+    {
+      "subreddit": "photoshopbattles",
+      "destination": "908335522978627595",
+      "docId": "XxJO6ob6bf1LMbQbP0BA",
+      "hide": "",
+      "frequency": "day",
+      "poll": false
+    },{
+      "subreddit": "chrissimpsonsartist",
+      "destination": "908335522978627595",
+      "docId": "dUC9sgzVTOLxGmf5hbFn",
+      "hide": "",
+      "frequency": "day",
+      "poll": false
+    },{
+      "subreddit": "memes",
+      "destination": "923517416896626739",
+      "docId": "nCob2L5dKPPLdduHOPIg",
+      "hide": "",
+      "frequency": "day",
+      "poll": false
+    },{
+      "subreddit": "funny",
+      "destination": "923517416896626739",
+      "docId": "oIhgkmTkTr8Jdasx91Pp",
+      "hide": "",
+      "frequency": "day",
+      "poll": false
+    }
+  ],
   "rss": [
     {
       "url": "https://steamcommunity.com/groups/freegamesfinders/rss/",
@@ -146,26 +148,30 @@
     "tesla",
     "apple"
   ],
-  "patchNotes": [{
-    "name": "Unity",
-    "docId": "kh8oMmOoo3qsXFRm7wT3",
-    "url": "https://unity3d.com/unity/releases.xml",
-    "destination": "gamedev"
-  }, {
-    "name": "World of Tanks",
-    "docId": "w5DwDVtLXEaydncIQiWx",
-    "url": "https://worldoftanks.eu/en/rss/news/",
-    "destination": "updates"
-  }],
-  "games": [{
-    "game": "quiz",
-    "destination": "general",
-    "db": "quiz",
-    "frequency": "00 00 19 * * 1"
-  },{
-    "game": "movie",
-    "destination": "general",
-    "db": "movies",
-    "frequency": "00 00 19 * * 5"
-  }]
+  "patchNotes": [
+    {
+      "name": "Unity",
+      "docId": "kh8oMmOoo3qsXFRm7wT3",
+      "url": "https://unity3d.com/unity/releases.xml",
+      "destination": "gamedev"
+    }, {
+      "name": "World of Tanks",
+      "docId": "w5DwDVtLXEaydncIQiWx",
+      "url": "https://worldoftanks.eu/en/rss/news/",
+      "destination": "updates"
+    }
+  ],
+  "games": [
+    {
+      "game": "quiz",
+      "destination": "general",
+      "db": "quiz",
+      "frequency": "00 00 19 * * 1"
+    },{
+      "game": "movie",
+      "destination": "general",
+      "db": "movies",
+      "frequency": "00 00 19 * * 5"
+    }
+  ]
 }
