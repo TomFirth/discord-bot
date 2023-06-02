@@ -1,5 +1,6 @@
 const firebase = require("firebase-admin")
 const db = firebase.firestore()
+const metrics = require("../scripts/metrics")
 const config = require("../config.json")
 
 exports.channel = async function (client, destination, send) {
@@ -80,5 +81,6 @@ exports.cooldown = function (interaction, userId) {
 }
 
 exports.reportCommand = function (client, user, cmd) {
+  metrics.reportCommand()
   channel(client, "bot", `${user} ran ${cmd}`)
 }

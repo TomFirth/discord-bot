@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require("discord.js")
 const Parser = require("rss-parser")
 const parser = new Parser()
+const metrics = require("../scripts/metrics")
 const config = require("../config.json")
 
 class Rss {
@@ -32,7 +33,7 @@ class Rss {
             .setAuthor({ name: feed.author })
             .setDescription(`${description.substring(0, 180)}...`)
           }
-          
+          metrics.streamCounter()
           let channel = await client.channels.cache.find(channel => channel.name === feed.destination)
           channel.send({ embeds: [feedEmbed] }).then(ownMessage => {
             if (feed.poll) {

@@ -1,23 +1,22 @@
 const io = require('@pm2/io')
 
-const realtimeUsers = io.metric({
-  name: 'Realtime Users',
-  id: 'app/realtime/users'
-})
+const message = io.metric({ name: 'Messages' })
+const command = io.metric({ name: 'Commands' })
+const stream = io.metric({ name: 'Streams' })
+const free = io.metric({ name: 'Free' })
 
-realtimeUsers.set()
+exports.message = function () {
+  message.set()
+}
 
-const currentReqs = io.counter({
-  name: 'Realtime request count',
-  id: 'app/realtime/requests'
-})
+exports.reportCommand = function () {
+  command.set()
+}
 
-// currentReqs.inc()
-// currentReqs.dec()
+exports.streamCounter = function () {
+  stream.set()
+}
 
-/*
-  count number of messages sent by users
-  number of commands used
-  number of rss/reddit and whatever found
-  free games
-*/
+exports.free = function () {
+  free.set()
+}

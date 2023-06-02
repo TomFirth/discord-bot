@@ -1,4 +1,5 @@
 const https = require("https")
+const metrics = require("../scripts/metrics")
 const config = require("../config.json")
 
 class Reddit {
@@ -36,6 +37,7 @@ class Reddit {
                   try {
                     await client.channels.fetch(reddit.destination)
                     .then(channel => {
+                      metrics.streamCounter()
                       channel.send(`${reddit.hide} ${releases.data.children[0].data.url_overridden_by_dest} ${reddit.hide}`)
                       .then(ownMessage => {
                         if (reddit.poll) {

@@ -1,8 +1,11 @@
+const metrics = require("../scripts/metrics")
 const trolls = require("../troll.json")
 
 module.exports = async (client, message) => {
+  metrics.message()
   // AUTO PUBLISH FREE GAMES
   if (message.channel.type === "free" && message.author.bot) {
+    metrics.free()
     message.crosspost()
       .then(() => console.log("Message published"))
       .catch(console.error)
