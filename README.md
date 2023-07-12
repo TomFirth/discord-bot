@@ -47,8 +47,6 @@ I think my OCD kicked in and it seemed like a good idea to aggregate them.
 - Install `pm2` and follow setup steps (`sudo apt-get install pm2`)
 - `pm2 start <your bot ecosystem file>`
 
-*Updates are currently manual, but will be automatic once I stop messing about with it).
-
 #### Useful resources
 
 [discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome)

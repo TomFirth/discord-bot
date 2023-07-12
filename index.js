@@ -44,15 +44,8 @@ client.prefix = config.bot.prefix
 
 const leet = require("./scheduled/1337")(client)
 const birthdays = require("./scheduled/birthday")(client, db)
-const facts = require("./scheduled/facts")(client, db)
 const gameCheck = require("./scheduled/gameCheck")(client, db)
-const games = require("./scheduled/games")
-const jokes = require("./scheduled/jokes")(client, db)
-const lucky = require("./scheduled/lucky")(client)
-const pokemon = require("./scheduled/pokemon")(client, db, cache)
 const prune = require("./scheduled/prune")(client)
-const riddles = require("./scheduled/riddles")(client, db, cache)
-const unlucky = require("./scheduled/unlucky")(client)
 const unSpecial = require("./scheduled/unSpecial")(client)
 
 const patches = require("./streams/patches")
@@ -121,6 +114,14 @@ config.rss.forEach(feed => {
 config.games.forEach(async game => {
   await games.start(client, db, cache, game)
 })
+
+// const facts = require("./scheduled/facts")(client, db)
+// const games = require("./scheduled/games")
+// const jokes = require("./scheduled/jokes")(client, db)
+// const lucky = require("./scheduled/lucky")(client)
+// const pokemon = require("./scheduled/pokemon")(client, db, cache)
+// const riddles = require("./scheduled/riddles")(client, db, cache)
+// const unlucky = require("./scheduled/unlucky")(client)
 
 // SUBREDDITS
 config.reddit.forEach(async subreddit => {

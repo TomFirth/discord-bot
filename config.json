@@ -163,15 +163,26 @@
   ],
   "games": [
     {
+      "game": "jokes",
+      "frequency": "00 00 10 * * 0"
+    },{
       "game": "quiz",
-      "destination": "general",
-      "db": "quiz",
       "frequency": "00 00 19 * * 1"
     },{
+      "game": "pokemon",
+      "frequency": "00 00 19 * * 2"
+    },{
+      "game": "unlucky",
+      "frequency": "00 00 12 * * 3"
+    },{
+      "game": "riddles",
+      "frequency": "00 00 19 * * 4"
+    },{
       "game": "movie",
-      "destination": "general",
-      "db": "movies",
       "frequency": "00 00 19 * * 5"
+    },{
+      "game": "facts",
+      "frequency": "00 00 11 * * 6"
     }
   ]
 }
